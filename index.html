@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tactical RPG</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div id="gamearea">
+        <div id="player-panel-box">
+            <div id="player-panel"></div>
+            <div id="player-panel-info-text"></div>
+            <div id="combat-timeline-box">
+                <h2 id="combat-timeline-header">Combat Timeline:</h2>
+                <div id="combat-timeline-icons-box"></div>
+            </div>
+            <div id="player-panel-button-box">
+                <div class="player-panel-button">Ready</div>
+            </div>
+        </div>
+        <div id="player-area-box">
+            <div id="player-area">
+                <div id="main-menu-one-player" class="main-menu-elements">
+                    <h1>1 Player</h1>
+                </div>
+                <div id="main-menu-two-player" class="main-menu-elements">
+                    <h1>2 Player</h1>
+                </div>
+                <div id="main-menu-three-player" class="main-menu-elements">
+                    <h1>3 Player</h1>
+                </div>
+                <div id="main-menu-four-player" class="main-menu-elements">
+                    <h1>4 Player</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Utilities -->
+    <script src="./js/utility/utility-functions.js"></script>
+    <script src="./js/utility/add-on-click.js"></script>
+    <script src="./js/maps/maps.js"></script>
+    
+
+    <!-- Main Manu -->
+    <script src="./js/main-menu/player-selection.js"></script>
+
+
+    <!-- GAME   GAME    GAME -->
+    <!-- Models -->
+    <script src="./js/classes/Novice.js"></script>
+
+    <script src="./js/Models/Game.js"></script>
+    <script src="./js/Models/Player.js"></script>
+
+    <script src="./js/visuals/player-panel/update-initiation-visuals.js"></script>
+
+    <script src="./js/game/movement/movement.js"></script>
+    <script src="./js/visuals/map-highlights/movement-visuals.js"></script>
+    <script src="./js/visuals/map-highlights/display-map-highligths.js"></script>
+
+
+    <script src="./js/game/start-game/start-game.js"></script>
+</body>
+</html>

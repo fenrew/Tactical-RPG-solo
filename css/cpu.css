@@ -1,0 +1,18 @@
+/* CPU panel */
+.NPC-class-panel{
+    border: 1px solid gray;
+}
+
+
+.zombie-cpu-player-area{
+    width: 100%;
+    height: 100%;
+    background: url("../Animations/NPCs/Zombie/Zombie\ second\ try\,\ Right.gif");
+    background-size: 100%;
+}
+
+/* CPU Combat Timeline */
+.zombie-cpu-combat-timeline-panel{
+    background: url("../Animations/NPCs/Zombie/Zombie\ second\ try\,\ Right.gif");
+    background-size: 100%;
+}

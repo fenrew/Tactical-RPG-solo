@@ -1,0 +1,29 @@
+@import "./main-menu.css";
+@import "./player-area.css";
+@import "./player-panel.css";
+@import "./mapTerrain.css";
+@import "./spells.css";
+@import "./cpu.css";
+
+#gamearea {
+    height: 924px;
+    width: 1500px;
+    background-color: black;
+    position: relative;
+}
+
+#player-area-box{
+    height: 100%;
+    width: 1232px;
+    background-color: rgb(41, 41, 41);
+    position: absolute;
+    left: 300px;
+}
+
+#player-panel-box {
+    height: 100%;
+    width: 300px;
+    background-color: brown;
+    position: absolute;
+}
+
