@@ -3,7 +3,7 @@
 @import "./player-panel.css";
 @import "./mapTerrain.css";
 @import "./spells.css";
-@import "./cpu.css";
+@import "./npc.css";
 
 #gamearea {
     height: 924px;

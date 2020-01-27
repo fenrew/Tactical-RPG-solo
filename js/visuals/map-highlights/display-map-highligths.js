@@ -1,5 +1,5 @@
+//Adding the movement highlight div and on click to the map
 function displayMapHighlightsVisuals(highlightMap){
-    
     for(let y = 0; y < highlightMap.length; y++){
         for(let x = 0; x < highlightMap[y].length; x++){
             let mapGridBlockDiv = document.getElementById("map-grid-block-"+y+","+x)
@@ -8,12 +8,17 @@ function displayMapHighlightsVisuals(highlightMap){
                 highlightMap[y][x].forEach((mapNumber) => {
                     highlightDiv.classList.add(returnHighlightBlockClass(mapNumber))
                 })
+                if(highlightMap[y][x].indexOf(1)>-1) {
+                    addOnClickMovementHighlight(highlightDiv, positions = {y, x})
+                }
                 mapGridBlockDiv.appendChild(highlightDiv)
             }
         }
     }
 }
 
+
+//Removes the movement highlights from the map
 function removeMovementHighlightsFromMap(highlightMap){
     
     for(let y = 0; y < highlightMap.length; y++){

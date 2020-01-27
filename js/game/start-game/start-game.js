@@ -1,4 +1,4 @@
-function startGame(amountOfPlayers){
+function setupGame(amountOfPlayers){
     let map = Game.activeMap
 
     for(let i = 0; i <= amountOfPlayers; i++){
@@ -17,18 +17,6 @@ function startGame(amountOfPlayers){
     addOnClickPlayers()
 }
 
-function removeStartingPositions(map) {
-
-    for(let y = 0; y < map.length; y ++){
-        for(let x = 0; x < map[y].length; x++){
-            if(map[y][x] > 9 && map[y][x] < 20){
-                map[y][x] = 21
-            }
-        }
-    }
-
-    return map
-}
 
 // This is the first time visualization of the map
 function visualizeMap(map){

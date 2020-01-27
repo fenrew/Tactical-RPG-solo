@@ -2,12 +2,17 @@ class GameClass {
     constructor(){
         this.players = []
         this.npc = []
-        this.activeMap = JSON.parse(JSON.stringify(mapOne))
-        this.mapHighlights = this.activeMap.map((y) => {return y.map((x) => { return []})})
-        this.originalMap = mapOne
+        this.activeMap = JSON.parse(JSON.stringify(mapOne)) //Current map modified
+        this.mapHighlights = this.activeMap.map((y) => {return y.map((x) => { return []})}) // Triple array of all different highlights on the map
+        this.availableMovementMap = ""
+        this.originalMap = removeStartingPositions(mapOne) // Current map UN-modified
         this.turn = 0
         this.round = 0
-        this.combatTimeline = []
+        this.combatTimeline = [] // this.combatTimeline[this.turn]
+
+        this.newRound = () =>{
+            addNewNpcToMap(this.round)
+        }
     }
 
     _addPlayerToGame(playerNumber){
@@ -29,7 +34,14 @@ class GameClass {
         })
     }
 
-    _addNpcToGame(type){
+    _addNpcToGame(npcArrayToBeAdded){
+        npcArrayToBeAdded.forEach((npc) => {
+            console.log("npc", npc)
+            npc._generateRandomPosition()
+            this.npc.push(npc)
+            this.combatTimeline.push(npc)
+        })
+        this._updateInitiation()
     }
 
     _getPlayer(playerNumber){
@@ -45,17 +57,25 @@ class GameClass {
     }
 
     _nextTurn(){
+        this.combatTimeline[this.turn].class.combatstats.currentMovementPoints = 
+        this.combatTimeline[this.turn].class.combatstats.maxMovementPoints;
         this.turn += 1
+        if(this.turn%this.combatTimeline.length === 0){
+            this.round += 1
+            this.turn = 0
+
+            this.newRound()
+        }
         updatePlayerPanelActiveTurn(this.combatTimeline, this.turn)
     }
 
     _displayMovementHighlights(player){
-        let availableMovementMap = findAvailableMovementArea(player, this.activeMap), activePlayerTurn
+        let activePlayerTurn
+        this.availableMovementMap = findAvailableMovementArea(player, this.activeMap)
         if(this.combatTimeline[this.turn] == player) activePlayerTurn = true
-        this.mapHighlights = addMovementToHighlightMap(availableMovementMap, this.mapHighlights, activePlayerTurn)
+        this.mapHighlights = addMovementToHighlightMap(this.availableMovementMap, this.mapHighlights, activePlayerTurn)
         displayMapHighlightsVisuals(this.mapHighlights)
     }
-
 }
 
 const Game = new GameClass()

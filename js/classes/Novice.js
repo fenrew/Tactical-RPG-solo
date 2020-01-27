@@ -1,5 +1,5 @@
 class Novice {
-    constructor(name){
+    constructor(){
         this.className = "Novice"
         this.cssString = "novice-player-area"
         this.cssPlayerPanelString = "novice-class-player-panel"
@@ -10,8 +10,8 @@ class Novice {
             mana: 100,
             currentMana: 100,
             initiation: 100,
-            movementPoints: 5,
-            currentMovementPoints: 5,
+            maxMovementPoints: 5,
+            currentMovementPoints: 30,
         }
     }
 }

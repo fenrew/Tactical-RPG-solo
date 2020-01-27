@@ -1,6 +1,6 @@
-// returns an array that show where a character is allowed to move
+// returns an array that show where a character is allowed to move and how many movementpoints it requires
 function findAvailableMovementArea(player, map){
-    let newMovementMap, movementHighlightMap, currentMovementPoints
+    let newMovementMap,
     remainingMovementPoints = player.class.combatstats.currentMovementPoints + 1
     
     // Creates a map array of where im allowed to move (0) and where there are obstacles ("obstacle")
@@ -18,16 +18,16 @@ function findAvailableMovementArea(player, map){
         for(let y = 0; y < newMovementMap.length; y++){
             for(let x = 0; x < newMovementMap[y].length; x++){
                 if(newMovementMap[y][x] === movement+1){
-                    if(newMovementMap[y-1][x] < movement){
+                    if(checkIfInsideOfMap(newMovementMap, y-1, x) && newMovementMap[y-1][x] < movement){
                         newMovementMap[y-1][x] = movement
                     }
-                    if(newMovementMap[y+1][x] < movement){
+                    if(checkIfInsideOfMap(newMovementMap, y+1, x) && newMovementMap[y+1][x] < movement){
                         newMovementMap[y+1][x] = movement
                     }
-                    if(newMovementMap[y][x+1] < movement){
+                    if(checkIfInsideOfMap(newMovementMap, y, x+1) && newMovementMap[y][x+1] < movement){
                         newMovementMap[y][x+1] = movement
                     }
-                    if(newMovementMap[y][x-1] < movement){
+                    if(checkIfInsideOfMap(newMovementMap, y, x-1) && newMovementMap[y][x-1] < movement){
                         newMovementMap[y][x-1] = movement
                     }
                 }
@@ -35,7 +35,15 @@ function findAvailableMovementArea(player, map){
         }
     }
 
-    console.log(newMovementMap)
-
     return newMovementMap
+}
+
+
+// Confirming the movement to position on Click event
+function confirmMovementToPosition(position){
+    let player = Game.combatTimeline[Game.turn]
+    Game.activeMap[player.position.y][player.position.x] = Game.originalMap[player.position.y][player.position.x]
+    player.class.combatstats.currentMovementPoints = Game.availableMovementMap[position.y][position.x]-1
+    player.position = position
+    Game.activeMap[player.position.y][player.position.x] = player.playerNumber
 }
