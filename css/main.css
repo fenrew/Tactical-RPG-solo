@@ -23,7 +23,8 @@
 #player-panel-box {
     height: 100%;
     width: 300px;
-    background-color: brown;
+    background-image: url("../Animations/Panel/panel_pixel-art-wallpaper.jpg");
+    background-size: 100% 100%;
     position: absolute;
 }
 

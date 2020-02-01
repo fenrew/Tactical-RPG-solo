@@ -15,8 +15,8 @@ function addOnClickPlayers(){
 function addOnClickMovementHighlight(highlightDiv, position){
     highlightDiv.onclick = function(){
         removeMovementHighlightsFromMap(Game.mapHighlights)
-        let movementRoute = findBestMovementRoute(position, Game.players[Game.turn].position)
-        movementVisuals(movementRoute, Game.players[Game.turn].position)
+        let movementRoute = findBestMovementRoute(position, Game.combatTimeline[Game.turn].position)
+        movementVisuals(movementRoute, Game.combatTimeline[Game.turn].position)
         confirmMovementToPosition(position)
     }
 }

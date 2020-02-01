@@ -35,6 +35,7 @@ function findAvailableMovementArea(player, map){
         }
     }
 
+    console.log("newMovementMap in findAvail", newMovementMap)
     return newMovementMap
 }
 

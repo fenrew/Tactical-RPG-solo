@@ -3,7 +3,7 @@ class GameClass {
         this.players = []
         this.npc = []
         this.activeMap = JSON.parse(JSON.stringify(mapOne)) //Current map modified
-        this.mapHighlights = this.activeMap.map((y) => {return y.map((x) => { return []})}) // Triple array of all different highlights on the map
+        this.mapHighlights = this.activeMap.map((y) => {return y.map(() => { return []})}) // Triple array of all different highlights on the map
         this.availableMovementMap = ""
         this.originalMap = removeStartingPositions(mapOne) // Current map UN-modified
         this.turn = 0
@@ -36,16 +36,24 @@ class GameClass {
 
     _addNpcToGame(npcArrayToBeAdded){
         npcArrayToBeAdded.forEach((npc) => {
-            console.log("npc", npc)
             npc._generateRandomPosition()
+            this.activeMap[npc.position.y][npc.position.x] = npc.playerNumber
             this.npc.push(npc)
             this.combatTimeline.push(npc)
         })
+        console.log(this.combatTimeline)
         this._updateInitiation()
+        visualizeNpcs(this.activeMap)
     }
 
     _getPlayer(playerNumber){
         return this.players[playerNumber]
+    }
+
+    _getNpc(position){
+        return this.npc.find((npc) => {
+            return (npc.position.y === position.y && npc.position.x === position.x)
+        })
     }
 
     _updateInitiation(){
@@ -66,6 +74,12 @@ class GameClass {
 
             this.newRound()
         }
+
+        //NPC turn
+        if(this.combatTimeline[this.turn].npc){
+            this.combatTimeline[this.turn].ai.runAi()
+        }
+
         updatePlayerPanelActiveTurn(this.combatTimeline, this.turn)
     }
 

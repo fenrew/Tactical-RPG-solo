@@ -11,7 +11,7 @@ class Novice {
             currentMana: 100,
             initiation: 100,
             maxMovementPoints: 5,
-            currentMovementPoints: 30,
+            currentMovementPoints: 5,
         }
     }
 }

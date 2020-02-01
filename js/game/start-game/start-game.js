@@ -73,3 +73,25 @@ function visualizePlayers(map) {
         }
     }
 }
+
+function visualizeNpcs(map){
+    for(let y = 0; y < map.length; y++){
+        for(let x = 0; x < map[y].length; x++){
+            if(map[y][x] >= 70 && map[y][x] < 91){
+                let npcBlockElement = document.createElement("div")
+                
+                parentDiv = document.getElementById("map-grid-block-"+y+","+x)
+                removeAllChilds(parentDiv)
+
+                npcClassName = "npc" + map[y][x] +"-playerarea"
+                classClassName = Game._getNpc({y, x}).class.cssString
+
+
+                npcBlockElement.classList.add(npcClassName, classClassName)
+                npcBlockElement.id = "npc-" + y + "," + x
+    
+                parentDiv.appendChild(npcBlockElement)
+            }
+        }
+    }
+}

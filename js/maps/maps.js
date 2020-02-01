@@ -44,7 +44,8 @@ function returnMapBlockClass(mapNumber){
         20: "map-grid-void",
         21: "map-grid-grass",
         22: "map-grid-sand",
-        30: "map-grid-stone"
+        30: "map-grid-stone",
+        70: "npc-zombie"
     }
     
     return mapBlockClasses[mapNumber]
