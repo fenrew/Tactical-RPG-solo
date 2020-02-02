@@ -41,7 +41,6 @@ class GameClass {
             this.npc.push(npc)
             this.combatTimeline.push(npc)
         })
-        console.log(this.combatTimeline)
         this._updateInitiation()
         visualizeNpcs(this.activeMap)
     }

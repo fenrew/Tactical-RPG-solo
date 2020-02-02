@@ -19,9 +19,10 @@ function addMovementToHighlightMap(movementMap, movementHighlightMap, playerTurn
 
 // Finds the best route for moving to the destination
 // After clicking on the square you want to go to, this returns an array of the path your char will take "path"
-function findBestMovementRoute(destinationPosition){
-    let availableMovementMap = JSON.parse(JSON.stringify(Game.availableMovementMap)),
-    yPos = destinationPosition.y, xPos = destinationPosition.x, 
+function findBestMovementRoute(destinationPosition, availableMovementMap){
+    availableMovementMap = JSON.parse(JSON.stringify(availableMovementMap))
+    console.log("MOVEMENT MAP", availableMovementMap, destinationPosition)
+    let yPos = destinationPosition.y, xPos = destinationPosition.x, 
     currentNumber = availableMovementMap[yPos][xPos], originalPosition = false
 
     while (!originalPosition){

@@ -1,6 +1,5 @@
 //Adding the movement highlight div and on click to the map
 function displayMapHighlightsVisuals(highlightMap){
-    console.log("displayMapHighlights", highlightMap)
     for(let y = 0; y < highlightMap.length; y++){
         for(let x = 0; x < highlightMap[y].length; x++){
             let mapGridBlockDiv = document.getElementById("map-grid-block-"+y+","+x)
