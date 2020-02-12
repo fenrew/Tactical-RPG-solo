@@ -40,10 +40,16 @@ function findAvailableMovementArea(player, map){
 
 
 // Confirming the movement to position on Click event
-function confirmMovementToPosition(position){
+function confirmMovementToPosition(position, availableMovementMap){
     let player = Game.combatTimeline[Game.turn]
     Game.activeMap[player.position.y][player.position.x] = Game.originalMap[player.position.y][player.position.x]
-    player.class.combatstats.currentMovementPoints = Game.availableMovementMap[position.y][position.x]-1
+    if(player.npc){
+        player.class.combatstats.currentMovementPoints = availableMovementMap[position.y][position.x]-1
+        //BUG: NPC 7,15. cannot read property "y" of undefined
+    } else {
+        player.class.combatstats.currentMovementPoints = Game.availableMovementMap[position.y][position.x]-1
+    }
     player.position = position
     Game.activeMap[player.position.y][player.position.x] = player.playerNumber
+
 }

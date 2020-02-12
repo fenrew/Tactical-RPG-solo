@@ -20,7 +20,7 @@ class Zombie {
                 id: "bite",
                 name: "Bite",
                 cast: (target) => {
-                    target.class.combatstats.hp -= this.spells.bite.spellInfo.damage
+                    target.class.combatstats.currentHp -= this.spells.bite.spellInfo.damage
                 },
                 spellInfo: {
                     canBeCast: true,
@@ -43,7 +43,9 @@ class Zombie {
                 id: "spit",
                 name: "Spit",
                 cast: (target) => {
-                    target.class.combatstats.hp -= this.spells.spit.spellInfo.damage
+                    console.log("TARGET", target)
+                    target.class.combatstats.currentHp -= this.spells.spit.spellInfo.damage
+                    handleSpellDamageEffectAnimation(target.position, this.spells.spit.spellInfo.damage, "damage")
                 },
                 spellInfo: {
                     canBeCast: true,

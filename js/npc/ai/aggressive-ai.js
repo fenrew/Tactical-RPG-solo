@@ -7,9 +7,13 @@ class AggressiveAi {
         this.spellRangeMap = ""
         this.damageMap = ""
         this.movementMap = ""
+        this.bestMovementRoute = ""
+        this.bestMovementPosition = ""
         this.spellList = JSON.parse(JSON.stringify(this.npc.class.spells))
         this.spellDamageOnPlayer = []
         this.spellWeight = []
+        this.movementWeight = []
+        this.animationIsRunning = false
     }
 
     runAi(){
@@ -22,7 +26,38 @@ class AggressiveAi {
 
         this.calculateAttackWeight()
 
-        this.findMovementPathForAttacking()
+        this.spellDamageOnPlayer.forEach((player) => {
+            this.findMovementPathForAttacking(player)
+        })
+
+        this.reCalculationOfTotalWeight()
+
+        this.executeMovementAndActions()
+
+        const checkAnimationActions = setInterval(() => {
+            if(!this.animationIsRunning){
+                Game.combatTimeline.forEach((ele) =>{
+                if(ele.npc) return 
+                this.calculateMovementWeight(ele)
+                })
+
+                this.movementWeight.sort((a, b) => a.counter - b.counter)
+
+                this.executeNoSpellMovement()
+
+                const checkAnimation = setInterval(() => {
+                    if(!this.animationIsRunning){
+                        Game._nextTurn()
+                        this.resetAi()
+                        clearInterval(checkAnimation)
+                    }
+                }, 1000)
+                clearInterval(checkAnimationActions)
+            }
+        }, 1000)
+
+
+
     }
 
     setActiveMap(){
@@ -72,7 +107,6 @@ class AggressiveAi {
                 }
             })
         })
-        console.log("UPDATED DAMAGE MAP", this.spellDamageOnPlayer)
     }
 
     checkIfPlayerCanBeKilled() {
@@ -118,14 +152,22 @@ class AggressiveAi {
         })
 
         this.spellDamageOnPlayer.sort((a,b) => b.totalAiWeight - a.totalAiWeight)
-        console.log(this.spellDamageOnPlayer)
+
     }
 
-    findMovementPathForAttacking(){
+    findMovementPathForAttacking(player){
         // BUG!: When an enemy can not reach anyone at all.. Make an if statement that this function is only run if total AI weight is > 0
-        let spellRangeMap = this.spellDamageOnPlayer[0].spell[0].spellRangeMap,
+        // Also make a "find movement path for attacking for the other spells and see how many MP it takes if a detour is required"
+        
+
+        // THIS LINE WILL FIX THE BUG
+        if(!player.castSequence[0]){
+            return
+        }
+
+        let spellRangeMap = player.castSequence[0].spellRangeMap,
+
         bestMovementPosition = {remainingMovement: 0}
-        console.log("SPELLDAMAGEONPLAYER",  this.spellDamageOnPlayer[0])
 
         for(let y = 0; y < spellRangeMap.length; y++){
             for(let x = 0; x < spellRangeMap[y].length; x++){
@@ -136,8 +178,333 @@ class AggressiveAi {
                 }
             }
         }
-        console.log(bestMovementPosition)
-        let bestRouteMap = findBestMovementRoute(bestMovementPosition.position, this.movementMap)
-        console.log("BEST ROUTE MAP", bestRouteMap)
+
+        player.bestMovementRoute = findBestMovementRoute(bestMovementPosition.position, this.movementMap)
+        player.bestMovementPosition = bestMovementPosition.position
+
+        player.castSequence.forEach((spell, index) => {
+            let castPosition;
+            for(let y = 0; y < player.bestMovementRoute.length; y++) {
+                for(let x = 0; x < player.bestMovementRoute[y].length; x++) {
+                    if(player.bestMovementRoute[y][x] == "path" && spell.spellRangeMap[y][x] > 0){
+                        castPosition = {y, x}
+                    }
+                }
+            }
+            player.castSequence[index].castPosition = castPosition
+        })
+
+        // ABOVE HERE IS WHERE I CAN ADD THE FLEXIBLE ROUTING
+
+
+        //If the spell can not be cast, then remove it!
+
+        player.castSequence = player.castSequence.filter((ele) => ele.castPosition)
+
+    }
+
+    reCalculationOfTotalWeight(){
+        this.spellDamageOnPlayer.forEach((player) => {
+            player.totalAiWeight = 0;
+            player.castSequence.forEach((ele) =>{
+                player.totalAiWeight += ele.spell.spellInfo.aiWeight
+            })
+        })
+        
+
+
+        this.spellDamageOnPlayer.sort((a,b) => b.totalAiWeight - a.totalAiWeight)
+    }
+
+    executeMovementAndActions(){
+        let originalPosition = JSON.parse(JSON.stringify(this.npc.position))
+        if(this.spellDamageOnPlayer[0].bestMovementPosition){
+            confirmMovementToPosition(this.spellDamageOnPlayer[0].bestMovementPosition, this.movementMap)  // BUG: NPC position: 10,12, cannot read property y of undefined (movement.js:47)
+            this.executeMovement(JSON.parse(JSON.stringify(this.spellDamageOnPlayer[0].bestMovementRoute)), originalPosition)
+        }
+    }
+
+    findBestMovementRoute(originalStartPosition, destinationPosition, originalAvailableMovementMap){
+        let availableMovementMap = JSON.parse(JSON.stringify(originalAvailableMovementMap))
+        let yPos = originalStartPosition.y, xPos = originalStartPosition.x, 
+        currentNumber = availableMovementMap[yPos][xPos], originalPosition = false
+    
+        console.log("FINDBESTMOVEMENTROUTE", availableMovementMap, yPos,xPos,currentNumber, originalPosition)
+    
+        while (!originalPosition){
+            availableMovementMap[yPos][xPos] = "path"
+            if(yPos == destinationPosition.y && xPos == destinationPosition.x){
+                originalPosition = true
+                break
+            }
+            if(xPos+1 < availableMovementMap[yPos].length && 
+                availableMovementMap[yPos][xPos+1] < currentNumber && 
+                availableMovementMap[yPos][xPos+1] > 0){
+                // It may be a bug here... use xPos+1 <= availableMovementMap[yPos].length instead
+                xPos += 1
+            } else if(xPos-1 >= 0 && availableMovementMap[yPos][xPos-1] < currentNumber && 
+                availableMovementMap[yPos][xPos-1] > 0){ 
+                xPos -= 1
+            } else if(yPos+1 < availableMovementMap.length && 
+                availableMovementMap[yPos+1][xPos] < currentNumber && 
+                availableMovementMap[yPos+1][xPos] > 0){
+                // It may be a bug here... use yPos+1 <= availableMovementMap.length instead
+                yPos += 1
+            } else if(yPos-1 >= 0 && availableMovementMap[yPos-1][xPos] < currentNumber && 
+                availableMovementMap[yPos-1][xPos] > 0){
+                yPos -= 1
+            } else {
+                originalPosition = true
+            }
+            currentNumber -= 1;
+        }
+        return availableMovementMap
+    }
+
+    executeMovement(movementRoute, position) {
+        this.animationIsRunning = true
+
+        let spellsToCast = this.spellDamageOnPlayer[0].castSequence.filter((spell) => {
+            return spell.castPosition.y == position.y && spell.castPosition.x == position.x
+        })
+        
+        if(spellsToCast.length > 0) {
+            spellsToCast.forEach((ele) => {
+                console.log("CASTS", ele)
+                this.executeSpell(ele.spell)
+            })
+        }
+
+
+        let y = position.y
+        let x = position.x
+        let blockElement = document.getElementById("map-grid-block-" + y + "," + x)
+        let playerElement = document.getElementById(`npc-${y},${x}`)
+        
+        blockElement.style.zIndex = "400"
+        
+        movementRoute[y][x] = 0
+        if(movementRoute[y][x+1] == "path"){
+            movementRoute[y][x+1] = 0
+            x += 1;
+            return this.xMovementVisuals(x-1, y, x, playerElement, blockElement, movementRoute)
+        } else if(movementRoute[y][x-1] == "path"){
+            movementRoute[y][x-1] = 0
+            x -= 1;
+            return this.xMovementVisuals(x+1, y, x, playerElement, blockElement, movementRoute)
+        } else if(y+1 < movementRoute.length && movementRoute[y+1][x] == "path"){
+            movementRoute[y+1][x] = 0
+            y += 1;
+            return this.yMovementVisuals(y-1, y, x, playerElement, blockElement, movementRoute)
+        } else if(y-1 >= 0 && movementRoute[y-1][x] == "path"){
+            movementRoute[y-1][x] = 0
+            y -= 1;
+            return this.yMovementVisuals(y+1, y, x, playerElement, blockElement, movementRoute)
+        } else {
+            this.animationIsRunning = false
+            return //This line is run at the end of the walking animation
+        }
+        
+    }
+
+    yMovementVisuals(yPos, y, x, classElement, blockElement, routeUpdatedMovementMap){
+        let marginTop = 0;
+        let movementIntervalY = setInterval(() =>{
+        if(Math.abs(marginTop) >= Math.abs(y-yPos)*77){
+            clearInterval(movementIntervalY)
+            this.clearMovementVisuals(classElement, blockElement, x, y)
+            return this.executeMovement(routeUpdatedMovementMap, {y, x})
+        }
+        classElement.style.marginTop = marginTop + "px";
+        if(y-yPos > 0) marginTop += 4;
+        else marginTop -=4;
+        },17)
+    }
+
+    xMovementVisuals(xPos, y, x, classElement, blockElement, routeUpdatedMovementMap){
+        let marginLeft = 0;
+        let movementIntervalX = setInterval(()=>{
+        if(Math.abs(marginLeft) >= Math.abs(x-xPos)*77){
+            clearInterval(movementIntervalX)
+            this.clearMovementVisuals(classElement, blockElement, x, y)
+            return this.executeMovement(routeUpdatedMovementMap, {y, x})
+        }
+        classElement.style.marginLeft = marginLeft + "px"
+        if(x-xPos > 0) marginLeft += 4
+        else marginLeft -= 4
+        }, 17)
+    }
+
+    clearMovementVisuals(classElement, blockElement, x, y){
+        classElement.style.margin = 0 + "px";
+        blockElement.style.zIndex = 0;
+        blockElement.removeChild(blockElement.firstChild)
+        classElement.id = "npc-" + y + "," + x
+        document.getElementById("map-grid-block-" + y + "," + x).appendChild(classElement)
+    }
+
+    executeSpell(spell){
+        let spells = this.npc.class.spells
+        for(let key in spells){
+            if(spells[key].id == spell.id){
+                spells[key].cast(this.spellDamageOnPlayer[0].player)
+            }
+        }
+    }
+
+    calculateMovementWeight(player){
+        let movementMap = findAvailableMovementArea(this.npc, this.activeMap)
+        
+        // Removes all the current available movements
+        for(let y = 0; y < movementMap.length; y++){
+            for(let x = 0; x < movementMap[y].length; x++){
+                if(movementMap[y][x] > 0){
+                    movementMap[y][x] = 0
+                }
+            }
+        }
+
+        movementMap[player.position.y][player.position.x] = 1
+
+        let continueSearching = true, counter = 1
+
+        while(continueSearching){
+            for(let y = 0; y < movementMap.length; y++){
+                for(let x = 0; x < movementMap[y].length; x++){
+                    if(movementMap[y][x] == counter){
+                        if(checkIfInsideOfMap(movementMap, y-1, x) && movementMap[y-1][x] === 0){
+                            movementMap[y-1][x] = counter+1
+                            if(this.npc.position.y == y-1 && this.npc.position.x == x){
+                                continueSearching = false
+                                break
+                            }
+                        }
+                        if(checkIfInsideOfMap(movementMap, y+1, x) && movementMap[y+1][x] === 0){
+                            movementMap[y+1][x] = counter+1
+                            if(this.npc.position.y == y+1 && this.npc.position.x == x){
+                                continueSearching = false
+                                break
+                            }
+                        }
+                        if(checkIfInsideOfMap(movementMap, y, x+1) && movementMap[y][x+1] === 0){
+                            movementMap[y][x+1] = counter+1
+                            if(this.npc.position.y == y && this.npc.position.x == x+1){
+                                continueSearching = false
+                                break
+                            }
+                        }
+                        if(checkIfInsideOfMap(movementMap, y, x-1) && movementMap[y][x-1] === 0){
+                            movementMap[y][x-1] = counter+1
+                            if(this.npc.position.y == y && this.npc.position.x == x-1){
+                                continueSearching = false
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            counter += 1
+        }
+
+        this.movementWeight.push({player, movementMap, counter})
+    }
+
+    
+    executeNoSpellMovement(){
+        this.spellDamageOnPlayer.forEach((player) => {
+            player.castSequence = []
+        })
+
+        let remainingMovement = this.npc.class.combatstats.currentMovementPoints
+        let destinationPosition, iterationPosition = {y: this.npc.position.y, x: this.npc.position.x}
+        let currentNumber = this.movementWeight[0].movementMap[this.npc.position.y][this.npc.position.x]
+        let startCurrentNumber = currentNumber
+
+        console.log("remaining mp", remainingMovement)
+        console.log("current number", currentNumber)
+
+    
+        if(remainingMovement <= 0) return
+
+        //!destinationPosition ||
+        if(currentNumber > remainingMovement){
+            console.log("BEFORE", remainingMovement, currentNumber)
+            remainingMovement = currentNumber - remainingMovement
+            console.log("AFTER", remainingMovement)
+
+            while(!destinationPosition){
+                console.log("ITERATION POSITION", iterationPosition)
+                console.log("CURRENT NUMBER", currentNumber)
+                console.log(this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x], remainingMovement)
+                if(this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x] == remainingMovement ||
+                    currentNumber == 2) {
+                        destinationPosition = iterationPosition
+                        break
+                    }
+                if(iterationPosition.x+1 < this.movementWeight[0].movementMap[iterationPosition.y].length && 
+                    this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x+1] < currentNumber && 
+                    this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x+1] > 0){
+                    // It may be a bug here... use iterationPosition.x+1 <= this.movementWeight[0].movementMap[iterationPosition.y].length instead
+                    iterationPosition.x += 1
+                } else if(iterationPosition.x-1 >= 0 && 
+                    this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x-1] < currentNumber
+                    && this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x-1] > 0){ 
+                    iterationPosition.x -= 1
+                } else if(iterationPosition.y+1 < this.movementWeight[0].movementMap.length && 
+                    this.movementWeight[0].movementMap[iterationPosition.y+1][iterationPosition.x] < currentNumber &&
+                    this.movementWeight[0].movementMap[iterationPosition.y+1][iterationPosition.x] > 0){
+                    // It may be a bug here... use iterationPosition.y+1 <= this.movementWeight[0].movementMap.length instead
+                    iterationPosition.y += 1
+                } else if(iterationPosition.y-1 >= 0 && 
+                    this.movementWeight[0].movementMap[iterationPosition.y-1][iterationPosition.x] < currentNumber &&
+                    this.movementWeight[0].movementMap[iterationPosition.y-1][iterationPosition.x] > 0){
+                    iterationPosition.y -= 1
+                }
+    
+                currentNumber -= 1
+            }
+        }
+
+        console.log("desitnation postion", destinationPosition)
+        // If you're not going anywhere
+        if(!destinationPosition) {
+            this.animationIsRunning = false
+            return
+        }
+        console.log("movementmap", this.movementWeight)
+
+        console.log("BEST MOVEMENT ROUTE BEFORE", JSON.parse(JSON.stringify(this.movementWeight[0].movementMap)))
+
+        // THE BUG SEEMS TO BE IN findBestMovementRoute...
+        let bestMovementRoute = this.findBestMovementRoute(this.npc.position, destinationPosition, this.movementWeight[0].movementMap)
+        console.log("BEST MOVEMENT ROUTE", JSON.parse(JSON.stringify(bestMovementRoute)))
+        console.log("MOVEMENT POINTS SPENT", startCurrentNumber - this.movementWeight[0].movementMap[destinationPosition.y][destinationPosition.x])
+        
+        JSON.parse(JSON.stringify(this.npc.position))
+        this.executeMovement(bestMovementRoute, JSON.parse(JSON.stringify(this.npc.position)))
+
+        console.log("ACTIVE MAP BEFORE", JSON.parse(JSON.stringify(Game.activeMap)))
+        console.log("NPC PLAYER", JSON.parse(JSON.stringify(this.npc.position)), JSON.parse(JSON.stringify(destinationPosition)))
+
+        confirmMovementToPosition(destinationPosition, this.movementWeight[0].movementMap)  // BUG: NPC position: 10,12, cannot read property y of undefined (movement.js:47)
+        
+        console.log("NPC POSITION", JSON.parse(JSON.stringify(Game.activeMap)), this.npc.position)
+
+    }
+
+    resetAi(){
+        this.activeMap = ""
+        this.spellRangeMap = ""
+        this.damageMap = ""
+        this.movementMap = ""
+        this.bestMovementRoute = ""
+        this.bestMovementPosition = ""
+        this.spellList = JSON.parse(JSON.stringify(this.npc.class.spells))
+        this.spellDamageOnPlayer = []
+        this.spellWeight = []
+        this.movementWeight = []
+        this.animationIsRunning = false
     }
 }
+    
+    
