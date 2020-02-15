@@ -24,8 +24,6 @@ function findBestMovementRoute(destinationPosition, originalAvailableMovementMap
     let yPos = destinationPosition.y, xPos = destinationPosition.x, 
     currentNumber = availableMovementMap[yPos][xPos], originalPosition = false
 
-    console.log("FINDBESTMOVEMENTROUTE", availableMovementMap, yPos,xPos,currentNumber, originalPosition)
-
     while (!originalPosition){
         availableMovementMap[yPos][xPos] = "path"
         if(xPos+1 < availableMovementMap[yPos].length && availableMovementMap[yPos][xPos+1] > currentNumber){

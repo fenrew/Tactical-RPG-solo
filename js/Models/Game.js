@@ -9,6 +9,7 @@ class GameClass {
         this.turn = 0
         this.round = 0
         this.combatTimeline = [] // this.combatTimeline[this.turn]
+        this.npcActiveTurn = false
 
         this.newRound = () =>{
             addNewNpcToMap(this.round)

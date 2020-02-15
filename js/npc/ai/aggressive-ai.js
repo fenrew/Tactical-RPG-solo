@@ -17,6 +17,8 @@ class AggressiveAi {
     }
 
     runAi(){
+        Game.npcActiveTurn = true
+
         this.setActiveMap()
 
         this.fillDamageMap()
@@ -47,6 +49,7 @@ class AggressiveAi {
 
                 const checkAnimation = setInterval(() => {
                     if(!this.animationIsRunning){
+                        Game.npcActiveTurn = false
                         Game._nextTurn()
                         this.resetAi()
                         clearInterval(checkAnimation)
@@ -229,8 +232,6 @@ class AggressiveAi {
         let yPos = originalStartPosition.y, xPos = originalStartPosition.x, 
         currentNumber = availableMovementMap[yPos][xPos], originalPosition = false
     
-        console.log("FINDBESTMOVEMENTROUTE", availableMovementMap, yPos,xPos,currentNumber, originalPosition)
-    
         while (!originalPosition){
             availableMovementMap[yPos][xPos] = "path"
             if(yPos == destinationPosition.y && xPos == destinationPosition.x){
@@ -270,7 +271,6 @@ class AggressiveAi {
         
         if(spellsToCast.length > 0) {
             spellsToCast.forEach((ele) => {
-                console.log("CASTS", ele)
                 this.executeSpell(ele.spell)
             })
         }
@@ -419,23 +419,14 @@ class AggressiveAi {
         let destinationPosition, iterationPosition = {y: this.npc.position.y, x: this.npc.position.x}
         let currentNumber = this.movementWeight[0].movementMap[this.npc.position.y][this.npc.position.x]
         let startCurrentNumber = currentNumber
-
-        console.log("remaining mp", remainingMovement)
-        console.log("current number", currentNumber)
-
     
         if(remainingMovement <= 0) return
 
         //!destinationPosition ||
         if(currentNumber > remainingMovement){
-            console.log("BEFORE", remainingMovement, currentNumber)
             remainingMovement = currentNumber - remainingMovement
-            console.log("AFTER", remainingMovement)
 
             while(!destinationPosition){
-                console.log("ITERATION POSITION", iterationPosition)
-                console.log("CURRENT NUMBER", currentNumber)
-                console.log(this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x], remainingMovement)
                 if(this.movementWeight[0].movementMap[iterationPosition.y][iterationPosition.x] == remainingMovement ||
                     currentNumber == 2) {
                         destinationPosition = iterationPosition
@@ -465,31 +456,20 @@ class AggressiveAi {
             }
         }
 
-        console.log("desitnation postion", destinationPosition)
         // If you're not going anywhere
         if(!destinationPosition) {
             this.animationIsRunning = false
             return
         }
-        console.log("movementmap", this.movementWeight)
 
-        console.log("BEST MOVEMENT ROUTE BEFORE", JSON.parse(JSON.stringify(this.movementWeight[0].movementMap)))
 
         // THE BUG SEEMS TO BE IN findBestMovementRoute...
         let bestMovementRoute = this.findBestMovementRoute(this.npc.position, destinationPosition, this.movementWeight[0].movementMap)
-        console.log("BEST MOVEMENT ROUTE", JSON.parse(JSON.stringify(bestMovementRoute)))
-        console.log("MOVEMENT POINTS SPENT", startCurrentNumber - this.movementWeight[0].movementMap[destinationPosition.y][destinationPosition.x])
         
         JSON.parse(JSON.stringify(this.npc.position))
         this.executeMovement(bestMovementRoute, JSON.parse(JSON.stringify(this.npc.position)))
 
-        console.log("ACTIVE MAP BEFORE", JSON.parse(JSON.stringify(Game.activeMap)))
-        console.log("NPC PLAYER", JSON.parse(JSON.stringify(this.npc.position)), JSON.parse(JSON.stringify(destinationPosition)))
-
         confirmMovementToPosition(destinationPosition, this.movementWeight[0].movementMap)  // BUG: NPC position: 10,12, cannot read property y of undefined (movement.js:47)
-        
-        console.log("NPC POSITION", JSON.parse(JSON.stringify(Game.activeMap)), this.npc.position)
-
     }
 
     resetAi(){

@@ -43,7 +43,6 @@ class Zombie {
                 id: "spit",
                 name: "Spit",
                 cast: (target) => {
-                    console.log("TARGET", target)
                     target.class.combatstats.currentHp -= this.spells.spit.spellInfo.damage
                     handleSpellDamageEffectAnimation(target.position, this.spells.spit.spellInfo.damage, "damage")
                 },
