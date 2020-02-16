@@ -17,6 +17,7 @@ class AggressiveAi {
     }
 
     runAi(){
+        console.log("RUN AI")
         Game.npcActiveTurn = true
 
         this.setActiveMap()
@@ -86,7 +87,7 @@ class AggressiveAi {
             }
 
             for(let spell in this.spellList){
-                let spellRangeMap = calculateSpellRange(allSpellRangeMap, this.spellList[spell].spellInfo, ele.position)
+                let spellRangeMap = calculateSpellRangeFreeCells(allSpellRangeMap, this.spellList[spell].spellInfo, ele.position)
                 spellDamageOnPlayerObject.spell.push({spell: JSON.parse(JSON.stringify(this.spellList[spell]))
                     ,spellRangeMap})
             }

@@ -1,4 +1,5 @@
-function updatePlayerPanelCombatTimelineVisuals(combatTimeline){
+function updatePlayerPanelCombatTimelineVisuals(){
+    let combatTimeline = Game.combatTimeline
     let combatTimelineDiv = document.getElementById("combat-timeline-icons-box")
     removeAllChilds(combatTimelineDiv)
 

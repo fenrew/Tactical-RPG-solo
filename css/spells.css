@@ -22,8 +22,9 @@
 }
 
 .spell-range-highlight{
-    width: 100%;
-    height: 100%;
+    width: 77px;
+    height: 77px;
+    position: absolute;
     background-color: rgba(10, 228, 228, 0.432);
     z-index: 800;
 }
@@ -49,38 +50,26 @@
 
 /* Damage, Mana and MP effects */
 
-.display-movement-changed{
-    color: rgb(0, 255, 0);
+.display-damage-dealt-numbers{
     font-size: 50px;
     font-weight: bold;
     width: 100%;
     height: 100%;
     text-align: center;
+}
+
+.display-movement-changed{
+    color: rgb(0, 255, 0);
 }
 
 .display-mana-drained{
     color: rgb(0, 89, 255);
-    font-size: 50px;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    text-align: center;
 }
 
 .display-damage-dealt{
     color: rgb(255, 30, 0);
-    font-size: 50px;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    text-align: center;
 }
 
 .display-healing-done{
     color: rgb(0, 255, 0);
-    font-size: 50px;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    text-align: center;
 }

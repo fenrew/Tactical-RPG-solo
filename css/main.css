@@ -4,6 +4,7 @@
 @import "./mapTerrain.css";
 @import "./spells.css";
 @import "./npc.css";
+@import "./health-and-mana.css";
 
 #gamearea {
     height: 924px;

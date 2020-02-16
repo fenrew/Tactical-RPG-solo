@@ -1,5 +1,5 @@
 // calculated the spell range from position and returns a matrix of where it can be cast from
-const calculateSpellRange = (map, spellInfo, position) => {
+const calculateSpellRangeFreeCells = (map, spellInfo, position) => {
     let spellRangeMap = map.map((y) => {return y.map(() => { return 0})})
 
     for(let y = 0; y <= spellInfo.maxRange; y++){

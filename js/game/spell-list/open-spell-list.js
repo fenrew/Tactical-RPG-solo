@@ -1,4 +1,6 @@
 function openAndCloseSpellList(){
+    removeHighlightsFromMap()
+
     let spellElement = document.getElementById("spell-list-tab")
     if(!spellElement){
         let player = Game.combatTimeline[Game.turn], 
@@ -36,27 +38,6 @@ const addOnClickToOpenSpellListElement = (spell, element) => {
     element.onclick = (event) => {
         event.preventDefault()
         console.log("CAST: ", spell)
-    }
-}
-
-
-//THIS FUNCTION IS NO LONGER IN USE AND CAN SOON BE DELETED
-function addOnclickToSpellElementArray(spellList){
-    let spellTabChildren = document.getElementById("spell-list-tab").children
-    for(let child = 0; child < spellTabChildren.length; child++){
-        spellTabChildren[child].onclick = function(event){
-            let childId = spellTabChildren[child].id
-            let regex = /(spell-list-)(.*)/
-            let newChildId = childId.match(regex)
-            event.preventDefault()
-            for(spell in spellList){
-                if(spellList[spell].id == newChildId[2]){
-                    console.log("IT WORKS SPELL LIST")
-                    
-                    //castSpellPreview(game, spellList[spell])
-                    //openAndCloseSpellList(game)
-                }
-            }
-        }
+        castSpellPreview(spell)
     }
 }

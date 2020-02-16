@@ -1,15 +1,14 @@
 document.addEventListener("keydown", function(event){
-    if(event.key == "s"){
+    if(event.key.toLowerCase() == "s"){
         console.log("S")
         if(!Game.npcActiveTurn){
-            removeMovementHighlightsFromMap(Game.mapHighlights)
+            removeMovementHighlightsFromMap()
             openAndCloseSpellList()
         }
     }
     if(event.which === 27){
         console.log("ESC")
         if(!Game.npcActiveTurn){
-            console.log("Within IF STATEMENT")
             Game._nextTurn()
         }
     }

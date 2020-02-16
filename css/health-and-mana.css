@@ -1,0 +1,47 @@
+/* Health */
+.max-health-div{
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    display: flex;
+    position: absolute;
+}
+
+.max-health-div-show{
+    width: 10%;
+}
+
+.map-grid-block:hover .max-health-div{
+    width: 10%;
+}
+
+.current-health-div{
+    width: 100%;
+    background-color: lawngreen;
+    align-self: flex-end;
+}
+
+
+/* MANA */
+.max-mana-div{
+    right: 0;
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    display: flex;
+    position: absolute;
+}
+
+.max-mana-div-show{
+    width: 10%;
+}
+
+.map-grid-block:hover .max-mana-div{
+    width: 10%;
+}
+
+.current-mana-div{
+    width: 100%;
+    background-color: rgb(65, 185, 255);
+    align-self: flex-end;
+}

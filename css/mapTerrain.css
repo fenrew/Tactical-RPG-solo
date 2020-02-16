@@ -9,10 +9,10 @@
 }
 
 .map-grid-block:hover{
-    height: 77px;
+    /* height: 77px;
     width: 77px;
     box-sizing: border-box;
-    border: 5px solid rgb(6, 6, 160);
+    border: 5px solid rgb(6, 6, 160); */
     cursor: pointer;
 }
 

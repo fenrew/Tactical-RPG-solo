@@ -67,8 +67,11 @@ function visualizePlayers(map) {
     
                 playerBlockElement.classList.add(playerClassName, classClassName)
                 playerBlockElement.id = "player-" + y + "," + x
-    
+
                 parentDiv.appendChild(playerBlockElement)
+
+                displayCurrentHealthBar(Game._getPlayer(map[y][x]))
+                displayCurrentManaBar(Game._getPlayer(map[y][x]))
             }
         }
     }
@@ -87,10 +90,13 @@ function visualizeNpcs(map){
                 classClassName = Game._getNpc({y, x}).class.cssString
 
 
-                npcBlockElement.classList.add(npcClassName, classClassName)
+                npcBlockElement.classList.add(npcClassName, classClassName, "npc-area")
                 npcBlockElement.id = "npc-" + y + "," + x
-    
+
                 parentDiv.appendChild(npcBlockElement)
+
+                displayCurrentHealthBar(Game._getNpc({y, x}))
+                displayCurrentManaBar(Game._getNpc({y, x}))
             }
         }
     }

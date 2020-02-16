@@ -5,6 +5,7 @@
 
 /* PLAYERS */
 .player0-playerarea {
+    position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -13,6 +14,7 @@
 }
 
 .player1-playerarea {
+    position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -20,6 +22,7 @@
 }
 
 .player2-playerarea {
+    position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -27,6 +30,7 @@
 }
 
 .player3-playerarea {
+    position: relative;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

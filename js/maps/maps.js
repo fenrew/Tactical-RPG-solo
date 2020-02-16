@@ -51,11 +51,14 @@ function returnMapBlockClass(mapNumber){
     return mapBlockClasses[mapNumber]
 }
 
+// 0-29 actively taken away (like movement and spell highlight)
+// 30+ stays (like glyphs)
 function returnHighlightBlockClass(mapNumber){
     const mapHighlightClasses = {
         0: "",
         1: "active-movement-highlight",
-        2: "inactive-movement-highlight"
+        2: "inactive-movement-highlight",
+        3: "spell-range-highlight"
     }
     
     return mapHighlightClasses[mapNumber]

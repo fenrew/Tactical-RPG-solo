@@ -3,6 +3,9 @@
     border: 1px solid gray;
 }
 
+.npc-area{
+    position: relative;
+}
 
 .zombie-cpu-player-area{
     width: 100%;
