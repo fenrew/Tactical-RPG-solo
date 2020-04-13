@@ -5,7 +5,7 @@ const pushBackInStraightLine = (target, direction, distance) => {
     
     for(let i = 0; i < distance; i++){
         for (let key in direction){
-            let prevPos = {...target.position}
+            let prevPos = {...target.newPosition}
             target.newPosition[key] += direction[key]
             if(!checkInsideAndGridAvailability(target.newPosition)){
                 target.newPosition[key] -= direction[key]

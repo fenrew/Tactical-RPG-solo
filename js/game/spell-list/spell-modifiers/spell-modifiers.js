@@ -42,7 +42,7 @@ const calculateMagicalDamageModifiers = (caster, target, element) => {
 
     let magicalOffenseDamageModifier = ((
         casterMod.allDamage+
-        casterMod.magicalDamage.allDamage,
+        casterMod.magicalDamage.allDamage+
         casterMod.magicalDamage.elementalMagic[element]
     )-2)
 
@@ -58,6 +58,8 @@ const calculateMagicalDamageModifiers = (caster, target, element) => {
         targetMod.magicalDamage.elementalMagic[element] <= 0){
         return 0
     }
+
+    console.log(casterMod.allDamage, casterMod.magicalDamage.allDamage, casterMod.magicalDamage.elementalMagic[element])
 
     return magicalOffenseDamageModifier * magicalDefenseDamageModifier
 }

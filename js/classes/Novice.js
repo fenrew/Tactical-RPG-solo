@@ -144,6 +144,7 @@ class Novice {
                     let tCombatstats = target.class.combatstats
 
                     let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateMagicalDamageModifiers(this, target, "frost"))
+                    console.log(calculateMagicalDamageModifiers(this, target, "frost"))
                     tCombatstats.currentHp -= modifiedDamage
 
                     tCombatstats.currentMovementPoints -= 1
@@ -193,7 +194,7 @@ class Novice {
                     learned: true,
                     canBeCast: true,
                     type: "healing",
-                    manaCost: 20,
+                    manaCost: 30,
                     damage: 30,
                     freeCells: true,
                     straigthLine: false,
@@ -392,7 +393,6 @@ class Novice {
             target.position = {...target.newPosition}
             target.newPosition = false
         }
-        console.log(spell)
     }
 
     _checkIfNewSpellIsLearned(spell){
