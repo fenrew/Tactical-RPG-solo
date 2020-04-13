@@ -4,6 +4,8 @@ const addOnClickToCastSpellOnHighlight = (highlightDiv, position) =>{
     
     highlightDiv.onclick = () => {
         removeHighlightsFromMap()
+        removeAllChilds(document.getElementById("player-panel-spell-text"));
+        
         spell.cast(position)
         Game._checkIfAnyoneHasDied()
     }

@@ -78,10 +78,46 @@
     background-color: rgba(0, 255, 255, 0.733);
     box-sizing: border-box;
 }
-/* PLAYERS */   
 
-/* CLASSES */
+/* CHAR INFO */
+#player-panel-char-info-box{
+    background-color: rgba(0, 0, 0, 0.63);
+    margin-top: 60px;
+    padding: 0px 15px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
 
+#panel-char-info-header{
+    padding: 15px 0 5px 0;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#panel-char-info-text-box{
+    padding-bottom: 15px;
+}
+
+.panel-char-info-text{
+    font-size: 20px;
+}
+
+.player0-panel-char-info-header{
+    color: blue
+}
+
+.player1-panel-char-info-header{
+    color: red
+}
+
+.player2-panel-char-info-header{
+    color: yellow
+}
+
+.player3-panel-char-info-header{
+    color: cyan
+}
 
 /* CONFIRM CHOICE BUTTON */
 
