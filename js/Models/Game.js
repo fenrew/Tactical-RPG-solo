@@ -2,15 +2,16 @@ class GameClass {
     constructor(){
         this.players = []
         this.npc = []
+        this.originalMap = removeStartingPositions(mapOne) // Current map UN-modified
         this.activeMap = JSON.parse(JSON.stringify(mapOne)) //Current map modified
         this.mapHighlights = this.activeMap.map((y) => {return y.map(() => { return []})}) // Triple array of all different highlights on the map
         this.availableMovementMap = ""
-        this.originalMap = removeStartingPositions(mapOne) // Current map UN-modified
         this.turn = 0
         this.round = 0
         this.combatTimeline = [] // this.combatTimeline[this.turn]
         this.npcActiveTurn = false
         this.spellToBeCast = ""
+        this.combatEffects = []
 
         this.newRound = () =>{
             addNewNpcToMap(this.round)
@@ -100,6 +101,10 @@ class GameClass {
         let spellElement = document.getElementById("spell-list-tab")
         if(spellElement) document.getElementById("player-area").removeChild(spellElement)
 
+        //Effects executed
+        this.combatEffects.forEach(effect => this._checkForCombatEffects(effect))
+        this.combatEffects = this.combatEffects.filter(ele => !ele.finished)
+
         //NPC turn
         if(this.combatTimeline[this.turn].npc){
             this.combatTimeline[this.turn].ai.runAi()
@@ -148,6 +153,25 @@ class GameClass {
         Game.combatTimeline.splice(Game.combatTimeline.indexOf(unit), 1)
 
         Game.activeMap[unit.position.y][unit.position.x] = Game.originalMap[unit.position.y][unit.position.x]
+    }
+
+    _addNewCombatEffect(player, target, spell, duration){
+        let effect = {
+            player,
+            target,
+            spell,
+            executeRound: this.round + duration,
+            duration,
+        }
+
+        this.combatEffects.push(effect)
+    }
+
+    _checkForCombatEffects(effect){
+        if(this.round == effect.executeRound && effect.player == Game.combatTimeline[this.turn]){
+            effect.spell.applyEffect(effect)
+            effect.finished = true
+        }
     }
 }
 

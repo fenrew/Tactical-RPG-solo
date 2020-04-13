@@ -8,11 +8,11 @@
 }
 
 .max-health-div-show{
-    width: 10%;
+    width: 7%;
 }
 
 .map-grid-block:hover .max-health-div{
-    width: 10%;
+    width: 7%;
 }
 
 .current-health-div{
@@ -33,11 +33,11 @@
 }
 
 .max-mana-div-show{
-    width: 10%;
+    width: 7%;
 }
 
 .map-grid-block:hover .max-mana-div{
-    width: 10%;
+    width: 7%;
 }
 
 .current-mana-div{

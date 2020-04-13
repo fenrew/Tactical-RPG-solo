@@ -3,7 +3,8 @@ function addOnClickElements(){
 }
 
 function addOnClickPlayers(){
-    Game.players.forEach((player)=>{    
+    Game.players.forEach((player)=>{   
+        console.log("PLAYER", player)
         document.getElementById(`player-${player.position.y},${player.position.x}`).onclick = function(){
             removeMovementHighlightsFromMap()
             Game._displayMovementHighlights(player)

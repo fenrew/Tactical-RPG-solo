@@ -6,7 +6,7 @@ const castSpellPreview = spell =>{
     if(spellInfo.freeCells){
         movementMap = calculateSpellRangeFreeCells(Game.activeMap, spellInfo, {y: yPos, x: xPos})
     } else if(spellInfo.straigthLine){
-        movementMap = spellPathfinderStraightLine(game, spell, movementMap)
+        movementMap = calculateSpellRangeStraightLine(Game.activeMap, spellInfo, {y: yPos, x: xPos})
     }
 
     // 3 comes from maps.js, returnHighlightBlockClass()
@@ -19,6 +19,6 @@ const castSpellPreview = spell =>{
     let spellElement = document.getElementById("spell-list-tab")
     document.getElementById("player-area").removeChild(spellElement)
 
-    //game.spellRangeHighlightMap = movementMap //Do I need this?
-    //highlightSpellRangeVisuals(game , movementMap, spell)
+    //Game.spellRangeHighlightMap = movementMap //Do I need this?
+    //highlightSpellRangeVisuals(Game , movementMap, spell)
 }

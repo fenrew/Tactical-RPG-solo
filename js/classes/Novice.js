@@ -18,11 +18,52 @@ class Novice {
         this.conditions = {
             silenced: false,
             disarmed: false,
-            weapon: {
-                twoHandedSword: true,
-                mace: false,
-                dualWield: false,
-                shield: false,
+        }
+
+        this.damageModifiers = {
+            defensive: {
+                allDamage: 1,
+                magicalDamage: {
+                    allDamage: 1,
+                    elementalMagic: {
+                        fire: 1,
+                        frost: 1,
+                        arcane: 1,
+                        holy: 1,
+                        nature: 1,
+                        darkness: 1,
+                    },
+                },
+                physicalDamage: {
+                    allDamage: 1,
+                    rangedDamage: 1,
+                    meleeDamage: 1,
+                    bleeds: 1,
+                },
+            },
+            offensive: {
+                allDamage: 1,
+                magicalDamage: {
+                    allDamage: 1,
+                    elementalMagic: {
+                        fire: 1,
+                        frost: 1,
+                        arcane: 1,
+                        holy: 1,
+                        nature: 1,
+                        darkness: 1,
+                    },
+                },
+                physicalDamage: {
+                    allDamage: 1,
+                    rangedDamage: 1,
+                    meleeDamage: 1,
+                    bleeds: 1,
+                },
+            },
+            healing: {
+                recieved: 1,
+                casterModifier: 1,
             }
         }
 
@@ -34,13 +75,15 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.slam, position)
                 },
                 castEffect: (target, spell) => {
-                    target.class.combatstats.currentHp -= spell.spellInfo.damage
+                    let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(this, target))
+                    target.class.combatstats.currentHp -= modifiedDamage
+                    return modifiedDamage
                 },
                 spellInfo: {
                     learned: true,
                     canBeCast: true,
                     type: "damage",
-                    manaCost: 20,
+                    manaCost: 30,
                     damage: 25,
                     freeCells: true,
                     straigthLine: false,
@@ -65,14 +108,16 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.throwStaff, position)
                 },
                 castEffect: (target, spell) => {
-                    target.class.combatstats.currentHp -= spell.spellInfo.damage
+                    let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalRangedDamageModifiers(this, target))
+                    target.class.combatstats.currentHp -= modifiedDamage
+                    return modifiedDamage
                 },
                 spellInfo: {
                     learned: true,
                     canBeCast: true,
                     type: "damage",
-                    manaCost: 30,
-                    damage: 20,
+                    manaCost: 25,
+                    damage: 15,
                     freeCells: true,
                     straigthLine: false,
                     diagonal: false,
@@ -96,8 +141,15 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.conjureFrost, position)
                 },
                 castEffect: (target, spell) => {
-                    target.class.combatstats.currentHp -= spell.spellInfo.damage
-                    target.class.combatstats.currentMovementPoints -= 1
+                    let tCombatstats = target.class.combatstats
+
+                    let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateMagicalDamageModifiers(this, target, "frost"))
+                    tCombatstats.currentHp -= modifiedDamage
+
+                    tCombatstats.currentMovementPoints -= 1
+                    if(tCombatstats.currentMovementPoints < 0) tCombatstats.currentMovementPoints = 0
+
+                    return modifiedDamage
                 },
                 spellInfo: {
                     learned: true,
@@ -128,10 +180,14 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.heal, position)
                 },
                 castEffect: (target, spell) => {
-                    target.class.combatstats.currentHp += spell.spellInfo.damage
+                    let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateHealingModifiers(this, target))
+                    
+                    target.class.combatstats.currentHp += modifiedDamage
                     if(target.class.combatstats.currentHp > target.class.combatstats.hp){
                         target.class.combatstats.currentHp = target.class.combatstats.hp
                     }
+
+                    return modifiedDamage
                 },
                 spellInfo: {
                     learned: true,
@@ -162,13 +218,21 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.defensiveStance, position)
                 },
                 castEffect: (target, spell) => {
-                    //ADD EFFECT
+                    target.class.damageModifiers.defensive.physicalDamage.allDamage -= 0.2
+                    target.class.damageModifiers.offensive.magicalDamage.allDamage -= 0.2
+
+                    Game._addNewCombatEffect(this.player, target, spell, spell.spellInfo.duration)
+                },
+                applyEffect: (effect) => {
+                    effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += 0.2
+                    effect.target.class.damageModifiers.offensive.magicalDamage.allDamage += 0.2
                 },
                 spellInfo: {
-                    learned: false,
-                    canBeCast: false,
+                    learned: true,
+                    canBeCast: true,
                     type: "buff",
                     manaCost: 40,
+                    duration: 3,
                     damage: 1,
                     freeCells: true,
                     straigthLine: false,
@@ -194,11 +258,14 @@ class Novice {
                 castEffect: (target, spell) => {
 
                     // ADD PUSHBACK
+                    const direction = getPushbackDirection(this.player, target)
+                    pushBackInStraightLine(target, direction, 2) // Distance: 2
+
                     target.class.combatstats.currentHp -= spell.spellInfo.damage
                 },
                 spellInfo: {
-                    learned: false,
-                    canBeCast: false,
+                    learned: true,
+                    canBeCast: true,
                     type: "damage",
                     manaCost: 40,
                     damage: 25,
@@ -228,13 +295,13 @@ class Novice {
                     // ADD EFFECT
                 },
                 spellInfo: {
-                    learned: false,
-                    canBeCast: false,
+                    learned: true,
+                    canBeCast: true,
                     type: "damage",
                     manaCost: 40,
                     damage: 25,
-                    freeCells: false,
-                    straigthLine: true,
+                    freeCells: true,
+                    straigthLine: false,
                     diagonal: false,
                     areaOfEffect: 1,
                     minRange: 1,
@@ -244,7 +311,7 @@ class Novice {
                     cooldown: 1,
                     castsPerTurn: 1,
                     conditionsRequirements: {
-                        disarmed: true,
+                        silenced: true,
                     }
                 },
                 castCounter: 0
@@ -256,16 +323,34 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.inspire, position)
                 },
                 castEffect: (target, spell) => {
-                    // ADD EFFECT
+                    target.class.damageModifiers.offensive.allDamage += 0.2
+
+                    for(let i = 1; i <= spell.spellInfo.duration; i++){
+                        Game._addNewCombatEffect(this.player, target, spell, i)
+                    }
+                },
+                applyEffect: (effect) => {
+                    let modifiedDamage = Math.floor(effect.spell.spellInfo.damage * calculateHealingModifiers(this, effect.target))
+                    
+                    effect.target.class.combatstats.currentHp += modifiedDamage
+                    if(effect.target.class.combatstats.currentHp > effect.target.class.combatstats.hp){
+                        effect.target.class.combatstats.currentHp = effect.target.class.combatstats.hp
+                    }
+
+                    handleSpellDamageEffectAnimation(effect.target, modifiedDamage, effect.spell.spellInfo.type)
+                    if(effect.executeEffect == 2){
+                        effect.target.class.damageModifiers.offensive.allDamage -= 0.2
+                    }
                 },
                 spellInfo: {
-                    learned: false,
-                    canBeCast: false,
+                    learned: true,
+                    canBeCast: true,
                     type: "healing",
+                    duration: 2,
                     manaCost: 40,
                     damage: 25,
-                    freeCells: false,
-                    straigthLine: true,
+                    freeCells: true,
+                    straigthLine: false,
                     diagonal: false,
                     areaOfEffect: 1,
                     minRange: 1,
@@ -275,7 +360,7 @@ class Novice {
                     cooldown: 1,
                     castsPerTurn: 1,
                     conditionsRequirements: {
-                        disarmed: true,
+                        silenced: true,
                     }
                 },
                 castCounter: 0
@@ -294,9 +379,11 @@ class Novice {
         
         this.combatstats.currentMana -= spell.spellInfo.manaCost
 
-        spell.castEffect(target, spell)
+        let modifiedDamage = spell.castEffect(target, spell)
 
-        handleSpellDamageEffectAnimation(target, spell.spellInfo.damage, spell.spellInfo.type)
+        if(modifiedDamage){
+            handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
+        }
         updateCurrentManaBar(this.player)
     }
 
@@ -317,6 +404,5 @@ class Novice {
 
         this.spells[taughtSpell].spellInfo.learned = true
         this.spells[taughtSpell].spellInfo.canBeCast = true
-        console.log("TAuIGHT",this.spells[taughtSpell].spellInfo.learned)
     }
 }

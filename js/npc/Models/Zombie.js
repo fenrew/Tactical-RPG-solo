@@ -15,14 +15,62 @@ class Zombie {
             currentMovementPoints: 4,
         }
 
+        this.damageModifiers = {
+            defensive: {
+                allDamage: 1,
+                magicalDamage: {
+                    allDamage: 1,
+                    elementalMagic: {
+                        fire: 1,
+                        frost: 1,
+                        arcane: 1,
+                        holy: 1,
+                        nature: 1,
+                        darkness: 1,
+                    },
+                },
+                physicalDamage: {
+                    allDamage: 1,
+                    rangedDamage: 1,
+                    meleeDamage: 1,
+                    bleeds: 1,
+                },
+            },
+            offensive: {
+                allDamage: 1,
+                magicalDamage: {
+                    allDamage: 1,
+                    elementalMagic: {
+                        fire: 1,
+                        frost: 1,
+                        arcane: 1,
+                        holy: 1,
+                        nature: 1,
+                        darkness: 1,
+                    },
+                },
+                physicalDamage: {
+                    allDamage: 1,
+                    rangedDamage: 1,
+                    meleeDamage: 1,
+                    bleeds: 1,
+                },
+            },
+            healing: {
+                recieved: 1,
+                casterModifier: 1,
+            }
+        }
+
         this.spells = {
             bite: {
                 id: "bite",
                 name: "Bite",
                 cast: (target) => {
-                    target.class.combatstats.currentHp -= this.spells.bite.spellInfo.damage
-                    handleSpellDamageEffectAnimation(target, this.spells.bite.spellInfo.damage, "damage")
-                },
+                    let modifiedDamage = Math.floor(this.spells.bite.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(this, target))
+                    target.class.combatstats.currentHp -= modifiedDamage
+                    handleSpellDamageEffectAnimation(target, modifiedDamage, "damage")
+            },
                 spellInfo: {
                     canBeCast: true,
                     aiWeight: 5,
@@ -44,8 +92,9 @@ class Zombie {
                 id: "spit",
                 name: "Spit",
                 cast: (target) => {
-                    target.class.combatstats.currentHp -= this.spells.spit.spellInfo.damage
-                    handleSpellDamageEffectAnimation(target, this.spells.spit.spellInfo.damage, "damage")
+                    let modifiedDamage = Math.floor(this.spells.spit.spellInfo.damage * calculatePhysicalRangedDamageModifiers(this, target))
+                    target.class.combatstats.currentHp -= modifiedDamage
+                    handleSpellDamageEffectAnimation(target, modifiedDamage, "damage")
                 },
                 spellInfo: {
                     canBeCast: true,
