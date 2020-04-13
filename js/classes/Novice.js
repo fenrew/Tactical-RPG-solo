@@ -256,19 +256,21 @@ class Novice {
                     this._addTargetSpellConditions(this.spells.forceStaff, position)
                 },
                 castEffect: (target, spell) => {
-
-                    // ADD PUSHBACK
                     const direction = getPushbackDirection(this.player, target)
-                    pushBackInStraightLine(target, direction, 2) // Distance: 2
-
-                    target.class.combatstats.currentHp -= spell.spellInfo.damage
+                    const pushbackDamage = pushBackInStraightLine(target, direction, 2) * spell.spellInfo.pushbackDamage // Distance: 2
+                    const modifiedDamage = spell.spellInfo.damage + pushbackDamage
+                    
+                    target.class.combatstats.currentHp -= modifiedDamage
+                    
+                    return modifiedDamage
                 },
                 spellInfo: {
                     learned: true,
                     canBeCast: true,
                     type: "damage",
                     manaCost: 40,
-                    damage: 25,
+                    damage: 10,
+                    pushbackDamage: 10,
                     freeCells: false,
                     straigthLine: true,
                     diagonal: false,
@@ -385,6 +387,12 @@ class Novice {
             handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
         }
         updateCurrentManaBar(this.player)
+
+        if(target.newPosition){
+            target.position = {...target.newPosition}
+            target.newPosition = false
+        }
+        console.log(spell)
     }
 
     _checkIfNewSpellIsLearned(spell){

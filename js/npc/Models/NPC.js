@@ -7,7 +7,8 @@ class NpcModel {
         this.position = {
             y: 0,
             x: 0,
-        }
+        },
+        this.newPosition = false // For pushback etc
     }
 
     _generateRandomPosition(){

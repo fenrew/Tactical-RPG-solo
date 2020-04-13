@@ -1,19 +1,18 @@
 function handleSpellDamageEffectAnimation(target, effectValue, effect){
+    // const positionX = originalPos ? originalPos.x : target.position.x
+    // const positionY = originalPos ? originalPos.y : target.position.y
     let element = document.getElementById(`${target.npc ? "npc" : "player"}-${target.position.y},${target.position.x}`)
-
 
     let newElement = document.createElement("div")
     if(effect == "damage"){
         newElement.classList.add("display-damage-dealt")
     } else if(effect == "healing"){
         newElement.classList.add("display-healing-done")
-    }
-    else if(effect == "manadrain"){
+    } else if(effect == "manadrain"){
         newElement.classList.add("display-mana-drained")
     } else if(effect == "managain"){
         newElement.classList.add("display-mana-gained")
-    }
-    else if(effect == "mp"){
+    } else if(effect == "mp"){
         newElement.classList.add("display-movement-changed")
     }
 

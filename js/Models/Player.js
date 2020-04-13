@@ -6,6 +6,7 @@ class Player {
             y: 0,
             x: 0,
         }
+        this.newPosition = false // For pushback etc
     }
 
 

@@ -10,7 +10,7 @@ class Zombie {
             currentHp: 100,
             mana: 55,
             currentMana: 55,
-            initiation: 50,
+            initiation: 120,
             maxMovementPoints: 4,
             currentMovementPoints: 4,
         }

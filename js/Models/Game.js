@@ -64,7 +64,7 @@ class GameClass {
 
     _updateInitiation(){
         this.combatTimeline.sort((a,b)=>{
-            return a.class.combatstats.initiation - b.class.combatstats.initiation
+            return b.class.combatstats.initiation - a.class.combatstats.initiation 
         })
         
         updatePlayerPanelCombatTimelineVisuals()
