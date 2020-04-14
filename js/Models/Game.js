@@ -46,7 +46,7 @@ class GameClass {
             this.combatTimeline.push(npc)
         })
         this._updateInitiation()
-        visualizeNpcs(this.activeMap)
+        visualizeNpcs(this.activeMap, npcArrayToBeAdded)
     }
 
     _getPlayer(playerNumber){
