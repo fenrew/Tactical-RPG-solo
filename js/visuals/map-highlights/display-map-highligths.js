@@ -18,8 +18,8 @@ function displayMapHighlightsVisuals(){
                     addOnClickToCastSpellOnHighlight(highlightDiv, {y, x})
                 }
                 
-                highlightDiv.style.top = y * 77 + "px"
-                highlightDiv.style.left = x * 77 + "px"
+                // highlightDiv.style.top = y * 77 + "px"
+                // highlightDiv.style.left = x * 77 + "px"
                 
 
                 mapGridBlockDiv.appendChild(highlightDiv)

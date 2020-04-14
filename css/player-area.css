@@ -43,14 +43,16 @@
     width: 100%;
     height: 100%;
     background-color: rgba(10, 228, 10, 0.432);
-    z-index: 780;
+    z-index: 78;
+    position: relative;
 }
 
 .inactive-movement-highlight{
     width: 100%;
     height: 100%;
     background-color: rgba(228, 72, 10, 0.432);
-    z-index: 779;
+    z-index: 77;
+    position: relative;
 }
 
 /* COMBAT COUTDOWN */
@@ -64,7 +66,7 @@
     position: absolute;
     left: 570px;
     top: 430px;
-    z-index: 900;
+    z-index: 90;
 }
 
 /* CLASSES */
@@ -73,6 +75,7 @@
     background-size: 100%;
     width: 100%;
     height: 100%;
+    z-index: 20;
     top: 0px;
     left: 0px;
 }

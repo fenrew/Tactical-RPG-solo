@@ -4,8 +4,9 @@ class GameClass {
         this.npc = []
         this.originalMap = removeStartingPositions(mapOne) // Current map UN-modified
         this.activeMap = JSON.parse(JSON.stringify(mapOne)) //Current map modified
-        this.mapHighlights = this.activeMap.map((y) => {return y.map(() => { return []})}) // Triple array of all different highlights on the map
+        this.mapHighlights = this.activeMap.map((y) => {return y.map(() => { return []})}) // Triple array of all different highlights on the map (movement and spells)
         this.availableMovementMap = ""
+        this.glyphMap = this.activeMap.map((y) => {return y.map(() => { return []})})
         this.turn = 0
         this.round = 0
         this.combatTimeline = [] // this.combatTimeline[this.turn]
@@ -14,7 +15,8 @@ class GameClass {
         this.combatEffects = []
 
         this.newRound = () =>{
-            addNewNpcToMap(this.round)
+            console.log(this.combatTimeline[0], this.combatTimeline[0] === this.combatTimeline[0], this.combatTimeline[0] === this.combatTimeline[1])
+            //addNewNpcToMap(this.round)
         }
     }
 
@@ -71,6 +73,14 @@ class GameClass {
     }
 
     _nextTurn(){
+        //Remove highlights and spell list
+        removeHighlightsFromMap()
+
+        let spellElement = document.getElementById("spell-list-tab")
+        if(spellElement) document.getElementById("player-area").removeChild(spellElement) 
+
+
+        // Player ending his turn
         let activePlayer = this.combatTimeline[this.turn]
         let activeCombatstats = activePlayer.class.combatstats
 
@@ -82,28 +92,33 @@ class GameClass {
         }
         updateCurrentManaBar(activePlayer)
 
-        this._checkIfAnyoneHasDied()
+        // Active glyphs
+        this.glyphMap[activePlayer.position.y][activePlayer.position.x].forEach((ele) => {
+            ele.spell.activateGlyph(activePlayer)
+        })
 
+        // Player starting his turn
         this.turn += 1
-
+        
         if(this.turn%this.combatTimeline.length === 0){
             this.round += 1
             this.turn = 0
-
+            
             this.newRound()
         }
 
-        activePlayer = this.combatTimeline[this.turn]
+        let newActivePlayer = this.combatTimeline[this.turn]
 
-        //Remove highlights and spell list
-        removeHighlightsFromMap()
-
-        let spellElement = document.getElementById("spell-list-tab")
-        if(spellElement) document.getElementById("player-area").removeChild(spellElement)
-
+        //Glyphs executed
+        this.glyphMap[newActivePlayer.position.y][newActivePlayer.position.x].forEach((ele) => {
+            ele.spell.activateGlyph(newActivePlayer)
+        })
+        
         //Effects executed
         this.combatEffects.forEach(effect => this._checkForCombatEffects(effect))
         this.combatEffects = this.combatEffects.filter(ele => !ele.finished)
+
+        this._checkIfAnyoneHasDied()
 
         //NPC turn
         if(this.combatTimeline[this.turn].npc){

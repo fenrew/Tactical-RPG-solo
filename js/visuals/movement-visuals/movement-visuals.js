@@ -53,7 +53,7 @@ function movementVisuals(movementRoute, position){
     let blockElement = document.getElementById("map-grid-block-" + y + "," + x)
     let playerElement = document.getElementById(`player-${y},${x}`)
 
-    blockElement.style.zIndex = "400"
+    blockElement.style.zIndex = "100"
 
     movementRoute[y][x] = 0
     if(movementRoute[y][x+1] == "path"){

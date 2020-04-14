@@ -294,8 +294,23 @@ class Novice {
                 cast: (position) => {
                     this._addTargetSpellConditions(this.spells.snowstorm, position)
                 },
-                castEffect: (target, spell) => {
+                castEffect: (position, spell) => {
                     // ADD EFFECT
+                    const {duration} = spell.spellInfo
+                    addSquareGlyph(this.player, position.y+1 ? position : position.position, spell)// The ternery is needed because position can sometimes be a player or npc
+
+                    Game._addNewCombatEffect(this.player, position, spell, duration)
+                },
+                applyEffect: (effect) => {
+                    removeGlyph(this.player, effect.spell.spellInfo.glyphNumber)
+                },
+                activateGlyph: (target) => {
+                    const {damage, type} = this.spells.snowstorm.spellInfo
+                    const modifiedDamage = Math.floor(damage * calculateMagicalDamageModifiers(this, target, "frost"))
+                    
+                    target.class.combatstats.currentHp -= modifiedDamage
+
+                    handleSpellDamageEffectAnimation(target, modifiedDamage, type)
                 },
                 spellInfo: {
                     learned: true,
@@ -303,10 +318,12 @@ class Novice {
                     type: "damage",
                     manaCost: 40,
                     damage: 25,
+                    size: 1,
+                    glyphNumber: 1,
+                    duration: 2,
                     freeCells: true,
                     straigthLine: false,
                     diagonal: false,
-                    areaOfEffect: 1,
                     minRange: 1,
                     maxRange: 3,
                     modifiableRange: false,
@@ -378,18 +395,18 @@ class Novice {
         this._checkIfNewSpellIsLearned(spell)
         
         let target = Game._getUnitByPosition(position)
-        if(!target) return console.log("No target")
+        if(!target && !spell.spellInfo.glyphNumber) return console.log("No target")
         
         this.combatstats.currentMana -= spell.spellInfo.manaCost
-
-        let modifiedDamage = spell.castEffect(target, spell)
+        
+        let modifiedDamage = spell.castEffect(target ? target : position, spell)
 
         if(modifiedDamage){
             handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
         }
         updateCurrentManaBar(this.player)
 
-        if(target.newPosition){
+        if(target?.newPosition){
             target.position = {...target.newPosition}
             target.newPosition = false
         }

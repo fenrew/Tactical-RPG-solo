@@ -2,7 +2,7 @@ function checkIfInsideOfMap(map, y, x) {
   if (y >= map.length || y < 0 || x >= map[Math.abs(y)].length || x < 0) {
     return false;
   } else {
-    return true;
+    return true; // Inside of map
   }
 }
 

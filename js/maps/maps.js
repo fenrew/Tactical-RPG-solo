@@ -17,6 +17,9 @@
 // 1 = active player highlight
 // 2 = inactive player highlight
 
+// Glyph map:
+// 1 = Snowstorm (Novice)
+
 
 const mapOne = [
     [20,20,21,21,30,21,21,21,21,21,21,21,21,21,20,20],

@@ -10,7 +10,7 @@
     line-height: 25px;
     position: absolute;
     font-family: 'Courier New', Courier, monospace;
-    z-index: 801;
+    z-index: 81;
     background-image: url("../Animations/spell-list/background-spell-list-trees.png");
     background-size: cover;
     max-width: 300px;
@@ -56,7 +56,7 @@
     height: 77px;
     position: absolute;
     background-color: rgba(10, 228, 228, 0.432);
-    z-index: 800;
+    z-index: 80;
 }
 
 .spell-range-highlight:hover{
@@ -88,6 +88,23 @@
 }
 
 /* GLYPHS */
+
+.glyph-block-relative-container{
+    position: relative;
+    z-index: 1;
+}
+
+/* snowstorm */
+.glyph-block-1{ 
+    background-color: rgba(173, 216, 230, 0.411);
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    z-index: 1;
+}
+
+
+
 
 .glyph-class{
     width: 100%;
