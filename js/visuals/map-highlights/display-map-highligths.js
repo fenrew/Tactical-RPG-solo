@@ -22,7 +22,7 @@ function displayMapHighlightsVisuals(){
                 // highlightDiv.style.left = x * 77 + "px"
                 
 
-                mapGridBlockDiv.appendChild(highlightDiv)
+                mapGridBlockDiv.insertBefore(highlightDiv, mapGridBlockDiv.childNodes[0])
             }
         }
     }

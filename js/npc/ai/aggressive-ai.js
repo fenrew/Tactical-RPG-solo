@@ -282,7 +282,7 @@ class AggressiveAi {
         let blockElement = document.getElementById("map-grid-block-" + y + "," + x)
         let playerElement = document.getElementById(`npc-${y},${x}`)
         
-        blockElement.style.zIndex = "100"
+        blockElement.style.zIndex = "10"
         
         movementRoute[y][x] = 0
         if(movementRoute[y][x+1] == "path"){
@@ -339,7 +339,7 @@ class AggressiveAi {
     clearMovementVisuals(classElement, blockElement, x, y){
         classElement.style.margin = 0 + "px";
         blockElement.style.zIndex = 0;
-        blockElement.removeChild(blockElement.firstChild)
+       // blockElement.removeChild(blockElement.firstChild)
         classElement.id = "npc-" + y + "," + x
         document.getElementById("map-grid-block-" + y + "," + x).appendChild(classElement)
     }

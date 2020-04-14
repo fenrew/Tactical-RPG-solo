@@ -15,8 +15,7 @@ class GameClass {
         this.combatEffects = []
 
         this.newRound = () =>{
-            console.log(this.combatTimeline[0], this.combatTimeline[0] === this.combatTimeline[0], this.combatTimeline[0] === this.combatTimeline[1])
-            //addNewNpcToMap(this.round)
+            addNewNpcToMap(this.round)
         }
     }
 
@@ -142,7 +141,7 @@ class GameClass {
     _displayMovementHighlights(player){
         let activePlayerTurn
         this.availableMovementMap = findAvailableMovementArea(player, this.activeMap)
-        if(this.combatTimeline[this.turn] == player) activePlayerTurn = true
+        if(this.combatTimeline[this.turn] === player && !player.npc) activePlayerTurn = true
         addMovementToHighlightMap(this.availableMovementMap, this.mapHighlights, activePlayerTurn)
         displayMapHighlightsVisuals()
     }

@@ -35,6 +35,8 @@ function findAvailableMovementArea(player, map){
         }
     }
 
+    newMovementMap[player.position.y][player.position.x] = 0 // Maybe remove this if a movement bug arises
+
     return newMovementMap
 }
 

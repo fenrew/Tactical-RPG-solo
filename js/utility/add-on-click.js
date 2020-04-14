@@ -10,7 +10,14 @@ function addOnClickPlayers(){
             addPlayerPanelInfoText(player)
         }
     })
+}
 
+const addOnClickToNpc = (npcEle, npc) => {
+    npcEle.onclick = function(){
+        removeMovementHighlightsFromMap()
+        Game._displayMovementHighlights(npc)
+        addPlayerPanelInfoText(npc)
+    }
 }
 
 function addOnClickMovementHighlight(highlightDiv, position){

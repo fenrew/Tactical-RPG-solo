@@ -82,16 +82,19 @@ function visualizeNpcs(map){
         for(let x = 0; x < map[y].length; x++){
             if(map[y][x] >= 70 && map[y][x] < 91){
                 let npcBlockElement = document.createElement("div")
+                const npc = Game._getNpc({y, x})
                 
                 parentDiv = document.getElementById("map-grid-block-"+y+","+x)
                 removeAllChilds(parentDiv)
-
+                
                 npcClassName = "npc" + map[y][x] +"-playerarea"
-                classClassName = Game._getNpc({y, x}).class.cssString
-
-
+                classClassName = npc.class.cssString
+                
+                
                 npcBlockElement.classList.add(npcClassName, classClassName, "npc-area")
                 npcBlockElement.id = "npc-" + y + "," + x
+                
+                addOnClickToNpc(npcBlockElement, npc)
 
                 parentDiv.appendChild(npcBlockElement)
 
