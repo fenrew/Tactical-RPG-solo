@@ -410,6 +410,8 @@ class Novice {
             target.position = {...target.newPosition}
             target.newPosition = false
         }
+
+        if(noviceSpellAnimations[spell.id]) noviceSpellAnimations[spell.id](target)
     }
 
     _checkIfNewSpellIsLearned(spell){

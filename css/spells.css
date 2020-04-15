@@ -57,6 +57,7 @@
     position: absolute;
     background-color: rgba(10, 228, 228, 0.432);
     z-index: 80;
+    top: 0;
 }
 
 .spell-range-highlight:hover{
@@ -96,7 +97,8 @@
 
 /* snowstorm */
 .glyph-block-1{ 
-    background-color: rgba(173, 216, 230, 0.411);
+    background-image: url("../Animations/Classes/Novice/Spells/Snowstorm2\ intense\ 4\ fps.gif");
+    background-size: 100% 100%;
     height: 75px;
     width: 75px;
     position: absolute;

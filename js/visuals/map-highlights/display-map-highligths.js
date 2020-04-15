@@ -22,7 +22,8 @@ function displayMapHighlightsVisuals(){
                 // highlightDiv.style.left = x * 77 + "px"
                 
 
-                mapGridBlockDiv.insertBefore(highlightDiv, mapGridBlockDiv.childNodes[0])
+                // mapGridBlockDiv.insertBefore(highlightDiv, mapGridBlockDiv.childNodes[0])
+                mapGridBlockDiv.appendChild(highlightDiv)
             }
         }
     }
