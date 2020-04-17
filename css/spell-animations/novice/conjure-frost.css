@@ -1,0 +1,113 @@
+
+/* EAST */
+
+.spell-animation-conjure-frost-projectile-east {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/Frostbolt\ spell\ -Horizontal.gif");
+    opacity: 0;
+}
+
+
+.spell-animation-conjure-frost-east{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: conjure-frost-animation-east-west;
+    animation-duration: 600ms; /* Also change in the setTimeout function*/
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+
+/* WEST */
+
+.spell-animation-conjure-frost-projectile-west {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/Frostbolt\ spell\ -Horizontal.gif");
+    opacity: 0;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+.spell-animation-conjure-frost-west{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: conjure-frost-animation-east-west;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+@keyframes conjure-frost-animation-east-west {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_00.png");}
+    8% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_01.png");}
+    16% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_02.png");}
+    24% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_03.png");}
+    32% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_04.png");}
+    42% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_05.png");}
+    52% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_06.png");}
+    60% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_07.png");}
+    68% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_08.png");}
+    76% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_09.png");}
+    84% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_10.png");}
+    92% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_11.png");}
+    100% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/East-west/Conjure_frost_12.png");}
+}
+
+
+/* NORTH */
+.spell-animation-conjure-frost-projectile-north {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/Frostbolt\ spell\ -Vertical.gif");
+    opacity: 0;
+}
+
+.spell-animation-conjure-frost-north{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: conjure-frost-animation-north;
+    animation-duration: 600ms; /* Also change in the setTimeout function*/
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes conjure-frost-animation-north {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north00.png");}
+    9% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north01.png");}
+    18% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north02.png");}
+    27% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north03.png");}
+    36% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north04.png");}
+    45% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north05.png");}
+    54% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north06.png");}
+    63% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north07.png");}
+    72% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north08.png");}
+    81% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north09.png");}
+    90% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/North/Conjure_frost_north10.png");}
+}
+
+
+/* SOUTH */
+.spell-animation-conjure-frost-projectile-south {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/Frostbolt\ spell\ -Vertical.gif");
+    opacity: 0;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.spell-animation-conjure-frost-south{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: conjure-frost-animation-south;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+@keyframes conjure-frost-animation-south {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_00.png");}
+    10% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_01.png");}
+    20% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_02.png");}
+    30% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_03.png");}
+    40% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_04.png");}
+    50% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_05.png");}
+    60% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_06.png");}
+    70% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_07.png");}
+    80% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_08.png");}
+    90% {background-image: url("../../../Animations/Classes/Novice/Spells/Conjure-frost/South/Conjure_frost_south_09.png");}
+}

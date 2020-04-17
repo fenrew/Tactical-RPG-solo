@@ -411,7 +411,7 @@ class Novice {
             target.newPosition = false
         }
 
-        if(noviceSpellAnimations[spell.id]) noviceSpellAnimations[spell.id](target)
+        if(noviceSpellAnimations[spell.id]) noviceSpellAnimations[spell.id](target, this.player)
     }
 
     _checkIfNewSpellIsLearned(spell){

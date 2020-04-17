@@ -1,0 +1,108 @@
+/* EAST  */
+.spell-animation-throw-staff-projectile-east {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/Throw-staff-projectile.gif");
+    opacity: 0;
+}
+
+.spell-animation-throw-staff-east{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: throw-staff-animation-east-west;
+    animation-duration: 600ms; /* Also change in the setTimeout function*/
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+
+/* WEST */
+
+.spell-animation-throw-staff-projectile-west {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/Throw-staff-projectile.gif");
+    opacity: 0;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+.spell-animation-throw-staff-west{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: throw-staff-animation-east-west;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+@keyframes throw-staff-animation-east-west {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_0.png");}
+    13% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_1.png");}
+    26% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_2.png");}
+    39% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_3.png");}
+    52% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_4.png");}
+    65% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_5.png");}
+    78% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_6.png");}
+    81% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_7.png");}
+    94% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/West-east/sprite_8.png");}
+}
+
+
+/* NORTH */
+.spell-animation-throw-staff-projectile-north {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/Throw\ staff\ projectile\ -Vertical.png");
+    opacity: 0;
+}
+
+.spell-animation-throw-staff-north{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: throw-staff-animation-north;
+    animation-duration: 600ms; /* Also change in the setTimeout function*/
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes throw-staff-animation-north {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_00.png");}
+    9% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_01.png");}
+    18% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_02.png");}
+    27% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_03.png");}
+    36% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_04.png");}
+    45% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_05.png");}
+    54% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_06.png");}
+    63% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_07.png");}
+    72% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_08.png");}
+    81% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_09.png");}
+    90% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_10.png");}
+    99% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/North/sprite_11.png");}
+}
+
+
+/* SOUTH */
+
+.spell-animation-throw-staff-projectile-south {
+    background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/Throw\ staff\ projectile\ -Vertical.png");
+    opacity: 0;
+}
+
+.spell-animation-throw-staff-south{
+    background-image: url("../../../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+    animation-name: throw-staff-animation-south;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);  
+}
+
+@keyframes throw-staff-animation-south {
+    0% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_00.png");}
+    10% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_01.png");}
+    20% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_02.png");}
+    30% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_03.png");}
+    40% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_04.png");}
+    50% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_05.png");}
+    60% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_06.png");}
+    70% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_07.png");}
+    80% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_08.png");}
+    90% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_09.png");}
+    100% {background-image: url("../../../Animations/Classes/Novice/Spells/Throw-staff/South/Throw_south_10.png");}
+
+}

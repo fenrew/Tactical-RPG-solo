@@ -6,6 +6,7 @@
 @import "./npc.css";
 @import "./health-and-mana.css";
 @import "./spell-animations.css";
+@import "./spell-animations/main-spell-animations.css";
 
 #gamearea {
     height: 924px;
