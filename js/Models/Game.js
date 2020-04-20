@@ -93,7 +93,8 @@ class GameClass {
 
         // Active glyphs
         this.glyphMap[activePlayer.position.y][activePlayer.position.x].forEach((ele) => {
-            ele.spell.activateGlyph(activePlayer)
+            console.log(ele)
+            ele.spell.activateGlyph(activePlayer, ele.player)
         })
 
         // Player starting his turn
@@ -110,7 +111,7 @@ class GameClass {
 
         //Glyphs executed
         this.glyphMap[newActivePlayer.position.y][newActivePlayer.position.x].forEach((ele) => {
-            ele.spell.activateGlyph(newActivePlayer)
+            ele.spell.activateGlyph(newActivePlayer, ele.player)
         })
         
         //Effects executed

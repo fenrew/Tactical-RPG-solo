@@ -1,12 +1,11 @@
 const addOnClickToCastSpellOnHighlight = (highlightDiv, position) =>{
-    let spell = Game.spellToBeCast
-
+    const {spell, player} = Game.spellToBeCast
     
     highlightDiv.onclick = () => {
         removeHighlightsFromMap()
         removeAllChilds(document.getElementById("player-panel-spell-text"));
         
-        spell.cast(position)
+        spell.cast(position, player.class)
         Game._checkIfAnyoneHasDied()
     }
 }

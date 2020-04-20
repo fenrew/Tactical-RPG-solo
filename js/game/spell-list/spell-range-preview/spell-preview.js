@@ -12,7 +12,7 @@ const castSpellPreview = spell =>{
     // 3 comes from maps.js, returnHighlightBlockClass()
     Game._addNewHighlightToMap(movementMap, 3)
 
-    Game.spellToBeCast = spell
+    Game.spellToBeCast = {spell, player}
 
     displayMapHighlightsVisuals()
 
