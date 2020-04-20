@@ -1,5 +1,5 @@
 function calculatePhysicalMeleeDamageModifiers(caster, target){
-    let casterMod = caster.damageModifiers.offensive
+    let casterMod = caster.class.damageModifiers.offensive
     let targetMod = target.class.damageModifiers.defensive
 
     let meleeDamageModifier = ((
@@ -18,7 +18,7 @@ function calculatePhysicalMeleeDamageModifiers(caster, target){
 }
 
 function calculatePhysicalRangedDamageModifiers(caster, target){
-    let casterMod = caster.damageModifiers.offensive
+    let casterMod = caster.class.damageModifiers.offensive
     let targetMod = target.class.damageModifiers.defensive
 
     let rangedDamageModifier = ((
@@ -37,7 +37,7 @@ function calculatePhysicalRangedDamageModifiers(caster, target){
 }
 
 const calculateMagicalDamageModifiers = (caster, target, element) => {
-    let casterMod = caster.damageModifiers.offensive
+    let casterMod = caster.class.damageModifiers.offensive
     let targetMod = target.class.damageModifiers.defensive
 
     let magicalOffenseDamageModifier = ((
@@ -59,13 +59,11 @@ const calculateMagicalDamageModifiers = (caster, target, element) => {
         return 0
     }
 
-    console.log(casterMod.allDamage, casterMod.magicalDamage.allDamage, casterMod.magicalDamage.elementalMagic[element])
-
     return magicalOffenseDamageModifier * magicalDefenseDamageModifier
 }
 
 function calculateHealingModifiers(caster, target){
-    let casterMod = caster.damageModifiers.healing
+    let casterMod = caster.class.damageModifiers.healing
     let targetMod = target.class.damageModifiers.healing
 
     let healingModifier = casterMod.casterModifier + targetMod.recieved - 1

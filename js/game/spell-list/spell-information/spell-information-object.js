@@ -9,8 +9,8 @@ const spellInfoObject = {
     "Takes up a defensive stance, reducing magical damage dealt and physical damage taken for 3 turns",
   forceStaff:
     "Hurls the staff with such force it deals true damage and pushes the target 2 tiles",
-  snowstorm:
-    "Conjures a snowstorm at a target area dealing damage to anyone within the effect, lasts 2 turns",
+  heatwave:
+    "Conjures a heatwave at a target area dealing damage to anyone within the effect, lasts 2 turns",
   inspire:
     "Inspires an ally increases the final damage it deals with 20% and heals them at the beginning of each turn, lasts 2 turns",
 };

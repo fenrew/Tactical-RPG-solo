@@ -93,7 +93,6 @@ class GameClass {
 
         // Active glyphs
         this.glyphMap[activePlayer.position.y][activePlayer.position.x].forEach((ele) => {
-            console.log(ele)
             ele.spell.activateGlyph(activePlayer, ele.player)
         })
 

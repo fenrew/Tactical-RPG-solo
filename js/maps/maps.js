@@ -18,7 +18,7 @@
 // 2 = inactive player highlight
 
 // Glyph map:
-// 1 = Snowstorm (Novice)
+// 1 = heatwave (Novice)
 
 
 const mapOne = [

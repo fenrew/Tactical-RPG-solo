@@ -8,7 +8,8 @@ const displayPushbackAnimation = (fromPos, toPos, target) => {
    targetEle.style.top = `${top * 77}px`
    targetEle.style.left = `${left * 77}px`
 
-   setTimeout(() => {
+    const pushbackAnimation = new Promise(resolve => {
+        setTimeout(() => {
     targetEle.style.top = "0px"
     targetEle.style.left = "0px"
     targetEle.style.transition = ""
@@ -16,5 +17,8 @@ const displayPushbackAnimation = (fromPos, toPos, target) => {
     targetEle.id = `${target.npc ? "npc":"player"}-${toPos.y},${toPos.x}`
     document.getElementById(`map-grid-block-${fromPos.y},${fromPos.x}`).removeChild(targetEle)
     document.getElementById(`map-grid-block-${toPos.y},${toPos.x}`).appendChild(targetEle)
+    resolve()
    }, (Math.abs(top/2)+(Math.abs(left/2)))*1000)
+})
+    return Promise.resolve(pushbackAnimation)
 }

@@ -4,6 +4,7 @@ class Zombie {
         this.cssString = "zombie-cpu-player-area"
         this.cssPlayerPanelString = "zombie-cpu-combat-timeline-panel"
         this.combatStyle = "aggressive"
+        this.player = ""
 
         this.combatstats = {
             hp: 100,
@@ -67,7 +68,7 @@ class Zombie {
                 id: "bite",
                 name: "Bite",
                 cast: (target) => {
-                    let modifiedDamage = Math.floor(this.spells.bite.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(this, target))
+                    let modifiedDamage = Math.floor(this.spells.bite.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(this.player, target))
                     target.class.combatstats.currentHp -= modifiedDamage
                     handleSpellDamageEffectAnimation(target, modifiedDamage, "damage")
             },
@@ -92,7 +93,7 @@ class Zombie {
                 id: "spit",
                 name: "Spit",
                 cast: (target) => {
-                    let modifiedDamage = Math.floor(this.spells.spit.spellInfo.damage * calculatePhysicalRangedDamageModifiers(this, target))
+                    let modifiedDamage = Math.floor(this.spells.spit.spellInfo.damage * calculatePhysicalRangedDamageModifiers(this.player, target))
                     target.class.combatstats.currentHp -= modifiedDamage
                     handleSpellDamageEffectAnimation(target, modifiedDamage, "damage")
                 },

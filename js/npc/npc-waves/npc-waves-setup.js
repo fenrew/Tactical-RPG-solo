@@ -3,7 +3,10 @@ function addNewNpcToMap(round) {
         let npcArray = []
         
         for(let i = 0; i <= 1; i++){
-            npcArray.push(new NpcModel(new Zombie(), 70))
+            let newNpc = new NpcModel(new Zombie(), 70)
+            newNpc.class.player = newNpc
+            
+           // npcArray.push(newNpc)
         }
 
         return Game._addNpcToGame(npcArray)
@@ -11,7 +14,10 @@ function addNewNpcToMap(round) {
         let npcArray = []
         
         for(let i = 0; i <= 2; i++){
-            npcArray.push(new NpcModel(new Zombie(), 70))
+            let newNpc = new NpcModel(new Zombie(), 70)
+            newNpc.class.player = newNpc
+            
+          //  npcArray.push(newNpc)
         }
 
         return Game._addNpcToGame(npcArray) 
@@ -19,7 +25,10 @@ function addNewNpcToMap(round) {
         let npcArray = []
         
         for(let i = 0; i <= 2; i++){
-            npcArray.push(new NpcModel(new Zombie(), 70))
+            let newNpc = new NpcModel(new Zombie(), 70)
+            newNpc.class.player = newNpc
+            
+           // npcArray.push(newNpc)
         }
 
         return Game._addNpcToGame(npcArray) 
@@ -27,7 +36,10 @@ function addNewNpcToMap(round) {
         let npcArray = []
         
         for(let i = 0; i <= 2; i++){
-            npcArray.push(new NpcModel(new Zombie(), 70))
+            let newNpc = new NpcModel(new Zombie(), 70)
+            newNpc.class.player = newNpc
+            
+          //  npcArray.push(newNpc)
         }
 
         return Game._addNpcToGame(npcArray) 

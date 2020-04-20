@@ -19,8 +19,6 @@ const projectileAnimationHelperDirection = (target, player) => {
   const positionRelativeX = target.position.x - player.position.x;
   const positionRelativeY = target.position.y - player.position.y;
 
-  console.log(Math.abs(positionRelativeX), Math.abs(positionRelativeY))
-
   return {
     direction:
       Math.abs(positionRelativeX) >= Math.abs(positionRelativeY)

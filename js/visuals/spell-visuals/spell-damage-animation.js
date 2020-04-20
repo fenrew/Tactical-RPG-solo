@@ -1,6 +1,7 @@
 function handleSpellDamageEffectAnimation(target, effectValue, effect){
     // const positionX = originalPos ? originalPos.x : target.position.x
     // const positionY = originalPos ? originalPos.y : target.position.y
+    console.log(target)
     let element = document.getElementById(`${target.npc ? "npc" : "player"}-${target.position.y},${target.position.x}`)
 
     let newElement = document.createElement("div")

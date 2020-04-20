@@ -1,37 +1,5 @@
 const noviceSpellObject = {
-    rend:  {
-        id: "rend",
-        name: "Rend",
-        cast: (position, player) => {
-            player._addTargetSpellConditions(player.spells.rend, position)
-        },
-        castEffect: (target, spell, player) => {
-            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(player, target))
-            target.class.combatstats.currentHp -= modifiedDamage
-            return modifiedDamage
-        },
-        spellInfo: {
-            learned: true,
-            canBeCast: true,
-            type: "damage",
-            manaCost: 30,
-            damage: 25,
-            freeCells: true,
-            straigthLine: false,
-            diagonal: false,
-            areaOfEffect: 1,
-            minRange: 1,
-            maxRange: 1,
-            modifiableRange: false,
-            lineOfSight: false,
-            cooldown: false,
-            castsPerTurn: 2,
-            conditionsRequirements: {
-                disarmed: true,
-            }
-        },
-        castCounter: 0
-    },
+    // WARRIOR
     slam: {
         id: "slam",
         name: "Slam",
@@ -39,7 +7,7 @@ const noviceSpellObject = {
             player._addTargetSpellConditions(player.spells.slam, position)
         },
         castEffect: (target, spell, player) => {
-            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(player, target))
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(player.player, target))
             target.class.combatstats.currentHp -= modifiedDamage
             return modifiedDamage
         },
@@ -62,122 +30,9 @@ const noviceSpellObject = {
             conditionsRequirements: {
                 disarmed: true,
             },
-            category: "warrior"
         },
-        castCounter: 0
-    },
-    throwStaff: {
-        id: "throwStaff",
-        name: "Throw Staff",
-        cast: (position, player) => {
-            player._addTargetSpellConditions(player.spells.throwStaff, position)
-        },
-        castEffect: (target, spell, player) => {
-            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalRangedDamageModifiers(player, target))
-            target.class.combatstats.currentHp -= modifiedDamage
-            return modifiedDamage
-        },
-        spellInfo: {
-            learned: true,
-            canBeCast: true,
-            type: "damage",
-            manaCost: 25,
-            damage: 15,
-            freeCells: true,
-            straigthLine: false,
-            diagonal: false,
-            areaOfEffect: 1,
-            minRange: 1,
-            maxRange: 5,
-            modifiableRange: false,
-            lineOfSight: false,
-            cooldown: 1,
-            castsPerTurn: 1,
-            conditionsRequirements: {
-                disarmed: true,
-            },
-            category: "ranger"
-        },
-        castCounter: 0
-    },
-    conjureFrost: {
-        id: "conjureFrost",
-        name: "Conjure Frost",
-        cast: (position, player) => {
-            player._addTargetSpellConditions(player.spells.conjureFrost, position)
-        },
-        castEffect: (target, spell, player) => {
-            let tCombatstats = target.class.combatstats
-
-            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateMagicalDamageModifiers(player, target, "frost"))
-            console.log(calculateMagicalDamageModifiers(player, target, "frost"))
-            tCombatstats.currentHp -= modifiedDamage
-
-            tCombatstats.currentMovementPoints -= 1
-            if(tCombatstats.currentMovementPoints < 0) tCombatstats.currentMovementPoints = 0
-
-            return modifiedDamage
-        },
-        spellInfo: {
-            learned: true,
-            canBeCast: true,
-            type: "damage",
-            manaCost: 30,
-            damage: 10,
-            freeCells: true,
-            straigthLine: false,
-            diagonal: false,
-            areaOfEffect: 1,
-            minRange: 1,
-            maxRange: 5,
-            modifiableRange: false,
-            lineOfSight: false,
-            cooldown: 1,
-            castsPerTurn: 1,
-            conditionsRequirements: {
-                silenced: true,
-            },
-            category: "sorcerer"
-        },
-        castCounter: 0
-    },
-    heal: {
-        id: "heal",
-        name: "Heal",
-        cast: (position, player) => {
-            player._addTargetSpellConditions(player.spells.heal, position)
-        },
-        castEffect: (target, spell, player) => {
-            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateHealingModifiers(player, target))
-            
-            target.class.combatstats.currentHp += modifiedDamage
-            if(target.class.combatstats.currentHp > target.class.combatstats.hp){
-                target.class.combatstats.currentHp = target.class.combatstats.hp
-            }
-
-            return modifiedDamage
-        },
-        spellInfo: {
-            learned: true,
-            canBeCast: true,
-            type: "healing",
-            manaCost: 30,
-            damage: 30,
-            freeCells: true,
-            straigthLine: false,
-            diagonal: false,
-            areaOfEffect: 1,
-            minRange: 1,
-            maxRange: 5,
-            modifiableRange: false,
-            lineOfSight: false,
-            cooldown: 1,
-            castsPerTurn: 1,
-            conditionsRequirements: {
-                silenced: true,
-            },
-            category: "priest"
-        },
+        category: "warrior",
+        toLearn: 0,
         castCounter: 0
     },
     defensiveStance: {
@@ -215,8 +70,90 @@ const noviceSpellObject = {
             castsPerTurn: 1,
             conditionsRequirements: {
             },
-            category: "warrior"
         },
+        category: "warrior",
+        toLearn: 8,
+        castCounter: 0
+    },
+    rend:  {
+        id: "rend",
+        name: "Rend",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.rend, position)
+        },
+        castEffect: (target, spell, player) => {
+            for(let i = 1; i <= spell.spellInfo.duration; i++){
+                console.log(player)
+                Game._addNewCombatEffect(player.player, target, spell, i)
+            }
+        },
+        applyEffect: (effect) => {
+            const modifiedDamage = Math.floor(effect.spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(effect.player, effect.target))
+            
+            effect.target.class.combatstats.currentHp -= modifiedDamage
+
+            handleSpellDamageEffectAnimation(effect.target, modifiedDamage, effect.spell.spellInfo.type)
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "damage",
+            duration: 3,
+            manaCost: 30,
+            damage: 20,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 1,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: false,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                disarmed: true,
+            },
+        },
+        category: "warrior",
+        toLearn: 16,
+        castCounter: 0
+    },
+
+    // RANGER
+    throwStaff: {
+        id: "throwStaff",
+        name: "Throw Staff",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.throwStaff, position)
+        },
+        castEffect: (target, spell, player) => {
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalRangedDamageModifiers(player.player, target))
+            target.class.combatstats.currentHp -= modifiedDamage
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "damage",
+            manaCost: 25,
+            damage: 15,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 5,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                disarmed: true,
+            },
+        },
+        category: "ranger",
+        toLearn: 0,
         castCounter: 0
     },
     forceStaff: {
@@ -225,14 +162,16 @@ const noviceSpellObject = {
         cast: (position, player) => {
             player._addTargetSpellConditions(player.spells.forceStaff, position)
         },
-        castEffect: (target, spell, player) => {
-            const direction = getPushbackDirection(player.player, target)
-            const pushbackDamage = pushBackInStraightLine(target, direction, 2) * spell.spellInfo.pushbackDamage // Distance: 2
-            const modifiedDamage = spell.spellInfo.damage + pushbackDamage
-            
-            target.class.combatstats.currentHp -= modifiedDamage
-            
-            return modifiedDamage
+        castEffect: async (target, spell, player) => {
+                const direction = getPushbackDirection(player.player, target)
+                const pushbackDamage = await pushBackInStraightLine(target, direction, 2) * spell.spellInfo.pushbackDamage // Distance: 2
+                const modifiedDamage = spell.spellInfo.damage + pushbackDamage
+                console.log(pushbackDamage)
+                target.class.combatstats.currentHp -= modifiedDamage
+                console.log(modifiedDamage)
+                
+                return modifiedDamage
+        
         },
         spellInfo: {
             learned: true,
@@ -254,15 +193,59 @@ const noviceSpellObject = {
             conditionsRequirements: {
                 disarmed: true,
             },
-            category: "ranger"
         },
+        category: "ranger",
+        toLearn: 8,
         castCounter: 0
     },
-    snowstorm: {
-        id: "snowstorm",
-        name: "Snowstorm",
+
+    // SORCERER
+    conjureFrost: {
+        id: "conjureFrost",
+        name: "Conjure Frost",
         cast: (position, player) => {
-            player._addTargetSpellConditions(player.spells.snowstorm, position)
+            player._addTargetSpellConditions(player.spells.conjureFrost, position)
+        },
+        castEffect: (target, spell, player) => {
+            let tCombatstats = target.class.combatstats
+
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateMagicalDamageModifiers(player.player, target, "frost"))
+            tCombatstats.currentHp -= modifiedDamage
+
+            tCombatstats.currentMovementPoints -= 1
+            if(tCombatstats.currentMovementPoints < 0) tCombatstats.currentMovementPoints = 0
+
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "damage",
+            manaCost: 30,
+            damage: 10,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 5,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                silenced: true,
+            },
+        },
+        category: "sorcerer",
+        toLearn: 0,
+        castCounter: 0
+    },
+    heatwave: {
+        id: "heatwave",
+        name: "Heatwave",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.heatwave, position)
         },
         castEffect: (position, spell, player) => {
             // ADD EFFECT
@@ -273,9 +256,10 @@ const noviceSpellObject = {
         },
         applyEffect: (effect) => {
             removeGlyph(effect.player, effect.spell.spellInfo.glyphNumber)
+            // ADD remove glyph animation here
         },
         activateGlyph: (target, player) => {
-            const {damage, type} = player.spells.snowstorm.spellInfo
+            const {damage, type} = player.class.spells.heatwave.spellInfo
             const modifiedDamage = Math.floor(damage * calculateMagicalDamageModifiers(player, target, "frost"))
             
             target.class.combatstats.currentHp -= modifiedDamage
@@ -303,8 +287,51 @@ const noviceSpellObject = {
             conditionsRequirements: {
                 silenced: true,
             },
-            category: "sorcerer"
         },
+        category: "sorcerer",
+        toLearn: 8,
+        castCounter: 0
+    },
+
+    // PRIEST
+    heal: {
+        id: "heal",
+        name: "Heal",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.heal, position)
+        },
+        castEffect: (target, spell, player) => {
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateHealingModifiers(player.player, target))
+            
+            target.class.combatstats.currentHp += modifiedDamage
+            if(target.class.combatstats.currentHp > target.class.combatstats.hp){
+                target.class.combatstats.currentHp = target.class.combatstats.hp
+            }
+
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "healing",
+            manaCost: 30,
+            damage: 30,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 5,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                silenced: true,
+            },
+        },
+        category: "priest",
+        toLearn: 0,
         castCounter: 0
     },
     inspire: {
@@ -315,14 +342,15 @@ const noviceSpellObject = {
         },
         castEffect: (target, spell, player) => {
             target.class.damageModifiers.offensive.allDamage += 0.2
-
             for(let i = 1; i <= spell.spellInfo.duration; i++){
+                console.log(player, target, spell, i)
                 Game._addNewCombatEffect(player.player, target, spell, i)
             }
         },
         applyEffect: (effect, player) => {
-            let modifiedDamage = Math.floor(effect.spell.spellInfo.damage * calculateHealingModifiers(player, effect.target))
-            
+            console.log(effect)
+            let modifiedDamage = Math.floor(effect.spell.spellInfo.damage * calculateHealingModifiers(effect.player, effect.target))
+            console.log(effect, player, modifiedDamage)
             effect.target.class.combatstats.currentHp += modifiedDamage
             if(effect.target.class.combatstats.currentHp > effect.target.class.combatstats.hp){
                 effect.target.class.combatstats.currentHp = effect.target.class.combatstats.hp
@@ -353,8 +381,9 @@ const noviceSpellObject = {
             conditionsRequirements: {
                 silenced: true,
             },
-            category: "priest"
         },
+        category: "priest",
+        toLearn: 8,
         castCounter: 0
     },
 }
