@@ -99,7 +99,7 @@ class Novice {
                         disarmed: true,
                     }
                 },
-                castCounter: 9
+                castCounter: 0
             },
             throwStaff: {
                 id: "throwStaff",
@@ -388,7 +388,7 @@ class Novice {
         }
     }
 
-    _addTargetSpellConditions(spell, position){
+    async _addTargetSpellConditions(spell, position){
         if(checkIfSpellIsCastable(this, spell)) return console.log("Cant be cast")
         
         spell.castCounter += 1
@@ -401,17 +401,21 @@ class Novice {
         
         let modifiedDamage = spell.castEffect(target ? target : position, spell)
 
+        updateCurrentManaBar(this.player)
+        
+        
+        if(noviceSpellAnimations[spell.id]) await noviceSpellAnimations[spell.id](target, this.player)
+        
         if(modifiedDamage){
             handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
         }
-        updateCurrentManaBar(this.player)
 
         if(target?.newPosition){
             target.position = {...target.newPosition}
             target.newPosition = false
         }
 
-        if(noviceSpellAnimations[spell.id]) noviceSpellAnimations[spell.id](target, this.player)
+        this._checkIfPromotionToNewClass()
     }
 
     _checkIfNewSpellIsLearned(spell){
@@ -425,11 +429,34 @@ class Novice {
             taughtSpell = "snowstorm"
         } else if (spell.id == "heal" && spell.castCounter === 10){
             taughtSpell = "inspire"
-        } else {
-            return // THIS IS IMPORTANT!!!!
+        }
+        
+        if(taughtSpell){
+            this.spells[taughtSpell].spellInfo.learned = true
+            this.spells[taughtSpell].spellInfo.canBeCast = true
         }
 
-        this.spells[taughtSpell].spellInfo.learned = true
-        this.spells[taughtSpell].spellInfo.canBeCast = true
+    }
+
+    _checkIfPromotionToNewClass(){
+        let totalCastCounter = 0
+        for(let spell in this.spells) {
+            totalCastCounter += this.spells[spell].castCounter
+        }
+
+        if(totalCastCounter > 2){
+            const spellKeys = Object.keys(this.spells)
+            spellKeys.sort((a, b) => this.spells[b].castCounter - this.spells[a].castCounter)
+            console.log(spellKeys)
+            if(spellKeys[0] === "throwStaff" || spellKeys[0] === "forceStaff"){
+                
+            } else if(spellKeys[0] === "slam" || spellKeys[0] === "defensiveStance"){
+
+            } else if(spellKeys[0] === "conjureFrost" || spellKeys[0] === "snowstorm"){
+
+            } else {
+
+            }
+        }
     }
 }

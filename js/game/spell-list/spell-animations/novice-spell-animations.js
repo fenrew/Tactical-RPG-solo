@@ -20,50 +20,73 @@ const noviceSpellAnimations = {
     throwStaff: (target, player) => {
         const eleObj = createAnimationEleAndTransition(target, player, "throw-staff")
 
-        setTimeout(()=> {
-            eleObj.newProjectileEle.style.opacity = "1"
-            eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
-            eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+
+        const playerAnimation = new Promise(resolve => {
             setTimeout(() => {
-                eleObj.blockEle.removeChild(eleObj.newProjectileEle)
-            }, eleObj.transitionTime*100)
-        },500)
-
-
-        setTimeout(() => {
-            eleObj.playerEle.classList.remove(`spell-animation-throw-staff-${eleObj.playerDir}`)
-        }, 600) //Also change the time in css
+                eleObj.playerEle.classList.remove(`spell-animation-throw-staff-${eleObj.playerDir}`)
+                resolve()
+            }, 600) //Also change the time in css
+        })
+    
+        const projectileAnimation = new Promise(resolve => {setTimeout(()=> {
+                eleObj.newProjectileEle.style.opacity = "1"
+                eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
+                eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+                setTimeout(() => {
+                    eleObj.blockEle.removeChild(eleObj.newProjectileEle)
+                    resolve()
+                }, eleObj.transitionTime*100)
+            },500)
+        })
+    
+        return Promise.all([playerAnimation, projectileAnimation])
     },
     conjureFrost: (target, player) => {
         const eleObj = createAnimationEleAndTransition(target, player, "conjure-frost")
-
-        setTimeout(()=> {
-            eleObj.newProjectileEle.style.opacity = "1"
-            eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
-            eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+        
+        const playerAnimation = new Promise(resolve => {
             setTimeout(() => {
-                eleObj.blockEle.removeChild(eleObj.newProjectileEle)
-            }, eleObj.transitionTime*100)
-        },500)
+                eleObj.playerEle.classList.remove(`spell-animation-conjure-frost-${eleObj.playerDir}`)
+                resolve()
+            }, 600) //Also change the time in css
+        })
 
-        setTimeout(() => {
-            eleObj.playerEle.classList.remove(`spell-animation-conjure-frost-${eleObj.playerDir}`)
-        }, 600) //Also change the time in css
+        const projectileAnimation = new Promise(resolve => {
+            setTimeout(()=> {
+                eleObj.newProjectileEle.style.opacity = "1"
+                eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
+                eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+                setTimeout(() => {
+                    eleObj.blockEle.removeChild(eleObj.newProjectileEle)
+                    resolve()
+                }, eleObj.transitionTime*100)
+            },500)
+        })
+
+        return Promise.all([playerAnimation, projectileAnimation])
     },
     forceStaff: (target, player) => {
         const eleObj = createAnimationEleAndTransition(target, player, "force-staff")
         
-        setTimeout(()=> {
-            eleObj.newProjectileEle.style.opacity = "1"
-            eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
-            eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+        const playerAnimation = new Promise(resolve => {
             setTimeout(() => {
-                eleObj.blockEle.removeChild(eleObj.newProjectileEle)
-            }, eleObj.transitionTime*100)
-        },500)
+                eleObj.playerEle.classList.remove(`spell-animation-force-staff-${eleObj.playerDir}`)
+                resolve()
+            }, 600) //Also change the time in css
+        })
+  
+        const projectileAnimation = new Promise (resolve => {
+            setTimeout(()=> {
+                eleObj.newProjectileEle.style.opacity = "1"
+                eleObj.newProjectileEle.style.left = eleObj.projectile.x*77 + "px"
+                eleObj.newProjectileEle.style.top = eleObj.projectile.y*77 + "px"
+                setTimeout(() => {
+                    eleObj.blockEle.removeChild(eleObj.newProjectileEle)
+                    resolve()
+                }, eleObj.transitionTime*100)
+            },500)
+        })
 
-        setTimeout(() => {
-            eleObj.playerEle.classList.remove(`spell-animation-force-staff-${eleObj.playerDir}`)
-        }, 600) //Also change the time in css
+        return Promise.all([playerAnimation, projectileAnimation])
     },
 }
