@@ -198,8 +198,9 @@ class Novice {
           catKey === this.spells[spellKey].category &&
           !this.spells[spellKey].spellInfo.learned
         ) {
-          console.log("NEW SPELL LEARNED!");
           this.spells[spellKey].spellInfo.learned = true;
+
+          displayLearnedNewSpell(this.spells[spellKey])
         }
       }
     }
