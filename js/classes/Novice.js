@@ -92,6 +92,9 @@ class Novice {
 
             heal:  {...noviceSpellObject.heal, spellInfo: {...noviceSpellObject.heal.spellInfo}},
             inspire: {...noviceSpellObject.inspire, spellInfo: {...noviceSpellObject.inspire.spellInfo}},
+            smite:  {...noviceSpellObject.smite, spellInfo: {...noviceSpellObject.smite.spellInfo}},
+            absorb:  {...noviceSpellObject.absorb, spellInfo: {...noviceSpellObject.absorb.spellInfo}},
+            holySpike:  {...noviceSpellObject.holySpike, spellInfo: {...noviceSpellObject.holySpike.spellInfo}},
         }
     }
 

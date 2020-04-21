@@ -21,9 +21,9 @@ function addSpellListKeysToElement(spellList, element) {
   const { currentMana } = Game.combatTimeline[Game.turn].class.combatstats;
   let spellListArray = Object.values(spellList);
 
-  spellListArray.sort((a, b) => {
-    return a.id.toUpperCase().localeCompare(b.id.toUpperCase());
-  });
+  // spellListArray.sort((a, b) => {
+  //   return a.id.toUpperCase().localeCompare(b.id.toUpperCase());
+  // });
 
   const newLayerEle = document.createElement("div");
   newLayerEle.id = "spell-list-tab-layer";
