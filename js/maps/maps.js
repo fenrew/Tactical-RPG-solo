@@ -19,6 +19,7 @@
 
 // Glyph map:
 // 1 = heatwave (Novice)
+// 2 = freezing ground (Sorcerer)
 
 
 const mapOne = [
