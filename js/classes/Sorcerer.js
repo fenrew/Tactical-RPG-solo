@@ -1,15 +1,15 @@
 class Sorcerer {
     constructor(player){
         this.className = "Sorcerer"
-        this.cssString = "sorcerer-player-area"
-        this.cssPlayerPanelString = "sorcerer-class-player-panel"
+        this.cssString = "novice-player-area"
+        this.cssPlayerPanelString = "novice-class-player-panel"
         this.player = player
 
         this.combatstats = {
             hp: 300,
             currentHp: 300,
-            mana: 350,
-            currentMana: 350,
+            mana: 200,
+            currentMana: 200,
             initiation: 150,
             maxMovementPoints: 4,
             currentMovementPoints: 4,
@@ -67,8 +67,17 @@ class Sorcerer {
             }
         }
 
+        this.castCounter = {
+            frost: 0,
+            fire: 0,
+            battleMage: 0,
+          };
+
         this.spells = {
-            
+            frostbolt: {
+                ...sorcererSpellObject.frostbolt,
+                spellInfo: { ...sorcererSpellObject.frostbolt.spellInfo },
+              },
         }
     }
 
@@ -105,18 +114,20 @@ class Sorcerer {
         this._checkIfPromotionToNewClass()
     }
 
-    _checkIfNewSpellIsLearned(spell){
-        let taughtSpell
-
-        for(let key in this.spells){
-            if(this.category === spell.category && this.spells){}
-        }
-        
-        if(taughtSpell){
-            this.spells[taughtSpell].spellInfo.learned = true
-            this.spells[taughtSpell].spellInfo.canBeCast = true
-        }
-
+    _checkIfNewSpellIsLearned(){
+        for (let catKey in this.castCounter) {
+            for (let spellKey in this.spells) {
+              if (
+                this.castCounter[catKey] === this.spells[spellKey].toLearn &&
+                catKey === this.spells[spellKey].category &&
+                !this.spells[spellKey].spellInfo.learned
+              ) {
+                this.spells[spellKey].spellInfo.learned = true;
+      
+                displayLearnedNewSpell(this.spells[spellKey])
+              }
+            }
+          }
     }
 
     _checkIfPromotionToNewClass(){

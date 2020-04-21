@@ -16,6 +16,7 @@ class GameClass {
 
         this.newRound = () =>{
             addNewNpcToMap(this.round)
+            this._updateInitiation()
         }
     }
 
@@ -45,7 +46,6 @@ class GameClass {
             this.npc.push(npc)
             this.combatTimeline.push(npc)
         })
-        this._updateInitiation()
         visualizeNpcs(this.activeMap, npcArrayToBeAdded)
     }
 
@@ -65,6 +65,8 @@ class GameClass {
 
     _updateInitiation(){
         this.combatTimeline.sort((a,b)=>{
+            if( b.class.combatstats.initiation === a.class.combatstats.initiation )
+                return a.playerNumber - b.playerNumber
             return b.class.combatstats.initiation - a.class.combatstats.initiation 
         })
         

@@ -17,7 +17,7 @@ function addNewNpcToMap(round) {
             let newNpc = new NpcModel(new Zombie(), 70)
             newNpc.class.player = newNpc
             
-          //  npcArray.push(newNpc)
+            //npcArray.push(newNpc)
         }
 
         return Game._addNpcToGame(npcArray) 

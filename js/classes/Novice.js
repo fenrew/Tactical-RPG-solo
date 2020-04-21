@@ -190,7 +190,7 @@ class Novice {
     this._checkIfPromotionToNewClass();
   }
 
-  _checkIfNewSpellIsLearned(spell) {
+  _checkIfNewSpellIsLearned() {
     for (let catKey in this.castCounter) {
       for (let spellKey in this.spells) {
         if (
@@ -207,35 +207,6 @@ class Novice {
   }
 
   _checkIfPromotionToNewClass() {
-    let totalCastCounter = 0;
-    for (let category in this.castCounter) {
-      for (let spell in this.spells) {
-        if (
-          category === this.spells[spell].category &&
-          this.castCounter[category] === this.spells[spell].toLearn &&
-          !this.spells[spell].spellInfo.learned
-        ) {
-          this.spells[spell].spellInfo.learned = true;
-        }
-      }
-    }
-
-    if (totalCastCounter > 2) {
-      const spellKeys = Object.keys(this.spells);
-      spellKeys.sort(
-        (a, b) => this.spells[b].castCounter - this.spells[a].castCounter
-      );
-      if (spellKeys[0] === "throwStaff" || spellKeys[0] === "forceStaff") {
-      } else if (
-        spellKeys[0] === "slam" ||
-        spellKeys[0] === "defensiveStance"
-      ) {
-      } else if (
-        spellKeys[0] === "conjureFrost" ||
-        spellKeys[0] === "heatwave"
-      ) {
-      } else {
-      }
-    }
+    
   }
 }

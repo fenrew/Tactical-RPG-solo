@@ -583,7 +583,6 @@ const noviceSpellObject = {
       }
     },
     applyEffect: (effect, player) => {
-      console.log(effect);
       let modifiedDamage = Math.floor(
         effect.spell.spellInfo.damage *
           calculateHealingModifiers(effect.player, effect.target)
