@@ -165,4 +165,61 @@ const sorcererSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  snowstorm: {
+    id: "snowstorm",
+    name: "Snowstorm",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.snowstorm, position);
+    },
+    castEffect: (position, spell, player) => {
+      // ADD EFFECT
+      const { duration } = spell.spellInfo;
+      addSquareGlyph(
+        player.player,
+        position.y + 1 ? position : position.position,
+        spell
+      ); // The ternery is needed because position can sometimes be a player or npc
+
+      Game._addNewCombatEffect(player.player, position, spell, duration);
+    },
+    applyEffect: (effect) => {
+      removeGlyph(effect.player, effect.spell.spellInfo.glyphNumber);
+      // ADD remove glyph animation here
+    },
+    activateGlyph: (target,player) => {
+        const { damage, type } = player.class.spells.snowstorm.spellInfo;
+        const modifiedDamage = Math.floor(
+          damage * calculateMagicalDamageModifiers(player, target, "frost")
+        );
+  
+        target.class.combatstats.currentHp -= modifiedDamage;
+  
+        handleSpellDamageEffectAnimation(target, modifiedDamage, type);
+    },
+    spellInfo: {
+      size: 1,
+      glyphNumber: 3,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      manaCost: 40,
+      damage: 20,
+      duration: 2,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      minRange: 1,
+      maxRange: 3,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "sorcerer",
+    toLearn: 8,
+    castCounter: 0,
+  },
 };

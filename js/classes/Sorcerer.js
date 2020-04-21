@@ -86,6 +86,10 @@ class Sorcerer {
                 ...sorcererSpellObject.freezingGround,
                 spellInfo: { ...sorcererSpellObject.freezingGround.spellInfo },
               },
+              snowstorm: {
+                ...sorcererSpellObject.snowstorm,
+                spellInfo: { ...sorcererSpellObject.snowstorm.spellInfo },
+              },
         }
     }
 

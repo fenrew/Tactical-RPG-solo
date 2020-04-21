@@ -36,5 +36,9 @@ const spellInfoObject = {
   frostbolt:
     "Shoots out a bolt of frost on a target dealing damage and decreasing initiation for 1 turn",
   frostbite:
-    "Decreases the temperature around the target’s hands inflicting frostbite. Deals damage over time and decreases physical damage dealt by the target for 3 turns"
+    "Decreases the temperature around the target’s hands inflicting frostbite. Deals damage over time and decreases physical damage dealt by the target for 3 turns",
+  freezingGround:
+    "Freezes the ground decreasing movement points of all units that start or end their turn there",
+  snowstorm:
+    "Channels a snowstorm at a target area dealing damage to anyone within the effect, lasts 2 turns."
 };
