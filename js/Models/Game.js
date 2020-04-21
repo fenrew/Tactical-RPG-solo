@@ -169,13 +169,14 @@ class GameClass {
         Game.activeMap[unit.position.y][unit.position.x] = Game.originalMap[unit.position.y][unit.position.x]
     }
 
-    _addNewCombatEffect(player, target, spell, duration){
+    _addNewCombatEffect(player, target, spell, duration, additionalEffects){
         let effect = {
             player,
             target,
             spell,
             executeRound: this.round + duration,
             duration,
+            ...additionalEffects
         }
 
         this.combatEffects.push(effect)

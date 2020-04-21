@@ -22,6 +22,7 @@ function handleSpellDamageEffectAnimation(target, effectValue, effect){
     newElement.innerHTML = String(effectValue)
     element.appendChild(newElement)
 
+    updateCurrentManaBar(target)
     updateCurrentHealthBar(target)
     element.querySelector(".max-health-div").classList.add("max-health-div-show")
     

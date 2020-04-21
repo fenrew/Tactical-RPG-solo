@@ -75,14 +75,22 @@ class Novice {
         }
 
         this.spells = {
-            rend:  {...noviceSpellObject.rend, spellInfo: {...noviceSpellObject.rend.spellInfo}},
             slam: {...noviceSpellObject.slam, spellInfo: {...noviceSpellObject.slam.spellInfo}},
-            throwStaff:  {...noviceSpellObject.throwStaff, spellInfo: {...noviceSpellObject.throwStaff.spellInfo}},
-            conjureFrost: {...noviceSpellObject.conjureFrost, spellInfo: {...noviceSpellObject.conjureFrost.spellInfo}},
-            heal:  {...noviceSpellObject.heal, spellInfo: {...noviceSpellObject.heal.spellInfo}},
             defensiveStance:{...noviceSpellObject.defensiveStance, spellInfo: {...noviceSpellObject.defensiveStance.spellInfo}},
+            rend:  {...noviceSpellObject.rend, spellInfo: {...noviceSpellObject.rend.spellInfo}},
+            powerStroke:  {...noviceSpellObject.powerStroke, spellInfo: {...noviceSpellObject.powerStroke.spellInfo}},
+            findWeakness:  {...noviceSpellObject.findWeakness, spellInfo: {...noviceSpellObject.findWeakness.spellInfo}},
+           
+            throwStaff:  {...noviceSpellObject.throwStaff, spellInfo: {...noviceSpellObject.throwStaff.spellInfo}},
             forceStaff: {...noviceSpellObject.forceStaff, spellInfo: {...noviceSpellObject.forceStaff.spellInfo}},
+           
+            conjureFrost: {...noviceSpellObject.conjureFrost, spellInfo: {...noviceSpellObject.conjureFrost.spellInfo}},
             heatwave: {...noviceSpellObject.heatwave, spellInfo: {...noviceSpellObject.heatwave.spellInfo}},
+            magicLance:  {...noviceSpellObject.magicLance, spellInfo: {...noviceSpellObject.magicLance.spellInfo}},
+            syphonMana:  {...noviceSpellObject.syphonMana, spellInfo: {...noviceSpellObject.syphonMana.spellInfo}},
+            powerSpike: {...noviceSpellObject.powerSpike, spellInfo: {...noviceSpellObject.powerSpike.spellInfo}},
+
+            heal:  {...noviceSpellObject.heal, spellInfo: {...noviceSpellObject.heal.spellInfo}},
             inspire: {...noviceSpellObject.inspire, spellInfo: {...noviceSpellObject.inspire.spellInfo}},
         }
     }

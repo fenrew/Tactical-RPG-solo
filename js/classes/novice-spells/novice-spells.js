@@ -119,6 +119,79 @@ const noviceSpellObject = {
         toLearn: 16,
         castCounter: 0
     },
+    powerStroke: {
+        id: "powerStroke",
+        name: "Power Stroke",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.powerStroke, position)
+        },
+        castEffect: (target, spell, player) => {
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculatePhysicalMeleeDamageModifiers(player.player, target))
+            target.class.combatstats.currentHp -= modifiedDamage
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "damage",
+            manaCost: 40,
+            damage: 50,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 1,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 2,
+            castsPerTurn: false,
+            conditionsRequirements: {
+                disarmed: true,
+            },
+        },
+        category: "warrior",
+        toLearn: 0,
+        castCounter: 0
+    },
+    findWeakness: {
+        id: "findWeakness",
+        name: "Find Weakness",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.findWeakness, position)
+        },
+        castEffect: (target, spell, player) => {
+            target.class.damageModifiers.defensive.physicalDamage.allDamage += 0.2
+            Game._addNewCombatEffect(player.player, target, spell, spell.spellInfo.duration)
+        },
+        applyEffect: (effect, player) => {
+            effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -= 0.2
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "debuff",
+            duration: 2,
+            manaCost: 40,
+            damage: 25,
+            freeCells: false,
+            straigthLine: true,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 3,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 3,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                
+            },
+        },
+        category: "warrior",
+        toLearn: 30,
+        castCounter: 0
+    },
 
     // RANGER
     throwStaff: {
@@ -283,6 +356,122 @@ const noviceSpellObject = {
             modifiableRange: false,
             lineOfSight: false,
             cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                silenced: true,
+            },
+        },
+        category: "sorcerer",
+        toLearn: 8,
+        castCounter: 0
+    },
+    magicLance: {
+        id: "magicLance",
+        name: "Magic Lance",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.magicLance, position)
+        },
+        castEffect: (target, spell, player) => {
+            let modifiedDamage = Math.floor(spell.spellInfo.damage * calculateMagicalDamageModifiers(player.player, target, "arcane"))
+            target.class.combatstats.currentHp -= modifiedDamage
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "damage",
+            manaCost: 30,
+            damage: 30,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 5,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                silenced: true,
+            },
+        },
+        category: "sorcerer",
+        toLearn: 0,
+        castCounter: 0
+    },
+    syphonMana: {
+        id: "syphonMana",
+        name: "Syphon Mana",
+        cast: (position, player) => {
+            player._addTargetSpellConditions(player.spells.syphonMana, position)
+        },
+        castEffect: (target, spell, player) => {
+            let modifiedDamage = spell.spellInfo.damage
+            target.class.combatstats.currentMana += modifiedDamage
+            if(target.class.combatstats.currentMana > target.class.combatstats.mana) 
+                target.class.combatstats.currentMana = target.class.combatstats.mana
+            return modifiedDamage
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "managain",
+            manaCost: 8,
+            damage: 25,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 1,
+            maxRange: 3,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 1,
+            castsPerTurn: 1,
+            conditionsRequirements: {
+                silenced: true,
+            },
+        },
+        category: "sorcerer",
+        toLearn: 0,
+        castCounter: 0
+    },
+    powerSpike: {
+        id: "powerSpike",
+        name: "Power Spike",
+        cast: (position, player) => {
+            console.log("USED")
+            player._addTargetSpellConditions(player.spells.powerSpike, position)
+        },
+        castEffect: (target, spell, player) => {
+            console.log(target)
+            const manaDrained = target.class.combatstats.currentMana
+            target.class.combatstats.currentMana = 0
+            Game._addNewCombatEffect(player.player, target, spell, 1, {manaDrained})
+        },
+        applyEffect: (effect, player) => {
+            console.log(effect)
+            effect.target.class.combatstats.currentMana += effect.manaDrained
+
+            handleSpellDamageEffectAnimation(effect.target, effect.manaDrained, effect.spell.spellInfo.type)
+        },
+        spellInfo: {
+            learned: true,
+            canBeCast: true,
+            type: "managain",
+            duration: 1,
+            manaCost: 10,
+            damage: 1,
+            freeCells: true,
+            straigthLine: false,
+            diagonal: false,
+            areaOfEffect: 1,
+            minRange: 0,
+            maxRange: 0,
+            modifiableRange: false,
+            lineOfSight: false,
+            cooldown: 2,
             castsPerTurn: 1,
             conditionsRequirements: {
                 silenced: true,
