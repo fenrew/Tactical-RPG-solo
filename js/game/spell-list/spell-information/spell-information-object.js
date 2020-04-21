@@ -26,4 +26,10 @@ const spellInfoObject = {
   heal: "Channels blinding light to heal a target",
   inspire:
     "Inspires an ally increases the final damage it deals with 20% and heals them at the beginning of each turn, lasts 2 turns",
+  smite:
+    "Deals holy damage to the enemy",
+  absorb:
+    "Puts an absorbing shield on the target significantly decreasing magical damage received by the target for a short time",
+  holySpike:
+    "Holy spikes are sent towards the target healing allies or damaging enemies"
 };

@@ -71,4 +71,54 @@ class Sorcerer {
             
         }
     }
+
+
+    async _addTargetSpellConditions(spell, position){
+        if(checkIfSpellIsCastable(this, spell)) return console.log("Cant be cast")
+        
+        let target = Game._getUnitByPosition(position)
+        if(!target && !spell.spellInfo.glyphNumber) return console.log("No target")
+        
+        this.combatstats.currentMana -= spell.spellInfo.manaCost
+
+        spell.castCounter += 1
+        this.castCounter[spell.category] += 1
+        this._checkIfNewSpellIsLearned(spell)
+        
+        if(noviceSpellAnimations[spell.id]) await noviceSpellAnimations[spell.id](target, this.player)
+       
+        let modifiedDamage = await spell.castEffect(target ? target : position, spell, this)
+
+        updateCurrentManaBar(this.player)
+        
+        if(target?.newPosition){
+            target.position = {...target.newPosition}
+            target.newPosition = false
+        }
+
+        
+        if(modifiedDamage){
+            console.log(modifiedDamage,"modifieddamage")
+            handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
+        }
+
+        this._checkIfPromotionToNewClass()
+    }
+
+    _checkIfNewSpellIsLearned(spell){
+        let taughtSpell
+
+        for(let key in this.spells){
+            if(this.category === spell.category && this.spells){}
+        }
+        
+        if(taughtSpell){
+            this.spells[taughtSpell].spellInfo.learned = true
+            this.spells[taughtSpell].spellInfo.canBeCast = true
+        }
+
+    }
+
+    _checkIfPromotionToNewClass(){
+    }
 }

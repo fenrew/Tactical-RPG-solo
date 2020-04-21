@@ -60,7 +60,7 @@ const noviceSpellObject = {
       effect.target.class.damageModifiers.offensive.magicalDamage.allDamage += 0.2;
     },
     spellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       type: "buff",
       manaCost: 40,
@@ -79,7 +79,7 @@ const noviceSpellObject = {
       conditionsRequirements: {},
     },
     category: "warrior",
-    toLearn: 8,
+    toLearn: 2,
     castCounter: 0,
   },
   rend: {

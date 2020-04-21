@@ -55,7 +55,7 @@ function addSpellListKeysToElement(spellList, element) {
     // newContainerEle.innerHTML = spell.name
 
     addOnClickToOpenSpellListElement(spell, newContainerEle);
-    addOnHoverToSpellList(spell, newContainerEle);
+    addOnHoverInfoToSpellList(spell, newContainerEle);
 
     newLayerEle.appendChild(newContainerEle);
   });
@@ -68,7 +68,7 @@ const addOnClickToOpenSpellListElement = (spell, element) => {
   };
 };
 
-const addOnHoverToSpellList = (spell, element) => {
+const addOnHoverInfoToSpellList = (spell, element) => {
   element.onmouseover = (event) => {
     event.preventDefault();
 
