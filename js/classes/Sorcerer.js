@@ -1,8 +1,8 @@
 class Sorcerer {
     constructor(player){
         this.className = "Sorcerer"
-        this.cssString = "novice-player-area"
-        this.cssPlayerPanelString = "novice-class-player-panel"
+        this.cssString = "wizard-player-area"
+        this.cssPlayerPanelString = "wizard-class-player-panel"
         this.player = player
 
         this.combatstats = {
@@ -77,6 +77,10 @@ class Sorcerer {
             frostbolt: {
                 ...sorcererSpellObject.frostbolt,
                 spellInfo: { ...sorcererSpellObject.frostbolt.spellInfo },
+              },
+              frostbite: {
+                ...sorcererSpellObject.frostbite,
+                spellInfo: { ...sorcererSpellObject.frostbite.spellInfo },
               },
         }
     }

@@ -582,12 +582,11 @@ const noviceSpellObject = {
         Game._addNewCombatEffect(player.player, target, spell, i);
       }
     },
-    applyEffect: (effect, player) => {
+    applyEffect: (effect) => {
       let modifiedDamage = Math.floor(
         effect.spell.spellInfo.damage *
           calculateHealingModifiers(effect.player, effect.target)
       );
-      console.log(effect, player, modifiedDamage);
       effect.target.class.combatstats.currentHp += modifiedDamage;
       if (
         effect.target.class.combatstats.currentHp >
@@ -686,7 +685,7 @@ const noviceSpellObject = {
       );
     },
     applyEffect: (effect) => {
-      target.class.damageModifiers.defensive.magicalDamage.allDamage += 0.5;
+      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage += 0.5;
     },
     spellInfo: {
       learned: true,

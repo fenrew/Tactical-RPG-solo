@@ -26,10 +26,15 @@ const spellInfoObject = {
   heal: "Channels blinding light to heal a target",
   inspire:
     "Inspires an ally increases the final damage it deals with 20% and heals them at the beginning of each turn, lasts 2 turns",
-  smite:
-    "Deals holy damage to the enemy",
+  smite: "Deals holy damage to the enemy",
   absorb:
     "Puts an absorbing shield on the target significantly decreasing magical damage received by the target for a short time",
   holySpike:
-    "Holy spikes are sent towards the target healing allies or damaging enemies"
+    "Holy spikes are sent towards the target healing allies or damaging enemies",
+
+  // SORCERER
+  frostbolt:
+    "Shoots out a bolt of frost on a target dealing damage and decreasing initiation for 1 turn",
+  frostbite:
+    "Decreases the temperature around the target’s hands inflicting frostbite. Deals damage over time and decreases physical damage dealt by the target for 3 turns"
 };
