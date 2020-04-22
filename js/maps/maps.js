@@ -2,15 +2,16 @@
 // 21 = Grass
 // 22 = Sand
 // 30 = Stone
+// 40 = Ice Wall
+// 70 = Zombie
+
+// 0-9 = Player
 // 10-19 = starting positions for players 1-10
 // 20-49 = Terrain
 // 20-29 = Walkable Terrain
-// 30-49 = Obstacle Terrain
-// 220-249 = Terrain Movement Highlight (For movement)
-// 50-69 = Classes
-// 0-9 = Player
+// 30-39 = Obstacle Terrain
+// 40-49 = Obstacle Terrain Summons
 // 70-90 = CPU's
-// 70 = Zombie
 
 // Highlight map:
 // 0 = no highlight

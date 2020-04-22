@@ -16,6 +16,11 @@ class Zombie {
             currentMovementPoints: 4,
         }
 
+        this.conditions = {
+            silenced: false,
+            disarmed: false,
+          };
+
         this.damageModifiers = {
             defensive: {
                 allDamage: 1,

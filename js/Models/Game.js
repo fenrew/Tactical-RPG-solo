@@ -41,7 +41,7 @@ class GameClass {
 
     _addNpcToGame(npcArrayToBeAdded){
         npcArrayToBeAdded.forEach((npc) => {
-            npc._generateRandomPosition()
+            npc._generatePosition()
             this.activeMap[npc.position.y][npc.position.x] = npc.playerNumber
             this.npc.push(npc)
             this.combatTimeline.push(npc)
@@ -121,12 +121,12 @@ class GameClass {
 
         this._checkIfAnyoneHasDied()
 
+        updatePlayerPanelActiveTurn(this.combatTimeline, this.turn)
+
         //NPC turn
         if(this.combatTimeline[this.turn].npc){
             this.combatTimeline[this.turn].ai.runAi()
         }
-
-        updatePlayerPanelActiveTurn(this.combatTimeline, this.turn)
     }
 
     // Takes a matrix (map) wit_removeUnitFromCombat(unit)h numbers and adds the highlightClassNumber to all places that has number > 0

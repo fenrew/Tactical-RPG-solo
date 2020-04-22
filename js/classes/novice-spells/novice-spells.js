@@ -381,6 +381,7 @@ const noviceSpellObject = {
       damage: 25,
       size: 1,
       glyphNumber: 1,
+      castOnNoTarget: true,
       duration: 2,
       freeCells: true,
       straigthLine: false,

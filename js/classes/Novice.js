@@ -179,13 +179,14 @@ class Novice {
     }
 
     if (modifiedDamage) {
-      console.log(modifiedDamage, "modifieddamage");
       handleSpellDamageEffectAnimation(
         target,
         modifiedDamage,
         spell.spellInfo.type
       );
     }
+
+    Game._checkIfAnyoneHasDied()
 
     this._checkIfPromotionToNewClass();
   }

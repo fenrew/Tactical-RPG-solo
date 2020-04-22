@@ -199,6 +199,7 @@ const sorcererSpellObject = {
     spellInfo: {
       size: 1,
       glyphNumber: 3,
+      castOnNoTarget: true,
       learned: true,
       canBeCast: true,
       type: "damage",
@@ -220,6 +221,62 @@ const sorcererSpellObject = {
     },
     category: "sorcerer",
     toLearn: 8,
+    castCounter: 0,
+  },
+  iceWall: {
+    id: "iceWall",
+    name: "Ice Wall",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.iceWall, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      const spellDirection = getCastingDirection()
+
+      for(let i = -1; i <= 1; i++){ // For the size of the wall
+        if(spellDirection === "E" && spellDirection === "W"){
+          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, y: target.y+i})){
+            
+          }
+        } else {
+          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, x: target.x+i})){
+            
+          }
+        }
+      }
+    },
+    applyEffect: (effect, player) => {
+    },
+    spellInfo: {
+      castOnNoTarget: true,
+      learned: true,
+      canBeCast: true,
+      type: "summon",
+      manaCost: 30,
+      damage: 1,
+      duration: 3,
+      freeCells: false,
+      straigthLine: true,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 4,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "frost",
+    toLearn: 0,
     castCounter: 0,
   },
 };

@@ -7,7 +7,7 @@ class Sorcerer {
 
         this.combatstats = {
             hp: 300,
-            currentHp: 300,
+            currentHp: 20,
             mana: 200,
             currentMana: 200,
             initiation: 150,
@@ -90,6 +90,10 @@ class Sorcerer {
                 ...sorcererSpellObject.snowstorm,
                 spellInfo: { ...sorcererSpellObject.snowstorm.spellInfo },
               },
+              iceWall: {
+                ...sorcererSpellObject.iceWall,
+                spellInfo: { ...sorcererSpellObject.iceWall.spellInfo },
+              },
         }
     }
 
@@ -98,7 +102,7 @@ class Sorcerer {
         if(checkIfSpellIsCastable(this, spell)) return console.log("Cant be cast")
         
         let target = Game._getUnitByPosition(position)
-        if(!target && !spell.spellInfo.glyphNumber) return console.log("No target")
+        if(!target && !spell.spellInfo.castOnNoTarget) return console.log("No target")
         
         this.combatstats.currentMana -= spell.spellInfo.manaCost
 
@@ -122,6 +126,8 @@ class Sorcerer {
             console.log(modifiedDamage,"modifieddamage")
             handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
         }
+
+        Game._checkIfAnyoneHasDied()
 
         this._checkIfPromotionToNewClass()
     }

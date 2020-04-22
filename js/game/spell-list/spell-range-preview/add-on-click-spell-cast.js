@@ -6,6 +6,5 @@ const addOnClickToCastSpellOnHighlight = (highlightDiv, position) =>{
         removeAllChilds(document.getElementById("player-panel-spell-text"));
         
         spell.cast(position, player.class)
-        Game._checkIfAnyoneHasDied()
     }
 }
