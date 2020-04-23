@@ -256,11 +256,16 @@ const sorcererSpellObject = {
         target,
         spell,
         spell.spellInfo.duration,
-        allIceWalls
+        {allIceWalls}
       );
     },
     applyEffect: (effect, player) => {
-      
+      console.log(effect)
+      effect.allIceWalls.forEach((wall) => {
+        if(wall.class.combatstats.currentHp > 0){
+          wall._removeNpcFromTheGame()
+        }
+      })
     },
     spellInfo: {
       castOnNoTarget: true,

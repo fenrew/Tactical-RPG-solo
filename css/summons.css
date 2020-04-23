@@ -3,3 +3,7 @@
     width: 75px;
     background-color: blue;
 }
+
+.ice-wall-summon-combat-timeline-panel{
+    display: none;
+}
