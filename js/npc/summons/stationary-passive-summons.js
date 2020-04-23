@@ -3,7 +3,7 @@ class stationaryPassiveSummon {
     this.playerNumber = playerNumber;
     this.npc = true;
     this.class = type;
-    this.ai = new stationarySummonAi();
+    this.ai = new stationaryPassiveAi();
     this.position = {
       y: position.y,
       x: position.x,
@@ -14,9 +14,9 @@ class stationaryPassiveSummon {
   _generatePosition() {}
 
   _addNpcToGame() {
-    Game.activeMap[this.position.y][this.position.x] = npc.playerNumber;
-    Game.npc.push(npc);
-    Game.combatTimeline.push(npc);
+    Game.activeMap[this.position.y][this.position.x] = this.playerNumber;
+    Game.npc.push(this);
+    Game.combatTimeline.push(this);
     visualizeNpcs(Game.activeMap, [this]);
   }
 }

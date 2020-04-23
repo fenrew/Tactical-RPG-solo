@@ -104,6 +104,7 @@ class Sorcerer {
         let target = Game._getUnitByPosition(position)
         if(!target && !spell.spellInfo.castOnNoTarget) return console.log("No target")
         
+
         this.combatstats.currentMana -= spell.spellInfo.manaCost
 
         spell.castCounter += 1
@@ -123,7 +124,6 @@ class Sorcerer {
 
         
         if(modifiedDamage){
-            console.log(modifiedDamage,"modifieddamage")
             handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type)
         }
 

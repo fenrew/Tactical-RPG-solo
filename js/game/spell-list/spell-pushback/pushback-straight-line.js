@@ -11,7 +11,6 @@ const pushBackInStraightLine = async (target, direction, distance) => {
             if(!checkInsideAndGridAvailability(target.newPosition)){
                 target.newPosition[key] -= direction[key]
                 await displayPushbackAnimation({...target.position}, {...target.newPosition}, target)
-                console.log("return", distance, i)
                     
                 return distance - i
             }
@@ -21,6 +20,5 @@ const pushBackInStraightLine = async (target, direction, distance) => {
     }
 
         await displayPushbackAnimation({...target.position}, {...target.newPosition}, target)
-        console.log("return")
         return 0
     }

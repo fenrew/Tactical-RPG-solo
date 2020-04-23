@@ -230,28 +230,37 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.iceWall, position);
     },
     castEffect: (target, spell, player) => {
+      if(target.playerNumber) target = {...target.position}
+
+      const spellDirection = getCastingDirection(player.player.position, target)
+      const allIceWalls = []
+      
+      for(let i = -1; i <= 1; i++){ // For the size of the wall
+        if(spellDirection === "E" || spellDirection === "W"){
+          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, y: target.y+i})){
+            const newIceWall = new stationaryPassiveSummon(new iceWallSpell(), 40, {...target, y: target.y+i})
+            newIceWall._addNpcToGame()
+            allIceWalls.push(newIceWall)
+          }
+        } else {
+          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, x: target.x+i})){
+            const newIceWall = new stationaryPassiveSummon(new iceWallSpell(), 40, {...target, x: target.x+i})
+            newIceWall._addNpcToGame()
+            allIceWalls.push(newIceWall)
+          }
+        }
+      }
+
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration
+        spell.spellInfo.duration,
+        allIceWalls
       );
-
-      const spellDirection = getCastingDirection()
-
-      for(let i = -1; i <= 1; i++){ // For the size of the wall
-        if(spellDirection === "E" && spellDirection === "W"){
-          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, y: target.y+i})){
-            
-          }
-        } else {
-          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, x: target.x+i})){
-            
-          }
-        }
-      }
     },
     applyEffect: (effect, player) => {
+      
     },
     spellInfo: {
       castOnNoTarget: true,

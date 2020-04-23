@@ -90,7 +90,6 @@ const noviceSpellObject = {
     },
     castEffect: (target, spell, player) => {
       for (let i = 1; i <= spell.spellInfo.duration; i++) {
-        console.log(player);
         Game._addNewCombatEffect(player.player, target, spell, i);
       }
     },
@@ -264,9 +263,7 @@ const noviceSpellObject = {
         (await pushBackInStraightLine(target, direction, 2)) *
         spell.spellInfo.pushbackDamage; // Distance: 2
       const modifiedDamage = spell.spellInfo.damage + pushbackDamage;
-      console.log(pushbackDamage);
       target.class.combatstats.currentHp -= modifiedDamage;
-      console.log(modifiedDamage);
 
       return modifiedDamage;
     },
@@ -479,11 +476,9 @@ const noviceSpellObject = {
     id: "powerSpike",
     name: "Power Spike",
     cast: (position, player) => {
-      console.log("USED");
       player._addTargetSpellConditions(player.spells.powerSpike, position);
     },
     castEffect: (target, spell, player) => {
-      console.log(target);
       const manaDrained = target.class.combatstats.currentMana;
       target.class.combatstats.currentMana = 0;
       Game._addNewCombatEffect(player.player, target, spell, 1, {
@@ -491,7 +486,6 @@ const noviceSpellObject = {
       });
     },
     applyEffect: (effect, player) => {
-      console.log(effect);
       effect.target.class.combatstats.currentMana += effect.manaDrained;
 
       handleSpellDamageEffectAnimation(
@@ -579,7 +573,6 @@ const noviceSpellObject = {
     castEffect: (target, spell, player) => {
       target.class.damageModifiers.offensive.allDamage += 0.2;
       for (let i = 1; i <= spell.spellInfo.duration; i++) {
-        console.log(player, target, spell, i);
         Game._addNewCombatEffect(player.player, target, spell, i);
       }
     },
