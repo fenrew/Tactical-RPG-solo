@@ -20,6 +20,7 @@ class iceWallSpell {
             silenced: false,
             disarmed: false,
             stationary: true,
+            onAttack: []
           };
 
         this.damageModifiers = {

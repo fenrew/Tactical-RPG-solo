@@ -144,6 +144,7 @@ const sorcererSpellObject = {
     spellInfo: {
       size: 1,
       glyphNumber: 2,
+      castOnNoTarget: true,
       learned: true,
       canBeCast: true,
       type: "damage",
@@ -323,9 +324,8 @@ const sorcererSpellObject = {
       return modifiedDamage;
     },
     applyEffect: (effect, player) => {
-      const {onAttack} = effect.target.class.conditions.onAttack
-
-      onAttack.splice(onAttack.indexOf(spell), 1)
+      const {onAttack} = effect.target.class.conditions
+      onAttack.splice(onAttack.indexOf(effect.spell), 1)
     },
     conditionEffect: (target, targetSpell, playerObject) => {
       if(targetSpell.spellInfo.source !== "physical-melee" || targetSpell.spellInfo.source !== "physical-ranged") return
@@ -347,6 +347,57 @@ const sorcererSpellObject = {
       source: "fire",
       manaCost: 30,
       damage: 30,
+      dotDamage: 10,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  glimmeringFlash: {
+    id: "glimmeringFlash",
+    name: "Glimmering Flash",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.glimmeringFlash, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onAttack.push({spell, player})
+    },
+    applyEffect: (effect, player) => {
+      const {onAttack} = effect.target.class.conditions
+
+      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+    },
+    conditionEffect: (target, targetSpell, playerObject) => {
+      return Math.random() > 0.30 ? false : {cancelSpell: true}
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "fire",
+      manaCost: 30,
+      damage: 1,
       dotDamage: 10,
       duration: 1,
       freeCells: true,

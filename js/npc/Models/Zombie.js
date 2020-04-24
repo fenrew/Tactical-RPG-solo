@@ -19,6 +19,7 @@ class Zombie {
         this.conditions = {
             silenced: false,
             disarmed: false,
+            onAttack: []
           };
 
         this.damageModifiers = {
@@ -79,6 +80,7 @@ class Zombie {
             },
                 spellInfo: {
                     canBeCast: true,
+                    source: "physical-melee",
                     aiWeight: 5,
                     manaCost: 20,
                     damage: 25,
@@ -104,6 +106,7 @@ class Zombie {
                 },
                 spellInfo: {
                     canBeCast: true,
+                    source: "physical-ranged",
                     aiWeight: 1,
                     manaCost: 15,
                     damage: 10,
