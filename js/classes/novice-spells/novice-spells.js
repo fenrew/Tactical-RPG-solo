@@ -18,6 +18,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "physical-melee",
       manaCost: 30,
       damage: 25,
       freeCells: true,
@@ -94,10 +95,7 @@ const noviceSpellObject = {
       }
     },
     applyEffect: (effect) => {
-      const modifiedDamage = Math.floor(
-        effect.spell.spellInfo.damage *
-          calculatePhysicalMeleeDamageModifiers(effect.player, effect.target)
-      );
+      const modifiedDamage = effect.spell.spellInfo.damage 
 
       effect.target.class.combatstats.currentHp -= modifiedDamage;
 
@@ -111,6 +109,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "true",
       duration: 3,
       manaCost: 30,
       damage: 20,
@@ -150,6 +149,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "physical-melee",
       manaCost: 40,
       damage: 50,
       freeCells: true,
@@ -231,6 +231,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "physical-ranged",
       manaCost: 25,
       damage: 15,
       freeCells: true,
@@ -271,6 +272,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "true",
       manaCost: 40,
       damage: 10,
       pushbackDamage: 10,
@@ -319,6 +321,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "frost",
       manaCost: 30,
       damage: 10,
       freeCells: true,
@@ -374,6 +377,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "fire",
       manaCost: 40,
       damage: 25,
       size: 1,
@@ -415,6 +419,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "arcane",
       manaCost: 30,
       damage: 30,
       freeCells: true,
@@ -544,6 +549,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "healing",
+      source: "healing",
       manaCost: 30,
       damage: 30,
       freeCells: true,
@@ -642,6 +648,7 @@ const noviceSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "holy",
       manaCost: 25,
       damage: 25,
       freeCells: true,
@@ -712,6 +719,7 @@ const noviceSpellObject = {
     },
     castEffect: (target, spell, player) => {
         spell.spellInfo.type = target.npc ? "damage" : "healing"
+        spell.spellInfo.source = target.npc ? "holy" : "healing"
 
       let modifiedDamage = Math.floor(
         spell.spellInfo.damage * (target.npc ?
@@ -729,7 +737,8 @@ const noviceSpellObject = {
     spellInfo: {
       learned: true,
       canBeCast: true,
-      type: "damage",
+      type: "damage", // NB: This changes when using the spell
+      source: "holy", // NB: This changes when using the spell
       manaCost: 10,
       damage: 40,
       freeCells: true,

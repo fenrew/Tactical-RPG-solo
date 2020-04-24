@@ -18,6 +18,7 @@ class Novice {
     this.conditions = {
       silenced: false,
       disarmed: false,
+      onAttack: [],
     };
 
     this.damageModifiers = {
@@ -171,6 +172,10 @@ class Novice {
       this
     );
 
+    this.conditions.onAttack.forEach((ele) => {
+      ele.conditionsEffect(this.player, spell, ele);
+    });
+
     updateCurrentManaBar(this.player);
 
     if (target?.newPosition) {
@@ -186,7 +191,7 @@ class Novice {
       );
     }
 
-    Game._checkIfAnyoneHasDied()
+    Game._checkIfAnyoneHasDied();
 
     this._checkIfPromotionToNewClass();
   }
@@ -201,13 +206,11 @@ class Novice {
         ) {
           this.spells[spellKey].spellInfo.learned = true;
 
-          displayLearnedNewSpell(this.spells[spellKey])
+          displayLearnedNewSpell(this.spells[spellKey]);
         }
       }
     }
   }
 
-  _checkIfPromotionToNewClass() {
-    
-  }
+  _checkIfPromotionToNewClass() {}
 }

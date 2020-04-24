@@ -29,6 +29,7 @@ const sorcererSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "frost",
       manaCost: 30,
       damage: 20,
       duration: 1,
@@ -91,6 +92,7 @@ const sorcererSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "frost",
       manaCost: 40,
       damage: 10,
       duration: 3,
@@ -203,6 +205,7 @@ const sorcererSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "frost",
       manaCost: 40,
       damage: 20,
       duration: 2,
@@ -290,6 +293,77 @@ const sorcererSpellObject = {
       },
     },
     category: "frost",
+    toLearn: 0,
+    castCounter: 0,
+  },
+
+  // FIRE
+  firebolt: {
+    id: "firebolt",
+    name: "Firebolt",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.firebolt, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "fire")
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onAttack.push({spell, player})
+
+      return modifiedDamage;
+    },
+    applyEffect: (effect, player) => {
+      const {onAttack} = effect.target.class.conditions.onAttack
+
+      onAttack.splice(onAttack.indexOf(spell), 1)
+    },
+    conditionEffect: (target, targetSpell, playerObject) => {
+      if(targetSpell.spellInfo.source !== "physical-melee" || targetSpell.spellInfo.source !== "physical-ranged") return
+      
+      const {spell, player} = playerObject
+
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.dotDamage *
+          calculateMagicalDamageModifiers(player.player, target, "fire")
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type);
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "fire",
+      manaCost: 30,
+      damage: 30,
+      dotDamage: 10,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "fire",
     toLearn: 0,
     castCounter: 0,
   },
