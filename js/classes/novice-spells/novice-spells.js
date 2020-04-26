@@ -46,19 +46,24 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.defensiveStance, position);
     },
     castEffect: (target, spell, player) => {
-      target.class.damageModifiers.defensive.physicalDamage.allDamage -= 0.2;
-      target.class.damageModifiers.offensive.magicalDamage.allDamage -= 0.2;
+      let physicalDmgTaken = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalDmgTaken
+      let magicalDmgDealt = target.class.damageModifiers.offensive.magicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.offensive.magicalDamage.allDamage -= magicalDmgDealt;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration
+        spell.spellInfo.duration,
+        {physicalDmgTaken,
+        magicalDmgDealt}
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += 0.2;
-      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage += 0.2;
+      console.log(effect.physicalDmgTaken, effect.magicalDmgDealt)
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalDmgTaken
+      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage += effect.magicalDmgDealt;
     },
     spellInfo: {
       learned: true,
@@ -177,16 +182,19 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.findWeakness, position);
     },
     castEffect: (target, spell, player) => {
-      target.class.damageModifiers.defensive.physicalDamage.allDamage += 0.2;
+      let physicalDmgTaken = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.defensive.physicalDamage.allDamage += physicalDmgTaken
+
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration
+        spell.spellInfo.duration,
+        {physicalDmgTaken}
       );
     },
-    applyEffect: (effect, player) => {
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -= 0.2;
+    applyEffect: (effect) => {
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -= effect.physicalDmgTaken;
     },
     spellInfo: {
       learned: true,
@@ -577,9 +585,11 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.inspire, position);
     },
     castEffect: (target, spell, player) => {
-      target.class.damageModifiers.offensive.allDamage += 0.2;
+      let allDmgDealt = target.class.damageModifiers.offensive.allDamage * 0.2;
+      
+      target.class.damageModifiers.offensive.allDamage += allDmgDealt;
       for (let i = 1; i <= spell.spellInfo.duration; i++) {
-        Game._addNewCombatEffect(player.player, target, spell, i);
+        Game._addNewCombatEffect(player.player, target, spell, i, {allDmgDealt});
       }
     },
     applyEffect: (effect) => {
@@ -602,7 +612,7 @@ const noviceSpellObject = {
         effect.spell.spellInfo.type
       );
       if (effect.executeRound == 2) {
-        effect.target.class.damageModifiers.offensive.allDamage -= 0.2;
+        effect.target.class.damageModifiers.offensive.allDamage -= effect.allDmgDealt;
       }
     },
     spellInfo: {
@@ -676,17 +686,20 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.absorb, position);
     },
     castEffect: (target, spell, player) => {
-      target.class.damageModifiers.defensive.magicalDamage.allDamage -= 0.5;
+      let magicDmgTaken = target.class.damageModifiers.defensive.magicalDamage.allDamage -= 0.5;
+      
+      target.class.damageModifiers.defensive.magicalDamage.allDamage -= magicDmgTaken;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration
+        spell.spellInfo.duration,
+        {magicDmgTaken}
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage += 0.5;
+      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage += effect.magicDmgTaken;
     },
     spellInfo: {
       learned: true,

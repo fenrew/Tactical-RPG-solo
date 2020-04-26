@@ -4,9 +4,9 @@ function handleSpellDamageEffectAnimation(target, effectValue, effect){
     let element = document.getElementById(`${target.npc ? "npc" : "player"}-${target.position.y},${target.position.x}`)
 
     let newElement = document.createElement("div")
-    if(effect == "damage"){
+    if(effect == "damage" && effectValue >= 0){
         newElement.classList.add("display-damage-dealt")
-    } else if(effect == "healing"){
+    } else if(effect == "healing" || (effect == "damage" && effectValue < 0)){
         newElement.classList.add("display-healing-done")
     } else if(effect == "manadrain"){
         newElement.classList.add("display-mana-drained")
@@ -18,7 +18,7 @@ function handleSpellDamageEffectAnimation(target, effectValue, effect){
 
     newElement.classList.add("display-damage-dealt-numbers")
 
-    newElement.innerHTML = String(effectValue)
+    newElement.innerHTML = String(Math.abs(effectValue))
     element.appendChild(newElement)
 
     updateCurrentManaBar(target)

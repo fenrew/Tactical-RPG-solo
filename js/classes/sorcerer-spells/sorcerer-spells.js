@@ -63,10 +63,13 @@ const sorcererSpellObject = {
           calculateMagicalDamageModifiers(player.player, target, "frost")
       );
       target.class.combatstats.currentHp -= modifiedDamage;
-      target.class.damageModifiers.offensive.physicalDamage.allDamage -= 0.25;
+      
+      let physicalDmgDealt = target.class.damageModifiers.offensive.physicalDamage.allDamage * 0.25;
+      target.class.damageModifiers.offensive.physicalDamage.allDamage -= physicalDmgDealt;
+
 
       for (let i = 0; i < spell.spellInfo.duration; i++) {
-        Game._addNewCombatEffect(player.player, target, spell, i);
+        Game._addNewCombatEffect(player.player, target, spell, i, {physicalDmgDealt});
       }
 
       return modifiedDamage;
@@ -85,7 +88,7 @@ const sorcererSpellObject = {
       );
 
       if (effect.executeRound === effect.spell.spellInfo.duration) {
-        effect.target.class.damageModifiers.offensive.physicalDamage.allDamage += 0.25;
+        effect.target.class.damageModifiers.offensive.physicalDamage.allDamage += effect.physicalDmgDealt;
       }
     },
     spellInfo: {
@@ -544,17 +547,24 @@ const sorcererSpellObject = {
       target.class.fireArmor = true
       
       target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= 2
-      
+
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration
+        spell.spellInfo.duration,
+        {hpBeforeSpellCast: target.class.combatstats.currentHp}
       );
     },
     applyEffect: (effect) => {
+      let {currentHp, hp} = effect.target.class.combatstats
+
       effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += 2
       effect.target.class.fireArmor = undefined
+
+      if(currentHp > effect.hpBeforeSpellCast && currentHp > hp){
+        effect.target.class.combatstats.currentHp = effect.hpBeforeSpellCast > hp ? effect.hpBeforeSpellCast : hp
+      }
     },
     spellInfo: {
       learned: true,
