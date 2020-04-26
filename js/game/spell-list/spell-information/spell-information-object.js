@@ -40,5 +40,16 @@ const spellInfoObject = {
   freezingGround:
     "Freezes the ground decreasing movement points of all units that start or end their turn there",
   snowstorm:
-    "Channels a snowstorm at a target area dealing damage to anyone within the effect, lasts 2 turns."
+    "Channels a snowstorm at a target area dealing damage to anyone within the effect, lasts 2 turns.",
+  iceWall: "Puts up an immovable wall of ice",
+  firebolt:
+    "Shoots out a bolt of fire on a target dealing damage and makes the target take fire damage if he attacks with physical attacks",
+  fireSpheres:
+    "Creates balls of fire that shoots out to the nearest enemies within 5 tiles dealing damage",
+  glimmeringFlash:
+    "Releases a flash of bright light, blinding the opponent. Gives them a 40% chance to miss on attacks",
+  pyroclasm:
+    "Hurls a flaming ball on the target dealing fire damage on impact, and also deals fire damage on the beginning of each of the target’s turn for the next 2 rounds. Heals double on targets with fire armor applied",
+  fireArmor:
+    "If the target is hit by a fire spell, it is healed instead of taking damage for 1 turn",
 };
