@@ -323,7 +323,7 @@ const sorcererSpellObject = {
 
       return modifiedDamage;
     },
-    applyEffect: (effect, player) => {
+    applyEffect: (effect) => {
       const {onAttack} = effect.target.class.conditions
       onAttack.splice(onAttack.indexOf(effect.spell), 1)
     },
@@ -482,7 +482,7 @@ const sorcererSpellObject = {
         spell.spellInfo.damage *
           calculateMagicalDamageModifiers(player.player, target, "fire")
       );
-      target.class.combatstats.currentHp -= modifiedDamage;
+      target.class.combatstats.currentHp -= target.class.fireArmor ? modifiedDamage*2 : modifiedDamage;
 
       for(let i = 1; i <= spell.spellInfo.duration; i++){
         Game._addNewCombatEffect(
@@ -496,7 +496,6 @@ const sorcererSpellObject = {
       return modifiedDamage;
     },
     applyEffect: (effect) => {
-      console.log("APPLY EFFECT")
         let modifiedDamage = Math.floor(
           effect.spell.spellInfo.dotDamage *
             calculateMagicalDamageModifiers(effect.player, effect.target, "fire")
@@ -526,6 +525,54 @@ const sorcererSpellObject = {
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  fireArmor: {
+    id: "fireArmor",
+    name: "Fire Armor",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.fireArmor, position);
+    },
+    castEffect: (target, spell, player) => {
+      target.class.fireArmor = true
+      
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= 2
+      
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+    },
+    applyEffect: (effect) => {
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += 2
+      effect.target.class.fireArmor = undefined
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "buff",
+      source: "fire",
+      manaCost: 30,
+      damage: 1,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 3,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 4,
       castsPerTurn: 1,
       conditionsRequirements: {
         silenced: true,

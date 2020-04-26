@@ -95,6 +95,7 @@ class Sorcerer {
         ...sorcererSpellObject.iceWall,
         spellInfo: { ...sorcererSpellObject.iceWall.spellInfo },
       },
+
       firebolt: {
         ...sorcererSpellObject.firebolt,
         spellInfo: { ...sorcererSpellObject.firebolt.spellInfo },
@@ -110,6 +111,10 @@ class Sorcerer {
       pyroclasm: {
         ...sorcererSpellObject.pyroclasm,
         spellInfo: { ...sorcererSpellObject.pyroclasm.spellInfo },
+      },
+      fireArmor: {
+        ...sorcererSpellObject.fireArmor,
+        spellInfo: { ...sorcererSpellObject.fireArmor.spellInfo },
       },
     };
   }
@@ -134,6 +139,7 @@ class Sorcerer {
       }
     });
     if(onAttackAnswers.cancelSpell) return
+
 
     spell.castCounter += 1;
     this.castCounter[spell.category] += 1;

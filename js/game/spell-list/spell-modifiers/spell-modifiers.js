@@ -10,10 +10,10 @@ function calculatePhysicalMeleeDamageModifiers(caster, target){
             targetMod.physicalDamage.allDamage+
             targetMod.physicalDamage.meleeDamage)-2)
 
-    if(casterMod.allDamage <= 0 || casterMod.physicalDamage <= 0 || casterMod.physicalDamage.meleeDamage <= 0
-        || targetMod.allDamage <= 0 || targetMod.physicalDamage <= 0 || targetMod.physicalDamage.meleeDamage <= 0){
-        meleeDamageModifier = 0
-    }
+    // if(casterMod.allDamage <= 0 || casterMod.physicalDamage <= 0 || casterMod.physicalDamage.meleeDamage <= 0
+    //     || targetMod.allDamage <= 0 || targetMod.physicalDamage <= 0 || targetMod.physicalDamage.meleeDamage <= 0){
+    //     meleeDamageModifier = 0
+    // }
     return meleeDamageModifier
 }
 
@@ -29,10 +29,10 @@ function calculatePhysicalRangedDamageModifiers(caster, target){
             targetMod.physicalDamage.allDamage+
             targetMod.physicalDamage.rangedDamage)-2)
     
-    if(casterMod.allDamage <= 0 || casterMod.physicalDamage <= 0 || casterMod.physicalDamage.rangedDamage <= 0
-        || targetMod.allDamage <= 0 || targetMod.physicalDamage <= 0 || targetMod.physicalDamage.rangedDamage <= 0){
-        rangedDamageModifier = 0
-    }
+    // if(casterMod.allDamage <= 0 || casterMod.physicalDamage <= 0 || casterMod.physicalDamage.rangedDamage <= 0
+    //     || targetMod.allDamage <= 0 || targetMod.physicalDamage <= 0 || targetMod.physicalDamage.rangedDamage <= 0){
+    //     rangedDamageModifier = 0
+    // }
     return rangedDamageModifier
 }
 
@@ -52,12 +52,12 @@ const calculateMagicalDamageModifiers = (caster, target, element) => {
         targetMod.magicalDamage.elementalMagic[element]
     )-2)
 
-    if(casterMod.allDamage <= 0 || casterMod.magicalDamage.allDamage <= 0
-        || targetMod.allDamage <= 0 || targetMod.magicalDamage.allDamage <= 0 ||
-        casterMod.magicalDamage.elementalMagic[element] <= 0 ||
-        targetMod.magicalDamage.elementalMagic[element] <= 0){
-        return 0
-    }
+    // if(casterMod.allDamage <= 0 || casterMod.magicalDamage.allDamage <= 0
+    //     || targetMod.allDamage <= 0 || targetMod.magicalDamage.allDamage <= 0 ||
+    //     casterMod.magicalDamage.elementalMagic[element] <= 0 ||
+    //     targetMod.magicalDamage.elementalMagic[element] <= 0){
+    //     return 0
+    // }
 
     return magicalOffenseDamageModifier * magicalDefenseDamageModifier
 }
