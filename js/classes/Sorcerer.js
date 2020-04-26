@@ -103,6 +103,10 @@ class Sorcerer {
         ...sorcererSpellObject.glimmeringFlash,
         spellInfo: { ...sorcererSpellObject.glimmeringFlash.spellInfo },
       },
+      fireSpheres: {
+        ...sorcererSpellObject.fireSpheres,
+        spellInfo: { ...sorcererSpellObject.fireSpheres.spellInfo },
+      },
     };
   }
 
@@ -118,7 +122,7 @@ class Sorcerer {
     
     const onAttackAnswers = {cancelSpell: false}
     this.conditions.onAttack.forEach((ele) => {
-      let answerOnAttack = ele.spell.conditionEffect(this.player, spell, ele);
+      let answerOnAttack = ele.spell.conditionEffect(this.player, spell, ele, target);
       if(answerOnAttack) {
         for (let key in answerOnAttack){
           onAttackAnswers[key] = answerOnAttack[key]

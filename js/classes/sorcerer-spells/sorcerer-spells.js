@@ -418,4 +418,57 @@ const sorcererSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  fireSpheres: {
+    id: "fireSpheres",
+    name: "Fire Spheres",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.fireSpheres, position);
+    },
+    castEffect: (target, spell, player) => {
+      let nearbyUnits = getUnitsInFreeRange(player.player, spell.spellInfo.range)
+      //nearbyUnits = nearbyUnits.filter(ele => ele.npc)
+      console.log(nearbyUnits)
+      
+      nearbyUnits.forEach(ele => {
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculateMagicalDamageModifiers(player.player, ele, "fire")
+        );
+        ele.class.combatstats.currentHp -= modifiedDamage;
+        handleSpellDamageEffectAnimation(
+          ele,
+          modifiedDamage,
+          spell.spellInfo.type
+        );
+      })
+
+      return false;
+    },
+    spellInfo: {
+      range: 5,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "fire",
+      manaCost: 30,
+      damage: 20,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

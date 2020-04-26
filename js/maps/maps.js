@@ -11,7 +11,7 @@
 // 20-29 = Walkable Terrain
 // 30-39 = Obstacle Terrain
 // 40-49 = Obstacle Terrain Summons
-// 70-90 = CPU's
+// 70-99 = CPU's
 
 // Highlight map:
 // 0 = no highlight
@@ -69,6 +69,21 @@ function returnHighlightBlockClass(mapNumber){
     }
     
     return mapHighlightClasses[mapNumber]
+}
+
+// Is the position occupied by a unit. Returns the unit.
+const checkIfPositionIsUnit = (map = Game.activeMap, position) => {
+    const {y, x} = position
+    const mapNumber = Game.activeMap[y] ? Game.activeMap[y][x] : false
+    
+    if(!mapNumber && mapNumber !== 0) return false
+    
+    if((mapNumber >= 0 && mapNumber < 10) || mapNumber >= 70 && mapNumber < 100){
+        const foundPlayer = Game.combatTimeline.find(ele => ele.position.y === y && ele.position.x === x)
+        return foundPlayer
+    }
+
+    return false
 }
 
 const allMaps = [mapOne]
