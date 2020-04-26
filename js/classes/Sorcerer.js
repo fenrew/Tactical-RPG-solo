@@ -99,13 +99,17 @@ class Sorcerer {
         ...sorcererSpellObject.firebolt,
         spellInfo: { ...sorcererSpellObject.firebolt.spellInfo },
       },
+      fireSpheres: {
+        ...sorcererSpellObject.fireSpheres,
+        spellInfo: { ...sorcererSpellObject.fireSpheres.spellInfo },
+      },
       glimmeringFlash: {
         ...sorcererSpellObject.glimmeringFlash,
         spellInfo: { ...sorcererSpellObject.glimmeringFlash.spellInfo },
       },
-      fireSpheres: {
-        ...sorcererSpellObject.fireSpheres,
-        spellInfo: { ...sorcererSpellObject.fireSpheres.spellInfo },
+      pyroclasm: {
+        ...sorcererSpellObject.pyroclasm,
+        spellInfo: { ...sorcererSpellObject.pyroclasm.spellInfo },
       },
     };
   }

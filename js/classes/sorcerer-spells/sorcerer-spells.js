@@ -367,6 +367,59 @@ const sorcererSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  fireSpheres: {
+    id: "fireSpheres",
+    name: "Fire Spheres",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.fireSpheres, position);
+    },
+    castEffect: (target, spell, player) => {
+      let nearbyUnits = getUnitsInFreeRange(player.player, spell.spellInfo.range)
+      //nearbyUnits = nearbyUnits.filter(ele => ele.npc)
+      console.log(nearbyUnits)
+      
+      nearbyUnits.forEach(ele => {
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculateMagicalDamageModifiers(player.player, ele, "fire")
+        );
+        ele.class.combatstats.currentHp -= modifiedDamage;
+        handleSpellDamageEffectAnimation(
+          ele,
+          modifiedDamage,
+          spell.spellInfo.type
+        );
+      })
+
+      return false;
+    },
+    spellInfo: {
+      range: 5,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "fire",
+      manaCost: 30,
+      damage: 20,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
   glimmeringFlash: {
     id: "glimmeringFlash",
     name: "Glimmering Flash",
@@ -418,53 +471,64 @@ const sorcererSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
-  fireSpheres: {
-    id: "fireSpheres",
-    name: "Fire Spheres",
+  pyroclasm: {
+    id: "pyroclasm",
+    name: "Pyroclasm",
     cast: (position, player) => {
-      player._addTargetSpellConditions(player.spells.fireSpheres, position);
+      player._addTargetSpellConditions(player.spells.pyroclasm, position);
     },
     castEffect: (target, spell, player) => {
-      let nearbyUnits = getUnitsInFreeRange(player.player, spell.spellInfo.range)
-      //nearbyUnits = nearbyUnits.filter(ele => ele.npc)
-      console.log(nearbyUnits)
-      
-      nearbyUnits.forEach(ele => {
-        let modifiedDamage = Math.floor(
-          spell.spellInfo.damage *
-            calculateMagicalDamageModifiers(player.player, ele, "fire")
-        );
-        ele.class.combatstats.currentHp -= modifiedDamage;
-        handleSpellDamageEffectAnimation(
-          ele,
-          modifiedDamage,
-          spell.spellInfo.type
-        );
-      })
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "fire")
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
 
-      return false;
+      for(let i = 1; i <= spell.spellInfo.duration; i++){
+        Game._addNewCombatEffect(
+          player.player,
+          target,
+          spell,
+          i
+        );
+      }
+
+      return modifiedDamage;
+    },
+    applyEffect: (effect) => {
+      console.log("APPLY EFFECT")
+        let modifiedDamage = Math.floor(
+          effect.spell.spellInfo.dotDamage *
+            calculateMagicalDamageModifiers(effect.player, effect.target, "fire")
+        );
+        effect.target.class.combatstats.currentHp -= modifiedDamage;
+        handleSpellDamageEffectAnimation(
+          effect.target,
+          modifiedDamage,
+          effect.spell.spellInfo.type
+        );
     },
     spellInfo: {
-      range: 5,
       learned: true,
       canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 30,
-      damage: 20,
-      duration: 1,
+      damage: 30,
+      dotDamage: 10,
+      duration: 2,
       freeCells: true,
       straigthLine: false,
       diagonal: false,
       areaOfEffect: 1,
-      minRange: 0,
-      maxRange: 0,
+      minRange: 1,
+      maxRange: 5,
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,
       castsPerTurn: 1,
       conditionsRequirements: {
-        disarmed: true,
+        silenced: true,
       },
     },
     category: "fire",
