@@ -439,7 +439,7 @@ const sorcererSpellObject = {
 
       target.class.conditions.onAttack.push({spell, player})
     },
-    applyEffect: (effect, player) => {
+    applyEffect: (effect) => {
       const {onAttack} = effect.target.class.conditions
 
       onAttack.splice(onAttack.indexOf(effect.spell), 1)
@@ -589,6 +589,80 @@ const sorcererSpellObject = {
       },
     },
     category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
+
+  // UTILITY
+  arcanePolarization: {
+    id: "arcanePolarization",
+    name: "Arcane Polarization",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.arcanePolarization, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "arcane")
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      let newPosition = {y: player.player.position.y + (target.position.y-player.player.position.y)*-1, 
+        x: player.player.position.x + (target.position.x-player.player.position.x)*-1}
+      
+      if(checkInsideAndGridAvailability(newPosition, Game.activeMap)){
+        updateUnitPosition(target, newPosition)
+      } else {
+        let additionalDamage = Math.floor(
+          spell.spellInfo.additionalDamage *
+            calculateMagicalDamageModifiers(player.player, target, "arcane")
+        );
+
+        target.class.combatstats.currentHp -= additionalDamage;
+        modifiedDamage += additionalDamage
+        
+        const unitCollidedWith = checkIfPositionIsUnit(Game.activeMap, newPosition)
+        if(unitCollidedWith){
+          unitCollidedWith.class.combatstats.currentHp -= additionalDamage
+
+          handleSpellDamageEffectAnimation(
+            unitCollidedWith,
+            additionalDamage,
+            spell.spellInfo.type
+          );
+        }
+      }
+
+      handleSpellDamageEffectAnimation(
+        target,
+        modifiedDamage,
+        spell.spellInfo.type
+      );
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "arcane",
+      manaCost: 30,
+      damage: 30,
+      additionalDamage: 15,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "utility",
     toLearn: 0,
     castCounter: 0,
   },

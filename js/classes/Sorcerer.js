@@ -25,7 +25,7 @@ class Sorcerer {
       defensive: {
         allDamage: 1,
         magicalDamage: {
-          allDamage: 0.8,
+          allDamage: 0.9,
           elementalMagic: {
             fire: 1,
             frost: 1,
@@ -36,7 +36,7 @@ class Sorcerer {
           },
         },
         physicalDamage: {
-          allDamage: 1.2,
+          allDamage: 1.1,
           rangedDamage: 1,
           meleeDamage: 1,
           bleeds: 1,
@@ -115,6 +115,11 @@ class Sorcerer {
       fireArmor: {
         ...sorcererSpellObject.fireArmor,
         spellInfo: { ...sorcererSpellObject.fireArmor.spellInfo },
+      },
+
+      arcanePolarization: {
+        ...sorcererSpellObject.arcanePolarization,
+        spellInfo: { ...sorcererSpellObject.arcanePolarization.spellInfo },
       },
     };
   }

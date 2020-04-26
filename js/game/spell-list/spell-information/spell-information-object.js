@@ -32,6 +32,7 @@ const spellInfoObject = {
   holySpike:
     "Holy spikes are sent towards the target healing allies or damaging enemies",
 
+    
   // SORCERER
   frostbolt:
     "Shoots out a bolt of frost on a target dealing damage and decreasing initiation for 1 turn",
@@ -42,6 +43,7 @@ const spellInfoObject = {
   snowstorm:
     "Channels a snowstorm at a target area dealing damage to anyone within the effect, lasts 2 turns.",
   iceWall: "Puts up an immovable wall of ice",
+
   firebolt:
     "Shoots out a bolt of fire on a target dealing damage and makes the target take fire damage if he attacks with physical attacks",
   fireSpheres:
