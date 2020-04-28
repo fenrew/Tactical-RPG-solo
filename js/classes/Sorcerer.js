@@ -121,6 +121,10 @@ class Sorcerer {
         ...sorcererSpellObject.arcanePolarization,
         spellInfo: { ...sorcererSpellObject.arcanePolarization.spellInfo },
       },
+      flamingWeapon: {
+        ...sorcererSpellObject.flamingWeapon,
+        spellInfo: { ...sorcererSpellObject.flamingWeapon.spellInfo },
+      },
     };
   }
 

@@ -666,4 +666,63 @@ const sorcererSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  flamingWeapon: {
+    id: "flamingWeapon",
+    name: "Flaming Weapon",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.flamingWeapon, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onAttack.push({spell, player})
+    },
+    applyEffect: (effect) => {
+      const {onAttack} = effect.target.class.conditions
+      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+    },
+    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+      if(!(targetSpell.spellInfo.source === "physical-ranged" || targetSpell.spellInfo.source ==="physical-melee" || (targetSpell.spellInfo.maxRange === 1 && targetSpell.spellInfo.damage > 1))) return
+
+      const {spell, player} = playerObject
+
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(target, targetOfTarget, "fire")
+      );
+      targetOfTarget.class.combatstats.currentHp -= modifiedDamage;
+
+      handleSpellDamageEffectAnimation(targetOfTarget, modifiedDamage, spell.spellInfo.type);
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "fire",
+      manaCost: 30,
+      damage: 5,
+      duration: 3,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "fire",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
