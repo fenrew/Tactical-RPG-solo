@@ -777,4 +777,75 @@ const sorcererSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  iceArmor: {
+    id: "iceArmor",
+    name: "Ice Armor",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.iceArmor, position);
+    },
+    castEffect: (target, spell, player) => {
+      let fireResistChange = target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire * 0.2
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= fireResistChange
+      let physicalResistChange = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2
+      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalResistChange
+      let frostResistChange = target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost * 0.2
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += frostResistChange
+
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration,
+        {fireResistChange, physicalResistChange, frostResistChange}
+      );
+
+      target.class.conditions.onAttack.push({spell, player})
+    },
+    applyEffect: (effect) => {
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += effect.fireResistChange
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalResistChange
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += effect.frostResistChange
+     
+      const {onAttack} = effect.target.class.conditions
+      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+    },
+    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+      // if(targetSpell.spellInfo.maxRange >) return
+
+      // const {spell, player} = playerObject
+
+      // let modifiedDamage = Math.floor(
+      //   spell.spellInfo.damage *
+      //     calculateMagicalDamageModifiers(target, targetOfTarget, "fire")
+      // );
+      // targetOfTarget.class.combatstats.currentHp -= modifiedDamage;
+
+      // handleSpellDamageEffectAnimation(targetOfTarget, modifiedDamage, spell.spellInfo.type);
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "buff",
+      source: "frost",
+      manaCost: 30,
+      damage: 1,
+      duration: 2,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 3,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 4,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "utility",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

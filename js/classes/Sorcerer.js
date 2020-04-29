@@ -129,6 +129,10 @@ class Sorcerer {
         ...sorcererSpellObject.hurricane,
         spellInfo: { ...sorcererSpellObject.hurricane.spellInfo },
       },
+      iceArmor: {
+        ...sorcererSpellObject.iceArmor,
+        spellInfo: { ...sorcererSpellObject.iceArmor.spellInfo },
+      },
     };
   }
 
