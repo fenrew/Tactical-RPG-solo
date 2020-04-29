@@ -721,8 +721,60 @@ const sorcererSpellObject = {
         silenced: true,
       },
     },
-    category: "fire",
+    category: "utility",
     toLearn: 0,
+    castCounter: 0,
+  },
+  hurricane: {
+    id: "hurricane",
+    name: "Hurricane",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.hurricane, position);
+    },
+    castEffect: async (target, spell, player) => {
+      const direction = getPushbackDirection(player.player, target);
+      // Add if 1 tile away do this, if 2+ tiles away pull instead
+      const pushbackDamage =
+        (await pushBackInStraightLine(target, direction, 3)) *
+        spell.spellInfo.pushbackDamage; // Distance: 3
+      const additionalDamage = pushbackDamage ? spell.spellInfo.additionalDamage : 0
+
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "arcane")
+      );
+
+      modifiedDamage += pushbackDamage + additionalDamage;
+
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      return modifiedDamage;
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "arcane",
+      manaCost: 50,
+      damage: 20,
+      additionalDamage: 30,
+      pushbackDamage: 10,
+      freeCells: false,
+      straigthLine: true,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 3,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "utility",
+    toLearn: 8,
     castCounter: 0,
   },
 };

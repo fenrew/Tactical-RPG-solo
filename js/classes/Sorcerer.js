@@ -125,6 +125,10 @@ class Sorcerer {
         ...sorcererSpellObject.flamingWeapon,
         spellInfo: { ...sorcererSpellObject.flamingWeapon.spellInfo },
       },
+      hurricane: {
+        ...sorcererSpellObject.hurricane,
+        spellInfo: { ...sorcererSpellObject.hurricane.spellInfo },
+      },
     };
   }
 
