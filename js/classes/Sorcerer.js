@@ -133,6 +133,10 @@ class Sorcerer {
         ...sorcererSpellObject.iceArmor,
         spellInfo: { ...sorcererSpellObject.iceArmor.spellInfo },
       },
+      teleport: {
+        ...sorcererSpellObject.teleport,
+        spellInfo: { ...sorcererSpellObject.teleport.spellInfo },
+      },
     };
   }
 

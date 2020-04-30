@@ -799,28 +799,18 @@ const sorcererSpellObject = {
         {fireResistChange, physicalResistChange, frostResistChange}
       );
 
-      target.class.conditions.onAttack.push({spell, player})
+    //  target.class.conditions.onAttack.push({spell, player})
     },
     applyEffect: (effect) => {
       effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += effect.fireResistChange
       effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalResistChange
       effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += effect.frostResistChange
      
-      const {onAttack} = effect.target.class.conditions
-      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+      // const {onAttack} = effect.target.class.conditions
+      // onAttack.splice(onAttack.indexOf(effect.spell), 1)
     },
     conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
-      // if(targetSpell.spellInfo.maxRange >) return
-
-      // const {spell, player} = playerObject
-
-      // let modifiedDamage = Math.floor(
-      //   spell.spellInfo.damage *
-      //     calculateMagicalDamageModifiers(target, targetOfTarget, "fire")
-      // );
-      // targetOfTarget.class.combatstats.currentHp -= modifiedDamage;
-
-      // handleSpellDamageEffectAnimation(targetOfTarget, modifiedDamage, spell.spellInfo.type);
+      // Add on attacked: -1 mp to attacker
     },
     spellInfo: {
       learned: true,
@@ -839,6 +829,44 @@ const sorcererSpellObject = {
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 4,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "utility",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  teleport: {
+    id: "teleport",
+    name: "Teleport",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.teleport, position);
+    },
+    castEffect: (target, spell, player) => {
+      if(checkInsideAndGridAvailability(target, Game.activeMap)){
+        updateUnitPosition(player.player, target)
+      }
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      castOnNoTarget: true,
+      type: "damage",
+      source: "arcane",
+      manaCost: 30,
+      damage: 1,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 4,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
       castsPerTurn: 1,
       conditionsRequirements: {
         silenced: true,
