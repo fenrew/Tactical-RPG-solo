@@ -166,7 +166,7 @@ class Sorcerer {
     target.class.conditions.onDefense.forEach((ele) => {
       let answerOnDefense = ele.spell.conditionEffect(this.player, spell, ele, target);
       if(answerOnDefense) {
-        for (let key in answerOnAttack){
+        for (let key in answerOnDefense){
           onDefenseAnswers[key] = answerOnDefense[key]
         }
       }

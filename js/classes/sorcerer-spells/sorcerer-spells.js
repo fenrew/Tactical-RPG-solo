@@ -799,7 +799,7 @@ const sorcererSpellObject = {
         {fireResistChange, physicalResistChange, frostResistChange}
       );
 
-    //  target.class.conditions.onAttack.push({spell, player})
+     target.class.conditions.onDefense.push({spell, player})
     },
     applyEffect: (effect) => {
       effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += effect.fireResistChange
@@ -809,8 +809,19 @@ const sorcererSpellObject = {
       // const {onAttack} = effect.target.class.conditions
       // onAttack.splice(onAttack.indexOf(effect.spell), 1)
     },
-    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+    conditionEffect: (player, spell, playerObject, target) => {
       // Add on attacked: -1 mp to attacker
+      console.log(player, target)
+      if(spell.spellInfo.maxRange > 1 || player === target) return
+      
+      console.log("YES")
+      player.class.combatstats.currentMovementPoints -= 1
+
+      handleSpellDamageEffectAnimation(
+        player,
+        1,
+        "mp"
+      );
     },
     spellInfo: {
       learned: true,
