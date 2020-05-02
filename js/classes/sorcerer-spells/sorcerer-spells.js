@@ -806,15 +806,12 @@ const sorcererSpellObject = {
       effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalResistChange
       effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += effect.frostResistChange
      
-      // const {onAttack} = effect.target.class.conditions
-      // onAttack.splice(onAttack.indexOf(effect.spell), 1)
+      const {onDefense} = effect.target.class.conditions
+      onDefense.splice(onDefense.indexOf(effect.spell), 1)
     },
     conditionEffect: (player, spell, playerObject, target) => {
-      // Add on attacked: -1 mp to attacker
-      console.log(player, target)
       if(spell.spellInfo.maxRange > 1 || player === target) return
       
-      console.log("YES")
       player.class.combatstats.currentMovementPoints -= 1
 
       handleSpellDamageEffectAnimation(
