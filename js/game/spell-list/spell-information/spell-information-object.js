@@ -32,7 +32,6 @@ const spellInfoObject = {
   holySpike:
     "Holy spikes are sent towards the target healing allies or damaging enemies",
 
-    
   // SORCERER
   frostbolt:
     "Shoots out a bolt of frost on a target dealing damage and decreasing initiation for 1 turn",
@@ -54,4 +53,13 @@ const spellInfoObject = {
     "Hurls a flaming ball on the target dealing fire damage on impact, and also deals fire damage on the beginning of each of the target’s turn for the next 2 rounds. Heals double on targets with fire armor applied",
   fireArmor:
     "If the target is hit by a fire spell, it is healed instead of taking damage for 1 turn",
+  arcanePolarization:
+    "Deals damage to the target in close combat and teleports it to the opposite side of the caster. If the cell is unoccupied it deals additional damage to the target and to the person on the opposite cell",
+  flamingWeapon:
+    "Enhances the targets weapon, dealing extra fire damage on each close combat attack",
+  hurricane:
+    "Channels an intense wind pushing the target back 3 squares if they are in close combat, otherwise pulls the target close. Deals additional arcane damage if the target takes pushback damage",
+  iceArmor:
+    "Gives frost armor to a unit increasing fire and physical resistance, and decreasing frost resistance. If the unit is hit in close combat, decrease the MP of the attacker by 1",
+  teleport: "Teleports to a targeted cell",
 };
