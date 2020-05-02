@@ -19,6 +19,7 @@ class Sorcerer {
       silenced: false,
       disarmed: false,
       onAttack: [],
+      onDefense: [],
     };
 
     this.damageModifiers = {
@@ -161,6 +162,16 @@ class Sorcerer {
     });
     if(onAttackAnswers.cancelSpell) return
 
+    const onDefenseAnswers = {cancelSpell: false}
+    target.class.conditions.onDefense.forEach((ele) => {
+      let answerOnDefense = ele.spell.conditionEffect(this.player, spell, ele, target);
+      if(answerOnDefense) {
+        for (let key in answerOnAttack){
+          onDefenseAnswers[key] = answerOnDefense[key]
+        }
+      }
+    });
+   // if(onAttackAnswers.cancelSpell) return
 
     spell.castCounter += 1;
     this.castCounter[spell.category] += 1;
