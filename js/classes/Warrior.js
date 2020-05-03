@@ -81,10 +81,6 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.slash,
         spellInfo: { ...warriorSpellObject.slash.spellInfo },
       },
-      hamstring: {
-        ...warriorSpellObject.hamstring,
-        spellInfo: { ...warriorSpellObject.hamstring.spellInfo },
-      },
       whirlwind: {
         ...warriorSpellObject.whirlwind,
         spellInfo: { ...warriorSpellObject.whirlwind.spellInfo },
@@ -93,9 +89,13 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.artOfCombat,
         spellInfo: { ...warriorSpellObject.artOfCombat.spellInfo },
       },
-      flamingWeapon: {
-        ...sorcererSpellObject.flamingWeapon,
-        spellInfo: { ...sorcererSpellObject.flamingWeapon.spellInfo },
+      hamstring: {
+        ...warriorSpellObject.hamstring,
+        spellInfo: { ...warriorSpellObject.hamstring.spellInfo },
+      },
+      sweepingStrikes: {
+        ...warriorSpellObject.sweepingStrikes,
+        spellInfo: { ...warriorSpellObject.sweepingStrikes.spellInfo },
       },
     };
   }

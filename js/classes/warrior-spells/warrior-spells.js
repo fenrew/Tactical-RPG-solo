@@ -199,4 +199,104 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  sweepingStrikes: {
+    id: "sweepingStrikes",
+    name: "Sweeping Strikes",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.sweepingStrikes, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onAttack.push({ spell, player });
+    },
+    applyEffect: (effect) => {
+      const { onAttack } = effect.target.class.conditions;
+      onAttack.splice(onAttack.indexOf(effect.spell), 1);
+    },
+    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+      if (
+        !(
+          targetSpell.spellInfo.source === "physical-melee" ||
+          (targetSpell.spellInfo.maxRange === 1 &&
+            targetSpell.spellInfo.damage > 1 &&
+            !targetSpell.spellInfo.source === "buff" &&
+            !targetSpell.spellInfo.source === "healing")
+        )
+      )
+        return;
+
+      const { spell, player } = playerObject;
+
+      if (targetSpell.spellInfo.damageAroundPlayer) {
+        const allNearbyTargets = getUnitsInFreeRange(targetOfTarget, 1);
+
+        allNearbyTargets.forEach((ele) => {
+          let modifiedDamage = Math.floor(
+            targetSpell.spellInfo.damage *
+              calculatePhysicalMeleeDamageModifiers(
+                player.player,
+                ele,
+                targetSpell.spellInfo.damageSource
+              )
+          );
+
+          ele.class.combatstats.currentHp -= modifiedDamage;
+
+          handleSpellDamageEffectAnimation(
+            ele,
+            modifiedDamage,
+            targetSpell.spellInfo.type
+          );
+        });
+        return;
+      }
+
+      let modifiedDamage = Math.floor(
+        targetSpell.spellInfo.damage *
+          calculatePhysicalMeleeDamageModifiers(
+            target,
+            targetOfTarget,
+            targetSpell.spellInfo.damageSource
+          )
+      );
+      targetOfTarget.class.combatstats.currentHp -= modifiedDamage;
+
+      handleSpellDamageEffectAnimation(
+        targetOfTarget,
+        modifiedDamage,
+        targetSpell.spellInfo.type
+      );
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "buff",
+      manaCost: 30,
+      damage: 1,
+      duration: 2,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "fighter",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
