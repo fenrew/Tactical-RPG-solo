@@ -403,4 +403,63 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  painSuppression: {
+    id: "painSuppression",
+    name: "Pain Suppression",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.painSuppression, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onDefense.push({ spell, player });
+    },
+    applyEffect: (effect) => {
+      const { onDefense } = effect.target.class.conditions;
+      onDefense.splice(onDefense.indexOf(effect.spell), 1);
+    },
+    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+      if (targetSpell.spellInfo.damage <= 1) return;
+      const { spell, player } = playerObject;
+      const { combatstats } = target.class;
+
+      let selfHealing = Math.floor(
+        (combatstats.hp * spell.spellInfo.healingPercentage) / 100
+      );
+      combatstats.currentHp += selfHealing;
+
+      handleSpellDamageEffectAnimation(target, selfHealing, "healing");
+    },
+    spellInfo: {
+      healingPercentage: 5,
+      learned: true,
+      canBeCast: true,
+      type: "buff",
+      source: "frost",
+      manaCost: 30,
+      damage: 1,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 4,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "blood",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
