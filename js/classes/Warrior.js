@@ -97,6 +97,11 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.sweepingStrikes,
         spellInfo: { ...warriorSpellObject.sweepingStrikes.spellInfo },
       },
+
+      absorptionStrike: {
+        ...warriorSpellObject.absorptionStrike,
+        spellInfo: { ...warriorSpellObject.absorptionStrike.spellInfo },
+      },
     };
   }
 
