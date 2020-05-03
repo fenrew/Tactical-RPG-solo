@@ -63,13 +63,15 @@ const sorcererSpellObject = {
           calculateMagicalDamageModifiers(player.player, target, "frost")
       );
       target.class.combatstats.currentHp -= modifiedDamage;
-      
-      let physicalDmgDealt = target.class.damageModifiers.offensive.physicalDamage.allDamage * 0.25;
+
+      let physicalDmgDealt =
+        target.class.damageModifiers.offensive.physicalDamage.allDamage * 0.25;
       target.class.damageModifiers.offensive.physicalDamage.allDamage -= physicalDmgDealt;
 
-
       for (let i = 0; i < spell.spellInfo.duration; i++) {
-        Game._addNewCombatEffect(player.player, target, spell, i, {physicalDmgDealt});
+        Game._addNewCombatEffect(player.player, target, spell, i, {
+          physicalDmgDealt,
+        });
       }
 
       return modifiedDamage;
@@ -88,7 +90,8 @@ const sorcererSpellObject = {
       );
 
       if (effect.executeRound === effect.spell.spellInfo.duration) {
-        effect.target.class.damageModifiers.offensive.physicalDamage.allDamage += effect.physicalDmgDealt;
+        effect.target.class.damageModifiers.offensive.physicalDamage.allDamage +=
+          effect.physicalDmgDealt;
       }
     },
     spellInfo: {
@@ -192,15 +195,15 @@ const sorcererSpellObject = {
       removeGlyph(effect.player, effect.spell.spellInfo.glyphNumber);
       // ADD remove glyph animation here
     },
-    activateGlyph: (target,player) => {
-        const { damage, type } = player.class.spells.snowstorm.spellInfo;
-        const modifiedDamage = Math.floor(
-          damage * calculateMagicalDamageModifiers(player, target, "frost")
-        );
-  
-        target.class.combatstats.currentHp -= modifiedDamage;
-  
-        handleSpellDamageEffectAnimation(target, modifiedDamage, type);
+    activateGlyph: (target, player) => {
+      const { damage, type } = player.class.spells.snowstorm.spellInfo;
+      const modifiedDamage = Math.floor(
+        damage * calculateMagicalDamageModifiers(player, target, "frost")
+      );
+
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      handleSpellDamageEffectAnimation(target, modifiedDamage, type);
     },
     spellInfo: {
       size: 1,
@@ -237,23 +240,45 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.iceWall, position);
     },
     castEffect: (target, spell, player) => {
-      if(target.playerNumber) target = {...target.position}
+      if (target.playerNumber) target = { ...target.position };
 
-      const spellDirection = getCastingDirection(player.player.position, target)
-      const allIceWalls = []
-      
-      for(let i = -1; i <= 1; i++){ // For the size of the wall
-        if(spellDirection === "E" || spellDirection === "W"){
-          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, y: target.y+i})){
-            const newIceWall = new stationaryPassiveSummon(new iceWallSpell(), 40, {...target, y: target.y+i})
-            newIceWall._addNpcToGame()
-            allIceWalls.push(newIceWall)
+      const spellDirection = getCastingDirection(
+        player.player.position,
+        target
+      );
+      const allIceWalls = [];
+
+      for (let i = -1; i <= 1; i++) {
+        // For the size of the wall
+        if (spellDirection === "E" || spellDirection === "W") {
+          if (
+            checkIfMapGridIsAvailable(Game.activeMap, {
+              ...target,
+              y: target.y + i,
+            })
+          ) {
+            const newIceWall = new stationaryPassiveSummon(
+              new iceWallSpell(),
+              40,
+              { ...target, y: target.y + i }
+            );
+            newIceWall._addNpcToGame();
+            allIceWalls.push(newIceWall);
           }
         } else {
-          if(checkIfMapGridIsAvailable(Game.activeMap, {...target, x: target.x+i})){
-            const newIceWall = new stationaryPassiveSummon(new iceWallSpell(), 40, {...target, x: target.x+i})
-            newIceWall._addNpcToGame()
-            allIceWalls.push(newIceWall)
+          if (
+            checkIfMapGridIsAvailable(Game.activeMap, {
+              ...target,
+              x: target.x + i,
+            })
+          ) {
+            const newIceWall = new stationaryPassiveSummon(
+              new iceWallSpell(),
+              40,
+              { ...target, x: target.x + i }
+            );
+            newIceWall._addNpcToGame();
+            allIceWalls.push(newIceWall);
           }
         }
       }
@@ -263,16 +288,16 @@ const sorcererSpellObject = {
         target,
         spell,
         spell.spellInfo.duration,
-        {allIceWalls}
+        { allIceWalls }
       );
     },
     applyEffect: (effect, player) => {
-      console.log(effect)
+      console.log(effect);
       effect.allIceWalls.forEach((wall) => {
-        if(wall.class.combatstats.currentHp > 0){
-          wall._removeNpcFromTheGame()
+        if (wall.class.combatstats.currentHp > 0) {
+          wall._removeNpcFromTheGame();
         }
-      })
+      });
     },
     spellInfo: {
       castOnNoTarget: true,
@@ -322,18 +347,22 @@ const sorcererSpellObject = {
         spell.spellInfo.duration
       );
 
-      target.class.conditions.onAttack.push({spell, player})
+      target.class.conditions.onAttack.push({ spell, player });
 
       return modifiedDamage;
     },
     applyEffect: (effect) => {
-      const {onAttack} = effect.target.class.conditions
-      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+      const { onAttack } = effect.target.class.conditions;
+      onAttack.splice(onAttack.indexOf(effect.spell), 1);
     },
     conditionEffect: (target, targetSpell, playerObject) => {
-      if(targetSpell.spellInfo.source !== "physical-melee" || targetSpell.spellInfo.source !== "physical-ranged") return
-      
-      const {spell, player} = playerObject
+      if (
+        targetSpell.spellInfo.source !== "physical-melee" ||
+        targetSpell.spellInfo.source !== "physical-ranged"
+      )
+        return;
+
+      const { spell, player } = playerObject;
 
       let modifiedDamage = Math.floor(
         spell.spellInfo.dotDamage *
@@ -341,7 +370,11 @@ const sorcererSpellObject = {
       );
       target.class.combatstats.currentHp -= modifiedDamage;
 
-      handleSpellDamageEffectAnimation(target, modifiedDamage, spell.spellInfo.type);
+      handleSpellDamageEffectAnimation(
+        target,
+        modifiedDamage,
+        spell.spellInfo.type
+      );
     },
     spellInfo: {
       learned: true,
@@ -377,11 +410,14 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.fireSpheres, position);
     },
     castEffect: (target, spell, player) => {
-      let nearbyUnits = getUnitsInFreeRange(player.player, spell.spellInfo.range)
+      let nearbyUnits = getUnitsInFreeRange(
+        player.player,
+        spell.spellInfo.range
+      );
       //nearbyUnits = nearbyUnits.filter(ele => ele.npc)
-      console.log(nearbyUnits)
-      
-      nearbyUnits.forEach(ele => {
+      console.log(nearbyUnits);
+
+      nearbyUnits.forEach((ele) => {
         let modifiedDamage = Math.floor(
           spell.spellInfo.damage *
             calculateMagicalDamageModifiers(player.player, ele, "fire")
@@ -392,7 +428,7 @@ const sorcererSpellObject = {
           modifiedDamage,
           spell.spellInfo.type
         );
-      })
+      });
 
       return false;
     },
@@ -437,15 +473,15 @@ const sorcererSpellObject = {
         spell.spellInfo.duration
       );
 
-      target.class.conditions.onAttack.push({spell, player})
+      target.class.conditions.onAttack.push({ spell, player });
     },
     applyEffect: (effect) => {
-      const {onAttack} = effect.target.class.conditions
+      const { onAttack } = effect.target.class.conditions;
 
-      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+      onAttack.splice(onAttack.indexOf(effect.spell), 1);
     },
     conditionEffect: (target, targetSpell, playerObject) => {
-      return Math.random() > 0.30 ? false : {cancelSpell: true}
+      return Math.random() > 0.3 ? false : { cancelSpell: true };
     },
     spellInfo: {
       learned: true,
@@ -485,30 +521,27 @@ const sorcererSpellObject = {
         spell.spellInfo.damage *
           calculateMagicalDamageModifiers(player.player, target, "fire")
       );
-      target.class.combatstats.currentHp -= target.class.fireArmor ? modifiedDamage*2 : modifiedDamage;
+      target.class.combatstats.currentHp -= target.class.fireArmor
+        ? modifiedDamage * 2
+        : modifiedDamage;
 
-      for(let i = 1; i <= spell.spellInfo.duration; i++){
-        Game._addNewCombatEffect(
-          player.player,
-          target,
-          spell,
-          i
-        );
+      for (let i = 1; i <= spell.spellInfo.duration; i++) {
+        Game._addNewCombatEffect(player.player, target, spell, i);
       }
 
       return modifiedDamage;
     },
     applyEffect: (effect) => {
-        let modifiedDamage = Math.floor(
-          effect.spell.spellInfo.dotDamage *
-            calculateMagicalDamageModifiers(effect.player, effect.target, "fire")
-        );
-        effect.target.class.combatstats.currentHp -= modifiedDamage;
-        handleSpellDamageEffectAnimation(
-          effect.target,
-          modifiedDamage,
-          effect.spell.spellInfo.type
-        );
+      let modifiedDamage = Math.floor(
+        effect.spell.spellInfo.dotDamage *
+          calculateMagicalDamageModifiers(effect.player, effect.target, "fire")
+      );
+      effect.target.class.combatstats.currentHp -= modifiedDamage;
+      handleSpellDamageEffectAnimation(
+        effect.target,
+        modifiedDamage,
+        effect.spell.spellInfo.type
+      );
     },
     spellInfo: {
       learned: true,
@@ -544,26 +577,27 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.fireArmor, position);
     },
     castEffect: (target, spell, player) => {
-      target.class.fireArmor = true
-      
-      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= 2
+      target.class.fireArmor = true;
+
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= 2;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
         spell.spellInfo.duration,
-        {hpBeforeSpellCast: target.class.combatstats.currentHp}
+        { hpBeforeSpellCast: target.class.combatstats.currentHp }
       );
     },
     applyEffect: (effect) => {
-      let {currentHp, hp} = effect.target.class.combatstats
+      let { currentHp, hp } = effect.target.class.combatstats;
 
-      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += 2
-      effect.target.class.fireArmor = undefined
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += 2;
+      effect.target.class.fireArmor = undefined;
 
-      if(currentHp > effect.hpBeforeSpellCast && currentHp > hp){
-        effect.target.class.combatstats.currentHp = effect.hpBeforeSpellCast > hp ? effect.hpBeforeSpellCast : hp
+      if (currentHp > effect.hpBeforeSpellCast && currentHp > hp) {
+        effect.target.class.combatstats.currentHp =
+          effect.hpBeforeSpellCast > hp ? effect.hpBeforeSpellCast : hp;
       }
     },
     spellInfo: {
@@ -598,7 +632,10 @@ const sorcererSpellObject = {
     id: "arcanePolarization",
     name: "Arcane Polarization",
     cast: (position, player) => {
-      player._addTargetSpellConditions(player.spells.arcanePolarization, position);
+      player._addTargetSpellConditions(
+        player.spells.arcanePolarization,
+        position
+      );
     },
     castEffect: (target, spell, player) => {
       let modifiedDamage = Math.floor(
@@ -607,11 +644,17 @@ const sorcererSpellObject = {
       );
       target.class.combatstats.currentHp -= modifiedDamage;
 
-      let newPosition = {y: player.player.position.y + (target.position.y-player.player.position.y)*-1, 
-        x: player.player.position.x + (target.position.x-player.player.position.x)*-1}
-      
-      if(checkInsideAndGridAvailability(newPosition, Game.activeMap)){
-        updateUnitPosition(target, newPosition)
+      let newPosition = {
+        y:
+          player.player.position.y +
+          (target.position.y - player.player.position.y) * -1,
+        x:
+          player.player.position.x +
+          (target.position.x - player.player.position.x) * -1,
+      };
+
+      if (checkInsideAndGridAvailability(newPosition, Game.activeMap)) {
+        updateUnitPosition(target, newPosition);
       } else {
         let additionalDamage = Math.floor(
           spell.spellInfo.additionalDamage *
@@ -619,11 +662,14 @@ const sorcererSpellObject = {
         );
 
         target.class.combatstats.currentHp -= additionalDamage;
-        modifiedDamage += additionalDamage
-        
-        const unitCollidedWith = checkIfPositionIsUnit(Game.activeMap, newPosition)
-        if(unitCollidedWith){
-          unitCollidedWith.class.combatstats.currentHp -= additionalDamage
+        modifiedDamage += additionalDamage;
+
+        const unitCollidedWith = checkIfPositionIsUnit(
+          Game.activeMap,
+          newPosition
+        );
+        if (unitCollidedWith) {
+          unitCollidedWith.class.combatstats.currentHp -= additionalDamage;
 
           handleSpellDamageEffectAnimation(
             unitCollidedWith,
@@ -680,30 +726,39 @@ const sorcererSpellObject = {
         spell.spellInfo.duration
       );
 
-      target.class.conditions.onAttack.push({spell, player})
+      target.class.conditions.onAttack.push({ spell, player });
     },
     applyEffect: (effect) => {
-      const {onAttack} = effect.target.class.conditions
-      onAttack.splice(onAttack.indexOf(effect.spell), 1)
+      const { onAttack } = effect.target.class.conditions;
+      onAttack.splice(onAttack.indexOf(effect.spell), 1);
     },
     conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
-      if(!(targetSpell.spellInfo.source === "physical-ranged" || targetSpell.spellInfo.source ==="physical-melee" || (targetSpell.spellInfo.maxRange === 1 && targetSpell.spellInfo.damage > 1))) return
+      if (
+        !(
+          targetSpell.spellInfo.source === "physical-ranged" ||
+          targetSpell.spellInfo.source === "physical-melee" ||
+          (targetSpell.spellInfo.maxRange === 1 &&
+            targetSpell.spellInfo.damage > 1 &&
+            !targetSpell.spellInfo.source === "buff" &&
+            !targetSpell.spellInfo.source === "healing")
+        )
+      )
+        return;
 
-      const {spell, player} = playerObject
-
-      let modifiedDamage = Math.floor(
-        spell.spellInfo.damage *
-          calculateMagicalDamageModifiers(target, targetOfTarget, "fire")
+      damageOneOrAllAround(
+        target,
+        targetSpell,
+        playerObject,
+        targetOfTarget,
+        calculateMagicalDamageModifiers
       );
-      targetOfTarget.class.combatstats.currentHp -= modifiedDamage;
-
-      handleSpellDamageEffectAnimation(targetOfTarget, modifiedDamage, spell.spellInfo.type);
     },
     spellInfo: {
       learned: true,
       canBeCast: true,
       type: "damage",
-      source: "fire",
+      source: "buff",
+      damageSource: "fire",
       manaCost: 30,
       damage: 5,
       duration: 3,
@@ -737,7 +792,9 @@ const sorcererSpellObject = {
       const pushbackDamage =
         (await pushBackInStraightLine(target, direction, 3)) *
         spell.spellInfo.pushbackDamage; // Distance: 3
-      const additionalDamage = pushbackDamage ? spell.spellInfo.additionalDamage : 0
+      const additionalDamage = pushbackDamage
+        ? spell.spellInfo.additionalDamage
+        : 0;
 
       let modifiedDamage = Math.floor(
         spell.spellInfo.damage *
@@ -784,41 +841,45 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.iceArmor, position);
     },
     castEffect: (target, spell, player) => {
-      let fireResistChange = target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire * 0.2
-      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= fireResistChange
-      let physicalResistChange = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2
-      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalResistChange
-      let frostResistChange = target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost * 0.2
-      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += frostResistChange
+      let fireResistChange =
+        target.class.damageModifiers.defensive.magicalDamage.elementalMagic
+          .fire * 0.2;
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire -= fireResistChange;
+      let physicalResistChange =
+        target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalResistChange;
+      let frostResistChange =
+        target.class.damageModifiers.defensive.magicalDamage.elementalMagic
+          .frost * 0.2;
+      target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += frostResistChange;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
         spell.spellInfo.duration,
-        {fireResistChange, physicalResistChange, frostResistChange}
+        { fireResistChange, physicalResistChange, frostResistChange }
       );
 
-     target.class.conditions.onDefense.push({spell, player})
+      target.class.conditions.onDefense.push({ spell, player });
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire += effect.fireResistChange
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalResistChange
-      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost += effect.frostResistChange
-     
-      const {onDefense} = effect.target.class.conditions
-      onDefense.splice(onDefense.indexOf(effect.spell), 1)
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.fire +=
+        effect.fireResistChange;
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage +=
+        effect.physicalResistChange;
+      effect.target.class.damageModifiers.defensive.magicalDamage.elementalMagic.frost +=
+        effect.frostResistChange;
+
+      const { onDefense } = effect.target.class.conditions;
+      onDefense.splice(onDefense.indexOf(effect.spell), 1);
     },
     conditionEffect: (player, spell, playerObject, target) => {
-      if(spell.spellInfo.maxRange > 1 || player === target) return
-      
-      player.class.combatstats.currentMovementPoints -= 1
+      if (spell.spellInfo.maxRange > 1 || player === target) return;
 
-      handleSpellDamageEffectAnimation(
-        player,
-        1,
-        "mp"
-      );
+      player.class.combatstats.currentMovementPoints -= 1;
+
+      handleSpellDamageEffectAnimation(player, 1, "mp");
     },
     spellInfo: {
       learned: true,
@@ -853,8 +914,8 @@ const sorcererSpellObject = {
       player._addTargetSpellConditions(player.spells.teleport, position);
     },
     castEffect: (target, spell, player) => {
-      if(checkInsideAndGridAvailability(target, Game.activeMap)){
-        updateUnitPosition(player.player, target)
+      if (checkInsideAndGridAvailability(target, Game.activeMap)) {
+        updateUnitPosition(player.player, target);
       }
     },
     spellInfo: {

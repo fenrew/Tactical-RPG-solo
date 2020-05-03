@@ -89,6 +89,14 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.whirlwind,
         spellInfo: { ...warriorSpellObject.whirlwind.spellInfo },
       },
+      artOfCombat: {
+        ...warriorSpellObject.artOfCombat,
+        spellInfo: { ...warriorSpellObject.artOfCombat.spellInfo },
+      },
+      flamingWeapon: {
+        ...sorcererSpellObject.flamingWeapon,
+        spellInfo: { ...sorcererSpellObject.flamingWeapon.spellInfo },
+      },
     };
   }
 

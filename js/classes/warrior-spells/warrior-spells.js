@@ -64,6 +64,7 @@ const warriorSpellObject = {
       });
     },
     spellInfo: {
+      damageAroundPlayer: true,
       learned: true,
       canBeCast: true,
       type: "damage",
@@ -82,6 +83,72 @@ const warriorSpellObject = {
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
+      },
+    },
+    category: "fighter",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  artOfCombat: {
+    id: "artOfCombat",
+    name: "Art of Combat",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.artOfCombat, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+
+      target.class.conditions.onAttack.push({ spell, player });
+    },
+    applyEffect: (effect) => {
+      const { onAttack } = effect.target.class.conditions;
+      onAttack.splice(onAttack.indexOf(effect.spell), 1);
+    },
+    conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
+      if (
+        !(
+          targetSpell.spellInfo.source === "physical-melee" ||
+          (targetSpell.spellInfo.maxRange === 1 &&
+            targetSpell.spellInfo.damage > 1 &&
+            !targetSpell.spellInfo.source === "buff" &&
+            !targetSpell.spellInfo.source === "healing")
+        )
+      )
+        return;
+
+      damageOneOrAllAround(
+        target,
+        targetSpell,
+        playerObject,
+        targetOfTarget,
+        calculatePhysicalMeleeDamageModifiers
+      );
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "buff",
+      manaCost: 30,
+      damage: 10,
+      duration: 2,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
       },
     },
     category: "fighter",

@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Tactical RPG</title>
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
     <div id="gamearea">
-        <div id="player-panel-box">
-            <div id="player-panel"></div>
-            <div id="player-panel-info-text">
-                <div id="player-panel-spell-text"></div>
-            </div>
-            <div id="combat-timeline-box">
-                <h2 id="combat-timeline-header">Combat Timeline:</h2>
-                <div id="combat-timeline-icons-box"></div>
-            </div>
-            <div id="player-panel-char-info-box"></div>
-            <div id="player-panel-button-box">
-                <div class="player-panel-button">Ready</div>
-            </div>
+      <div id="player-panel-box">
+        <div id="player-panel"></div>
+        <div id="player-panel-info-text">
+          <div id="player-panel-spell-text"></div>
         </div>
-        <div id="player-area-box">
-            <div id="player-area">
-                <div id="main-menu-one-player" class="main-menu-elements">
-                    <h1>1 Player</h1>
-                </div>
-                <div id="main-menu-two-player" class="main-menu-elements">
-                    <h1>2 Player</h1>
-                </div>
-                <div id="main-menu-three-player" class="main-menu-elements">
-                    <h1>3 Player</h1>
-                </div>
-                <div id="main-menu-four-player" class="main-menu-elements">
-                    <h1>4 Player</h1>
-                </div>
-            </div>
+        <div id="combat-timeline-box">
+          <h2 id="combat-timeline-header">Combat Timeline:</h2>
+          <div id="combat-timeline-icons-box"></div>
         </div>
+        <div id="player-panel-char-info-box"></div>
+        <div id="player-panel-button-box">
+          <div class="player-panel-button">Ready</div>
+        </div>
+      </div>
+      <div id="player-area-box">
+        <div id="player-area">
+          <div id="main-menu-one-player" class="main-menu-elements">
+            <h1>1 Player</h1>
+          </div>
+          <div id="main-menu-two-player" class="main-menu-elements">
+            <h1>2 Player</h1>
+          </div>
+          <div id="main-menu-three-player" class="main-menu-elements">
+            <h1>3 Player</h1>
+          </div>
+          <div id="main-menu-four-player" class="main-menu-elements">
+            <h1>4 Player</h1>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Utilities -->
@@ -48,13 +48,11 @@
     <script src="./js/utility/map-utilities.js"></script>
     <script src="./js/utility/random-spawn-location.js"></script>
     <script src="./js/utility/update-unit-position.js"></script>
-    
+
     <script src="./js/maps/maps.js"></script>
 
-    
     <!-- Main Manu -->
     <script src="./js/main-menu/player-selection.js"></script>
-
 
     <!-- GAME   GAME    GAME -->
     <!-- Spells -->
@@ -63,12 +61,12 @@
 
     <script src="./js/game/spell-list/spell-information/spell-information-object.js"></script>
     <script src="./js/visuals/spell-visuals/learned-new-spell-visuals.js"></script>
-    
+
     <script src="./js/game/spell-list/spell-modifiers/spell-modifiers.js"></script>
 
     <script src="./js/game/spell-list/spell-range-preview/spell-range-free-cells.js"></script>
     <script src="./js/game/spell-list/spell-range-preview/spell-range-straight-line.js"></script>
-    <script src="./js/game/spell-list/spell-range-preview/spell-preview.js"></script>    
+    <script src="./js/game/spell-list/spell-range-preview/spell-preview.js"></script>
     <script src="./js/game/spell-list/spell-range-preview/add-on-click-spell-cast.js"></script>
 
     <script src="./js/game/spell-list/glyphs/add-and-remove-glyph.js"></script>
@@ -94,7 +92,7 @@
 
     <!-- Summons -->
     <script src="./js/npc/summons/ice-wall/ice-wall.js"></script>
-    
+
     <script src="./js/npc/summons/stationary-passive-summons.js"></script>
 
     <!-- NPC's -->
@@ -108,17 +106,19 @@
     <script src="./js/npc/ai/stationary-passive-ai.js"></script>
 
     <!-- Classes -->
+    <script src="./js/classes/spell-utils/spell-utils.js"></script>
+
     <script src="./js/classes/BaseClass.js"></script>
 
     <script src="./js/classes/novice-spells/novice-spells.js"></script>
     <script src="./js/classes/Novice.js"></script>
-    
+
     <script src="./js/classes/sorcerer-spells/sorcerer-spells.js"></script>
     <script src="./js/classes/Sorcerer.js"></script>
 
     <script src="./js/classes/warrior-spells/warrior-spells.js"></script>
     <script src="./js/classes/Warrior.js"></script>
-    
+
     <!-- Models -->
     <script src="./js/Models/Game.js"></script>
     <script src="./js/Models/Player.js"></script>
@@ -129,11 +129,9 @@
     <script src="./js/visuals/movement-visuals/movement-visuals.js"></script>
     <script src="./js/visuals/map-highlights/display-map-highligths.js"></script>
 
-
     <script src="./js/game/start-game/start-game.js"></script>
-
 
     <!-- Hotkeys -->
     <script src="./js/utility/hotkeys/hotkeys.js"></script>
-</body>
+  </body>
 </html>
