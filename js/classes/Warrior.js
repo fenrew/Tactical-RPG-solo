@@ -77,9 +77,9 @@ class Warrior extends BaseClass {
       };
   
       this.spells = {
-        frostbolt: {
-          ...sorcererSpellObject.frostbolt,
-          spellInfo: { ...sorcererSpellObject.frostbolt.spellInfo },
+        slash: {
+          ...warriorSpellObject.slash,
+          spellInfo: { ...warriorSpellObject.slash.spellInfo },
         },
       };
     }

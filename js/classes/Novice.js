@@ -20,6 +20,7 @@ class Novice extends BaseClass {
       silenced: false,
       disarmed: false,
       onAttack: [],
+      onDefense: []
     };
 
     this.damageModifiers = {
