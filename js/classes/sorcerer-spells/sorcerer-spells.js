@@ -739,8 +739,8 @@ const sorcererSpellObject = {
           targetSpell.spellInfo.source === "physical-melee" ||
           (targetSpell.spellInfo.maxRange === 1 &&
             targetSpell.spellInfo.damage > 1 &&
-            !targetSpell.spellInfo.source === "buff" &&
-            !targetSpell.spellInfo.source === "healing")
+            !targetSpell.spellInfo.source !== "buff" &&
+            !targetSpell.spellInfo.source !== "healing")
         )
       )
         return;
