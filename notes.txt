@@ -1,0 +1,3 @@
+==== BUGS ====
+- onAttack: If a player is missing on an attack but also has flaming weapon, the flaming weapon damage will still hit the target 
+given the order the spells were cast (if flamingWeapon conditionEffect is executed before the missing)

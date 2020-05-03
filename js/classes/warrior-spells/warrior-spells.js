@@ -426,12 +426,14 @@ const warriorSpellObject = {
     conditionEffect: (target, targetSpell, playerObject, targetOfTarget) => {
       if (targetSpell.spellInfo.damage <= 1) return;
       const { spell, player } = playerObject;
-      const { combatstats } = target.class;
+      const { combatstats } = targetOfTarget.class;
 
       let selfHealing = Math.floor(
         (combatstats.hp * spell.spellInfo.healingPercentage) / 100
       );
       combatstats.currentHp += selfHealing;
+      if (combatstats.currentHp > combatstats.hp)
+        combatstats.currentHp = combatstats.hp;
 
       handleSpellDamageEffectAnimation(target, selfHealing, "healing");
     },

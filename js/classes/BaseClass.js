@@ -12,14 +12,16 @@ class BaseClass {
       await noviceSpellAnimations[spell.id](target, this.player);
 
     for (let i = 0; i < castTimes; i++) {
-      let onAtkDefAnswer = this._onAttackAndDefense(spell, target);
-      if (!onAtkDefAnswer) return;
+      let onAttackAnswer = this._onAttack(spell, target);
+      if (!onAttackAnswer) return;
 
       let modifiedDamage = await spell.castEffect(
         target ? target : position,
         spell,
         this
       );
+
+      let onDefenseAnswer = this._onDefense(spell, target);
 
       if (target?.newPosition) {
         target.position = { ...target.newPosition };
@@ -44,7 +46,7 @@ class BaseClass {
     this._checkIfPromotionToNewClass();
   }
 
-  _onAttackAndDefense(spell, target) {
+  _onAttack(spell, target) {
     const onAttackAnswers = { cancelSpell: false };
     this.conditions.onAttack.forEach((ele) => {
       let answerOnAttack = ele.spell.conditionEffect(
@@ -61,7 +63,11 @@ class BaseClass {
     });
     if (onAttackAnswers.cancelSpell) return false;
 
-    const onDefenseAnswers = { cancelSpell: false };
+    return true;
+  }
+
+  _onDefense(spell, target) {
+    const onDefenseAnswers = {};
     target.class.conditions.onDefense.forEach((ele) => {
       let answerOnDefense = ele.spell.conditionEffect(
         this.player,
