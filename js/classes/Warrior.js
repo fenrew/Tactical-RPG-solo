@@ -85,6 +85,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.hamstring,
         spellInfo: { ...warriorSpellObject.hamstring.spellInfo },
       },
+      whirlwind: {
+        ...warriorSpellObject.whirlwind,
+        spellInfo: { ...warriorSpellObject.whirlwind.spellInfo },
+      },
     };
   }
 

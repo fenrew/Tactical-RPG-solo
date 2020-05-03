@@ -39,6 +39,55 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  whirlwind: {
+    id: "whirlwind",
+    name: "Whirlwind",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.whirlwind, position);
+    },
+    castEffect: (target, spell, player) => {
+      const allNearbyTargets = getUnitsInFreeRange(player.player, 1);
+
+      allNearbyTargets.forEach((ele) => {
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculatePhysicalMeleeDamageModifiers(player.player, ele)
+        );
+
+        ele.class.combatstats.currentHp -= modifiedDamage;
+
+        handleSpellDamageEffectAnimation(
+          ele,
+          modifiedDamage,
+          spell.spellInfo.type
+        );
+      });
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "physical-melee",
+      manaCost: 30,
+      damage: 70,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: false,
+      castsPerTurn: 2,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "fighter",
+    toLearn: 0,
+    castCounter: 0,
+  },
   hamstring: {
     id: "hamstring",
     name: "Hamstring",
