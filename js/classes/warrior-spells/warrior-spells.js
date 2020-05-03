@@ -354,4 +354,53 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  jointStrike: {
+    id: "jointStrike",
+    name: "Joint Strike",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.jointStrike, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculatePhysicalMeleeDamageModifiers(player.player, target)
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      player.combatstats.currentHp -= spell.spellInfo.selfDamage;
+
+      handleSpellDamageEffectAnimation(
+        player.player,
+        spell.spellInfo.selfDamage,
+        "damage"
+      );
+
+      return modifiedDamage;
+    },
+    spellInfo: {
+      selfDamage: 20,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "physical-melee",
+      manaCost: 30,
+      damage: 40,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: false,
+      castsPerTurn: 2,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "blood",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
