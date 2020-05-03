@@ -1,5 +1,6 @@
 class Novice extends BaseClass {
   constructor(player) {
+    super()
     this.className = "Novice";
     this.cssString = "novice-player-area";
     this.cssPlayerPanelString = "novice-class-player-panel";
@@ -148,22 +149,6 @@ class Novice extends BaseClass {
         spellInfo: { ...noviceSpellObject.holySpike.spellInfo },
       },
     };
-  }
-
-  _checkIfNewSpellIsLearned() {
-    for (let catKey in this.castCounter) {
-      for (let spellKey in this.spells) {
-        if (
-          this.castCounter[catKey] === this.spells[spellKey].toLearn &&
-          catKey === this.spells[spellKey].category &&
-          !this.spells[spellKey].spellInfo.learned
-        ) {
-          this.spells[spellKey].spellInfo.learned = true;
-
-          displayLearnedNewSpell(this.spells[spellKey]);
-        }
-      }
-    }
   }
 
   _checkIfPromotionToNewClass() {}

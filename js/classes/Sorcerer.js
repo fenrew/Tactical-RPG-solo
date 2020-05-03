@@ -142,21 +142,5 @@ class Sorcerer extends BaseClass {
     };
   }
 
-  _checkIfNewSpellIsLearned() {
-    for (let catKey in this.castCounter) {
-      for (let spellKey in this.spells) {
-        if (
-          this.castCounter[catKey] === this.spells[spellKey].toLearn &&
-          catKey === this.spells[spellKey].category &&
-          !this.spells[spellKey].spellInfo.learned
-        ) {
-          this.spells[spellKey].spellInfo.learned = true;
-
-          displayLearnedNewSpell(this.spells[spellKey]);
-        }
-      }
-    }
-  }
-
   _checkIfPromotionToNewClass() {}
 }
