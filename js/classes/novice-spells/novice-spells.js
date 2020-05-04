@@ -46,9 +46,11 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.defensiveStance, position);
     },
     castEffect: (target, spell, player) => {
-      let physicalDmgTaken = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
-      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalDmgTaken
-      let magicalDmgDealt = target.class.damageModifiers.offensive.magicalDamage.allDamage * 0.2;
+      let physicalDmgTaken =
+        target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalDmgTaken;
+      let magicalDmgDealt =
+        target.class.damageModifiers.offensive.magicalDamage.allDamage * 0.2;
       target.class.damageModifiers.offensive.magicalDamage.allDamage -= magicalDmgDealt;
 
       Game._addNewCombatEffect(
@@ -56,14 +58,15 @@ const noviceSpellObject = {
         target,
         spell,
         spell.spellInfo.duration,
-        {physicalDmgTaken,
-        magicalDmgDealt}
+        { physicalDmgTaken, magicalDmgDealt }
       );
     },
     applyEffect: (effect) => {
-      console.log(effect.physicalDmgTaken, effect.magicalDmgDealt)
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage += effect.physicalDmgTaken
-      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage += effect.magicalDmgDealt;
+      console.log(effect.physicalDmgTaken, effect.magicalDmgDealt);
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage +=
+        effect.physicalDmgTaken;
+      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage +=
+        effect.magicalDmgDealt;
     },
     spellInfo: {
       learned: true,
@@ -100,7 +103,7 @@ const noviceSpellObject = {
       }
     },
     applyEffect: (effect) => {
-      const modifiedDamage = effect.spell.spellInfo.damage 
+      const modifiedDamage = effect.spell.spellInfo.damage;
 
       effect.target.class.combatstats.currentHp -= modifiedDamage;
 
@@ -182,19 +185,21 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.findWeakness, position);
     },
     castEffect: (target, spell, player) => {
-      let physicalDmgTaken = target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
-      target.class.damageModifiers.defensive.physicalDamage.allDamage += physicalDmgTaken
+      let physicalDmgTaken =
+        target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.damageModifiers.defensive.physicalDamage.allDamage += physicalDmgTaken;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
         spell.spellInfo.duration,
-        {physicalDmgTaken}
+        { physicalDmgTaken }
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -= effect.physicalDmgTaken;
+      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -=
+        effect.physicalDmgTaken;
     },
     spellInfo: {
       learned: true,
@@ -586,13 +591,17 @@ const noviceSpellObject = {
     },
     castEffect: (target, spell, player) => {
       let allDmgDealt = target.class.damageModifiers.offensive.allDamage * 0.2;
-      
+
       target.class.damageModifiers.offensive.allDamage += allDmgDealt;
       for (let i = 1; i <= spell.spellInfo.duration; i++) {
-        Game._addNewCombatEffect(player.player, target, spell, i, {allDmgDealt});
+        Game._addNewCombatEffect(player.player, target, spell, i, {
+          allDmgDealt,
+        });
       }
     },
     applyEffect: (effect) => {
+      const currentRoundDur = effect.executeRound - effect.effectStarted;
+
       let modifiedDamage = Math.floor(
         effect.spell.spellInfo.damage *
           calculateHealingModifiers(effect.player, effect.target)
@@ -611,8 +620,9 @@ const noviceSpellObject = {
         modifiedDamage,
         effect.spell.spellInfo.type
       );
-      if (effect.executeRound == 2) {
-        effect.target.class.damageModifiers.offensive.allDamage -= effect.allDmgDealt;
+      if (currentRoundDur == 2) {
+        effect.target.class.damageModifiers.offensive.allDamage -=
+          effect.allDmgDealt;
       }
     },
     spellInfo: {
@@ -686,8 +696,8 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.absorb, position);
     },
     castEffect: (target, spell, player) => {
-      let magicDmgTaken = target.class.damageModifiers.defensive.magicalDamage.allDamage -= 0.5;
-      
+      let magicDmgTaken = (target.class.damageModifiers.defensive.magicalDamage.allDamage -= 0.5);
+
       target.class.damageModifiers.defensive.magicalDamage.allDamage -= magicDmgTaken;
 
       Game._addNewCombatEffect(
@@ -695,11 +705,12 @@ const noviceSpellObject = {
         target,
         spell,
         spell.spellInfo.duration,
-        {magicDmgTaken}
+        { magicDmgTaken }
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage += effect.magicDmgTaken;
+      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage +=
+        effect.magicDmgTaken;
     },
     spellInfo: {
       learned: true,
@@ -731,13 +742,14 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.holySpike, position);
     },
     castEffect: (target, spell, player) => {
-        spell.spellInfo.type = target.npc ? "damage" : "healing"
-        spell.spellInfo.source = target.npc ? "holy" : "healing"
+      spell.spellInfo.type = target.npc ? "damage" : "healing";
+      spell.spellInfo.source = target.npc ? "holy" : "healing";
 
       let modifiedDamage = Math.floor(
-        spell.spellInfo.damage * (target.npc ?
-          calculateMagicalDamageModifiers(player.player, target, "holy") : 
-          calculateHealingModifiers(player.player, target))
+        spell.spellInfo.damage *
+          (target.npc
+            ? calculateMagicalDamageModifiers(player.player, target, "holy")
+            : calculateHealingModifiers(player.player, target))
       );
       if (target.npc) target.class.combatstats.currentHp -= modifiedDamage;
       else target.class.combatstats.currentHp += modifiedDamage;

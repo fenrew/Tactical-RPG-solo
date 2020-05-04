@@ -77,6 +77,8 @@ const sorcererSpellObject = {
       return modifiedDamage;
     },
     applyEffect: (effect) => {
+      const currentRoundDur = effect.executeRound - effect.effectStarted;
+
       let modifiedDamage = Math.floor(
         effect.spell.spellInfo.damage *
           calculateMagicalDamageModifiers(effect.player, effect.target, "frost")
@@ -89,7 +91,7 @@ const sorcererSpellObject = {
         effect.spell.spellInfo.type
       );
 
-      if (effect.executeRound === effect.spell.spellInfo.duration) {
+      if (currentRoundDur === effect.spell.spellInfo.duration) {
         effect.target.class.damageModifiers.offensive.physicalDamage.allDamage +=
           effect.physicalDmgDealt;
       }
