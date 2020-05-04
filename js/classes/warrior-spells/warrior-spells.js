@@ -530,4 +530,104 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  lifeTransfer: {
+    id: "lifeTransfer",
+    name: "Life Transfer",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.lifeTransfer, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedHealing =
+        (player.combatstats.hp * spell.spellInfo.healingPercentage) / 100;
+
+      target.class.combatstats.currentHp += modifiedHealing;
+      if (target.class.combatstats.currentHp > target.class.combatstats.hp)
+        target.class.combatstats.currentHp = target.class.combatstats.hp;
+
+      player.combatstats.currentHp -= modifiedHealing;
+
+      handleSpellDamageEffectAnimation(
+        player.player,
+        modifiedHealing,
+        "damage"
+      );
+
+      return modifiedHealing;
+    },
+    spellInfo: {
+      healingPercentage: 30,
+      learned: true,
+      canBeCast: true,
+      type: "healing",
+      source: "healing",
+      manaCost: 30,
+      damage: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 4,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: false,
+      castsPerTurn: 2,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "blood",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  punishment: {
+    id: "punishment",
+    name: "Punishment",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.punishment, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculatePhysicalMeleeDamageModifiers(player.player, target)
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      let selfHealing = Math.floor(
+        (player.combatstats.hp * spell.spellInfo.selfHealing) / 100
+      );
+      player.combatstats.currentHp += selfHealing;
+      if (player.combatstats.currentHp > player.combatstats.hp)
+        player.combatstats.currentHp = player.combatstats.hp;
+
+      handleSpellDamageEffectAnimation(player.player, selfHealing, "healing");
+
+      return modifiedDamage;
+    },
+    spellInfo: {
+      selfHealing: 3,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "physical-melee",
+      manaCost: 30,
+      damage: 20,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: false,
+      castsPerTurn: 2,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "blood",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

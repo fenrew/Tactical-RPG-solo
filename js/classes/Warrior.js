@@ -114,6 +114,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.amurStrike,
         spellInfo: { ...warriorSpellObject.amurStrike.spellInfo },
       },
+      lifeTransfer: {
+        ...warriorSpellObject.lifeTransfer,
+        spellInfo: { ...warriorSpellObject.lifeTransfer.spellInfo },
+      },
     };
   }
 
