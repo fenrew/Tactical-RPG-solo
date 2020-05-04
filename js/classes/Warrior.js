@@ -77,6 +77,11 @@ class Warrior extends BaseClass {
     };
 
     this.spells = {
+      shieldBash: {
+        ...warriorSpellObject.shieldBash,
+        spellInfo: { ...warriorSpellObject.shieldBash.spellInfo },
+      },
+
       slash: {
         ...warriorSpellObject.slash,
         spellInfo: { ...warriorSpellObject.slash.spellInfo },

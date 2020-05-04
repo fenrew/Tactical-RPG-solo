@@ -1,4 +1,65 @@
 const warriorSpellObject = {
+  //DEFENSE
+  shieldBash: {
+    id: "shieldBash",
+    name: "Shield Bash",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.shieldBash, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculatePhysicalMeleeDamageModifiers(player.player, target)
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      let magicDmgRed =
+        (target.class.damageModifiers.offensive.magicalDamage.allDamage *
+          spell.spellInfo.magicalDmgReuction) /
+        100;
+      target.class.damageModifiers.offensive.magicalDamage.allDamage -= magicDmgRed;
+
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration,
+        { magicDmgRed }
+      );
+      return modifiedDamage;
+    },
+    applyEffect: (effect, player) => {
+      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage +=
+        effect.magicDmgRed;
+    },
+    spellInfo: {
+      magicalDmgReuction: 15,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "physical-melee",
+      manaCost: 30,
+      damage: 15,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "defense",
+    toLearn: 0,
+    castCounter: 0,
+  },
+
   //FIGHTER
   slash: {
     id: "slash",
