@@ -1,169 +1,182 @@
 /* PLAYER PANEL */
 
-.class-panel-0{
-    border: 1px solid blue;
+.class-panel-0 {
+  border: 1px solid blue;
 }
 
-.class-panel-1{
-    border: 1px solid red;
+.class-panel-1 {
+  border: 1px solid red;
 }
 
-.class-panel-2{
-    border: 1px solid yellow;
+.class-panel-2 {
+  border: 1px solid yellow;
 }
 
-.class-panel-3{
-    border: 1px solid cyan;
+.class-panel-3 {
+  border: 1px solid cyan;
 }
 
 /* CLASSES */
 
-.novice-class-player-panel{
-    background-image: url("../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
-    background-size: 100%;
-    width: 70px;
-    height: 70px;
+.novice-class-player-panel {
+  background-image: url("../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
 }
 
-.warrior-class-player-panel{
-    background-image: url("../Animations/Classes/Warrior/Warrior\ Tactical\ RPG\ gif\ 2.gif");
-    background-size: 100%;
-    width: 70px;
-    height: 70px;
+.warrior-class-player-panel {
+  background-image: url("../Animations/Classes/Warrior/Warrior\ Tactical\ RPG\ gif\ 2.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
 }
 
-.wizard-class-player-panel{
-    background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
-    background-size: 100%;
-    width: 70px;
-    height: 70px;
+.sorcerer-class-player-panel {
+  background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
 }
 
-.drow-ranger-class-player-panel{
-    background-image: url("../Animations/Classes/Drow-Ranger/Drow\ Ranger\ Tactical\ RPG.gif");
-    background-size: 100%;
-    width: 70px;
-    height: 70px;
+.priest-class-player-panel {
+  background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
 }
 
-.paladin-class-player-panel{
-    background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
-    background-size: 100%;
-    width: 70px;
-    height: 70px;
+.wizard-class-player-panel {
+  background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
+}
+
+.drow-ranger-class-player-panel {
+  background-image: url("../Animations/Classes/Drow-Ranger/Drow\ Ranger\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
+}
+
+.paladin-class-player-panel {
+  background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
 }
 
 /* TIMELINE */
 
-#combat-timeline-box{
-    background-color: rgba(255, 255, 255, 0.616);
+#combat-timeline-box {
+  background-color: rgba(255, 255, 255, 0.616);
 }
 
-#combat-timeline-icons-box{
-    display: flex;
-    overflow-x: auto;
-    height: 100px;
+#combat-timeline-icons-box {
+  display: flex;
+  overflow-x: auto;
+  height: 100px;
 }
 
-.combat-timeline-icon{
-    flex: 0 0 70px;
-    width: 70px;
-    height: 70px;
+.combat-timeline-icon {
+  flex: 0 0 70px;
+  width: 70px;
+  height: 70px;
 }
 
-.player-panel-active-turn{
-    flex: 0 0 80px;
-    width: 80px;
-    height: 80px;
-    background-color: rgba(0, 255, 255, 0.733);
-    box-sizing: border-box;
+.player-panel-active-turn {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0, 255, 255, 0.733);
+  box-sizing: border-box;
 }
 
 /* CHAR INFO */
-#player-panel-char-info-box{
-    background-color: rgba(0, 0, 0, 0.63);
-    margin-top: 60px;
-    padding: 0px 15px;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
+#player-panel-char-info-box {
+  background-color: rgba(0, 0, 0, 0.63);
+  margin-top: 60px;
+  padding: 0px 15px;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
 }
 
-#panel-char-info-header{
-    padding: 15px 0 5px 0;
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: underline;
+#panel-char-info-header {
+  padding: 15px 0 5px 0;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
-#panel-char-info-text-box{
-    padding-bottom: 15px;
+#panel-char-info-text-box {
+  padding-bottom: 15px;
 }
 
-.panel-char-info-text{
-    font-size: 20px;
+.panel-char-info-text {
+  font-size: 20px;
 }
 
-.player0-panel-char-info-header{
-    color: blue
+.player0-panel-char-info-header {
+  color: blue;
 }
 
-.player1-panel-char-info-header{
-    color: red
+.player1-panel-char-info-header {
+  color: red;
 }
 
-.player2-panel-char-info-header{
-    color: yellow
+.player2-panel-char-info-header {
+  color: yellow;
 }
 
-.player3-panel-char-info-header{
-    color: cyan
+.player3-panel-char-info-header {
+  color: cyan;
 }
 
 /* CONFIRM CHOICE BUTTON */
 
-.player-panel-button{
-    background-color: yellow;
-    width: 200px;
-    height: 50px;
-    bottom: 50px;
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    color: black;
-    font-weight: bold;
-    font-size: 35px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50px;
+.player-panel-button {
+  background-color: yellow;
+  width: 200px;
+  height: 50px;
+  bottom: 50px;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  color: black;
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
 }
 
-.player-panel-button:hover{
-    cursor: pointer;
+.player-panel-button:hover {
+  cursor: pointer;
 }
 
-#player-panel-button-confirm{
-
+#player-panel-button-confirm {
 }
 
 /* COMBAT TIMER */
-#player-panel-combat-timer-box{
-    background-color: black;
-    border: 2px solid black;
-    height: 20px;
-    width: 250px;
-    margin: 100px auto 0 auto;
+#player-panel-combat-timer-box {
+  background-color: black;
+  border: 2px solid black;
+  height: 20px;
+  width: 250px;
+  margin: 100px auto 0 auto;
 }
 
-#combat-timer{
-    background-color: red;
-    width: 100%;
-    height: 100%;
+#combat-timer {
+  background-color: red;
+  width: 100%;
+  height: 100%;
 }
 
 /* INFO TEXT */
-#player-panel-info-text{
-    height: 330px;
-    margin-top: 30px;
-    padding: 0 10px;
+#player-panel-info-text {
+  height: 330px;
+  margin-top: 30px;
+  padding: 0 10px;
 }
