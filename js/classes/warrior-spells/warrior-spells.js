@@ -464,4 +464,70 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  amurStrike: {
+    id: "amurStrike",
+    name: "Amur Strike",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.amurStrike, position);
+    },
+    castEffect: (target, spell, player) => {
+      let modifiedDamageTarget = Math.floor(
+        spell.spellInfo.damage *
+          calculatePhysicalMeleeDamageModifiers(player.player, target)
+      );
+
+      if ((spell.castCounter + 1) % 3 === 0) {
+        modifiedDamageTarget *= 2;
+        let selfHealing = Math.floor(
+          (modifiedDamageTarget * spell.spellInfo.healingPercentage) / 100
+        );
+        player.combatstats.currentHp += selfHealing;
+        if (player.combatstats.currentHp > player.combatstats.hp)
+          player.combatstats.currentHp = player.combatstats.hp;
+
+        handleSpellDamageEffectAnimation(player.player, selfHealing, "healing");
+      } else {
+        let modifiedDamageSelf = Math.floor(
+          spell.spellInfo.damage *
+            calculatePhysicalMeleeDamageModifiers(player.player, player.player)
+        );
+        player.combatstats.currentHp -= modifiedDamageSelf;
+
+        handleSpellDamageEffectAnimation(
+          player.player,
+          modifiedDamageSelf,
+          "damage"
+        );
+      }
+
+      target.class.combatstats.currentHp -= modifiedDamageTarget;
+
+      return modifiedDamageTarget;
+    },
+    spellInfo: {
+      healingPercentage: 60,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "physical-melee",
+      manaCost: 30,
+      damage: 40,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: false,
+      castsPerTurn: 2,
+      conditionsRequirements: {
+        disarmed: true,
+      },
+    },
+    category: "blood",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

@@ -110,6 +110,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.painSuppression,
         spellInfo: { ...warriorSpellObject.painSuppression.spellInfo },
       },
+      amurStrike: {
+        ...warriorSpellObject.amurStrike,
+        spellInfo: { ...warriorSpellObject.amurStrike.spellInfo },
+      },
     };
   }
 
