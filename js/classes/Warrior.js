@@ -81,6 +81,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.shieldBash,
         spellInfo: { ...warriorSpellObject.shieldBash.spellInfo },
       },
+      disarm: {
+        ...warriorSpellObject.disarm,
+        spellInfo: { ...warriorSpellObject.disarm.spellInfo },
+      },
 
       slash: {
         ...warriorSpellObject.slash,

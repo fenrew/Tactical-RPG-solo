@@ -59,6 +59,55 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  disarm: {
+    id: "disarm",
+    name: "Disarm",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.disarm, position);
+    },
+    castEffect: (target, spell, player) => {
+      let physicalDmgRed =
+        target.class.damageModifiers.offensive.physicalDamage.allDamage;
+      target.class.damageModifiers.offensive.physicalDamage.allDamage -= physicalDmgRed;
+
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration,
+        { physicalDmgRed }
+      );
+    },
+    applyEffect: (effect, player) => {
+      effect.target.class.damageModifiers.offensive.physicalDamage.allDamage +=
+        effect.physicalDmgRed;
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "debuff",
+      manaCost: 30,
+      damage: 1,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 1,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        disarmed: false,
+      },
+    },
+    category: "defense",
+    toLearn: 0,
+    castCounter: 0,
+  },
 
   //FIGHTER
   slash: {

@@ -1,3 +1,6 @@
 ==== BUGS ====
 - onAttack: If a player is missing on an attack but also has flaming weapon, the flaming weapon damage will still hit the target 
 given the order the spells were cast (if flamingWeapon conditionEffect is executed before the missing)
+
+- 0 damage visuals: If a person is disarmed and uses Joint strike the damage does not apear on the target but 0 dmg is appearing 
+on the caster
