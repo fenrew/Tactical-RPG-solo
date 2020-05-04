@@ -147,6 +147,87 @@ const warriorSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  selfSufficiency: {
+    id: "selfSufficiency",
+    name: "Self Sufficiency",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.selfSufficiency, position);
+    },
+    castEffect: (target, spell, player) => {
+      for (let i = 1; i <= 2; i++) {
+        Game._addNewCombatEffect(player.player, target, spell, i);
+      }
+    },
+    applyEffect: (effect, player) => {
+      const currentRoundDur = effect.executeRound - effect.effectStarted;
+      const allNearbyTargets = getUnitsInFreeRange(effect.player, 1).filter(
+        (ele) => ele.npc
+      );
+
+      if (currentRoundDur === 1 && allNearbyTargets.length > 0) {
+        let physicalDmgIncrease =
+          (effect.player.class.damageModifiers.offensive.physicalDamage
+            .allDamage *
+            effect.spell.spellInfo.physicalDamageIncrease) /
+          100;
+
+        effect.player.class.damageModifiers.offensive.physicalDamage.allDamage += physicalDmgIncrease;
+        effect.player.class.combatstats.currentMovementPoints += 1;
+
+        Game._addNewCombatEffect(
+          effect.player,
+          effect.target,
+          effect.spell,
+          1,
+          { physicalDmgIncrease }
+        );
+      } else if (allNearbyTargets.length > 0) {
+        const { combatstats } = effect.player.class;
+        const healing =
+          (combatstats.hp *
+            allNearbyTargets.length *
+            effect.spell.spellInfo.healingPercent) /
+          100;
+
+        combatstats.currentHp += healing;
+        if (combatstats.currentHp > combatstats.hp)
+          combatstats.currentHp = combatstats.hp;
+
+        handleSpellDamageEffectAnimation(effect.player, healing, "healing");
+      }
+      if (effect.physicalDmgIncrease) {
+        effect.player.class.damageModifiers.offensive.physicalDamage.allDamage -=
+          effect.physicalDmgIncrease;
+      }
+    },
+    spellInfo: {
+      healingPercent: 10,
+      physicalDamageIncrease: 15,
+      learned: true,
+      canBeCast: true,
+      type: "debuff",
+      source: "debuff",
+      manaCost: 30,
+      damage: 1,
+      duration: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        disarmed: false,
+      },
+    },
+    category: "defense",
+    toLearn: 0,
+    castCounter: 0,
+  },
 
   //FIGHTER
   slash: {

@@ -89,6 +89,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.shieldSlam,
         spellInfo: { ...warriorSpellObject.shieldSlam.spellInfo },
       },
+      selfSufficiency: {
+        ...warriorSpellObject.selfSufficiency,
+        spellInfo: { ...warriorSpellObject.selfSufficiency.spellInfo },
+      },
 
       slash: {
         ...warriorSpellObject.slash,
