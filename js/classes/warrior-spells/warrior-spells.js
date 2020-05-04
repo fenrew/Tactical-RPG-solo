@@ -589,23 +589,15 @@ const warriorSpellObject = {
     castEffect: (target, spell, player) => {
       let modifiedDamage = Math.floor(
         spell.spellInfo.damage *
-          calculatePhysicalMeleeDamageModifiers(player.player, target)
+          calculatePhysicalMeleeDamageModifiers(player.player, target) *
+          (player.combatstats.hp /
+            (player.combatstats.currentHp + player.combatstats.hp * 0.05))
       );
       target.class.combatstats.currentHp -= modifiedDamage;
-
-      let selfHealing = Math.floor(
-        (player.combatstats.hp * spell.spellInfo.selfHealing) / 100
-      );
-      player.combatstats.currentHp += selfHealing;
-      if (player.combatstats.currentHp > player.combatstats.hp)
-        player.combatstats.currentHp = player.combatstats.hp;
-
-      handleSpellDamageEffectAnimation(player.player, selfHealing, "healing");
-
+      console.log(modifiedDamage);
       return modifiedDamage;
     },
     spellInfo: {
-      selfHealing: 3,
       learned: true,
       canBeCast: true,
       type: "damage",

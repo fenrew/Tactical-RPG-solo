@@ -118,6 +118,10 @@ class Warrior extends BaseClass {
         ...warriorSpellObject.lifeTransfer,
         spellInfo: { ...warriorSpellObject.lifeTransfer.spellInfo },
       },
+      punishment: {
+        ...warriorSpellObject.punishment,
+        spellInfo: { ...warriorSpellObject.punishment.spellInfo },
+      },
     };
   }
 
