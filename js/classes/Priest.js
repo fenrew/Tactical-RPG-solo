@@ -93,6 +93,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.holyGround,
         spellInfo: { ...priestSpellObject.holyGround.spellInfo },
       },
+      blessing: {
+        ...priestSpellObject.blessing,
+        spellInfo: { ...priestSpellObject.blessing.spellInfo },
+      },
     };
   }
 

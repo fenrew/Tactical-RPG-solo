@@ -232,4 +232,58 @@ const priestSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  blessing: {
+    id: "blessing",
+    name: "Blessing",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.blessing, position);
+    },
+    castEffect: (target, spell, player) => {
+      const { combatstats } = target.class;
+      const { healthIncrease } = spell.spellInfo;
+
+      combatstats.hp += healthIncrease;
+      combatstats.currentHp += healthIncrease;
+
+      Game._addNewCombatEffect(
+        player.player,
+        target,
+        spell,
+        spell.spellInfo.duration
+      );
+    },
+    applyEffect: (effect) => {
+      const { combatstats } = effect.target.class;
+      const { healthIncrease } = effect.spell.spellInfo;
+
+      combatstats.hp -= healthIncrease;
+      combatstats.currentHp -= healthIncrease;
+    },
+    spellInfo: {
+      healthIncrease: 200,
+      learned: true,
+      canBeCast: true,
+      type: "buff",
+      duration: 4,
+      manaCost: 40,
+      duration: 2,
+      damage: 1,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 7,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "holy",
+    toLearn: 8,
+    castCounter: 0,
+  },
 };
