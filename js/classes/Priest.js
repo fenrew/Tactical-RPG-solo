@@ -89,6 +89,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.selfPreservation,
         spellInfo: { ...priestSpellObject.selfPreservation.spellInfo },
       },
+      holyGround: {
+        ...priestSpellObject.holyGround,
+        spellInfo: { ...priestSpellObject.holyGround.spellInfo },
+      },
     };
   }
 

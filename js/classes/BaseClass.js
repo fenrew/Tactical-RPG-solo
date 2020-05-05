@@ -67,6 +67,7 @@ class BaseClass {
   }
 
   _onDefense(spell, target) {
+    if (!target) return;
     const onDefenseAnswers = {};
     target.class.conditions.onDefense.forEach((ele) => {
       let answerOnDefense = ele.spell.conditionEffect(
