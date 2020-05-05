@@ -1,9 +1,9 @@
 class Sorcerer extends BaseClass {
   constructor(player) {
-    super()
+    super();
     this.className = "Sorcerer";
-    this.cssString = "wizard-player-area";
-    this.cssPlayerPanelString = "wizard-class-player-panel";
+    this.cssString = "sorcerer-player-area";
+    this.cssPlayerPanelString = "sorcerer-class-player-panel";
     this.player = player;
 
     this.combatstats = {
