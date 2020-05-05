@@ -286,4 +286,56 @@ const priestSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  divinity: {
+    id: "divinity",
+    name: "Divinity",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.divinity, position);
+    },
+    castEffect: (target, spell, player) => {
+      Game.combatTimeline.forEach((ele) => {
+        const { combatstats } = ele.class;
+
+        let modifiedHealing = Math.floor(
+          spell.spellInfo.damage * calculateHealingModifiers(player.player, ele)
+        );
+
+        combatstats.currentHp += modifiedHealing;
+
+        if (combatstats.currentHp > combatstats.hp) {
+          combatstats.currentHp = combatstats.hp;
+        }
+
+        handleSpellDamageEffectAnimation(
+          ele,
+          modifiedHealing,
+          spell.spellInfo.type
+        );
+      });
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "healing",
+      duration: 4,
+      manaCost: 70,
+      damage: 50,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "holy",
+    toLearn: 8,
+    castCounter: 0,
+  },
 };

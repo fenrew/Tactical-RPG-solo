@@ -97,6 +97,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.blessing,
         spellInfo: { ...priestSpellObject.blessing.spellInfo },
       },
+      divinity: {
+        ...priestSpellObject.divinity,
+        spellInfo: { ...priestSpellObject.divinity.spellInfo },
+      },
     };
   }
 
