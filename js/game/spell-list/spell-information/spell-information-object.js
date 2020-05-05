@@ -52,7 +52,8 @@ const spellInfoObject = {
   pyroclasm:
     "Hurls a flaming ball on the target dealing fire damage on impact, and also deals fire damage on the beginning of each of the target’s turn for the next 2 rounds. Heals double on targets with fire armor applied",
   fireArmor:
-    "If the target is hit by a fire spell, it is healed instead of taking damage for 1 turn",
+    "If the target is hit by a fire spell, it is healed instead of taking damage for 1 turn. The health can be increased above the max hp but will be revered after 1 turn or if the target receives any other forms of healing",
+
   arcanePolarization:
     "Deals damage to the target in close combat and teleports it to the opposite side of the caster. If the cell is unoccupied it deals additional damage to the target and to the person on the opposite cell",
   flamingWeapon:

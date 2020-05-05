@@ -77,9 +77,9 @@ class Priest extends BaseClass {
     };
 
     this.spells = {
-      shieldBash: {
-        ...warriorSpellObject.shieldBash,
-        spellInfo: { ...warriorSpellObject.shieldBash.spellInfo },
+      renew: {
+        ...priestSpellObject.renew,
+        spellInfo: { ...priestSpellObject.renew.spellInfo },
       },
     };
   }
