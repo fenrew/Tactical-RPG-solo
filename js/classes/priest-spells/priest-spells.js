@@ -401,4 +401,55 @@ const priestSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  purgatory: {
+    id: "purgatory",
+    name: "Purgatory",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.purgatory, position);
+    },
+    castEffect: (position, spell, player) => {
+      console.log(
+        getUnitsInStraightLine(
+          player.player.position,
+          position.y + 1 ? position : position.position,
+          spell
+        )
+      );
+
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "holy")
+      );
+      target.class.combatstats.currentHp -= modifiedDamage;
+
+      return modifiedDamage;
+    },
+    spellInfo: {
+      castOnNoTarget: true,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "holy",
+      manaCost: 30,
+      damage: 30,
+      dotDamage: 15,
+      duration: 3,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "holy",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
