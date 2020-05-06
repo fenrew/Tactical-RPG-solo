@@ -92,4 +92,19 @@ const spellInfoObject = {
   lifeTransfer: "Transfers 30% of its own hp and gives it to a target",
   punishment:
     "Deals damage to an enemy. The damage is increased depending on the missing hp of the Warrior",
+
+  //PRIEST
+  renew:
+    "Heals the target every turn for the duration of 3 turns. A unit can only have one renew active at a time",
+  holyLight: "Heals the target a great amount",
+  selfPreservation:
+    "Heals yourself a great amount and also deals damage to nearby enemies",
+  holyGround:
+    "Places a glyph that heals any units that ends or starts their turn inside of it",
+  blessing: "Increases the max hp of a unit for a short amount of time",
+  divinity: "Heals every unit on the map",
+
+  holyFire: "Deals initial damage and additional damage over 3 turns",
+  purgatory:
+    "Shoots out a purgatory beam that deals damage to all enemies and healing all allies in its path",
 };
