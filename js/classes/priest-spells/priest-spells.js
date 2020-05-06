@@ -408,21 +408,33 @@ const priestSpellObject = {
       player._addTargetSpellConditions(player.spells.purgatory, position);
     },
     castEffect: (position, spell, player) => {
-      console.log(
-        getUnitsInStraightLine(
-          player.player.position,
-          position.y + 1 ? position : position.position,
-          spell
-        )
+      const targets = getUnitsInStraightLine(
+        player.player.position,
+        position.y + 1 ? position : position.position,
+        spell
       );
 
-      let modifiedDamage = Math.floor(
-        spell.spellInfo.damage *
-          calculateMagicalDamageModifiers(player.player, target, "holy")
-      );
-      target.class.combatstats.currentHp -= modifiedDamage;
+      targets.forEach((ele) => {
+        const { combatstats } = ele.class;
 
-      return modifiedDamage;
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            (ele.npc
+              ? calculateMagicalDamageModifiers(player.player, ele, "holy")
+              : calculateHealingModifiers(player.player, ele))
+        );
+
+        combatstats.currentHp -= ele.npc ? modifiedDamage : -1 * modifiedDamage;
+
+        if (combatstats.currentHp > combatstats.hp)
+          combatstats.currentHp = combatstats.hp;
+
+        handleSpellDamageEffectAnimation(
+          ele,
+          modifiedDamage,
+          ele.npc ? "damage" : "healing"
+        );
+      });
     },
     spellInfo: {
       castOnNoTarget: true,
@@ -432,10 +444,8 @@ const priestSpellObject = {
       source: "holy",
       manaCost: 30,
       damage: 30,
-      dotDamage: 15,
-      duration: 3,
-      freeCells: true,
-      straigthLine: false,
+      freeCells: false,
+      straigthLine: true,
       diagonal: false,
       areaOfEffect: 1,
       minRange: 1,
