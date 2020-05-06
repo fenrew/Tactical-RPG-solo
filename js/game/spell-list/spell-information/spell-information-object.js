@@ -63,4 +63,33 @@ const spellInfoObject = {
   iceArmor:
     "Gives frost armor to a unit increasing fire and physical resistance, and decreasing frost resistance. If the unit is hit in close combat, decrease the MP of the attacker by 1",
   teleport: "Teleports to a targeted cell",
+
+  //WARRIOR
+  shieldBash:
+    "Bashes the shield dealing physical damage and decrease magical damage dealt by the target for 1 turn",
+  disarm:
+    "Disarms the enemy preventing them from dealing physical damage for 1 turn",
+  shieldSlam: "Slams the shield on the target, dealing damage",
+  selfSufficiency:
+    "The Warrior gets a 10% increase in damage and 1 mp the following turn if there are no adjacent enemies at the start of the turn, and it is healed for 10% of his total hp for each adjacent enemy at the start of turn 2",
+
+  slash: "Slashes the target in quick succession dealing damage on each hit",
+  whirlwind: "Deals damage to all enemies around the warrior",
+  artOfCombat:
+    "Each close attack made by the warrior is followed up with an additional attack that deals damage",
+  hamstring:
+    "Delivers a deep cut in the targets leg dealing damage and removing 2 mp",
+  sweepingStrikes:
+    "For each attack used by the warrior for the next turn, it also hits all adjacent enemies",
+
+  absorptionStrike: "Strikes the enemy and healing 3% of your max hp",
+  jointStrike:
+    "Strikes the enemy with such force it deals damage to the target and itself",
+  painSuppression:
+    "Everytime the warrior takes direct single-target damage, it also heals for 5% of max hp",
+  amurStrike:
+    "The first two times the spell is cast it deals an equal amount of damage to itself and the target. The third time the spell is used it deals double damage to the target and heals for 60% of the damage caused",
+  lifeTransfer: "Transfers 30% of its own hp and gives it to a target",
+  punishment:
+    "Deals damage to an enemy. The damage is increased depending on the missing hp of the Warrior",
 };
