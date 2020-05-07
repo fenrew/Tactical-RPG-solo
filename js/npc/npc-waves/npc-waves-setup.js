@@ -5,9 +5,8 @@ function addNewNpcToMap(round) {
     for (let i = 0; i <= 1; i++) {
       let newNpc = new NpcModel(new Zombie(), 70);
       newNpc._initiate();
-      console.log(newNpc);
 
-      npcArray.push(newNpc);
+      //  npcArray.push(newNpc);
     }
 
     return Game._addNpcToGame(npcArray);

@@ -73,5 +73,7 @@ class totemOfHealing extends BaseNpc {
         casterModifier: 1,
       },
     };
+
+    this.spells = {};
   }
 }

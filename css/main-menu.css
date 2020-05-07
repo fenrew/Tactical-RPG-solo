@@ -1,79 +1,80 @@
-.main-menu-elements{
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
-    margin: 30% 3% 0 5%;
+.main-menu-elements {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  color: white;
+  margin: 30% 3% 0 5%;
+  height: fit-content;
 }
 
-.main-menu-elements:hover{
-    text-align: center;
-    cursor: pointer;
-    color: red;
+.main-menu-elements:hover {
+  text-align: center;
+  cursor: pointer;
+  color: red;
 }
 
-#class-selection-icons{
-    display: flex;
+#class-selection-icons {
+  display: flex;
 }
 
-#class-selection-text{
-    font-size: 28px;
-    color: white;
-    font-weight: bold;
+#class-selection-text {
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
 }
 
 .class-picked {
-    background-color: rgba(228, 0, 0, 0.856);
+  background-color: rgba(228, 0, 0, 0.856);
 }
 
 /* CLASSES */
-#warrior-class-selection{
-    background-image: url("../Animations/Classes/Warrior/Warrior\ Tactical\ RPG\ gif\ 2.gif");
-    background-size: 100%;
-    width: 150px;
-    height: 150px;
-    border: 2px solid black;
+#warrior-class-selection {
+  background-image: url("../Animations/Classes/Warrior/Warrior\ Tactical\ RPG\ gif\ 2.gif");
+  background-size: 100%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid black;
 }
 
-#warrior-class-selection:hover{
-    border: 2px solid blue;
-    cursor: pointer;
+#warrior-class-selection:hover {
+  border: 2px solid blue;
+  cursor: pointer;
 }
 
-#wizard-class-selection{
-    background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
-    background-size: 100%;
-    width: 150px;
-    height: 150px;
-    border: 2px solid black;
+#wizard-class-selection {
+  background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
+  background-size: 100%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid black;
 }
 
-#wizard-class-selection:hover{
-    border: 2px solid blue;
-    cursor: pointer;
+#wizard-class-selection:hover {
+  border: 2px solid blue;
+  cursor: pointer;
 }
 
-#drow-ranger-class-selection{
-    background-image: url("../Animations/Classes/Drow-Ranger/Drow\ Ranger\ Tactical\ RPG.gif");
-    background-size: 100%;
-    width: 150px;
-    height: 150px;
-    border: 2px solid black;
+#drow-ranger-class-selection {
+  background-image: url("../Animations/Classes/Drow-Ranger/Drow\ Ranger\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid black;
 }
 
-#drow-ranger-class-selection:hover{
-    border: 2px solid blue;
-    cursor: pointer;
+#drow-ranger-class-selection:hover {
+  border: 2px solid blue;
+  cursor: pointer;
 }
 
-#paladin-class-selection{
-    background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
-    background-size: 100%;
-    width: 150px;
-    height: 150px;
-    border: 2px solid black;
+#paladin-class-selection {
+  background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
+  background-size: 100%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid black;
 }
 
-#paladin-class-selection:hover{
-    border: 2px solid blue;
-    cursor: pointer;
+#paladin-class-selection:hover {
+  border: 2px solid blue;
+  cursor: pointer;
 }
