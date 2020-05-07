@@ -711,4 +711,38 @@ const priestSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+
+  //VOODOO
+  healingTotem: {
+    id: "healingTotem",
+    name: "Healing Totem",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.healingTotem, position);
+    },
+    castEffect: (target, spell, player) => {},
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "healing",
+      source: "nature",
+      manaCost: 30,
+      damage: 30,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "voodoo",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };
