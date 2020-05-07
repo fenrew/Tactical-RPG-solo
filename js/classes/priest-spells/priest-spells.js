@@ -654,25 +654,45 @@ const priestSpellObject = {
     },
     castEffect: (target, spell, player) => {
       changeUnitsPosition(player.player, target);
-      //changeUnitsPosition(target);
 
-      // let modifiedDamage = Math.floor(
-      //   spell.spellInfo.damage *
-      //     calculateMagicalDamageModifiers(player.player, target, "holy")
-      // );
-      // target.class.combatstats.currentHp -= modifiedDamage;
+      const allNearbyTargets = getUnitsInFreeRange(player.player, 1);
 
-      // return modifiedDamage;
+      allNearbyTargets.forEach((ele) => {
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculateMagicalDamageModifiers(
+              player.player,
+              ele,
+              spell.spellInfo.source
+            )
+        );
+
+        ele.class.combatstats.currentHp -= modifiedDamage;
+
+        handleSpellDamageEffectAnimation(ele, modifiedDamage, "damage");
+      });
+
+      const { combatstats } = target.class;
+
+      let modifiedHealing = Math.floor(
+        spell.spellInfo.healing *
+          calculateHealingModifiers(player.player, target)
+      );
+      combatstats.currentHp += modifiedHealing;
+
+      if (combatstats.currentHp > combatstats.hp)
+        combatstats.currentHp = combatstats.hp;
+
+      return modifiedHealing;
     },
     spellInfo: {
       learned: true,
       canBeCast: true,
-      type: "damage",
+      type: "healing",
       source: "holy",
       manaCost: 30,
+      healing: 40,
       damage: 30,
-      dotDamage: 15,
-      duration: 3,
       freeCells: true,
       straigthLine: false,
       diagonal: false,
