@@ -122,6 +122,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.judgementDay,
         spellInfo: { ...priestSpellObject.judgementDay.spellInfo },
       },
+      divineIntervention: {
+        ...priestSpellObject.divineIntervention,
+        spellInfo: { ...priestSpellObject.divineIntervention.spellInfo },
+      },
     };
   }
 

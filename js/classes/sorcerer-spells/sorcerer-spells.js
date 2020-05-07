@@ -915,9 +915,9 @@ const sorcererSpellObject = {
     cast: (position, player) => {
       player._addTargetSpellConditions(player.spells.teleport, position);
     },
-    castEffect: (target, spell, player) => {
-      if (checkInsideAndGridAvailability(target, Game.activeMap)) {
-        updateUnitPosition(player.player, target);
+    castEffect: (position, spell, player) => {
+      if (checkInsideAndGridAvailability(position, Game.activeMap)) {
+        updateUnitPosition(player.player, position);
       }
     },
     spellInfo: {

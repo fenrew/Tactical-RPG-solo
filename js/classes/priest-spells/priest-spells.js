@@ -397,7 +397,7 @@ const priestSpellObject = {
         silenced: true,
       },
     },
-    category: "holy",
+    category: "smite",
     toLearn: 0,
     castCounter: 0,
   },
@@ -458,7 +458,7 @@ const priestSpellObject = {
         silenced: true,
       },
     },
-    category: "holy",
+    category: "smite",
     toLearn: 0,
     castCounter: 0,
   },
@@ -517,7 +517,7 @@ const priestSpellObject = {
         silenced: true,
       },
     },
-    category: "holy",
+    category: "smite",
     toLearn: 0,
     castCounter: 0,
   },
@@ -576,7 +576,7 @@ const priestSpellObject = {
         silenced: true,
       },
     },
-    category: "holy",
+    category: "smite",
     toLearn: 0,
     castCounter: 0,
   },
@@ -639,7 +639,55 @@ const priestSpellObject = {
         silenced: true,
       },
     },
-    category: "holy",
+    category: "smite",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  divineIntervention: {
+    id: "divineIntervention",
+    name: "Divine Intervention",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(
+        player.spells.divineIntervention,
+        position
+      );
+    },
+    castEffect: (target, spell, player) => {
+      changeUnitsPosition(player.player, target);
+      //changeUnitsPosition(target);
+
+      // let modifiedDamage = Math.floor(
+      //   spell.spellInfo.damage *
+      //     calculateMagicalDamageModifiers(player.player, target, "holy")
+      // );
+      // target.class.combatstats.currentHp -= modifiedDamage;
+
+      // return modifiedDamage;
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "holy",
+      manaCost: 30,
+      damage: 30,
+      dotDamage: 15,
+      duration: 3,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "smite",
     toLearn: 0,
     castCounter: 0,
   },
