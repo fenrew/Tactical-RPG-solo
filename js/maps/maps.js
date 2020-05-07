@@ -3,6 +3,7 @@
 // 22 = Sand
 // 30 = Stone
 // 40 = Ice Wall
+// 41 = Healing Totem
 // 70 = Zombie
 
 // 0-9 = Player

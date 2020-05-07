@@ -6,7 +6,9 @@ class stationaryActiveAi {
 
   runAi = () => {
     const { spells, combatstats } = this.class;
+    console.log("YEEET");
 
+    this.class.spells.healAoe;
     Game._nextTurn();
   };
 }

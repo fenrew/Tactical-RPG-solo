@@ -1,4 +1,4 @@
-class stationaryPassiveSummon {
+class stationarySummon {
   constructor(type, playerNumber, position) {
     this.playerNumber = playerNumber;
     this.npc = true;

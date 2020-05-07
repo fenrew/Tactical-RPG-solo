@@ -719,7 +719,13 @@ const priestSpellObject = {
     cast: (position, player) => {
       player._addTargetSpellConditions(player.spells.healingTotem, position);
     },
-    castEffect: (target, spell, player) => {},
+    castEffect: (target, spell, player) => {
+      // const newTotem = new stationarySummon(new HealingTotem(), 40, {
+      //   ...target,
+      //   y: target.y + i,
+      // });
+      // newIceWall._addNpcToGame();
+    },
     spellInfo: {
       learned: true,
       canBeCast: true,

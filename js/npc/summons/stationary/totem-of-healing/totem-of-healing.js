@@ -7,7 +7,7 @@ class TotemOfHealing extends BaseClass {
     this.combatStyle = "passive";
     this.player = "";
 
-    this.ai = new stationaryPassiveAi();
+    this.ai = new stationaryActiveAi(this);
 
     this.combatstats = {
       hp: 100,

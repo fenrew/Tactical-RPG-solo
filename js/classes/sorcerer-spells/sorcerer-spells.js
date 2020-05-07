@@ -259,11 +259,10 @@ const sorcererSpellObject = {
               y: target.y + i,
             })
           ) {
-            const newIceWall = new stationaryPassiveSummon(
-              new iceWallSpell(),
-              40,
-              { ...target, y: target.y + i }
-            );
+            const newIceWall = new stationarySummon(new iceWallSpell(), 40, {
+              ...target,
+              y: target.y + i,
+            });
             newIceWall._addNpcToGame();
             allIceWalls.push(newIceWall);
           }
@@ -274,11 +273,10 @@ const sorcererSpellObject = {
               x: target.x + i,
             })
           ) {
-            const newIceWall = new stationaryPassiveSummon(
-              new iceWallSpell(),
-              40,
-              { ...target, x: target.x + i }
-            );
+            const newIceWall = new stationarySummon(new iceWallSpell(), 40, {
+              ...target,
+              x: target.x + i,
+            });
             newIceWall._addNpcToGame();
             allIceWalls.push(newIceWall);
           }
