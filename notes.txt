@@ -4,3 +4,8 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 - 0 damage visuals: If a person is disarmed and uses Joint strike the damage does not apear on the target but 0 dmg is appearing 
 on the caster
+
+
+
+=== IDEAS ====
+- Let totems and summons have the spell category, so they can learn new spells depending on how long they survive!

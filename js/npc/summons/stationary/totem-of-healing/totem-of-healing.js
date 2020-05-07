@@ -1,4 +1,4 @@
-class totemOfHealing extends BaseNpc {
+class TotemOfHealing extends BaseClass {
   constructor() {
     super();
     this.className = "totem-of-healing";
@@ -74,6 +74,61 @@ class totemOfHealing extends BaseNpc {
       },
     };
 
-    this.spells = {};
+    this.spells = {
+      healAoe: {
+        id: "healAoe",
+        name: "Heal Aoe",
+        cast: (position) => {
+          this._addTargetSpellConditions(this.spells.healAoe, position);
+        },
+        castEffect: (target, spell, player) => {
+          const allNearbyTargets = getUnitsInFreeRange(target, 3);
+
+          allNearbyTargets.forEach((ele) => {
+            const { combatstats } = ele.class;
+            let modifiedHealing = Math.floor(
+              spell.spellInfo.damage *
+                calculateHealingModifiers(player.player, ele)
+            );
+
+            combatstats.currentHp += modifiedHealing;
+
+            if (combatstats.currentHp > combatstats.hp) {
+              combatstats.currentHp = combatstats.hp;
+            }
+
+            handleSpellDamageEffectAnimation(
+              ele,
+              modifiedHealing,
+              spell.spellInfo.type
+            );
+          });
+
+          return modifiedHealing;
+        },
+        spellInfo: {
+          learned: true,
+          canBeCast: true,
+          type: "healing",
+          manaCost: 20,
+          damage: 60,
+          freeCells: true,
+          straigthLine: false,
+          diagonal: false,
+          areaOfEffect: 1,
+          minRange: 0,
+          maxRange: 0,
+          modifiableRange: false,
+          lineOfSight: false,
+          cooldown: 1,
+          castsPerTurn: 1,
+          conditionsRequirements: {
+            silenced: true,
+          },
+        },
+        toLearn: 0,
+        castCounter: 0,
+      },
+    };
   }
 }
