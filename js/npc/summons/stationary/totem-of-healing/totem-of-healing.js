@@ -1,10 +1,13 @@
-class totemOfHealing {
+class totemOfHealing extends BaseNpc {
   constructor() {
+    super();
     this.className = "totem-of-healing";
     this.cssString = "totem-of-healing-summon-player-area";
     this.cssPlayerPanelString = "totem-of-healing-summon-combat-timeline-panel";
     this.combatStyle = "passive";
     this.player = "";
+
+    this.ai = new stationaryPassiveAi();
 
     this.combatstats = {
       hp: 100,

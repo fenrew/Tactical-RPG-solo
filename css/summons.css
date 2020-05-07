@@ -1,9 +1,21 @@
-.ice-wall-summon-player-area{
-    height: 75px;
-    width: 75px;
-    background-color: blue;
+.ice-wall-summon-player-area {
+  height: 75px;
+  width: 75px;
+  background-color: blue;
 }
 
-.ice-wall-summon-combat-timeline-panel{
-    display: none;
+.ice-wall-summon-combat-timeline-panel {
+  display: none;
+}
+
+.totem-of-healing-summon-player-area {
+  height: 75px;
+  width: 75px;
+  background-color: rgb(255, 0, 0);
+}
+
+.totem-of-healing-summon-combat-timeline-panel {
+  background-color: rgb(255, 0, 0);
+  width: 70px;
+  height: 70px;
 }

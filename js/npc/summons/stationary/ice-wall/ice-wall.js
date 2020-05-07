@@ -6,6 +6,8 @@ class iceWallSpell {
     this.combatStyle = "passive";
     this.player = "";
 
+    this.ai = new stationaryPassiveAi();
+
     this.combatstats = {
       hp: 100,
       currentHp: 100,

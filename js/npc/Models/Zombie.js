@@ -6,6 +6,8 @@ class Zombie {
     this.combatStyle = "aggressive";
     this.player = "";
 
+    this.ai = new AggressiveAi();
+
     this.combatstats = {
       hp: 100,
       currentHp: 100,
