@@ -114,6 +114,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.beamOfLight,
         spellInfo: { ...priestSpellObject.beamOfLight.spellInfo },
       },
+      sin: {
+        ...priestSpellObject.sin,
+        spellInfo: { ...priestSpellObject.sin.spellInfo },
+      },
     };
   }
 
