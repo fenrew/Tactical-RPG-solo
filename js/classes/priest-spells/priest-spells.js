@@ -462,4 +462,63 @@ const priestSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  beamOfLight: {
+    id: "beamOfLight",
+    name: "beamOfLight",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.beamOfLight, position);
+    },
+    castEffect: (target, spell, player) => {
+      const { combatstats } = player;
+
+      let modifiedDamage = Math.floor(
+        spell.spellInfo.damage *
+          calculateMagicalDamageModifiers(player.player, target, "holy")
+      );
+
+      let modifiedHealing = Math.floor(
+        spell.spellInfo.healing *
+          calculateHealingModifiers(player.player, player.player)
+      );
+
+      target.class.combatstats.currentHp -= modifiedDamage;
+      combatstats.currentHp += modifiedHealing;
+
+      if (combatstats.currentHp > combatstats.hp)
+        combatstats.currentHp = combatstats.hp;
+
+      handleSpellDamageEffectAnimation(
+        player.player,
+        modifiedHealing,
+        "healing"
+      );
+
+      return modifiedDamage;
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "holy",
+      manaCost: 30,
+      healing: 30,
+      damage: 30,
+      freeCells: false,
+      straigthLine: true,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "holy",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

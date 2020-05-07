@@ -110,6 +110,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.purgatory,
         spellInfo: { ...priestSpellObject.purgatory.spellInfo },
       },
+      beamOfLight: {
+        ...priestSpellObject.beamOfLight,
+        spellInfo: { ...priestSpellObject.beamOfLight.spellInfo },
+      },
     };
   }
 
