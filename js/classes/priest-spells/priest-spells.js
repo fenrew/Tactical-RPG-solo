@@ -464,7 +464,7 @@ const priestSpellObject = {
   },
   beamOfLight: {
     id: "beamOfLight",
-    name: "beamOfLight",
+    name: "Beam Of Light",
     cast: (position, player) => {
       player._addTargetSpellConditions(player.spells.beamOfLight, position);
     },
@@ -523,7 +523,7 @@ const priestSpellObject = {
   },
   sin: {
     id: "sin",
-    name: "sin",
+    name: "Sin",
     cast: (position, player) => {
       player._addTargetSpellConditions(player.spells.sin, position);
     },
@@ -557,7 +557,7 @@ const priestSpellObject = {
       learned: true,
       canBeCast: true,
       type: "damage",
-      source: "holy",
+      source: "darkness",
       manaCost: 30,
       healing: 30,
       selfDamage: 30,
@@ -568,6 +568,69 @@ const priestSpellObject = {
       areaOfEffect: 1,
       minRange: 1,
       maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "holy",
+    toLearn: 0,
+    castCounter: 0,
+  },
+  judgementDay: {
+    id: "judgementDay",
+    name: "Judgement Day",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.judgementDay, position);
+    },
+    castEffect: (target, spell, player) => {
+      const unitsOddOrEven = getUnitsOddAndEvenTiles(player.player.position);
+
+      unitsOddOrEven.even.forEach((ele) => {
+        const { combatstats } = ele.class;
+
+        let modifiedHealing = Math.floor(
+          spell.spellInfo.damage * calculateHealingModifiers(player.player, ele)
+        );
+
+        combatstats.currentHp += modifiedHealing;
+
+        if (combatstats.currentHp > combatstats.hp)
+          combatstats.currentHp = combatstats.hp;
+
+        handleSpellDamageEffectAnimation(ele, modifiedHealing, "healing");
+      });
+
+      unitsOddOrEven.odd.forEach((ele) => {
+        const { combatstats } = ele.class;
+
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculateMagicalDamageModifiers(player.player, ele, "holy")
+        );
+
+        combatstats.currentHp -= modifiedDamage;
+
+        handleSpellDamageEffectAnimation(ele, modifiedDamage, "damage");
+      });
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "holy",
+      manaCost: 30,
+      healing: 40,
+      damage: 30,
+      freeCells: false,
+      straigthLine: true,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,

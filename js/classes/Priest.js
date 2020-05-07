@@ -118,6 +118,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.sin,
         spellInfo: { ...priestSpellObject.sin.spellInfo },
       },
+      judgementDay: {
+        ...priestSpellObject.judgementDay,
+        spellInfo: { ...priestSpellObject.judgementDay.spellInfo },
+      },
     };
   }
 
