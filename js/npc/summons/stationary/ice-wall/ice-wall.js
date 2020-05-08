@@ -3,7 +3,6 @@ class iceWallSpell {
     this.className = "ice-wall";
     this.cssString = "ice-wall-summon-player-area";
     this.cssPlayerPanelString = "ice-wall-summon-combat-timeline-panel";
-    this.combatStyle = "passive";
     this.player = "";
 
     this.ai = new stationaryPassiveAi();

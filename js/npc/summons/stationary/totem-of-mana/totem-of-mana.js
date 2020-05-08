@@ -1,16 +1,16 @@
-class TotemOfHealing extends BaseClass {
+class TotemOfMana extends BaseClass {
   constructor() {
     super();
-    this.className = "totem-of-healing";
-    this.cssString = "totem-of-healing-summon-player-area";
-    this.cssPlayerPanelString = "totem-of-healing-summon-combat-timeline-panel";
+    this.className = "totem-of-mana";
+    this.cssString = "totem-of-mana-summon-player-area";
+    this.cssPlayerPanelString = "totem-of-mana-summon-combat-timeline-panel";
     this.player = "";
 
     this.ai = new stationaryActiveAi(this);
 
     this.combatstats = {
-      hp: 100,
-      currentHp: 100,
+      hp: 120,
+      currentHp: 120,
       mana: 100,
       currentMana: 100,
       initiation: 0,
@@ -78,31 +78,30 @@ class TotemOfHealing extends BaseClass {
     };
 
     this.spells = {
-      healAoe: {
-        id: "healAoe",
-        name: "Heal Aoe",
+      manaAoe: {
+        id: "manaAoe",
+        name: "Mana Aoe",
         cast: (position) => {
-          this._addTargetSpellConditions(this.spells.healAoe, position);
+          this._addTargetSpellConditions(this.spells.manaAoe, position);
         },
         castEffect: (target, spell, player) => {
-          const allNearbyTargets = getUnitsInFreeRange(target, 3);
+          const allNearbyTargets = getUnitsInFreeRange(
+            target,
+            spell.spellInfo.maxRange
+          );
 
           allNearbyTargets.forEach((ele) => {
             const { combatstats } = ele.class;
-            let modifiedHealing = Math.floor(
-              spell.spellInfo.damage *
-                calculateHealingModifiers(player.player, ele)
-            );
 
-            combatstats.currentHp += modifiedHealing;
+            combatstats.currentMana += spell.spellInfo.damage;
 
-            if (combatstats.currentHp > combatstats.hp) {
-              combatstats.currentHp = combatstats.hp;
+            if (combatstats.currentMana > combatstats.mana) {
+              combatstats.currentMana = combatstats.mana;
             }
 
             handleSpellDamageEffectAnimation(
               ele,
-              modifiedHealing,
+              spell.spellInfo.damage,
               spell.spellInfo.type
             );
           });
@@ -117,8 +116,8 @@ class TotemOfHealing extends BaseClass {
           straigthLine: false,
           diagonal: false,
           areaOfEffect: 1,
-          minRange: 0,
-          maxRange: 0,
+          minRange: 1,
+          maxRange: 4,
           modifiableRange: false,
           lineOfSight: false,
           cooldown: 1,

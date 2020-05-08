@@ -3,7 +3,6 @@ class Zombie {
     this.className = "zombie";
     this.cssString = "zombie-cpu-player-area";
     this.cssPlayerPanelString = "zombie-cpu-combat-timeline-panel";
-    this.combatStyle = "aggressive";
     this.player = "";
 
     this.ai = new AggressiveAi();
