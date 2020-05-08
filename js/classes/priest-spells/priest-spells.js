@@ -720,14 +720,6 @@ const priestSpellObject = {
       player._addTargetSpellConditions(player.spells.totemOfHealing, position);
     },
     castEffect: (position, spell, player) => {
-      if (
-        position.playerNumber ||
-        !checkIfMapGridIsAvailable(Game.activeMap, {
-          ...position,
-        })
-      )
-        return console.log("can't cast on the spell area");
-
       const newTotem = new stationarySummon(new TotemOfHealing(), 41, {
         ...position,
       });
@@ -736,7 +728,9 @@ const priestSpellObject = {
     },
     spellInfo: {
       castOnNoTarget: true,
+      noTargetRequired: true,
       playerNumber: 41,
+      maxActiveSummon: 1,
       learned: true,
       canBeCast: true,
       type: "healing",
@@ -759,6 +753,72 @@ const priestSpellObject = {
     },
     category: "voodoo",
     toLearn: 0,
+    castCounter: 0,
+  },
+  selfPreservation: {
+    id: "selfPreservation",
+    name: "Self Preservation",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(
+        player.spells.selfPreservation,
+        position
+      );
+    },
+    castEffect: (target, spell, player) => {
+      const { combatstats } = target.class;
+
+      let modifiedHealing = Math.floor(
+        spell.spellInfo.damage *
+          calculateHealingModifiers(player.player, target)
+      );
+
+      combatstats.currentHp += modifiedHealing;
+
+      if (combatstats.currentHp > combatstats.hp) {
+        combatstats.currentHp = combatstats.hp;
+      }
+
+      const allNearbyTargets = getUnitsInFreeRange(target, 1).filter(
+        (ele) => ele.npc
+      );
+      console.log(allNearbyTargets);
+
+      allNearbyTargets.forEach((ele) => {
+        let modifiedDamage = Math.floor(
+          spell.spellInfo.damage *
+            calculatePhysicalMeleeDamageModifiers(player.player, ele)
+        );
+
+        ele.class.combatstats.currentHp -= modifiedDamage;
+
+        handleSpellDamageEffectAnimation(ele, modifiedDamage, "damage");
+      });
+
+      return modifiedHealing;
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "healing",
+      manaCost: 20,
+      damagePercent: 50,
+      damage: 60,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "voodoo",
+    toLearn: 8,
     castCounter: 0,
   },
 };

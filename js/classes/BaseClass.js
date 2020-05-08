@@ -1,6 +1,8 @@
 class BaseClass {
   async _addTargetSpellConditions(spell, position, castTimes = 1) {
-    if (checkIfSpellIsCastable(this, spell)) return console.log("Cant be cast");
+    if (checkIfSpellIsCastable(this, spell, position))
+      return console.log("Cant be cast");
+
     let target = Game._getUnitByPosition(position);
     if (!target && !spell.spellInfo.castOnNoTarget)
       return console.log("No target");

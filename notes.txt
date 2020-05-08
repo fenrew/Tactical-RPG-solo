@@ -5,6 +5,7 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 - 0 damage visuals: If a person is disarmed and uses Joint strike the damage does not apear on the target but 0 dmg is appearing 
 on the caster
 
+- Unit dies: Remove combatEffects from dead units. This gives an error otherwise with the animations/visual
 
 
 === IDEAS ====
