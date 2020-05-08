@@ -126,6 +126,11 @@ class Priest extends BaseClass {
         ...priestSpellObject.divineIntervention,
         spellInfo: { ...priestSpellObject.divineIntervention.spellInfo },
       },
+
+      totemOfHealing: {
+        ...priestSpellObject.totemOfHealing,
+        spellInfo: { ...priestSpellObject.totemOfHealing.spellInfo },
+      },
     };
   }
 

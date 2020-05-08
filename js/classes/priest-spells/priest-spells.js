@@ -713,20 +713,28 @@ const priestSpellObject = {
   },
 
   //VOODOO
-  healingTotem: {
-    id: "healingTotem",
-    name: "Healing Totem",
+  totemOfHealing: {
+    id: "totemOfHealing",
+    name: "Totem of Healing",
     cast: (position, player) => {
-      player._addTargetSpellConditions(player.spells.healingTotem, position);
+      player._addTargetSpellConditions(player.spells.totemOfHealing, position);
     },
-    castEffect: (target, spell, player) => {
-      // const newTotem = new stationarySummon(new HealingTotem(), 40, {
-      //   ...target,
-      //   y: target.y + i,
-      // });
-      // newIceWall._addNpcToGame();
+    castEffect: (position, spell, player) => {
+      if (
+        position.playerNumber ||
+        !checkIfMapGridIsAvailable(Game.activeMap, {
+          ...position,
+        })
+      )
+        return console.log("can't cast on the spell area");
+
+      const newTotem = new stationarySummon(new TotemOfHealing(), 41, {
+        ...position,
+      });
+      newTotem._addNpcToGame();
     },
     spellInfo: {
+      castOnNoTarget: true,
       learned: true,
       canBeCast: true,
       type: "healing",
