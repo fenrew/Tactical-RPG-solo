@@ -74,15 +74,21 @@ class TotemOfHealing extends BaseClass {
       },
     };
 
+    this.castCounter = {
+      totem: 0,
+    };
+
     this.spells = {
       healAoe: {
         id: "healAoe",
         name: "Heal Aoe",
         cast: (position) => {
+          console.log("HELLO");
           this._addTargetSpellConditions(this.spells.healAoe, position);
         },
         castEffect: (target, spell, player) => {
           const allNearbyTargets = getUnitsInFreeRange(target, 3);
+          console.log("HELLO");
 
           allNearbyTargets.forEach((ele) => {
             const { combatstats } = ele.class;
@@ -103,8 +109,6 @@ class TotemOfHealing extends BaseClass {
               spell.spellInfo.type
             );
           });
-
-          return modifiedHealing;
         },
         spellInfo: {
           learned: true,
@@ -127,8 +131,11 @@ class TotemOfHealing extends BaseClass {
           },
         },
         toLearn: 0,
+        category: "totem",
         castCounter: 0,
       },
     };
   }
+
+  _checkIfPromotionToNewClass() {}
 }

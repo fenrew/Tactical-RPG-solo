@@ -10,7 +10,11 @@ class stationarySummon {
     this.newPosition = false; // For pushback etc
   }
 
-  _generatePosition() {}
+  _initiate = (owner) => {
+    this.class.player = this;
+    this.class.ai.npc = this;
+    this.owner = owner;
+  };
 
   _addNpcToGame() {
     Game.activeMap[this.position.y][this.position.x] = this.playerNumber;
