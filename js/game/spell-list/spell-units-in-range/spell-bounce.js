@@ -18,6 +18,6 @@ const unitsHitWithBounce = (target, bounceRange, minRange = 0) => {
     unitBounced.push(unitHit);
     currentTarget = unitHit;
   }
-
+  console.log(unitBounced);
   return unitBounced;
 };

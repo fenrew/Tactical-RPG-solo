@@ -762,30 +762,32 @@ const priestSpellObject = {
       player._addTargetSpellConditions(player.spells.chainLightning, position);
     },
     castEffect: (target, spell, player) => {
-      unitsHitWithBounce(target, spell.spellInfo.bounceRange);
-      acaeca;
+      const unitsHit = unitsHitWithBounce(target, spell.spellInfo.bounceRange);
+      let additionalBounceDmg = 0;
 
-      const allNearbyTargets = getUnitsInFreeRange(target, 1);
-      console.log(allNearbyTargets);
-
-      allNearbyTargets.forEach((ele) => {
+      unitsHit.forEach((ele) => {
         let modifiedDamage = Math.floor(
-          spell.spellInfo.damage *
-            calculatePhysicalMeleeDamageModifiers(player.player, ele)
+          (spell.spellInfo.damage + additionalBounceDmg) *
+            calculateMagicalDamageModifiers(
+              player.player,
+              ele,
+              spell.spellInfo.source
+            )
         );
 
         ele.class.combatstats.currentHp -= modifiedDamage;
 
+        additionalBounceDmg += spell.spellInfo.additionalDamage;
+
         handleSpellDamageEffectAnimation(ele, modifiedDamage, "damage");
       });
-
-      return modifiedHealing;
     },
     spellInfo: {
       bounceRange: 2,
       learned: true,
       canBeCast: true,
       type: "damage",
+      source: "nature",
       manaCost: 20,
       damage: 30,
       additionalDamage: 10,
