@@ -731,11 +731,12 @@ const priestSpellObject = {
       const newTotem = new stationarySummon(new TotemOfHealing(), 41, {
         ...position,
       });
-      newTotem._initiate(this);
+      newTotem._initiate(player.player);
       newTotem._addNpcToGame();
     },
     spellInfo: {
       castOnNoTarget: true,
+      playerNumber: 41,
       learned: true,
       canBeCast: true,
       type: "healing",
