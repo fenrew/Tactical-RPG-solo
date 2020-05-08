@@ -7,6 +7,7 @@ on the caster
 
 - Unit dies: Remove combatEffects from dead units. This gives an error otherwise with the animations/visual
 
+- getUnitsInFreeRange: The min-range of getUnitsInFreeRange function does not work
 
 === IDEAS ====
 - Let totems and summons have the spell category, so they can learn new spells depending on how long they survive!

@@ -755,32 +755,17 @@ const priestSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
-  selfPreservation: {
-    id: "selfPreservation",
-    name: "Self Preservation",
+  chainLightning: {
+    id: "chainLightning",
+    name: "Chain Lightning",
     cast: (position, player) => {
-      player._addTargetSpellConditions(
-        player.spells.selfPreservation,
-        position
-      );
+      player._addTargetSpellConditions(player.spells.chainLightning, position);
     },
     castEffect: (target, spell, player) => {
-      const { combatstats } = target.class;
+      unitsHitWithBounce(target, spell.spellInfo.bounceRange);
+      acaeca;
 
-      let modifiedHealing = Math.floor(
-        spell.spellInfo.damage *
-          calculateHealingModifiers(player.player, target)
-      );
-
-      combatstats.currentHp += modifiedHealing;
-
-      if (combatstats.currentHp > combatstats.hp) {
-        combatstats.currentHp = combatstats.hp;
-      }
-
-      const allNearbyTargets = getUnitsInFreeRange(target, 1).filter(
-        (ele) => ele.npc
-      );
+      const allNearbyTargets = getUnitsInFreeRange(target, 1);
       console.log(allNearbyTargets);
 
       allNearbyTargets.forEach((ele) => {
@@ -797,18 +782,19 @@ const priestSpellObject = {
       return modifiedHealing;
     },
     spellInfo: {
+      bounceRange: 2,
       learned: true,
       canBeCast: true,
-      type: "healing",
+      type: "damage",
       manaCost: 20,
-      damagePercent: 50,
-      damage: 60,
+      damage: 30,
+      additionalDamage: 10,
       freeCells: true,
       straigthLine: false,
       diagonal: false,
       areaOfEffect: 1,
-      minRange: 0,
-      maxRange: 0,
+      minRange: 1,
+      maxRange: 4,
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,

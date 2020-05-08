@@ -131,6 +131,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.totemOfHealing,
         spellInfo: { ...priestSpellObject.totemOfHealing.spellInfo },
       },
+      chainLightning: {
+        ...priestSpellObject.chainLightning,
+        spellInfo: { ...priestSpellObject.chainLightning.spellInfo },
+      },
     };
   }
 
