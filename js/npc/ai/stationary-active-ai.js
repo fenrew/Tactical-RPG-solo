@@ -7,6 +7,10 @@ class stationaryActiveAi {
   runAi = () => {
     const { spells, combatstats } = this.class;
 
+    console.log(
+      checkIfPositionIsUnit(Game.activeMap, this.class.player.position)
+    );
+
     let response = true;
     let counter = 0;
 
