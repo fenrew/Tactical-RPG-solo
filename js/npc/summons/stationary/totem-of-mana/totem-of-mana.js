@@ -107,10 +107,11 @@ class TotemOfMana extends BaseClass {
           });
         },
         spellInfo: {
+          aiWeight: 10,
           learned: true,
           canBeCast: true,
           type: "healing",
-          manaCost: 20,
+          manaCost: 80,
           damage: 60,
           freeCells: true,
           straigthLine: false,

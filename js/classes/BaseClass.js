@@ -1,11 +1,9 @@
 class BaseClass {
   async _addTargetSpellConditions(spell, position, castTimes = 1) {
-    if (checkIfSpellIsCastable(this, spell, position))
-      return console.log("Cant be cast");
-
     let target = Game._getUnitByPosition(position);
-    if (!target && !spell.spellInfo.castOnNoTarget)
-      return console.log("No target");
+
+    if (checkIfSpellIsCastable(this, spell, target))
+      return console.log("Cant be cast");
 
     this.combatstats.currentMana -= spell.spellInfo.manaCost;
     updateCurrentManaBar(this.player);
@@ -69,7 +67,7 @@ class BaseClass {
   }
 
   _onDefense(spell, target) {
-    if (!target) return;
+    if (!target.playerNumber) return;
     const onDefenseAnswers = {};
     target.class.conditions.onDefense.forEach((ele) => {
       let answerOnDefense = ele.spell.conditionEffect(

@@ -68,8 +68,10 @@ class GameClass {
   }
 
   _getUnitByPosition(position) {
-    return this.combatTimeline.find(
-      (ele) => ele.position.y == position.y && ele.position.x == position.x
+    return (
+      this.combatTimeline.find(
+        (ele) => ele.position.y == position.y && ele.position.x == position.x
+      ) || position
     );
   }
 

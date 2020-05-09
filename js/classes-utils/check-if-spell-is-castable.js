@@ -1,13 +1,15 @@
 // Checks the mana requirement, disarmed etc. returns true if the spell can be cast
 
 const checkIfSpellIsCastable = (player, spell, position) => {
-  let spellInfo = spell.spellInfo;
+  const { spellInfo } = spell;
+  const { conditionsRequirements } = spellInfo;
+  const { combatstats, conditions } = player;
 
   if (!spellInfo.learned) {
     return false;
   }
 
-  if (player.combatstats.currentMana < spellInfo.manaCost) {
+  if (combatstats.currentMana < spellInfo.manaCost) {
     return true;
   }
 
@@ -15,16 +17,16 @@ const checkIfSpellIsCastable = (player, spell, position) => {
     return true;
   }
 
-  if (spellInfo.conditionsRequirements.disarmed && player.conditions.disarmed) {
+  if (conditionsRequirements.disarmed && conditions.disarmed) {
     return true;
   }
 
-  if (spellInfo.conditionsRequirements.silenced && player.conditions.silenced) {
+  if (conditionsRequirements.silenced && conditions.silenced) {
     return true;
   }
 
   if (
-    spell.spellInfo.noTargetRequired &&
+    spellInfo.noTargetRequired &&
     (position.playerNumber ||
       !checkIfMapGridIsAvailable(Game.activeMap, {
         ...position,
@@ -33,13 +35,18 @@ const checkIfSpellIsCastable = (player, spell, position) => {
     return true;
 
   if (
-    spell.spellInfo.maxActiveSummon &&
+    spellInfo.maxActiveSummon &&
     checkSpecificSummonCount(player.player.playerNumber, 41) >=
-      spell.spellInfo.maxActiveSummon
+      spellInfo.maxActiveSummon
   ) {
     console.log(
-      "Can only have " + spell.spellInfo.maxActiveSummon + " of this summon"
+      "Can only have " + spellInfo.maxActiveSummon + " of this summon"
     );
+    return true;
+  }
+
+  if (!position.playerNumber && !spellInfo.castOnNoTarget) {
+    console.log("No target");
     return true;
   }
 
