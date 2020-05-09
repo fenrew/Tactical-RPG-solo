@@ -20,17 +20,18 @@ class stationaryActiveAi {
   };
 
   castSpell = () => {
-    for (let spell in this.class.spells) {
-      const curSpell = this.class.spells[spell];
-      if (
-        checkIfSpellIsCastable(this.class, curSpell, this.class.player.position)
-      )
-        return false;
-      if (
-        curSpell.spellInfo.minRange === 0 &&
-        curSpell.spellInfo.maxRange === 0
-      ) {
-        curSpell.cast(this.class.player.position);
+    const { spells } = this.class;
+    const { position } = this.class.player;
+
+    for (let spell in spells) {
+      const curSpell = spells[spell];
+      const { spellInfo, cast } = curSpell;
+      const { minRange, maxRange } = spellInfo;
+
+      if (checkIfSpellIsCastable(this.class, curSpell, position)) return false;
+
+      if (minRange === 0 && maxRange === 0) {
+        cast(position);
         return true;
       }
     }

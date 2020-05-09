@@ -85,7 +85,10 @@ class TotemOfHealing extends BaseClass {
           this._addTargetSpellConditions(this.spells.healAoe, position);
         },
         castEffect: (target, spell, player) => {
-          const allNearbyTargets = getUnitsInFreeRange(target, 3);
+          const allNearbyTargets = getUnitsInFreeRange(
+            target,
+            spell.spellInfo.aoeRange
+          );
 
           allNearbyTargets.forEach((ele) => {
             const { combatstats } = ele.class;
@@ -108,7 +111,9 @@ class TotemOfHealing extends BaseClass {
           });
         },
         spellInfo: {
+          aoeRange: 3,
           castOnNoTarget: true,
+          aiWeight: 10,
           learned: true,
           canBeCast: true,
           type: "healing",

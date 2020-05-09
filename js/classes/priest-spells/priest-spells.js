@@ -809,4 +809,46 @@ const priestSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  totemOfMana: {
+    id: "totemOfMana",
+    name: "Totem of Mana",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.totemOfMana, position);
+    },
+    castEffect: (position, spell, player) => {
+      const newTotem = new stationarySummon(new TotemOfMana(), 41, {
+        ...position,
+      });
+      newTotem._initiate(player.player);
+      newTotem._addNpcToGame();
+    },
+    spellInfo: {
+      castOnNoTarget: true,
+      noTargetRequired: true,
+      playerNumber: 41,
+      maxActiveSummon: 1,
+      learned: true,
+      canBeCast: true,
+      type: "healing",
+      source: "nature",
+      manaCost: 30,
+      damage: 30,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 1,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "voodoo",
+    toLearn: 0,
+    castCounter: 0,
+  },
 };

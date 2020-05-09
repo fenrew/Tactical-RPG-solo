@@ -87,7 +87,7 @@ class TotemOfMana extends BaseClass {
         castEffect: (target, spell, player) => {
           const allNearbyTargets = getUnitsInFreeRange(
             target,
-            spell.spellInfo.maxRange
+            spell.spellInfo.aoeRange
           );
 
           allNearbyTargets.forEach((ele) => {
@@ -107,18 +107,20 @@ class TotemOfMana extends BaseClass {
           });
         },
         spellInfo: {
+          aoeRange: 4,
+          castOnNoTarget: true,
           aiWeight: 10,
           learned: true,
           canBeCast: true,
-          type: "healing",
+          type: "managain",
           manaCost: 80,
           damage: 60,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
           areaOfEffect: 1,
-          minRange: 1,
-          maxRange: 4,
+          minRange: 0,
+          maxRange: 0,
           modifiableRange: false,
           lineOfSight: false,
           cooldown: 1,

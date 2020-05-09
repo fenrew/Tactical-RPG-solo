@@ -135,6 +135,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.chainLightning,
         spellInfo: { ...priestSpellObject.chainLightning.spellInfo },
       },
+      totemOfMana: {
+        ...priestSpellObject.totemOfMana,
+        spellInfo: { ...priestSpellObject.totemOfMana.spellInfo },
+      },
     };
   }
 
