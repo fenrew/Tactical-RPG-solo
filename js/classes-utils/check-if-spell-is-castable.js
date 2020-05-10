@@ -45,7 +45,11 @@ const checkIfSpellIsCastable = (player, spell, position) => {
     return true;
   }
 
-  if (!position.playerNumber && !spellInfo.castOnNoTarget) {
+  if (
+    !position.playerNumber &&
+    position.playerNumber !== 0 &&
+    !spellInfo.castOnNoTarget
+  ) {
     console.log("No target");
     return true;
   }

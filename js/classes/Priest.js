@@ -139,6 +139,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.totemOfMana,
         spellInfo: { ...priestSpellObject.totemOfMana.spellInfo },
       },
+      voodooBrew: {
+        ...priestSpellObject.voodooBrew,
+        spellInfo: { ...priestSpellObject.voodooBrew.spellInfo },
+      },
     };
   }
 

@@ -851,4 +851,69 @@ const priestSpellObject = {
     toLearn: 0,
     castCounter: 0,
   },
+  voodooBrew: {
+    id: "voodooBrew",
+    name: "Voodoo Brew",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.voodooBrew, position);
+    },
+    castEffect: (target, spell, player) => {
+      const { combatstats, damageModifiers } = target.class;
+      const { damage, duration } = spell.spellInfo;
+
+      let modifiedDamage = Math.floor(damage);
+
+      combatstats.currentHp -= modifiedDamage;
+
+      let dmgIncrease = damageModifiers.offensive.magicalDamage.allDamage * 0.5;
+
+      damageModifiers.offensive.magicalDamage.allDamage += dmgIncrease;
+
+      for (let i = 1; i <= duration; i++) {
+        Game._addNewCombatEffect(player.player, target, spell, i, {
+          dmgIncrease,
+        });
+      }
+
+      return modifiedDamage;
+    },
+    applyEffect: (effect) => {
+      const { combatstats, damageModifiers } = effect.target.class;
+      const { target, spell, dmgIncrease, executeRound } = effect;
+      const { duration, damage, type } = spell.spellInfo;
+
+      combatstats.currentHp -= damage;
+
+      handleSpellDamageEffectAnimation(target, damage, type);
+
+      if (executeRound === duration) {
+        damageModifiers.offensive.magicalDamage.allDamage -= dmgIncrease;
+      }
+    },
+    spellInfo: {
+      learned: true,
+      canBeCast: true,
+      type: "buff",
+      duration: 2,
+      manaCost: 40,
+      duration: 2,
+      damage: 30,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      areaOfEffect: 1,
+      minRange: 0,
+      maxRange: 0,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "voodoo",
+    toLearn: 8,
+    castCounter: 0,
+  },
 };
