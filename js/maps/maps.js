@@ -24,6 +24,7 @@
 // 2 = freezing ground (Sorcerer)
 // 3 = snowstorm (Sorcerer)
 // 4 = holy ground (Priest)
+// 5 = starfall (Priest)
 
 const mapOne = [
   [20, 20, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],

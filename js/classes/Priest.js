@@ -143,6 +143,10 @@ class Priest extends BaseClass {
         ...priestSpellObject.voodooBrew,
         spellInfo: { ...priestSpellObject.voodooBrew.spellInfo },
       },
+      starfall: {
+        ...priestSpellObject.starfall,
+        spellInfo: { ...priestSpellObject.starfall.spellInfo },
+      },
     };
   }
 

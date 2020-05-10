@@ -916,4 +916,79 @@ const priestSpellObject = {
     toLearn: 8,
     castCounter: 0,
   },
+  starfall: {
+    id: "starfall",
+    name: "Starfall",
+    cast: (position, player) => {
+      player._addTargetSpellConditions(player.spells.starfall, position);
+    },
+    castEffect: (target, spell, player) => {
+      // ADD EFFECT
+      const { duration, damage, source } = spell.spellInfo;
+      const { combatstats } = target.class;
+
+      const modifiedDamage = Math.floor(
+        damage * calculateMagicalDamageModifiers(player.player, target, source)
+      );
+
+      combatstats.currentHp -= modifiedDamage;
+
+      addSquareGlyph(
+        player.player,
+        target.y + 1 ? target : target.position,
+        spell
+      ); // The ternery is needed because position can sometimes be a player or npc
+
+      Game._addNewCombatEffect(player.player, target, spell, duration);
+
+      return modifiedDamage;
+    },
+    applyEffect: (effect) => {
+      removeGlyph(effect.player, effect.spell.spellInfo.glyphNumber);
+      // ADD remove glyph animation here
+    },
+    activateGlyph: (target, player) => {
+      const {
+        type,
+        source,
+        dotDamage,
+      } = player.class.spells.starfall.spellInfo;
+      const { combatstats } = target.class;
+
+      const modifiedDamage = Math.floor(
+        dotDamage * calculateMagicalDamageModifiers(player, target, source)
+      );
+
+      combatstats.currentHp -= modifiedDamage;
+
+      handleSpellDamageEffectAnimation(target, modifiedDamage, type);
+    },
+    spellInfo: {
+      size: 0,
+      glyphNumber: 5,
+      learned: true,
+      canBeCast: true,
+      type: "damage",
+      source: "arcane",
+      manaCost: 40,
+      damage: 40,
+      dotDamage: 20,
+      duration: 3,
+      freeCells: true,
+      straigthLine: false,
+      diagonal: false,
+      minRange: 3,
+      maxRange: 5,
+      modifiableRange: false,
+      lineOfSight: false,
+      cooldown: 1,
+      castsPerTurn: 1,
+      conditionsRequirements: {
+        silenced: true,
+      },
+    },
+    category: "voodoo",
+    toLearn: 8,
+    castCounter: 0,
+  },
 };
