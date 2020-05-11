@@ -79,65 +79,67 @@ class Sorcerer extends BaseClass {
     this.spells = {
       frostbolt: {
         ...sorcererSpellObject.frostbolt,
-        spellInfo: { ...sorcererSpellObject.frostbolt.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.frostbolt.userSpellInfo },
       },
       frostbite: {
         ...sorcererSpellObject.frostbite,
-        spellInfo: { ...sorcererSpellObject.frostbite.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.frostbite.userSpellInfo },
       },
       freezingGround: {
         ...sorcererSpellObject.freezingGround,
-        spellInfo: { ...sorcererSpellObject.freezingGround.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.freezingGround.userSpellInfo },
       },
       snowstorm: {
         ...sorcererSpellObject.snowstorm,
-        spellInfo: { ...sorcererSpellObject.snowstorm.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.snowstorm.userSpellInfo },
       },
       iceWall: {
         ...sorcererSpellObject.iceWall,
-        spellInfo: { ...sorcererSpellObject.iceWall.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.iceWall.userSpellInfo },
       },
 
       firebolt: {
         ...sorcererSpellObject.firebolt,
-        spellInfo: { ...sorcererSpellObject.firebolt.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.firebolt.userSpellInfo },
       },
       fireSpheres: {
         ...sorcererSpellObject.fireSpheres,
-        spellInfo: { ...sorcererSpellObject.fireSpheres.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.fireSpheres.userSpellInfo },
       },
       glimmeringFlash: {
         ...sorcererSpellObject.glimmeringFlash,
-        spellInfo: { ...sorcererSpellObject.glimmeringFlash.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.glimmeringFlash.userSpellInfo },
       },
       pyroclasm: {
         ...sorcererSpellObject.pyroclasm,
-        spellInfo: { ...sorcererSpellObject.pyroclasm.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.pyroclasm.userSpellInfo },
       },
       fireArmor: {
         ...sorcererSpellObject.fireArmor,
-        spellInfo: { ...sorcererSpellObject.fireArmor.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.fireArmor.userSpellInfo },
       },
 
       arcanePolarization: {
         ...sorcererSpellObject.arcanePolarization,
-        spellInfo: { ...sorcererSpellObject.arcanePolarization.spellInfo },
+        userSpellInfo: {
+          ...sorcererSpellObject.arcanePolarization.userSpellInfo,
+        },
       },
       flamingWeapon: {
         ...sorcererSpellObject.flamingWeapon,
-        spellInfo: { ...sorcererSpellObject.flamingWeapon.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.flamingWeapon.userSpellInfo },
       },
       hurricane: {
         ...sorcererSpellObject.hurricane,
-        spellInfo: { ...sorcererSpellObject.hurricane.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.hurricane.userSpellInfo },
       },
       iceArmor: {
         ...sorcererSpellObject.iceArmor,
-        spellInfo: { ...sorcererSpellObject.iceArmor.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.iceArmor.userSpellInfo },
       },
       teleport: {
         ...sorcererSpellObject.teleport,
-        spellInfo: { ...sorcererSpellObject.teleport.spellInfo },
+        userSpellInfo: { ...sorcererSpellObject.teleport.userSpellInfo },
       },
     };
   }

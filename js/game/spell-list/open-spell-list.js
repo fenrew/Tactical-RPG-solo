@@ -31,7 +31,7 @@ function addSpellListKeysToElement(spellList, element) {
   element.appendChild(newLayerEle);
 
   spellListArray.forEach((spell) => {
-    if (!spell.spellInfo.learned) return;
+    if (!spell.userSpellInfo.learned) return;
     const newContainerEle = document.createElement("div");
     const newSpellName = document.createElement("div");
     const newManaImgEle = document.createElement("div");
@@ -50,8 +50,11 @@ function addSpellListKeysToElement(spellList, element) {
 
     newContainerEle.id = "spell-list-" + spell.id;
     newContainerEle.classList.add("spell-list-unit");
-    if (spell.spellInfo.manaCost > currentMana || !spell.spellInfo.canBeCast)
-      newContainerEle.classList.add("insufficient-mana");
+    if (
+      spell.spellInfo.manaCost > currentMana ||
+      !spell.userSpellInfo.canBeCast
+    )
+      newContainerEle.classList.add("spell-cant-be-cast");
     // newContainerEle.innerHTML = spell.name
 
     addOnClickToOpenSpellListElement(spell, newContainerEle);

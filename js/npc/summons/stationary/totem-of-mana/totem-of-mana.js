@@ -110,8 +110,6 @@ class TotemOfMana extends BaseClass {
           aoeRange: 4,
           castOnNoTarget: true,
           aiWeight: 10,
-          learned: true,
-          canBeCast: true,
           type: "managain",
           manaCost: 80,
           damage: 60,
@@ -128,6 +126,12 @@ class TotemOfMana extends BaseClass {
           conditionsRequirements: {
             silenced: true,
           },
+        },
+        userSpellInfo: {
+          learned: true,
+          canBeCast: true,
+          currentCooldown: 0,
+          currentCastsPerTurn: 0,
         },
         toLearn: 0,
         category: "totem",

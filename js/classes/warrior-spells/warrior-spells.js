@@ -34,8 +34,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       magicalDmgReuction: 15,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -54,6 +52,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "defense",
     toLearn: 0,
@@ -83,8 +87,6 @@ const warriorSpellObject = {
         effect.physicalDmgRed;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "debuff",
       manaCost: 30,
@@ -103,6 +105,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: false,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "defense",
     toLearn: 0,
@@ -123,8 +131,6 @@ const warriorSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -142,6 +148,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "defense",
     toLearn: 0,
@@ -203,8 +215,6 @@ const warriorSpellObject = {
     spellInfo: {
       healingPercent: 10,
       physicalDamageIncrease: 15,
-      learned: true,
-      canBeCast: true,
       type: "debuff",
       source: "debuff",
       manaCost: 30,
@@ -223,6 +233,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: false,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "defense",
     toLearn: 0,
@@ -245,8 +261,6 @@ const warriorSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -264,6 +278,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fighter",
     toLearn: 0,
@@ -295,8 +315,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       damageAroundPlayer: true,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -314,6 +332,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fighter",
     toLearn: 0,
@@ -360,8 +384,6 @@ const warriorSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "buff",
       manaCost: 30,
@@ -380,6 +402,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fighter",
     toLearn: 0,
@@ -405,8 +433,6 @@ const warriorSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -424,6 +450,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fighter",
     toLearn: 0,
@@ -504,8 +536,6 @@ const warriorSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "buff",
       manaCost: 30,
@@ -524,6 +554,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fighter",
     toLearn: 0,
@@ -560,8 +596,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       selfHealing: 3,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -579,6 +613,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,
@@ -609,8 +649,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       selfDamage: 20,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -628,6 +666,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,
@@ -669,8 +713,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       healingPercentage: 5,
-      learned: true,
-      canBeCast: true,
       type: "buff",
       source: "frost",
       manaCost: 30,
@@ -689,6 +731,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,
@@ -736,8 +784,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       healingPercentage: 60,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -755,6 +801,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,
@@ -786,8 +838,6 @@ const warriorSpellObject = {
     },
     spellInfo: {
       healingPercentage: 30,
-      learned: true,
-      canBeCast: true,
       type: "healing",
       source: "healing",
       manaCost: 30,
@@ -805,6 +855,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,
@@ -828,8 +884,6 @@ const warriorSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -847,6 +901,12 @@ const warriorSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "blood",
     toLearn: 0,

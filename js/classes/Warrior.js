@@ -79,65 +79,65 @@ class Warrior extends BaseClass {
     this.spells = {
       shieldBash: {
         ...warriorSpellObject.shieldBash,
-        spellInfo: { ...warriorSpellObject.shieldBash.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.shieldBash.userSpellInfo },
       },
       disarm: {
         ...warriorSpellObject.disarm,
-        spellInfo: { ...warriorSpellObject.disarm.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.disarm.userSpellInfo },
       },
       shieldSlam: {
         ...warriorSpellObject.shieldSlam,
-        spellInfo: { ...warriorSpellObject.shieldSlam.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.shieldSlam.userSpellInfo },
       },
       selfSufficiency: {
         ...warriorSpellObject.selfSufficiency,
-        spellInfo: { ...warriorSpellObject.selfSufficiency.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.selfSufficiency.userSpellInfo },
       },
 
       slash: {
         ...warriorSpellObject.slash,
-        spellInfo: { ...warriorSpellObject.slash.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.slash.userSpellInfo },
       },
       whirlwind: {
         ...warriorSpellObject.whirlwind,
-        spellInfo: { ...warriorSpellObject.whirlwind.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.whirlwind.userSpellInfo },
       },
       artOfCombat: {
         ...warriorSpellObject.artOfCombat,
-        spellInfo: { ...warriorSpellObject.artOfCombat.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.artOfCombat.userSpellInfo },
       },
       hamstring: {
         ...warriorSpellObject.hamstring,
-        spellInfo: { ...warriorSpellObject.hamstring.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.hamstring.userSpellInfo },
       },
       sweepingStrikes: {
         ...warriorSpellObject.sweepingStrikes,
-        spellInfo: { ...warriorSpellObject.sweepingStrikes.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.sweepingStrikes.userSpellInfo },
       },
 
       absorptionStrike: {
         ...warriorSpellObject.absorptionStrike,
-        spellInfo: { ...warriorSpellObject.absorptionStrike.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.absorptionStrike.userSpellInfo },
       },
       jointStrike: {
         ...warriorSpellObject.jointStrike,
-        spellInfo: { ...warriorSpellObject.jointStrike.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.jointStrike.userSpellInfo },
       },
       painSuppression: {
         ...warriorSpellObject.painSuppression,
-        spellInfo: { ...warriorSpellObject.painSuppression.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.painSuppression.userSpellInfo },
       },
       amurStrike: {
         ...warriorSpellObject.amurStrike,
-        spellInfo: { ...warriorSpellObject.amurStrike.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.amurStrike.userSpellInfo },
       },
       lifeTransfer: {
         ...warriorSpellObject.lifeTransfer,
-        spellInfo: { ...warriorSpellObject.lifeTransfer.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.lifeTransfer.userSpellInfo },
       },
       punishment: {
         ...warriorSpellObject.punishment,
-        spellInfo: { ...warriorSpellObject.punishment.spellInfo },
+        userSpellInfo: { ...warriorSpellObject.punishment.userSpellInfo },
       },
     };
   }

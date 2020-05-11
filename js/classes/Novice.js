@@ -1,6 +1,6 @@
 class Novice extends BaseClass {
   constructor(player) {
-    super()
+    super();
     this.className = "Novice";
     this.cssString = "novice-player-area";
     this.cssPlayerPanelString = "novice-class-player-panel";
@@ -20,7 +20,7 @@ class Novice extends BaseClass {
       silenced: false,
       disarmed: false,
       onAttack: [],
-      onDefense: []
+      onDefense: [],
     };
 
     this.damageModifiers = {
@@ -80,74 +80,74 @@ class Novice extends BaseClass {
     this.spells = {
       slam: {
         ...noviceSpellObject.slam,
-        spellInfo: { ...noviceSpellObject.slam.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.slam.userSpellInfo },
       },
       defensiveStance: {
         ...noviceSpellObject.defensiveStance,
-        spellInfo: { ...noviceSpellObject.defensiveStance.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.defensiveStance.userSpellInfo },
       },
       rend: {
         ...noviceSpellObject.rend,
-        spellInfo: { ...noviceSpellObject.rend.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.rend.userSpellInfo },
       },
       powerStroke: {
         ...noviceSpellObject.powerStroke,
-        spellInfo: { ...noviceSpellObject.powerStroke.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.powerStroke.userSpellInfo },
       },
       findWeakness: {
         ...noviceSpellObject.findWeakness,
-        spellInfo: { ...noviceSpellObject.findWeakness.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.findWeakness.userSpellInfo },
       },
 
       throwStaff: {
         ...noviceSpellObject.throwStaff,
-        spellInfo: { ...noviceSpellObject.throwStaff.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.throwStaff.userSpellInfo },
       },
       forceStaff: {
         ...noviceSpellObject.forceStaff,
-        spellInfo: { ...noviceSpellObject.forceStaff.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.forceStaff.userSpellInfo },
       },
 
       conjureFrost: {
         ...noviceSpellObject.conjureFrost,
-        spellInfo: { ...noviceSpellObject.conjureFrost.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.conjureFrost.userSpellInfo },
       },
       heatwave: {
         ...noviceSpellObject.heatwave,
-        spellInfo: { ...noviceSpellObject.heatwave.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.heatwave.userSpellInfo },
       },
       magicLance: {
         ...noviceSpellObject.magicLance,
-        spellInfo: { ...noviceSpellObject.magicLance.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.magicLance.userSpellInfo },
       },
       syphonMana: {
         ...noviceSpellObject.syphonMana,
-        spellInfo: { ...noviceSpellObject.syphonMana.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.syphonMana.userSpellInfo },
       },
       powerSpike: {
         ...noviceSpellObject.powerSpike,
-        spellInfo: { ...noviceSpellObject.powerSpike.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.powerSpike.userSpellInfo },
       },
 
       heal: {
         ...noviceSpellObject.heal,
-        spellInfo: { ...noviceSpellObject.heal.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.heal.userSpellInfo },
       },
       inspire: {
         ...noviceSpellObject.inspire,
-        spellInfo: { ...noviceSpellObject.inspire.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.inspire.userSpellInfo },
       },
       smite: {
         ...noviceSpellObject.smite,
-        spellInfo: { ...noviceSpellObject.smite.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.smite.userSpellInfo },
       },
       absorb: {
         ...noviceSpellObject.absorb,
-        spellInfo: { ...noviceSpellObject.absorb.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.absorb.userSpellInfo },
       },
       holySpike: {
         ...noviceSpellObject.holySpike,
-        spellInfo: { ...noviceSpellObject.holySpike.spellInfo },
+        userSpellInfo: { ...noviceSpellObject.holySpike.userSpellInfo },
       },
     };
   }

@@ -15,8 +15,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 30,
@@ -34,6 +32,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "warrior",
     toLearn: 0,
@@ -69,8 +73,6 @@ const noviceSpellObject = {
         effect.magicalDmgDealt;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "buff",
       manaCost: 40,
       duration: 3,
@@ -86,6 +88,12 @@ const noviceSpellObject = {
       cooldown: 4,
       castsPerTurn: 1,
       conditionsRequirements: {},
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "warrior",
     toLearn: 8,
@@ -114,8 +122,6 @@ const noviceSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "true",
       duration: 3,
@@ -134,6 +140,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "warrior",
     toLearn: 16,
@@ -154,8 +166,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-melee",
       manaCost: 40,
@@ -173,6 +183,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "warrior",
     toLearn: 0,
@@ -202,8 +218,6 @@ const noviceSpellObject = {
         effect.physicalDmgTaken;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "debuff",
       duration: 2,
       manaCost: 40,
@@ -219,6 +233,12 @@ const noviceSpellObject = {
       cooldown: 3,
       castsPerTurn: 1,
       conditionsRequirements: {},
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "warrior",
     toLearn: 30,
@@ -241,8 +261,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "physical-ranged",
       manaCost: 25,
@@ -260,6 +278,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "ranger",
     toLearn: 0,
@@ -282,8 +306,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "true",
       manaCost: 40,
@@ -302,6 +324,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "ranger",
     toLearn: 8,
@@ -331,8 +359,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "frost",
       manaCost: 30,
@@ -350,6 +376,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 0,
@@ -387,8 +419,6 @@ const noviceSpellObject = {
       handleSpellDamageEffectAnimation(target, modifiedDamage, type);
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 40,
@@ -410,6 +440,12 @@ const noviceSpellObject = {
         silenced: true,
       },
     },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
+    },
     category: "sorcerer",
     toLearn: 8,
     castCounter: 0,
@@ -429,8 +465,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "arcane",
       manaCost: 30,
@@ -448,6 +482,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 0,
@@ -467,8 +507,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "managain",
       manaCost: 8,
       damage: 25,
@@ -485,6 +523,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 0,
@@ -513,8 +557,6 @@ const noviceSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "managain",
       duration: 1,
       manaCost: 10,
@@ -532,6 +574,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 8,
@@ -559,8 +607,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       source: "healing",
       manaCost: 30,
@@ -578,6 +624,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "priest",
     toLearn: 0,
@@ -626,8 +678,6 @@ const noviceSpellObject = {
       }
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       duration: 2,
       manaCost: 40,
@@ -645,6 +695,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "priest",
     toLearn: 8,
@@ -665,8 +721,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "holy",
       manaCost: 25,
@@ -684,6 +738,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "priest",
     toLearn: 0,
@@ -713,8 +773,6 @@ const noviceSpellObject = {
         effect.magicDmgTaken;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "buff",
       manaCost: 40,
       duration: 2,
@@ -730,6 +788,12 @@ const noviceSpellObject = {
       cooldown: 5,
       castsPerTurn: 1,
       conditionsRequirements: {},
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "priest",
     toLearn: 8,
@@ -760,8 +824,6 @@ const noviceSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage", // NB: This changes when using the spell
       source: "holy", // NB: This changes when using the spell
       manaCost: 10,
@@ -779,6 +841,12 @@ const noviceSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "priest",
     toLearn: 0,

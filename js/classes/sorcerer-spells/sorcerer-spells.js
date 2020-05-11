@@ -26,8 +26,6 @@ const sorcererSpellObject = {
       effect.target.class.combatstats.initiation += 150;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "frost",
       manaCost: 30,
@@ -46,6 +44,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "frost",
     toLearn: 0,
@@ -97,8 +101,6 @@ const sorcererSpellObject = {
       }
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "frost",
       manaCost: 40,
@@ -117,6 +119,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "frost",
     toLearn: 0,
@@ -153,8 +161,6 @@ const sorcererSpellObject = {
       size: 1,
       glyphNumber: 2,
       castOnNoTarget: true,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       manaCost: 40,
       damage: 1,
@@ -171,6 +177,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 8,
@@ -211,8 +223,6 @@ const sorcererSpellObject = {
       size: 1,
       glyphNumber: 3,
       castOnNoTarget: true,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "frost",
       manaCost: 40,
@@ -230,6 +240,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "sorcerer",
     toLearn: 8,
@@ -301,8 +317,6 @@ const sorcererSpellObject = {
     },
     spellInfo: {
       castOnNoTarget: true,
-      learned: true,
-      canBeCast: true,
       type: "summon",
       manaCost: 30,
       damage: 1,
@@ -320,6 +334,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "frost",
     toLearn: 0,
@@ -377,8 +397,6 @@ const sorcererSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 30,
@@ -398,6 +416,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fire",
     toLearn: 0,
@@ -434,8 +458,6 @@ const sorcererSpellObject = {
     },
     spellInfo: {
       range: 5,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 30,
@@ -454,6 +476,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         disarmed: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fire",
     toLearn: 0,
@@ -484,8 +512,6 @@ const sorcererSpellObject = {
       return Math.random() > 0.3 ? false : { cancelSpell: true };
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 30,
@@ -505,6 +531,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fire",
     toLearn: 0,
@@ -544,8 +576,6 @@ const sorcererSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "fire",
       manaCost: 30,
@@ -565,6 +595,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fire",
     toLearn: 0,
@@ -601,8 +637,6 @@ const sorcererSpellObject = {
       }
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "buff",
       source: "fire",
       manaCost: 30,
@@ -621,6 +655,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "fire",
     toLearn: 0,
@@ -686,8 +726,6 @@ const sorcererSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "arcane",
       manaCost: 30,
@@ -707,6 +745,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "utility",
     toLearn: 0,
@@ -754,8 +798,6 @@ const sorcererSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "buff",
       damageSource: "fire",
@@ -775,6 +817,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "utility",
     toLearn: 0,
@@ -808,8 +856,6 @@ const sorcererSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "arcane",
       manaCost: 50,
@@ -829,6 +875,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "utility",
     toLearn: 8,
@@ -882,8 +934,6 @@ const sorcererSpellObject = {
       handleSpellDamageEffectAnimation(player, 1, "mp");
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "buff",
       source: "frost",
       manaCost: 30,
@@ -903,6 +953,12 @@ const sorcererSpellObject = {
         silenced: true,
       },
     },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
+    },
     category: "utility",
     toLearn: 0,
     castCounter: 0,
@@ -919,8 +975,6 @@ const sorcererSpellObject = {
       }
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       castOnNoTarget: true,
       type: "damage",
       source: "arcane",
@@ -940,6 +994,12 @@ const sorcererSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "utility",
     toLearn: 0,

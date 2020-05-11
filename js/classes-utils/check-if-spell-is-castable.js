@@ -1,11 +1,11 @@
 // Checks the mana requirement, disarmed etc. returns true if the spell can be cast
 
 const checkIfSpellIsCastable = (player, spell, position) => {
-  const { spellInfo } = spell;
+  const { spellInfo, userSpellInfo } = spell;
   const { conditionsRequirements } = spellInfo;
   const { combatstats, conditions } = player;
 
-  if (!spellInfo.learned) {
+  if (!userSpellInfo.learned) {
     return false;
   }
 
@@ -13,7 +13,7 @@ const checkIfSpellIsCastable = (player, spell, position) => {
     return true;
   }
 
-  if (!spellInfo.canBeCast) {
+  if (!userSpellInfo.canBeCast) {
     return true;
   }
 
@@ -36,8 +36,10 @@ const checkIfSpellIsCastable = (player, spell, position) => {
 
   if (
     spellInfo.maxActiveSummon &&
-    checkSpecificSummonCount(player.player.playerNumber, 41) >=
-      spellInfo.maxActiveSummon
+    checkSpecificSummonCount(
+      player.player.playerNumber,
+      spellInfo.playerNumber
+    ) >= spellInfo.maxActiveSummon
   ) {
     console.log(
       "Can only have " + spellInfo.maxActiveSummon + " of this summon"

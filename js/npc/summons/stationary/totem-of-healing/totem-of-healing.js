@@ -114,8 +114,6 @@ class TotemOfHealing extends BaseClass {
           aoeRange: 3,
           castOnNoTarget: true,
           aiWeight: 10,
-          learned: true,
-          canBeCast: true,
           type: "healing",
           manaCost: 80,
           damage: 60,
@@ -132,6 +130,12 @@ class TotemOfHealing extends BaseClass {
           conditionsRequirements: {
             silenced: true,
           },
+        },
+        userSpellInfo: {
+          learned: true,
+          canBeCast: true,
+          currentCooldown: 0,
+          currentCastsPerTurn: 0,
         },
         toLearn: 0,
         category: "totem",

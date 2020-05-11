@@ -32,8 +32,6 @@ const priestSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       duration: 4,
       manaCost: 40,
@@ -51,6 +49,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -79,8 +83,6 @@ const priestSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       duration: 4,
       manaCost: 20,
@@ -98,6 +100,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -129,7 +137,6 @@ const priestSpellObject = {
       const allNearbyTargets = getUnitsInFreeRange(target, 1).filter(
         (ele) => ele.npc
       );
-      console.log(allNearbyTargets);
 
       allNearbyTargets.forEach((ele) => {
         let modifiedDamage = Math.floor(
@@ -145,8 +152,6 @@ const priestSpellObject = {
       return modifiedHealing;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       manaCost: 20,
       damagePercent: 50,
@@ -164,6 +169,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -210,8 +221,6 @@ const priestSpellObject = {
       size: 1,
       glyphNumber: 4,
       castOnNoTarget: true,
-      learned: true,
-      canBeCast: true,
       type: "healing",
       manaCost: 40,
       damage: 20,
@@ -228,6 +237,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -262,8 +277,6 @@ const priestSpellObject = {
     },
     spellInfo: {
       healthIncrease: 200,
-      learned: true,
-      canBeCast: true,
       type: "buff",
       duration: 4,
       manaCost: 40,
@@ -282,6 +295,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -315,8 +334,6 @@ const priestSpellObject = {
       });
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       duration: 4,
       manaCost: 70,
@@ -334,6 +351,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "holy",
     toLearn: 8,
@@ -375,8 +398,6 @@ const priestSpellObject = {
       );
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "holy",
       manaCost: 30,
@@ -396,6 +417,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -438,8 +465,6 @@ const priestSpellObject = {
     },
     spellInfo: {
       castOnNoTarget: true,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "holy",
       manaCost: 30,
@@ -457,6 +482,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -496,8 +527,6 @@ const priestSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "holy",
       manaCost: 30,
@@ -516,6 +545,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -554,8 +589,6 @@ const priestSpellObject = {
       return modifiedDamage;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "darkness",
       manaCost: 30,
@@ -575,6 +608,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -618,8 +657,6 @@ const priestSpellObject = {
       });
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "holy",
       manaCost: 30,
@@ -638,6 +675,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -686,8 +729,6 @@ const priestSpellObject = {
       return modifiedHealing;
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "healing",
       source: "holy",
       manaCost: 30,
@@ -706,6 +747,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "smite",
     toLearn: 0,
@@ -731,8 +778,6 @@ const priestSpellObject = {
       noTargetRequired: true,
       playerNumber: 41,
       maxActiveSummon: 1,
-      learned: true,
-      canBeCast: true,
       type: "healing",
       source: "nature",
       manaCost: 30,
@@ -750,6 +795,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "voodoo",
     toLearn: 0,
@@ -784,8 +835,6 @@ const priestSpellObject = {
     },
     spellInfo: {
       bounceRange: 2,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "nature",
       manaCost: 20,
@@ -805,6 +854,12 @@ const priestSpellObject = {
         silenced: true,
       },
     },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
+    },
     category: "voodoo",
     toLearn: 8,
     castCounter: 0,
@@ -816,19 +871,21 @@ const priestSpellObject = {
       player._addTargetSpellConditions(player.spells.totemOfMana, position);
     },
     castEffect: (position, spell, player) => {
-      const newTotem = new stationarySummon(new TotemOfMana(), 41, {
-        ...position,
-      });
+      const newTotem = new stationarySummon(
+        new TotemOfMana(),
+        spell.spellInfo.playerNumber,
+        {
+          ...position,
+        }
+      );
       newTotem._initiate(player.player);
       newTotem._addNpcToGame();
     },
     spellInfo: {
       castOnNoTarget: true,
       noTargetRequired: true,
-      playerNumber: 41,
+      playerNumber: 42,
       maxActiveSummon: 1,
-      learned: true,
-      canBeCast: true,
       type: "healing",
       source: "nature",
       manaCost: 30,
@@ -846,6 +903,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "voodoo",
     toLearn: 0,
@@ -891,8 +954,6 @@ const priestSpellObject = {
       }
     },
     spellInfo: {
-      learned: true,
-      canBeCast: true,
       type: "buff",
       duration: 2,
       manaCost: 40,
@@ -911,6 +972,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "voodoo",
     toLearn: 8,
@@ -966,8 +1033,6 @@ const priestSpellObject = {
     spellInfo: {
       size: 0,
       glyphNumber: 5,
-      learned: true,
-      canBeCast: true,
       type: "damage",
       source: "arcane",
       manaCost: 40,
@@ -986,6 +1051,12 @@ const priestSpellObject = {
       conditionsRequirements: {
         silenced: true,
       },
+    },
+    userSpellInfo: {
+      learned: true,
+      canBeCast: true,
+      currentCooldown: 0,
+      currentCastsPerTurn: 0,
     },
     category: "voodoo",
     toLearn: 8,

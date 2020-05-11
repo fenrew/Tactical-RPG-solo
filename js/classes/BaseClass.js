@@ -91,9 +91,9 @@ class BaseClass {
         if (
           this.castCounter[catKey] === this.spells[spellKey].toLearn &&
           catKey === this.spells[spellKey].category &&
-          !this.spells[spellKey].spellInfo.learned
+          !this.spells[spellKey].userSpellInfo.learned
         ) {
-          this.spells[spellKey].spellInfo.learned = true;
+          this.spells[spellKey].userSpellInfo.learned = true;
 
           displayLearnedNewSpell(this.spells[spellKey]);
         }

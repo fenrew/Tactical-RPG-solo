@@ -79,73 +79,75 @@ class Priest extends BaseClass {
     this.spells = {
       renew: {
         ...priestSpellObject.renew,
-        spellInfo: { ...priestSpellObject.renew.spellInfo },
+        userSpellInfo: { ...priestSpellObject.renew.userSpellInfo },
       },
       holyLight: {
         ...priestSpellObject.holyLight,
-        spellInfo: { ...priestSpellObject.holyLight.spellInfo },
+        userSpellInfo: { ...priestSpellObject.holyLight.userSpellInfo },
       },
       selfPreservation: {
         ...priestSpellObject.selfPreservation,
-        spellInfo: { ...priestSpellObject.selfPreservation.spellInfo },
+        userSpellInfo: { ...priestSpellObject.selfPreservation.userSpellInfo },
       },
       holyGround: {
         ...priestSpellObject.holyGround,
-        spellInfo: { ...priestSpellObject.holyGround.spellInfo },
+        userSpellInfo: { ...priestSpellObject.holyGround.userSpellInfo },
       },
       blessing: {
         ...priestSpellObject.blessing,
-        spellInfo: { ...priestSpellObject.blessing.spellInfo },
+        userSpellInfo: { ...priestSpellObject.blessing.userSpellInfo },
       },
       divinity: {
         ...priestSpellObject.divinity,
-        spellInfo: { ...priestSpellObject.divinity.spellInfo },
+        userSpellInfo: { ...priestSpellObject.divinity.userSpellInfo },
       },
 
       holyFire: {
         ...priestSpellObject.holyFire,
-        spellInfo: { ...priestSpellObject.holyFire.spellInfo },
+        userSpellInfo: { ...priestSpellObject.holyFire.userSpellInfo },
       },
       purgatory: {
         ...priestSpellObject.purgatory,
-        spellInfo: { ...priestSpellObject.purgatory.spellInfo },
+        userSpellInfo: { ...priestSpellObject.purgatory.userSpellInfo },
       },
       beamOfLight: {
         ...priestSpellObject.beamOfLight,
-        spellInfo: { ...priestSpellObject.beamOfLight.spellInfo },
+        userSpellInfo: { ...priestSpellObject.beamOfLight.userSpellInfo },
       },
       sin: {
         ...priestSpellObject.sin,
-        spellInfo: { ...priestSpellObject.sin.spellInfo },
+        userSpellInfo: { ...priestSpellObject.sin.userSpellInfo },
       },
       judgementDay: {
         ...priestSpellObject.judgementDay,
-        spellInfo: { ...priestSpellObject.judgementDay.spellInfo },
+        userSpellInfo: { ...priestSpellObject.judgementDay.userSpellInfo },
       },
       divineIntervention: {
         ...priestSpellObject.divineIntervention,
-        spellInfo: { ...priestSpellObject.divineIntervention.spellInfo },
+        userSpellInfo: {
+          ...priestSpellObject.divineIntervention.userSpellInfo,
+        },
       },
 
       totemOfHealing: {
         ...priestSpellObject.totemOfHealing,
-        spellInfo: { ...priestSpellObject.totemOfHealing.spellInfo },
+        userSpellInfo: { ...priestSpellObject.totemOfHealing.userSpellInfo },
       },
       chainLightning: {
         ...priestSpellObject.chainLightning,
-        spellInfo: { ...priestSpellObject.chainLightning.spellInfo },
+        userSpellInfo: { ...priestSpellObject.chainLightning.userSpellInfo },
       },
       totemOfMana: {
         ...priestSpellObject.totemOfMana,
-        spellInfo: { ...priestSpellObject.totemOfMana.spellInfo },
+        userSpellInfo: { ...priestSpellObject.totemOfMana.userSpellInfo },
       },
       voodooBrew: {
         ...priestSpellObject.voodooBrew,
-        spellInfo: { ...priestSpellObject.voodooBrew.spellInfo },
+        userSpellInfo: { ...priestSpellObject.voodooBrew.userSpellInfo },
       },
       starfall: {
         ...priestSpellObject.starfall,
-        spellInfo: { ...priestSpellObject.starfall.spellInfo },
+        userSpellInfo: { ...priestSpellObject.starfall.userSpellInfo },
       },
     };
   }
