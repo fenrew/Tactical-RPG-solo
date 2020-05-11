@@ -198,20 +198,25 @@ class GameClass {
 
   _removeUnitFromCombat(unit) {
     if (unit.npc) {
-      Game.npc.splice(Game.npc.indexOf(unit), 1);
+      this.npc.splice(this.npc.indexOf(unit), 1);
     }
 
     if (
-      Game.combatTimeline.indexOf(this.combatTimeline[this.turn]) >=
-      Game.combatTimeline.indexOf(unit)
+      this.combatTimeline.indexOf(this.combatTimeline[this.turn]) >=
+      this.combatTimeline.indexOf(unit)
     ) {
       this.turn -= 1;
     }
 
-    Game.combatTimeline.splice(Game.combatTimeline.indexOf(unit), 1);
+    this.combatTimeline.splice(this.combatTimeline.indexOf(unit), 1);
 
-    Game.activeMap[unit.position.y][unit.position.x] =
-      Game.originalMap[unit.position.y][unit.position.x];
+    this.activeMap[unit.position.y][unit.position.x] = this.originalMap[
+      unit.position.y
+    ][unit.position.x];
+
+    this.combatEffects = this.combatEffects.filter(
+      (ele) => ![ele.player, ele.target].includes(unit)
+    );
   }
 
   _addNewCombatEffect(player, target, spell, duration, additionalEffects) {
