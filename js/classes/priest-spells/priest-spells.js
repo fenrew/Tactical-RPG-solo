@@ -44,7 +44,7 @@ const priestSpellObject = {
       maxRange: 3,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: 1,
+      cooldown: 2,
       castsPerTurn: 1,
       conditionsRequirements: {
         silenced: true,

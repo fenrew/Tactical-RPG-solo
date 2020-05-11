@@ -10,6 +10,15 @@ class BaseClass {
     if (noviceSpellAnimations[spell.id])
       await noviceSpellAnimations[spell.id](target, this.player);
 
+    spell.userSpellInfo.currentCastsPerTurn += 1;
+    if (
+      spell.userSpellInfo.currentCastsPerTurn >= spell.spellInfo.castsPerTurn
+    ) {
+      spell.userSpellInfo.canBeCast = false;
+      spell.userSpellInfo.currentCooldown = spell.spellInfo.cooldown;
+      this.cooldowns.push(spell);
+    }
+
     for (let i = 0; i < castTimes; i++) {
       let onAttackAnswer = this._onAttack(spell, target);
       if (!onAttackAnswer) return;

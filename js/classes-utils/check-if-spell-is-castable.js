@@ -6,22 +6,22 @@ const checkIfSpellIsCastable = (player, spell, position) => {
   const { combatstats, conditions } = player;
 
   if (!userSpellInfo.learned) {
+    console.log("spell is not learned");
     return false;
   }
 
   if (combatstats.currentMana < spellInfo.manaCost) {
-    return true;
-  }
-
-  if (!userSpellInfo.canBeCast) {
+    console.log("insufficient mana");
     return true;
   }
 
   if (conditionsRequirements.disarmed && conditions.disarmed) {
+    console.log("disarmed");
     return true;
   }
 
   if (conditionsRequirements.silenced && conditions.silenced) {
+    console.log("silenced");
     return true;
   }
 
@@ -31,8 +31,10 @@ const checkIfSpellIsCastable = (player, spell, position) => {
       !checkIfMapGridIsAvailable(Game.activeMap, {
         ...position,
       }))
-  )
+  ) {
+    console.log("No target required and map grid must be available");
     return true;
+  }
 
   if (
     spellInfo.maxActiveSummon &&
@@ -53,6 +55,18 @@ const checkIfSpellIsCastable = (player, spell, position) => {
     !spellInfo.castOnNoTarget
   ) {
     console.log("No target");
+    return true;
+  }
+
+  if (userSpellInfo.currentCooldown) {
+    console.log(
+      `${spell.name} is on cooldown for ${userSpellInfo.currentCooldown} turns`
+    );
+    return true;
+  }
+
+  if (!userSpellInfo.canBeCast) {
+    console.log("spell can't be cast");
     return true;
   }
 

@@ -95,14 +95,25 @@ class GameClass {
 
     // Player ending his turn
     let activePlayer = this.combatTimeline[this.turn];
-    let activeCombatstats = activePlayer.class.combatstats;
+    const { combatstats, cooldowns } = activePlayer.class;
 
-    activeCombatstats.currentMovementPoints =
-      activeCombatstats.maxMovementPoints;
+    // Cooldowns
+    cooldowns = cooldowns.filter((ele) => {
+      ele.userSpellInfo.currentCooldown -= 1;
+      if (!ele.userSpellInfo.currentCooldown) {
+        ele.userSpellInfo.canBeCast = true;
+        ele.userSpellInfo.castsPerTurn = 0;
+        return false;
+      }
+      return ele;
+    });
 
-    activeCombatstats.currentMana += 0.5 * activeCombatstats.mana;
-    if (activeCombatstats.currentMana > activeCombatstats.mana) {
-      activeCombatstats.currentMana = activeCombatstats.mana;
+    // Mana and MP returns
+    combatstats.currentMovementPoints = combatstats.maxMovementPoints;
+
+    combatstats.currentMana += 0.5 * combatstats.mana;
+    if (combatstats.currentMana > combatstats.mana) {
+      combatstats.currentMana = combatstats.mana;
     }
     updateCurrentManaBar(activePlayer);
 
