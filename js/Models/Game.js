@@ -185,12 +185,15 @@ class GameClass {
   }
 
   _checkIfAnyoneHasDied() {
-    this.combatTimeline.forEach((ele) => {
-      if (ele.class.combatstats.currentHp <= 0) {
-        this._removeUnitFromCombat(ele);
-        removeUnitFromPlayerarea(ele);
+    for (let i = 0; i < this.combatTimeline.length; i++) {
+      const currentTarget = this.combatTimeline[i];
+
+      if (currentTarget.class.combatstats.currentHp <= 0) {
+        this._removeUnitFromCombat(currentTarget);
+        removeUnitFromPlayerarea(currentTarget);
+        i--;
       }
-    });
+    }
   }
 
   _removeUnitFromCombat(unit) {

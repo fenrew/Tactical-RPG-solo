@@ -9,5 +9,11 @@ on the caster
 
 - getUnitsInFreeRange: The min-range of getUnitsInFreeRange function does not work
 
+- if a player dies from a dot it causes an error:
+update-initiation-visuals.js:26 Uncaught TypeError: Cannot read property 'playerNumber' of undefined
+    at updatePlayerPanelActiveTurn (update-initiation-visuals.js:26)
+    at GameClass._nextTurn (Game.js:152)
+    at HTMLDocument.<anonymous> (hotkeys.js:12)
+
 === IDEAS ====
 - Let totems and summons have the spell category, so they can learn new spells depending on how long they survive!
