@@ -1,21 +1,26 @@
 class BaseClass {
+  constructor() {
+    this.cooldowns = []; // An array of all spells that are on cooldown
+  }
+
   async _addTargetSpellConditions(spell, position, castTimes = 1) {
     let target = Game._getUnitByPosition(position);
     if (checkIfSpellIsCastable(this, spell, target))
       return console.log("Cant be cast");
 
-    this.combatstats.currentMana -= spell.spellInfo.manaCost;
+    const { userSpellInfo, spellInfo, category } = spell;
+    const { manaCost, castsPerTurn, cooldown, type } = spellInfo;
+
+    this.combatstats.currentMana -= manaCost;
     updateCurrentManaBar(this.player);
 
     if (noviceSpellAnimations[spell.id])
       await noviceSpellAnimations[spell.id](target, this.player);
 
-    spell.userSpellInfo.currentCastsPerTurn += 1;
-    if (
-      spell.userSpellInfo.currentCastsPerTurn >= spell.spellInfo.castsPerTurn
-    ) {
-      spell.userSpellInfo.canBeCast = false;
-      spell.userSpellInfo.currentCooldown = spell.spellInfo.cooldown;
+    userSpellInfo.currentCastsPerTurn += 1;
+    if (userSpellInfo.currentCastsPerTurn >= castsPerTurn) {
+      userSpellInfo.canBeCast = false;
+      userSpellInfo.currentCooldown = cooldown;
       this.cooldowns.push(spell);
     }
 
@@ -37,18 +42,14 @@ class BaseClass {
       }
 
       if (modifiedDamage) {
-        handleSpellDamageEffectAnimation(
-          target,
-          modifiedDamage,
-          spell.spellInfo.type
-        );
+        handleSpellDamageEffectAnimation(target, modifiedDamage, type);
       }
     }
 
     Game._checkIfAnyoneHasDied();
 
     spell.castCounter += 1;
-    this.castCounter[spell.category] += 1;
+    this.castCounter[category] += 1;
     this._checkIfNewSpellIsLearned(spell);
 
     this._checkIfPromotionToNewClass();

@@ -5,6 +5,8 @@ class Zombie {
     this.cssPlayerPanelString = "zombie-cpu-combat-timeline-panel";
     this.player = "";
 
+    this.cooldowns = []; // An array of all spells that are on cooldown
+
     this.ai = new AggressiveAi();
 
     this.combatstats = {

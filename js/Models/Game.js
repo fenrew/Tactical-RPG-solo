@@ -98,9 +98,9 @@ class GameClass {
     const { combatstats, cooldowns } = activePlayer.class;
 
     // Cooldowns
-    cooldowns = cooldowns.filter((ele) => {
+    activePlayer.class.cooldowns = cooldowns.filter((ele) => {
       ele.userSpellInfo.currentCooldown -= 1;
-      if (!ele.userSpellInfo.currentCooldown) {
+      if (ele.userSpellInfo.currentCooldown <= 0) {
         ele.userSpellInfo.canBeCast = true;
         ele.userSpellInfo.castsPerTurn = 0;
         return false;

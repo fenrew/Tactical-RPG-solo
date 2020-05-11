@@ -6,8 +6,6 @@ class Priest extends BaseClass {
     this.cssPlayerPanelString = "priest-class-player-panel";
     this.player = player;
 
-    this.cooldowns = []; // An array of all spells that are on cooldown
-
     this.combatstats = {
       hp: 300,
       currentHp: 300,
