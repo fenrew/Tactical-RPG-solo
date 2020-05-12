@@ -10,8 +10,6 @@ update-initiation-visuals.js:26 Uncaught TypeError: Cannot read property 'player
     at GameClass._nextTurn (Game.js:152)
     at HTMLDocument.<anonymous> (hotkeys.js:12)
 
-- cooldown is buged where it is set to be -1 after 1 turn... Amur strike I think
-
 - when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
     - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 

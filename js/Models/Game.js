@@ -95,10 +95,10 @@ class GameClass {
 
     // Player ending his turn
     let activePlayer = this.combatTimeline[this.turn];
-    const { combatstats, cooldowns } = activePlayer.class;
+    const { combatstats, cooldowns, spells } = activePlayer.class;
 
     // Cooldowns
-    activePlayer.class.cooldowns = cooldowns.filter((ele) => {
+    activePlayer.class.cooldowns = cooldowns.map((ele) => {
       ele.userSpellInfo.currentCooldown -= 1;
       if (ele.userSpellInfo.currentCooldown <= 0) {
         ele.userSpellInfo.canBeCast = true;
@@ -107,6 +107,13 @@ class GameClass {
       }
       return ele;
     });
+
+    // Make a smarter way of doing this... (reseting currentCastsPerTurn after ended turn)
+    for (let key in spells) {
+      if (spells[key].userSpellInfo.currentCooldown === 0) {
+        spells[key].userSpellInfo.currentCastsPerTurn = 0;
+      }
+    }
 
     // Mana and MP returns
     combatstats.currentMovementPoints = combatstats.maxMovementPoints;

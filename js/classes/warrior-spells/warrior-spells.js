@@ -139,7 +139,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -269,7 +269,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -323,7 +323,7 @@ const warriorSpellObject = {
       maxRange: 0,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -441,7 +441,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -604,7 +604,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -657,7 +657,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -792,7 +792,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -846,7 +846,7 @@ const warriorSpellObject = {
       maxRange: 4,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
@@ -892,7 +892,7 @@ const warriorSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
