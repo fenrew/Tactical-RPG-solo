@@ -6,7 +6,10 @@ function handleSpellDamageEffectAnimation(target, effectValue, effect) {
   );
 
   let newElement = document.createElement("div");
-  if (effect == "damage" && effectValue >= 0) {
+  if (effectValue === 0) {
+    newElement.classList.add("display-damage-immune");
+    effectValue = "Immune";
+  } else if (effect == "damage" && effectValue >= 0) {
     newElement.classList.add("display-damage-dealt");
   } else if (effect == "healing" || (effect == "damage" && effectValue < 0)) {
     newElement.classList.add("display-healing-done");
@@ -20,13 +23,14 @@ function handleSpellDamageEffectAnimation(target, effectValue, effect) {
 
   newElement.classList.add("display-damage-dealt-numbers");
 
-  newElement.innerHTML = String(Math.abs(effectValue));
+  newElement.innerHTML = String(
+    typeof effectValue === "number" ? Math.abs(effectValue) : effectValue
+  );
   element.appendChild(newElement);
 
   updateCurrentManaBar(target);
   updateCurrentHealthBar(target);
   element.querySelector(".max-health-div").classList.add("max-health-div-show");
-
   setTimeout(() => {
     element
       .querySelector(".max-health-div")

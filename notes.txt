@@ -2,9 +2,6 @@
 - onAttack: If a player is missing on an attack but also has flaming weapon, the flaming weapon damage will still hit the target 
 given the order the spells were cast (if flamingWeapon conditionEffect is executed before the missing)
 
-- 0 damage visuals: If a person is disarmed and uses Joint strike the damage does not apear on the target but 0 dmg is appearing 
-on the caster
-
 - getUnitsInFreeRange: The min-range of getUnitsInFreeRange function does not work
 
 - if a player dies from a dot it causes an error:
@@ -12,6 +9,13 @@ update-initiation-visuals.js:26 Uncaught TypeError: Cannot read property 'player
     at updatePlayerPanelActiveTurn (update-initiation-visuals.js:26)
     at GameClass._nextTurn (Game.js:152)
     at HTMLDocument.<anonymous> (hotkeys.js:12)
+
+- fix warrior disarm: actually change the targets condition instead of changing the damage...
+
+- cooldown is buged where it is set to be -1 after 1 turn...
+
+- when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
+    - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 
 === IDEAS ====
 - Let totems and summons have the spell category, so they can learn new spells depending on how long they survive!

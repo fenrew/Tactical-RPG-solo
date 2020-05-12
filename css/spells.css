@@ -170,6 +170,13 @@
   color: rgb(255, 30, 0);
 }
 
+.display-damage-immune {
+  color: yellow;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+}
+
 .display-healing-done {
   color: rgb(0, 255, 0);
 }

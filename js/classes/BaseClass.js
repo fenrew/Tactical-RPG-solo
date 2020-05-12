@@ -41,7 +41,7 @@ class BaseClass {
         target.newPosition = false;
       }
 
-      if (modifiedDamage) {
+      if (modifiedDamage === 0 || modifiedDamage) {
         handleSpellDamageEffectAnimation(target, modifiedDamage, type);
       }
     }
