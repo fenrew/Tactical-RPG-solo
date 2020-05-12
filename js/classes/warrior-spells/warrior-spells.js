@@ -70,21 +70,17 @@ const warriorSpellObject = {
       player._addTargetSpellConditions(player.spells.disarm, position);
     },
     castEffect: (target, spell, player) => {
-      let physicalDmgRed =
-        target.class.damageModifiers.offensive.physicalDamage.allDamage;
-      target.class.damageModifiers.offensive.physicalDamage.allDamage -= physicalDmgRed;
+      target.class.conditions.disarmed = true;
 
       Game._addNewCombatEffect(
         player.player,
         target,
         spell,
-        spell.spellInfo.duration,
-        { physicalDmgRed }
+        spell.spellInfo.duration
       );
     },
     applyEffect: (effect, player) => {
-      effect.target.class.damageModifiers.offensive.physicalDamage.allDamage +=
-        effect.physicalDmgRed;
+      effect.target.class.conditions.disarmed = false;
     },
     spellInfo: {
       type: "damage",
