@@ -27,13 +27,13 @@ function updatePlayerPanelActiveTurn(combatTimeline, turn) {
   if (previousClass) previousClass.classList.remove("player-panel-active-turn");
 
   // BUG: the issue with getting the class is that all the zombies and such has the same class here...
-  console.log(combatTimeline, turn);
   combatTimelineDiv
     .getElementsByClassName(
       "class-panel-" + combatTimeline[turn].playerNumber
     )[0]
     .classList.add("player-panel-active-turn");
   combatTimelineDiv.scrollBy(70, 0);
+
   if (Game.turn === 0) {
     combatTimelineDiv.scrollBy(-600, 0);
   }

@@ -4,16 +4,11 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 - getUnitsInFreeRange: The min-range of getUnitsInFreeRange function does not work
 
-- if a player dies from a dot it causes an error:
-update-initiation-visuals.js:26 Uncaught TypeError: Cannot read property 'playerNumber' of undefined
-    at updatePlayerPanelActiveTurn (update-initiation-visuals.js:26)
-    at GameClass._nextTurn (Game.js:152)
-    at HTMLDocument.<anonymous> (hotkeys.js:12)
-
 - when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
     - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 
 ==== TODO ====
+- Fix upgrade to new class functionalities
 - Add teleport on tile
 - Add items and item shops
 - Add more enemies and waves of enemies

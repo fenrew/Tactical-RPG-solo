@@ -6,6 +6,8 @@
 // 41 = Totem of Healing
 // 42 = Totem of Mana
 // 70 = Zombie
+// 200 = Teleport shop 1
+// 300 = Teleport shop 2
 
 // 0-9 = Player
 // 10-19 = starting positions for players 1-10
@@ -14,6 +16,8 @@
 // 30-39 = Obstacle Terrain
 // 40-59 = Obstacle Terrain Summons
 // 70-99 = CPU's
+// 200-299 = Shop 1
+// 300-399 = Shop 2
 
 // Highlight map:
 // 0 = no highlight
@@ -28,7 +32,7 @@
 // 5 = starfall (Priest)
 
 const mapOne = [
-  [20, 20, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
+  [20, 20, 21, 200, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
   [20, 21, 21, 30, 30, 30, 21, 21, 21, 21, 21, 21, 21, 30, 21, 20],
   [21, 13, 21, 21, 21, 21, 21, 21, 21, 21, 22, 30, 21, 21, 21, 21],
   [21, 12, 21, 21, 21, 21, 22, 21, 21, 21, 21, 21, 21, 21, 21, 21],
@@ -39,7 +43,7 @@ const mapOne = [
   [21, 21, 21, 21, 21, 30, 21, 21, 21, 21, 22, 11, 30, 21, 21, 21],
   [21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21],
   [20, 21, 21, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 20],
-  [20, 20, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
+  [20, 20, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 300, 20, 20],
 ];
 
 function returnMapBlockClass(mapNumber) {
@@ -55,6 +59,8 @@ function returnMapBlockClass(mapNumber) {
     22: "map-grid-sand",
     30: "map-grid-stone",
     70: "npc-zombie",
+    200: "map-grid-teleport-shop-minerals",
+    300: "map-grid-teleport-shop-fabrics",
   };
 
   return mapBlockClasses[mapNumber];
