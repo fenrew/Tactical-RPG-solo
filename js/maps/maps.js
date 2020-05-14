@@ -1,13 +1,13 @@
 // 20 = Void/emptyness
 // 21 = Grass
 // 22 = Sand
+// 28 = Teleport shop 1
+// 29 = Teleport shop 2
 // 30 = Stone
 // 40 = Ice Wall
 // 41 = Totem of Healing
 // 42 = Totem of Mana
 // 70 = Zombie
-// 200 = Teleport shop 1
-// 300 = Teleport shop 2
 
 // 0-9 = Player
 // 10-19 = starting positions for players 1-10
@@ -32,7 +32,7 @@
 // 5 = starfall (Priest)
 
 const mapOne = [
-  [20, 20, 21, 200, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
+  [20, 20, 21, 28, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
   [20, 21, 21, 30, 30, 30, 21, 21, 21, 21, 21, 21, 21, 30, 21, 20],
   [21, 13, 21, 21, 21, 21, 21, 21, 21, 21, 22, 30, 21, 21, 21, 21],
   [21, 12, 21, 21, 21, 21, 22, 21, 21, 21, 21, 21, 21, 21, 21, 21],
@@ -43,7 +43,7 @@ const mapOne = [
   [21, 21, 21, 21, 21, 30, 21, 21, 21, 21, 22, 11, 30, 21, 21, 21],
   [21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21],
   [20, 21, 21, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 21, 20],
-  [20, 20, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 300, 20, 20],
+  [20, 20, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 29, 20, 20],
 ];
 
 function returnMapBlockClass(mapNumber) {
@@ -57,10 +57,10 @@ function returnMapBlockClass(mapNumber) {
     20: "map-grid-void",
     21: "map-grid-grass",
     22: "map-grid-sand",
+    28: "map-grid-teleport-shop-minerals",
+    29: "map-grid-teleport-shop-fabrics",
     30: "map-grid-stone",
     70: "npc-zombie",
-    200: "map-grid-teleport-shop-minerals",
-    300: "map-grid-teleport-shop-fabrics",
   };
 
   return mapBlockClasses[mapNumber];
