@@ -7,5 +7,6 @@ class Player {
       x: 0,
     };
     this.newPosition = false; // For pushback etc
+    this.shop = false;
   }
 }
