@@ -13,10 +13,13 @@ const teleportToShop = (player, shopNumber) => {
 
   Game.activeMap[y][x] = player.playerNumber;
   updateVisualizeMap(Game.activeMap);
+  visualizePlayers(Game.activeMap);
+  addOnclickToNpcs();
 };
 
 const teleportFromShop = (player) => {
   const shopNumber = player.shop;
+  const { y, x } = player.position;
   player.shop = false;
 
   Game.activeMap[y][x] = shopNumber;
@@ -29,4 +32,7 @@ const teleportFromShop = (player) => {
   }
 
   updateVisualizeMap(Game.activeMap);
+  visualizePlayers(Game.activeMap);
+  addOnClickPlayers();
+  addOnclickToNpcs();
 };

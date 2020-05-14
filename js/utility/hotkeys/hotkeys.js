@@ -12,12 +12,18 @@ document.addEventListener("keydown", function (event) {
     const mapNumber = Game.originalMap[y][x];
     console.log("T", activePlayer);
     removeMovementHighlightsFromMap();
+
     if (mapNumber >= 27 && mapNumber < 30) {
-      teleportToShop(activePlayer, mapNumber);
+      if (!activePlayer.shop) {
+        teleportToShop(activePlayer, mapNumber);
+      } else {
+        teleportFromShop(activePlayer);
+      }
     }
   }
   if (event.which === 27) {
     console.log("ESC");
+    if (activePlayer.shop) return console.log("Can't end turn while in a shop");
     Game._nextTurn();
   }
 });

@@ -26,7 +26,9 @@ function visualizeMap(map) {
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[y].length; x++) {
       if (map[y][x] >= 0 && map[y][x] < 20) {
-        className = returnMapBlockClass(21); //Returns grass when there is a player starting position
+        const mapNumber =
+          Game.originalMap[y][x] >= 20 ? Game.originalMap[y][x] : 21;
+        className = returnMapBlockClass(mapNumber); //Returns grass when there is a player starting position
       } else {
         className = returnMapBlockClass(map[y][x]);
       }
@@ -89,7 +91,7 @@ function visualizeNpcs(map, npcToBeAdded) {
     npcBlockElement.classList.add(npcClassName, classClassName, "npc-area");
     npcBlockElement.id = "npc-" + y + "," + x;
 
-    addOnClickToNpc(npcBlockElement, npc);
+    addOnClickToOneNpc(npcBlockElement, npc);
 
     parentDiv.appendChild(npcBlockElement);
 
