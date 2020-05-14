@@ -27,7 +27,7 @@ const noviceSpellObject = {
       maxRange: 1,
       modifiableRange: false,
       lineOfSight: false,
-      cooldown: false,
+      cooldown: 1,
       castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,

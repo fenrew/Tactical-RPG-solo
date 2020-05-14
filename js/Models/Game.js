@@ -98,7 +98,8 @@ class GameClass {
     const { combatstats, cooldowns, spells } = activePlayer.class;
 
     // Cooldowns
-    activePlayer.class.cooldowns = cooldowns.map((ele) => {
+    console.log(cooldowns);
+    activePlayer.class.cooldowns = cooldowns.filter((ele) => {
       ele.userSpellInfo.currentCooldown -= 1;
       if (ele.userSpellInfo.currentCooldown <= 0) {
         ele.userSpellInfo.canBeCast = true;
@@ -209,7 +210,7 @@ class GameClass {
     }
 
     if (
-      this.combatTimeline.indexOf(this.combatTimeline[this.turn]) >=
+      this.combatTimeline.indexOf(this.combatTimeline[this.turn]) >
       this.combatTimeline.indexOf(unit)
     ) {
       this.turn -= 1;
@@ -224,6 +225,13 @@ class GameClass {
     this.combatEffects = this.combatEffects.filter(
       (ele) => ![ele.player, ele.target].includes(unit)
     );
+
+    if (this.turn >= this.combatTimeline.length) {
+      this.round += 1;
+      this.turn = 0;
+
+      this.newRound();
+    }
   }
 
   _addNewCombatEffect(player, target, spell, duration, additionalEffects) {

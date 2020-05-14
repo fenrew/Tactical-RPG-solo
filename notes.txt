@@ -13,5 +13,12 @@ update-initiation-visuals.js:26 Uncaught TypeError: Cannot read property 'player
 - when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
     - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 
+==== TODO ====
+- Add teleport on tile
+- Add items and item shops
+- Add more enemies and waves of enemies
+- Add spell animations etc...
+
+
 === IDEAS ====
 - Let totems and summons have the spell category, so they can learn new spells depending on how long they survive!

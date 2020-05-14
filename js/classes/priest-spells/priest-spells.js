@@ -958,7 +958,7 @@ const priestSpellObject = {
       duration: 2,
       manaCost: 40,
       duration: 2,
-      damage: 30,
+      damage: 200,
       freeCells: true,
       straigthLine: false,
       diagonal: false,
