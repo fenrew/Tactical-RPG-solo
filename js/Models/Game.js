@@ -3,7 +3,9 @@ class GameClass {
     this.players = [];
     this.npc = [];
     this.originalMap = removeStartingPositions(mapOne); // Current map UN-modified
-    this.activeMap = JSON.parse(JSON.stringify(mapOne)); //Current map modified
+    this.activeMap = JSON.parse(JSON.stringify(mapOne)); // Current map modified
+    this.shopMinerals = false; // Will be true and equal to shopMap Minerals
+    this.shopFabrics = false; // Will be true and equal to shopMap Minerals
     this.mapHighlights = this.activeMap.map((y) => {
       return y.map(() => {
         return [];

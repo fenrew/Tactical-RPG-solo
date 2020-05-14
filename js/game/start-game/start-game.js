@@ -40,15 +40,12 @@ function visualizeMap(map) {
   }
 }
 
-function updateVisualizeMap() {
-  let map = Game.activeMap,
-    parentDiv;
-
-  parentDiv = document.getElementById("player-area");
+function updateVisualizeMap(map = Game.activeMap) {
+  let parentDiv = document.getElementById("player-area");
 
   removeAllChilds(parentDiv);
 
-  visualizeMap(); // This function doesn't work when the players are already set. If they stand on sand it'll return grass
+  visualizeMap(map); // This function doesn't work when the players are already set. If they stand on sand it'll return grass
 }
 
 function visualizePlayers(map) {
