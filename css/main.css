@@ -8,27 +8,27 @@
 @import "./spell-animations.css";
 @import "./spell-animations/main-spell-animations.css";
 @import "./summons.css";
+@import "./shop/shops.css";
 
 #gamearea {
-    height: 924px;
-    width: 1500px;
-    background-color: black;
-    position: relative;
+  height: 924px;
+  width: 1500px;
+  background-color: black;
+  position: relative;
 }
 
-#player-area-box{
-    height: 100%;
-    width: 1232px;
-    background-color: rgb(41, 41, 41);
-    position: absolute;
-    left: 300px;
+#player-area-box {
+  height: 100%;
+  width: 1232px;
+  background-color: rgb(41, 41, 41);
+  position: absolute;
+  left: 300px;
 }
 
 #player-panel-box {
-    height: 100%;
-    width: 300px;
-    background-image: url("../Animations/Panel/panel_pixel-art-wallpaper.jpg");
-    background-size: 100% 100%;
-    position: absolute;
+  height: 100%;
+  width: 300px;
+  background-image: url("../Animations/Panel/panel_pixel-art-wallpaper.jpg");
+  background-size: 100% 100%;
+  position: absolute;
 }
-

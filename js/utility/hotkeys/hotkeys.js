@@ -7,10 +7,11 @@ document.addEventListener("keydown", function (event) {
     console.log("S");
     openAndCloseSpellList();
   }
+
   if (event.which === 84) {
     const { y, x } = activePlayer.position;
     const mapNumber = Game.originalMap[y][x];
-    console.log("T");
+    console.log("T", Game.activeMap);
 
     if (mapNumber >= 27 && mapNumber < 30) {
       if (!activePlayer.shop) {

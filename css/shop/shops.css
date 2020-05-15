@@ -1,0 +1,49 @@
+/* WEAPONRY */
+.shop-weaponry-weapon {
+  background-color: lightsalmon;
+}
+
+.shop-weaponry-helmet {
+  background-color: rgb(255, 72, 0);
+}
+
+.shop-weaponry-shoulder {
+  background-color: rgb(255, 224, 122);
+}
+
+.shop-weaponry-chest {
+  background-color: rgb(122, 255, 133);
+}
+
+.shop-weaponry-legs {
+  background-color: rgb(255, 122, 200);
+}
+
+.shop-weaponry-feet {
+  background-color: rgb(255, 122, 129);
+}
+
+/* MISC */
+.shop-misc-misc {
+  background-color: lightsalmon;
+}
+
+.shop-misc-artifact {
+  background-color: rgb(255, 72, 0);
+}
+
+.shop-misc-gem {
+  background-color: rgb(255, 224, 122);
+}
+
+.shop-misc-ore {
+  background-color: rgb(122, 255, 133);
+}
+
+.shop-misc-fabric {
+  background-color: rgb(255, 122, 200);
+}
+
+.shop-misc-recipe {
+  background-color: rgb(255, 122, 129);
+}
