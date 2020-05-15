@@ -1,7 +1,6 @@
 class Items {
   constructor() {
-    this.weaponry = {};
-    this.misc = {};
+    this.items = [itemWeaponsList.dirk];
   }
 
   _addNewItem = (item) => {};
@@ -12,5 +11,20 @@ class Items {
 
   _buyItem = (item) => {};
 
-  _updateItemStatsToCharacter = () => {};
+  _updateItemStatsToCharacter = () => {
+    this.items.forEach((item) => {
+      item.stats.forEach((stat) => {
+        const { keySequence, value } = stat;
+
+        let statToChange;
+        keySequence.forEach((key, index) => {
+          if (index !== keySequence.length - 1) {
+            statToChange = statToChange ? statToChange[key] : this[key];
+          }
+        });
+
+        statToChange[keySequence[keySequence.length - 1]] += value;
+      });
+    });
+  };
 }
