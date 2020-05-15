@@ -4,11 +4,11 @@ const teleportToShop = (player, shopNumber) => {
   player.shop = shopNumber;
 
   if (shopNumber === 28) {
-    Game.shopMinerals = Game.activeMap;
-    Game.activeMap = shopMapMinerals;
+    Game.shopWeaponry = Game.activeMap;
+    Game.activeMap = shopMapWeaponry;
   } else if (shopNumber === 29) {
-    Game.shopFabrics = Game.activeMap;
-    Game.activeMap = shopMapFabrics;
+    Game.shopMisc = Game.activeMap;
+    Game.activeMap = shopMapMisc;
   }
 
   Game.activeMap[y][x] = player.playerNumber;
@@ -24,11 +24,11 @@ const teleportFromShop = (player) => {
 
   Game.activeMap[y][x] = shopNumber;
   if (shopNumber === 28) {
-    Game.activeMap = Game.shopMinerals;
-    Game.shopMinerals = false;
+    Game.activeMap = Game.shopWeaponry;
+    Game.shopWeaponry = false;
   } else if (shopNumber === 29) {
-    Game.activeMap = Game.shopFabrics;
-    Game.shopFabrics = false;
+    Game.activeMap = Game.shopMisc;
+    Game.shopMisc = false;
   }
 
   updateVisualizeMap(Game.activeMap);

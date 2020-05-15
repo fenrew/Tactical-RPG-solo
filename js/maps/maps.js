@@ -1,8 +1,8 @@
 // 20 = Void/emptyness
 // 21 = Grass
 // 22 = Sand
-// 28 = Teleport shop minerals
-// 29 = Teleport shop fabric
+// 28 = Teleport shop weaponry
+// 29 = Teleport shop misc
 // 30 = Stone
 // 40 = Ice Wall
 // 41 = Totem of Healing
@@ -32,6 +32,19 @@
 // 4 = holy ground (Priest)
 // 5 = starfall (Priest)
 
+// Shop map:
+// 201 = helmet shop
+// 202 = shoulder shop
+// 203 = chest shop
+// 204 = legs shop
+// 205 = feet shop
+
+// 301 = gem shop
+// 302 = artifact shop
+// 303 = misc shop
+// 304 = ore shop
+// 305 = recipe shop
+
 const mapOne = [
   [20, 20, 21, 28, 30, 21, 21, 21, 21, 21, 21, 21, 21, 21, 20, 20],
   [20, 21, 21, 30, 30, 30, 21, 21, 21, 21, 21, 21, 21, 30, 21, 20],
@@ -47,7 +60,7 @@ const mapOne = [
   [20, 20, 21, 21, 21, 30, 21, 21, 21, 21, 21, 21, 21, 29, 20, 20],
 ];
 
-const shopMapMinerals = [
+const shopMapWeaponry = [
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
@@ -62,7 +75,7 @@ const shopMapMinerals = [
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
 ];
 
-const shopMapFabrics = [
+const shopMapMisc = [
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
   [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
@@ -88,8 +101,8 @@ function returnMapBlockClass(mapNumber) {
     20: "map-grid-void",
     21: "map-grid-grass",
     22: "map-grid-sand",
-    28: "map-grid-teleport-shop-minerals",
-    29: "map-grid-teleport-shop-fabrics",
+    28: "map-grid-teleport-shop-weaponry",
+    29: "map-grid-teleport-shop-misc",
     30: "map-grid-stone",
     70: "npc-zombie",
   };

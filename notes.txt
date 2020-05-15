@@ -11,7 +11,6 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 ==== TODO ====
 - Fix upgrade to new class functionalities
-- Add teleport on tile
 - Add items and item shops
 - Add more enemies and waves of enemies
 - Add spell animations etc...
