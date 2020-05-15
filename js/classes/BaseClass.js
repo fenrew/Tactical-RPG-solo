@@ -1,5 +1,6 @@
-class BaseClass {
+class BaseClass extends Items {
   constructor() {
+    super();
     this.cooldowns = []; // An array of all spells that are on cooldown
   }
 
