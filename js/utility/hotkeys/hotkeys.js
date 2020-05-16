@@ -11,7 +11,7 @@ document.addEventListener("keydown", function (event) {
   if (event.which === 84) {
     const { y, x } = activePlayer.position;
     const mapNumber = Game.originalMap[y][x];
-    console.log("T", Game.activeMap);
+    console.log("T");
 
     if (mapNumber >= 27 && mapNumber < 30) {
       if (!activePlayer.shop) {

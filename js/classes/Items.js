@@ -9,7 +9,9 @@ class Items {
 
   _dropItem = (item) => {};
 
-  _buyItem = (item) => {};
+  _buyItem = (item) => {
+    console.log("Bought item", item);
+  };
 
   _updateItemStatsToCharacter = () => {
     this.items.forEach((item) => {

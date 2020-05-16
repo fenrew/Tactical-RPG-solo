@@ -22,6 +22,11 @@ const openShop = (shopNumber) => {
   visualizeShop(shopItems);
 };
 
+const closeShop = () => {
+  let allItemsDiv = document.getElementById("display-shop-container");
+  document.getElementById("player-area").removeChild(allItemsDiv);
+};
+
 const visualizeShop = (shopItems) => {
   console.log("Visualize shop");
 
@@ -32,6 +37,11 @@ const visualizeShop = (shopItems) => {
   } else {
     removeAllChilds(allItemsDiv);
   }
+
+  const closeButton = document.createElement("div");
+  closeButton.innerText = "X";
+  closeButton.onclick = () => closeShop();
+  allItemsDiv.appendChild(closeButton);
 
   for (let key in shopItems) {
     const itemDiv = document.createElement("div");
@@ -83,6 +93,9 @@ const addOnClickItemDetails = (item) => {
   itemStatsHeader.innerText = "Stats:";
   itemPrice.innerText = "Price: " + item.price + "gold";
   buyItemButton.innerText = "Buy";
+
+  buyItemButton.onclick = () =>
+    Game.combatTimeline[Game.turn].class._buyItem(item);
 
   itemInfoDiv.appendChild(itemName);
   itemInfoDiv.appendChild(itemDescription);
