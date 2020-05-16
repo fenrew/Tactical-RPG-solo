@@ -2,6 +2,7 @@ const itemWeaponsList = {
   dirk: {
     name: "Dirk",
     price: 100,
+    type: "weapon",
     stats: [
       {
         keySequence: "offAllDamageM",
@@ -20,6 +21,7 @@ const itemWeaponsList = {
   staffOfMagic: {
     name: "Staff of Magic",
     price: 200,
+    type: "weapon",
     stats: [
       {
         keySequence: "offAllDamageM",
@@ -34,6 +36,7 @@ const itemWeaponsList = {
   staffOfHealing: {
     name: "Staff of Healing",
     price: 200,
+    type: "weapon",
     stats: [
       {
         keySequence: "offCasterModifier",
@@ -48,6 +51,7 @@ const itemWeaponsList = {
   ironSword: {
     name: "Iron Sword",
     price: 200,
+    type: "weapon",
     stats: [
       {
         keySequence: "offMeleeDamage",

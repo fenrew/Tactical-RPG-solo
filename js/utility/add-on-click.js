@@ -8,6 +8,7 @@ function addOnClickPlayers() {
       removeMovementHighlightsFromMap();
       Game._displayMovementHighlights(player);
       addPlayerPanelInfoText(player);
+      addPlayerPanelInventory(player);
     };
   });
 }
@@ -92,26 +93,39 @@ const addPlayerPanelInfoText = (player) => {
   newTextEle.appendChild(newMpEle);
 };
 
-const addPlayerPanelInventory = () => {
+const addPlayerPanelInventory = (player) => {
   const mainContainerEle = document.getElementById("player-panel-inventory");
   removeAllChilds(mainContainerEle);
   const inventoryBackground = document.createElement("div");
-  inventoryBackground.classList.add("player-panel-inventory-background");
+  inventoryBackground.id = "player-panel-inventory-background";
   mainContainerEle.appendChild(inventoryBackground);
 
-  addPlayerPanelInventoryHelper(inventoryBackground, "weapon");
-  addPlayerPanelInventoryHelper(inventoryBackground, "chest");
-  addPlayerPanelInventoryHelper(inventoryBackground, "feet");
-  addPlayerPanelInventoryHelper(inventoryBackground, "helmet");
-  addPlayerPanelInventoryHelper(inventoryBackground, "legs");
-  addPlayerPanelInventoryHelper(inventoryBackground, "shoulder");
+  const { items } = player.class;
+  console.log(player);
+
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "weapon");
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "chest");
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "feet");
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "helmet");
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "legs");
+  addPlayerPanelInventoryHelper(inventoryBackground, items, "shoulders");
 };
 
-const addPlayerPanelInventoryHelper = (inventoryBackground, itemSlot) => {
+const addPlayerPanelInventoryHelper = (
+  inventoryBackground,
+  items,
+  itemSlot
+) => {
+  const item = items.find((ele) => ele.type === itemSlot);
   const itemDiv = document.createElement("div");
+
   itemDiv.classList.add(
     `player-panel-inventory-${itemSlot}`,
-    "player-panel-inventory-icon"
+    "player-panel-inventory-icon",
+    `display-shop-item-icon-${
+      item ? item.name.replace(/\s/g, "-").toLowerCase() : ""
+    }`
   );
+
   inventoryBackground.appendChild(itemDiv);
 };

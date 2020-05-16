@@ -1,23 +1,64 @@
+#player-panel-inventory {
+  margin-top: 20px;
+  background-color: white;
+  height: 298px;
+}
+
+#player-panel-inventory-background {
+  background-image: url("../../Animations/Items/inventory-placeholder.png");
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .player-panel-inventory-icon {
+  height: 60px;
+  width: 60px;
+  background-color: yellow;
+  position: absolute;
 }
 
 .player-panel-inventory-weapon {
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  margin: auto 0;
 }
 
 .player-panel-inventory-weapon {
 }
 
 .player-panel-inventory-helmet {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .player-panel-inventory-shoulders {
+  top: 58px;
+  left: 38px;
 }
 
 .player-panel-inventory-chest {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .player-panel-inventory-legs {
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .player-panel-inventory-feet {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

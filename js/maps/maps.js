@@ -110,7 +110,7 @@ function returnMapBlockClass(mapNumber) {
 
     201: "shop-weaponry-weapon",
     202: "shop-weaponry-helmet",
-    203: "shop-weaponry-shoulder",
+    203: "shop-weaponry-shoulders",
     204: "shop-weaponry-chest",
     205: "shop-weaponry-legs",
     206: "shop-weaponry-feet",
