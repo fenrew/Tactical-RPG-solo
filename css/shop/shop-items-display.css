@@ -26,12 +26,16 @@
 }
 
 .display-shop-items-list-container {
-  width: fit-content;
-  margin-right: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  margin-right: 50px;
 }
 
 .display-shop-item-container {
   border: 2px solid rgb(255, 255, 255);
+  height: fit-content;
+  width: fit-content;
 }
 
 .display-shop-item-container:hover {
@@ -39,7 +43,9 @@
   border: 2px solid red;
 }
 
-.display-shop-item-name {
+.display-shop-item-icon {
+  height: 40px;
+  width: 40px;
 }
 
 /* Item rareity here: display-shop-item-rareity-${shopItems[key].rareity} */

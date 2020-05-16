@@ -53,12 +53,16 @@ const visualizeShop = (shopItems) => {
     const itemName = document.createElement("div");
 
     itemDiv.classList.add("display-shop-item-container");
+    itemName.classList.add("display-shop-item-name");
+
+    console.log(shopItems[key].name.replace(/\s/g, "").toLowerCase());
     itemName.classList.add(
-      "display-shop-item-name",
+      "display-shop-item-icon",
+      `display-shop-item-icon-${shopItems[key].name
+        .replace(/\s/g, "-")
+        .toLowerCase()}`,
       `display-shop-item-rareity-${shopItems[key].rareity}`
     );
-
-    itemName.innerText = shopItems[key].name;
 
     itemDiv.appendChild(itemName);
 
@@ -70,7 +74,7 @@ const visualizeShop = (shopItems) => {
   }
 
   document.getElementById("player-area").appendChild(allItemsDiv);
-  onClickItemDetails(shopItems[Object.keys(shopItems)[0]]);
+  shopItems ? onClickItemDetails(shopItems[Object.keys(shopItems)[0]]) : "";
 };
 
 const onClickItemDetails = (item) => {
@@ -107,6 +111,7 @@ const onClickItemDetails = (item) => {
   itemInfoDiv.appendChild(itemDescription);
   itemInfoDiv.appendChild(itemStatsHeader);
 
+  // ADDING EACH ITEM DETAILS
   item.stats.forEach((stat) => {
     const itemEachStatsContainer = document.createElement("div");
     const itemEachStatName = document.createElement("div");

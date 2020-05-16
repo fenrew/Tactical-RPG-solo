@@ -10,6 +10,7 @@
 @import "./summons.css";
 @import "./shop/shops.css";
 @import "./shop/shop-items-display.css";
+@import "./items/item-icons.css";
 
 #gamearea {
   height: 924px;

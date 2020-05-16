@@ -9,6 +9,9 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 -NPC's doesn't work with cooldowns... (Zombies)
 
+-purgatory p2
+
+
 ==== TODO ====
 - Fix upgrade to new class functionalities
 - Style buying of items
