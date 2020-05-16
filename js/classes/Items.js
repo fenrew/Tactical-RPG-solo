@@ -3,22 +3,26 @@ class Items {
     this.items = [];
   }
 
+  itemTypeAlreadyOwned = (item) => {
+    if (this.items.find((ele) => ele.type === item.type)) {
+      console.log(`You already own a ${item.type}`);
+      return true;
+    } else return false;
+  };
+
   _addNewItem = (item) => {
+    if (this.itemTypeAlreadyOwned(item)) return;
     this.items.push(item);
     this._changeOneItemStat(item);
   };
 
   _removeItem = (item) => {
     this.items.splice(this.items.indexOf(item), 1);
-    console.log(this.items);
     this._changeOneItemStat(item, true);
   };
 
-  _dropItem = (item) => {};
-
   _buyItem = (item) => {
-    console.log("Bought item", item);
-
+    if (this.itemTypeAlreadyOwned(item)) return;
     if (this.player.gold < item.price)
       return console.log(
         `You only have ${this.player.gold} but the item costs ${item.price}`
@@ -27,6 +31,7 @@ class Items {
     this.player.gold -= item.price;
     this.items.push(item);
     this._changeOneItemStat(item);
+    addPlayerPanelInventory(this.player);
   };
 
   _changeOneItemStat = (item, remove) => {

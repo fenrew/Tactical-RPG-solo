@@ -67,7 +67,6 @@ const visualizeShop = (shopItems) => {
     itemDiv.appendChild(itemName);
 
     itemDiv.onclick = () => {
-      console.log("WORKS");
       onClickItemDetails(shopItems[key]);
     };
     itemsListContainer.appendChild(itemDiv);
