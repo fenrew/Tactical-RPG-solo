@@ -40,7 +40,7 @@
 
 .display-shop-item-container:hover {
   cursor: pointer;
-  border: 2px solid red;
+  border: 2px solid rgb(102, 255, 0);
 }
 
 .display-shop-item-icon {
@@ -54,12 +54,14 @@
 }
 
 .display-shop-item-name-details {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .display-shop-item-description {
 }
 
-.display-shop-item-header {
+.display-shop-item-stats-header {
 }
 
 .display-shop-item-price {
@@ -70,4 +72,11 @@
 
 .display-shop-item-buy-button:hover {
   cursor: pointer;
+}
+
+.display-shop-each-item-container {
+  display: flex;
+}
+
+.display-shop-item-stats {
 }

@@ -9,7 +9,9 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 -NPC's doesn't work with cooldowns... (Zombies)
 
--purgatory p2
+- Purgatory p2
+
+- While walking to a teleport you can press T to kind of duplicate your character
 
 
 ==== TODO ====

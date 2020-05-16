@@ -11,12 +11,14 @@
 @import "./shop/shops.css";
 @import "./shop/shop-items-display.css";
 @import "./items/item-icons.css";
+@import "./items/player-inventory.css";
 
 #gamearea {
   height: 924px;
-  width: 1500px;
+  width: 1532px;
   background-color: black;
   position: relative;
+  border: 20px solid rgb(39, 39, 39);
 }
 
 #player-area-box {

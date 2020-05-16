@@ -94,14 +94,14 @@ const onClickItemDetails = (item) => {
 
   itemName.classList.add("display-shop-item-name-details");
   itemDescription.classList.add("display-shop-item-description");
-  itemStatsHeader.classList.add("display-shop-item-header");
+  itemStatsHeader.classList.add("display-shop-item-stats-header");
   itemPrice.classList.add("display-shop-item-price");
   buyItemButton.classList.add("display-shop-item-buy-button");
 
   itemName.innerText = item.name;
   itemDescription.innerText = item.description;
   itemStatsHeader.innerText = "Stats:";
-  itemPrice.innerText = "Price: " + item.price + "gold";
+  itemPrice.innerText = `Price: ${item.price} gold`;
   buyItemButton.innerText = "Buy";
 
   buyItemButton.onclick = () =>
@@ -120,7 +120,7 @@ const onClickItemDetails = (item) => {
     itemEachStatsContainer.classList.add("display-shop-each-item-container");
     itemEachStatName.classList.add("display-shop-item-stats");
 
-    itemEachStatName.innerText = stat.keySequence;
+    itemEachStatName.innerText = stat.keySequence + ": ";
     itemEachStatValue.innerText = stat.value;
 
     itemEachStatsContainer.appendChild(itemEachStatName);

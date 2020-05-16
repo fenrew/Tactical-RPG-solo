@@ -32,7 +32,7 @@ function updatePlayerPanelActiveTurn(combatTimeline, turn) {
       "class-panel-" + combatTimeline[turn].playerNumber
     )[0]
     .classList.add("player-panel-active-turn");
-  combatTimelineDiv.scrollBy(70, 0);
+  combatTimelineDiv.scrollBy(60, 0);
 
   if (Game.turn === 0) {
     combatTimelineDiv.scrollBy(-600, 0);

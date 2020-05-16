@@ -91,3 +91,27 @@ const addPlayerPanelInfoText = (player) => {
   newTextEle.appendChild(newManaEle);
   newTextEle.appendChild(newMpEle);
 };
+
+const addPlayerPanelInventory = () => {
+  const mainContainerEle = document.getElementById("player-panel-inventory");
+  removeAllChilds(mainContainerEle);
+  const inventoryBackground = document.createElement("div");
+  inventoryBackground.classList.add("player-panel-inventory-background");
+  mainContainerEle.appendChild(inventoryBackground);
+
+  addPlayerPanelInventoryHelper(inventoryBackground, "weapon");
+  addPlayerPanelInventoryHelper(inventoryBackground, "chest");
+  addPlayerPanelInventoryHelper(inventoryBackground, "feet");
+  addPlayerPanelInventoryHelper(inventoryBackground, "helmet");
+  addPlayerPanelInventoryHelper(inventoryBackground, "legs");
+  addPlayerPanelInventoryHelper(inventoryBackground, "shoulder");
+};
+
+const addPlayerPanelInventoryHelper = (inventoryBackground, itemSlot) => {
+  const itemDiv = document.createElement("div");
+  itemDiv.classList.add(
+    `player-panel-inventory-${itemSlot}`,
+    "player-panel-inventory-icon"
+  );
+  inventoryBackground.appendChild(itemDiv);
+};

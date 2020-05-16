@@ -20,83 +20,79 @@
 
 .novice-class-player-panel {
   background-image: url("../Animations/Classes/Novice/Novice\ 2\ Tactical\ RPG.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .warrior-class-player-panel {
   background-image: url("../Animations/Classes/Warrior/Warrior\ Tactical\ RPG\ gif\ 2.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .sorcerer-class-player-panel {
   background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .priest-class-player-panel {
   background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .wizard-class-player-panel {
   background-image: url("../Animations/Classes/Wizard/Wizard\ Tactical\ RPG\ 1.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .drow-ranger-class-player-panel {
   background-image: url("../Animations/Classes/Drow-Ranger/Drow\ Ranger\ Tactical\ RPG.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 .paladin-class-player-panel {
   background-image: url("../Animations/Classes/Paladin/Paladin\ Tactical\ RPG.gif");
-  background-size: 100%;
-  width: 70px;
-  height: 70px;
+  background-size: 100% 100%;
 }
 
 /* TIMELINE */
 
 #combat-timeline-box {
   background-color: rgba(255, 255, 255, 0.616);
+  padding: 8px;
+  min-height: 110px;
+}
+
+#combat-timeline-header {
+  margin: 0;
+  padding-bottom: 4px;
 }
 
 #combat-timeline-icons-box {
   display: flex;
   overflow-x: auto;
-  height: 100px;
+  padding: 5px 0;
 }
 
 .combat-timeline-icon {
-  flex: 0 0 70px;
-  width: 70px;
-  height: 70px;
+  align-self: center;
+  min-width: 60px;
+  min-height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 .player-panel-active-turn {
-  flex: 0 0 80px;
-  width: 80px;
-  height: 80px;
-  background-color: rgba(0, 255, 255, 0.733);
+  min-width: 70px;
+  min-height: 70px;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(0, 42, 133, 0.733);
   box-sizing: border-box;
 }
 
 /* CHAR INFO */
 #player-panel-char-info-box {
   background-color: rgba(0, 0, 0, 0.63);
-  margin-top: 60px;
+  margin-top: 20px;
   padding: 0px 15px;
   color: white;
   font-family: "Courier New", Courier, monospace;
@@ -136,6 +132,7 @@
 /* CONFIRM CHOICE BUTTON */
 
 .player-panel-button {
+  display: none;
   background-color: yellow;
   width: 200px;
   height: 50px;
@@ -176,7 +173,7 @@
 
 /* INFO TEXT */
 #player-panel-info-text {
-  height: 330px;
+  height: 300px;
   margin-top: 30px;
   padding: 0 10px;
 }

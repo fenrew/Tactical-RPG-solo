@@ -1,49 +1,61 @@
 /* WEAPONRY */
 .shop-weaponry-weapon {
-  background-color: lightsalmon;
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-weaponry-helmet {
-  background-color: rgb(255, 72, 0);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-weaponry-shoulder {
-  background-color: rgb(255, 224, 122);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-weaponry-chest {
-  background-color: rgb(122, 255, 133);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-weaponry-legs {
-  background-color: rgb(255, 122, 200);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-weaponry-feet {
-  background-color: rgb(255, 122, 129);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 /* MISC */
 .shop-misc-misc {
-  background-color: lightsalmon;
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-misc-artifact {
-  background-color: rgb(255, 72, 0);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-misc-gem {
-  background-color: rgb(255, 224, 122);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-misc-ore {
-  background-color: rgb(122, 255, 133);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-misc-fabric {
-  background-color: rgb(255, 122, 200);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
 
 .shop-misc-recipe {
-  background-color: rgb(255, 122, 129);
+  background-image: url("../../Animations/Shop/shop-placeholder.png");
+  background-size: 100% 100%;
 }
