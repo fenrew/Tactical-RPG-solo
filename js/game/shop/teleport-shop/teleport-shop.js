@@ -14,7 +14,8 @@ const teleportToShop = (player, shopNumber) => {
   Game.activeMap[y][x] = player.playerNumber;
   updateVisualizeMap(Game.activeMap);
   visualizePlayers(Game.activeMap);
-  addOnclickToNpcs();
+  addOnclickToNpcs(); // Is this really needed???
+  addOnClickShops(Game.activeMap);
 };
 
 const teleportFromShop = (player) => {

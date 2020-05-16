@@ -2,12 +2,11 @@ const addOnClickShops = (map = Game.activeMap) => {
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[y].length; x++) {
       const mapNumber = map[y][x];
-
       if (
         (mapNumber >= 201 && mapNumber < 207) ||
         (mapNumber >= 301 && mapNumber < 307)
       ) {
-        mapGridEle.onclick = () => {
+        document.getElementById(`map-grid-block-${y},${x}`).onclick = () => {
           openShop(mapNumber);
         };
       }
@@ -26,8 +25,13 @@ const openShop = (shopNumber) => {
 const visualizeShop = (shopItems) => {
   console.log("Visualize shop");
 
-  const allItemsDiv = document.createElement("div");
-  allItemsDiv.id = "display-shop-container";
+  let allItemsDiv = document.getElementById("display-shop-container");
+  if (!allItemsDiv) {
+    allItemsDiv = document.createElement("div");
+    allItemsDiv.id = "display-shop-container";
+  } else {
+    removeAllChilds(allItemsDiv);
+  }
 
   for (let key in shopItems) {
     const itemDiv = document.createElement("div");
@@ -41,11 +45,12 @@ const visualizeShop = (shopItems) => {
 
     itemName.innerText = shopItems[key].name;
 
+    itemDiv.appendChild(itemName);
+
     itemDiv.onclick = () => {
+      console.log("WORKS");
       addOnClickItemDetails(shopItems[key]);
     };
-
-    itemDiv.appendChild(itemName);
     allItemsDiv.appendChild(itemDiv);
   }
 
@@ -57,6 +62,8 @@ const addOnClickItemDetails = (item) => {
   if (!itemInfoDiv) {
     itemInfoDiv = document.createElement("div");
     itemInfoDiv.id = "display-shop-item-info-container";
+  } else {
+    removeAllChilds(itemInfoDiv);
   }
 
   const itemName = document.createElement("div");
@@ -99,4 +106,5 @@ const addOnClickItemDetails = (item) => {
 
   itemInfoDiv.appendChild(itemPrice);
   itemInfoDiv.appendChild(buyItemButton);
+  document.getElementById("display-shop-container").appendChild(itemInfoDiv);
 };
