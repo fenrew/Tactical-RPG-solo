@@ -40,8 +40,13 @@ const visualizeShop = (shopItems) => {
 
   const closeButton = document.createElement("div");
   closeButton.innerText = "X";
+  closeButton.classList.add("display-shop-close-button");
   closeButton.onclick = () => closeShop();
   allItemsDiv.appendChild(closeButton);
+
+  const itemsListContainer = document.createElement("div");
+  itemsListContainer.classList.add("display-shop-items-list-container");
+  allItemsDiv.appendChild(itemsListContainer);
 
   for (let key in shopItems) {
     const itemDiv = document.createElement("div");
@@ -59,15 +64,16 @@ const visualizeShop = (shopItems) => {
 
     itemDiv.onclick = () => {
       console.log("WORKS");
-      addOnClickItemDetails(shopItems[key]);
+      onClickItemDetails(shopItems[key]);
     };
-    allItemsDiv.appendChild(itemDiv);
+    itemsListContainer.appendChild(itemDiv);
   }
 
   document.getElementById("player-area").appendChild(allItemsDiv);
+  onClickItemDetails(shopItems[Object.keys(shopItems)[0]]);
 };
 
-const addOnClickItemDetails = (item) => {
+const onClickItemDetails = (item) => {
   let itemInfoDiv = document.getElementById("display-shop-item-info-container");
   if (!itemInfoDiv) {
     itemInfoDiv = document.createElement("div");

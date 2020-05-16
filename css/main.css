@@ -9,6 +9,7 @@
 @import "./spell-animations/main-spell-animations.css";
 @import "./summons.css";
 @import "./shop/shops.css";
+@import "./shop/shop-items-display.css";
 
 #gamearea {
   height: 924px;

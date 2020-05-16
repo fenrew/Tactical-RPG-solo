@@ -1,0 +1,67 @@
+#display-shop-container {
+  padding: 30px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  min-height: 40%;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  display: flex;
+}
+
+.display-shop-close-button {
+  position: absolute;
+  color: rgb(255, 74, 74);
+  font-size: 25px;
+  height: 25px;
+  top: 2px;
+  left: 2px;
+  border: 2px solid white;
+}
+.display-shop-close-button:hover {
+  cursor: pointer;
+  border: 2px solid red;
+}
+
+.display-shop-items-list-container {
+  width: fit-content;
+  margin-right: 70px;
+}
+
+.display-shop-item-container {
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.display-shop-item-container:hover {
+  cursor: pointer;
+  border: 2px solid red;
+}
+
+.display-shop-item-name {
+}
+
+/* Item rareity here: display-shop-item-rareity-${shopItems[key].rareity} */
+
+#display-shop-item-info-container {
+}
+
+.display-shop-item-name-details {
+}
+
+.display-shop-item-description {
+}
+
+.display-shop-item-header {
+}
+
+.display-shop-item-price {
+}
+
+.display-shop-item-buy-button {
+}
+
+.display-shop-item-buy-button:hover {
+  cursor: pointer;
+}
