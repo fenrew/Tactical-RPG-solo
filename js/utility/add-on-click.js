@@ -101,7 +101,6 @@ const addPlayerPanelInventory = (player) => {
   mainContainerEle.appendChild(inventoryBackground);
 
   const { items } = player.class;
-  console.log(player);
 
   addPlayerPanelInventoryHelper(inventoryBackground, items, "weapon");
   addPlayerPanelInventoryHelper(inventoryBackground, items, "chest");

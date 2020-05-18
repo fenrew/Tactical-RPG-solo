@@ -48,10 +48,29 @@ class Items {
 
       if (!remove) statToChange[keySequence[keySequence.length - 1]] += value;
       else statToChange[keySequence[keySequence.length - 1]] -= value;
+
+      this._checkIfStatExceedsLimits(keySequence);
     });
 
     updateCurrentManaBar(this.player);
     updateCurrentHealthBar(this.player);
+  };
+
+  _checkIfStatExceedsLimits = (stat) => {
+    if (stat === "hp" && this.combatstats.currentHp > this.combatstats.hp) {
+      this.combatstats.currentHp -= this.combatstats.hp;
+      if (this.combatstats.currentHp < this.combatstats.hp)
+        this.combatstats.currentHp = this.combatstats.hp;
+    }
+
+    if (
+      stat === "mana" &&
+      this.combatstats.currentMana > this.combatstats.mana
+    ) {
+      this.combatstats.currentMana -= this.combatstats.mana;
+      if (this.combatstats.currentMana < this.combatstats.mana)
+        this.combatstats.currentMana = this.combatstats.mana;
+    }
   };
 
   _changeAllItemStats = () => {

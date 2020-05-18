@@ -8,6 +8,6 @@ class Player {
     };
     this.newPosition = false; // For pushback etc
     this.shop = false;
-    this.gold = 350;
+    this.gold = 3500;
   }
 }

@@ -19,9 +19,22 @@
   background-size: 100% 100%;
 }
 
+/* HELMETS */
+.display-shop-item-icon-viking-helmet {
+  background-image: url("../../Animations/Items/Helmets/helmet-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* SHOULDERS */
 
 .display-shop-item-icon-shoulders-of-magic {
   background-image: url("../../Animations/Items/Shoulders/shoulders-placeholder.png");
+  background-size: 100% 100%;
+}
+
+/* LEGS */
+
+.display-shop-item-icon-iron-leggings {
+  background-image: url("../../Animations/Items/Legs/legs-placeholder.png");
   background-size: 100% 100%;
 }

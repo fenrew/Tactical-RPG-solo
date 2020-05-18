@@ -16,6 +16,7 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 ==== TODO ====
 - Fix upgrade to new class functionalities
+- Update player panel char info text after buying a new item
 - Add more items
 - Add more enemies and waves of enemies
 - Add spell animations etc...
