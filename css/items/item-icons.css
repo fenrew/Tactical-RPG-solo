@@ -31,6 +31,12 @@
   background-size: 100% 100%;
 }
 
+/* CHESTS */
+.display-shop-item-icon-iron-chainmail {
+  background-image: url("../../Animations/Items/Chests/chest-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* LEGS */
 .display-shop-item-icon-iron-leggings {
   background-image: url("../../Animations/Items/Legs/legs-placeholder.png");
