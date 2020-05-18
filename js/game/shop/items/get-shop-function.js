@@ -4,4 +4,5 @@ const getShop = (shopNumber) => {
   else if (shopNumber === 203) return itemShouldersList;
   else if (shopNumber === 204) return;
   else if (shopNumber === 205) return itemLegsList;
+  else if (shopNumber === 206) return itemFeetList;
 };
