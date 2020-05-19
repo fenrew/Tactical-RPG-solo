@@ -107,4 +107,24 @@ const spellInfoObject = {
   holyFire: "Deals initial damage and additional damage over 3 turns",
   purgatory:
     "Shoots out a purgatory beam that deals damage to all enemies and healing all allies in its path",
+  beamOfLight:
+    "Casts a beam of light out from the priest’s hand dealing damage to a target and healing the priest",
+  sin:
+    "Deals massive darkness damage to an enemy but also deals some damage to the priest",
+  judgementDay:
+    "Deals damage on every unit on odd tiles and heals every unit on even tiles from the caster",
+  divineIntervention:
+    "Switches position with an ally healing it and damages enemies around the newly arrived position",
+  totemOfHealing:
+    "Summons a static totem that pulses waves of healing every turn in a 2 square radius",
+  chainLightning:
+    "Casts a massive bolt of lightning that bounces between units in a 2 square radius of the target, dealing increased damage for each unit hit",
+  totemOfMana:
+    "Sets down a totem of mana that gives additional mana for every turn in a 2 square radius",
+  voodooBrew:
+    "Combines a mixture of all kinds of nasty stuff and drinks it, dealing a bit of damage to yourself but increases your magical abilities significantly",
+  starfall:
+    "Deals initial damage on a tile and places a glyph there. Units on the glyph takes additional damage per turn. Lasts 3 turns",
+  naturesWrath:
+    "Places a totem on the ground that invokes nature's wrath! Removes all mp in a targeted area rooting them to the ground and dealing massive damage, lasts 2 turns or until killed",
 };

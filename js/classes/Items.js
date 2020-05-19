@@ -54,6 +54,7 @@ class Items {
 
     updateCurrentManaBar(this.player);
     updateCurrentHealthBar(this.player);
+    addPlayerPanelInfoText(this.player);
   };
 
   _checkIfStatExceedsLimits = (stat) => {
