@@ -7,7 +7,7 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 - when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
     - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 
--NPC's doesn't work with cooldowns... (Zombies)
+- NPC's doesn't work with cooldowns... (Zombies)
 
 - Purgatory p2
 
@@ -16,10 +16,14 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 ==== TODO ====
 - Fix upgrade to new class functionalities
-- Update player panel char info text after buying a new item
+- Add the misc shop
 - Add more items
+- Combine items
+- Get set bonus on items
 - Add more enemies and waves of enemies
 - Add spell animations etc...
+- Add PvP
+- Add PvE
 
 
 === IDEAS ====
