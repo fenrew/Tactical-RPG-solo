@@ -13,6 +13,7 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 
 ==== TODO ====
+- Add a way to earn gold
 - Add cooldown UI
 - Fix upgrade to new class functionalities
 - Add the misc shop

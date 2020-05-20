@@ -437,9 +437,9 @@ const priestSpellObject = {
     castEffect: (position, spell, player) => {
       const targets = getUnitsInStraightLine(
         player.player.position,
-        position.y + 1 ? position : position.position,
+        position.y ? position : position.position,
         spell
-      );
+      ).filter((ele) => ele !== player.player);
 
       targets.forEach((ele) => {
         const { combatstats } = ele.class;
