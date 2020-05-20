@@ -92,39 +92,3 @@ const addPlayerPanelInfoText = (player) => {
   newTextEle.appendChild(newManaEle);
   newTextEle.appendChild(newMpEle);
 };
-
-const addPlayerPanelInventory = (player) => {
-  const mainContainerEle = document.getElementById("player-panel-inventory");
-  removeAllChilds(mainContainerEle);
-  const inventoryBackground = document.createElement("div");
-  inventoryBackground.id = "player-panel-inventory-background";
-  mainContainerEle.appendChild(inventoryBackground);
-
-  const { items } = player.class;
-
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "weapon");
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "chest");
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "feet");
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "helmet");
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "legs");
-  addPlayerPanelInventoryHelper(inventoryBackground, items, "shoulders");
-};
-
-const addPlayerPanelInventoryHelper = (
-  inventoryBackground,
-  items,
-  itemSlot
-) => {
-  const item = items.find((ele) => ele.type === itemSlot);
-  const itemDiv = document.createElement("div");
-
-  itemDiv.classList.add(
-    `player-panel-inventory-${itemSlot}`,
-    "player-panel-inventory-icon",
-    `display-shop-item-icon-${
-      item ? item.name.replace(/\s/g, "-").toLowerCase() : ""
-    }`
-  );
-
-  inventoryBackground.appendChild(itemDiv);
-};

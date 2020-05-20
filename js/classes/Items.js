@@ -1,6 +1,6 @@
 class Items {
   constructor() {
-    this.items = [];
+    this.items = [itemWeaponsList.dirk];
   }
 
   itemTypeAlreadyOwned = (item) => {
