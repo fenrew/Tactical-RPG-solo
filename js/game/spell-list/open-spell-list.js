@@ -7,6 +7,8 @@ function openAndCloseSpellList() {
     let player = Game.combatTimeline[Game.turn],
       newElement = document.createElement("div");
 
+    console.log(player.class.cooldowns);
+
     newElement.id = "spell-list-tab";
     newElement.style.top = player.position.y * 77 + "px";
     newElement.style.left = player.position.x * 77 + 77 + "px";
@@ -18,7 +20,8 @@ function openAndCloseSpellList() {
 }
 
 function addSpellListKeysToElement(spellList, element) {
-  const { currentMana } = Game.combatTimeline[Game.turn].class.combatstats;
+  const player = Game.combatTimeline[Game.turn];
+  const { combatstats, cooldowns } = player.class;
   let spellListArray = Object.values(spellList);
 
   // spellListArray.sort((a, b) => {
@@ -31,33 +34,43 @@ function addSpellListKeysToElement(spellList, element) {
   element.appendChild(newLayerEle);
 
   spellListArray.forEach((spell) => {
-    if (!spell.userSpellInfo.learned) return;
+    if (!spell.userSpellInfo.learned) return; // Why isn't this returning out of the function and ruins everything???
     const newContainerEle = document.createElement("div");
     const newSpellName = document.createElement("div");
     const newManaImgEle = document.createElement("div");
     const newManaTxtEle = document.createElement("div");
+    const cooldownDiv = document.createElement("div");
 
     newSpellName.innerText = spell.name;
     newSpellName.classList.add("spell-list-spell-name");
 
-    newManaImgEle.classList.add("spell-list-mana-symbol");
+    if (cooldowns.includes(spell)) {
+      cooldownDiv.innerText =
+        cooldowns.find((ele) => ele === spell).userSpellInfo.currentCooldown +
+        " CD";
+      cooldownDiv.classList.add("spell-list-cooldown-text");
+      newContainerEle.appendChild(cooldownDiv);
+    } else {
+      newManaImgEle.classList.add("spell-list-mana-symbol");
+      newManaTxtEle.innerText = spell.spellInfo.manaCost;
 
-    newManaTxtEle.innerText = spell.spellInfo.manaCost;
-
-    newContainerEle.appendChild(newManaTxtEle);
-    newContainerEle.appendChild(newManaImgEle);
+      newContainerEle.appendChild(newManaTxtEle);
+      newContainerEle.appendChild(newManaImgEle);
+    }
     newContainerEle.appendChild(newSpellName);
 
     newContainerEle.id = "spell-list-" + spell.id;
     newContainerEle.classList.add("spell-list-unit");
     if (
-      spell.spellInfo.manaCost > currentMana ||
+      spell.spellInfo.manaCost > combatstats.currentMana ||
       !spell.userSpellInfo.canBeCast
-    )
+    ) {
       newContainerEle.classList.add("spell-cant-be-cast");
+    } else {
+      addOnClickToOpenSpellListElement(spell, newContainerEle);
+    }
     // newContainerEle.innerHTML = spell.name
 
-    addOnClickToOpenSpellListElement(spell, newContainerEle);
     addOnHoverInfoToSpellList(spell, newContainerEle);
 
     newLayerEle.appendChild(newContainerEle);
