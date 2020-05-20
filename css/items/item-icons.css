@@ -31,6 +31,16 @@
   background-size: 100% 100%;
 }
 
+.display-shop-item-icon-iron-pads {
+  background-image: url("../../Animations/Items/Shoulders/shoulders-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-spiked-shoulder-pads {
+  background-image: url("../../Animations/Items/Shoulders/shoulders-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* CHESTS */
 .display-shop-item-icon-iron-chainmail {
   background-image: url("../../Animations/Items/Chests/chest-placeholder.png");

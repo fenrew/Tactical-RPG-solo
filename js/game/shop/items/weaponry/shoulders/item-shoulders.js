@@ -18,4 +18,30 @@ const itemShouldersList = {
       },
     ],
   },
+  ironPads: {
+    name: "Iron Pads",
+    price: 100,
+    type: "shoulders",
+    stats: [
+      {
+        keySequence: "hp",
+        value: 30,
+      },
+      {
+        keySequence: "mana",
+        value: 5,
+      },
+    ],
+  },
+  spikedShoulderPads: {
+    name: "Spiked Shoulder Pads",
+    price: 300,
+    type: "shoulders",
+    stats: [
+      {
+        keySequence: "offMeleeDamage",
+        value: 0.3,
+      },
+    ],
+  },
 };
