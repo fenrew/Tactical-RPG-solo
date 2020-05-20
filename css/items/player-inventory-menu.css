@@ -1,0 +1,42 @@
+#inventory-menu-container {
+  font-family: "Courier New", Courier, monospace;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  height: 40%;
+  width: 40%;
+  z-index: 82;
+}
+
+.inventory-menu-clost-button {
+  width: fit-content;
+  font-size: 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 10px 10px 0 auto;
+}
+
+.inventory-menu-clost-button:hover {
+  color: red;
+  cursor: pointer;
+  font-size: 30px;
+  margin: 7.5px 7.5px 0 auto;
+}
+
+.inventory-menu-item-name {
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.inventory-menu-drop-item {
+  font-size: 20px;
+}
+
+.inventory-menu-drop-item {
+  cursor: pointer;
+}

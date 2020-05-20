@@ -19,6 +19,7 @@ class Items {
   _removeItem = (item) => {
     this.items.splice(this.items.indexOf(item), 1);
     this._changeOneItemStat(item, true);
+    addPlayerPanelInventory(this.player);
   };
 
   _buyItem = (item) => {
@@ -49,7 +50,7 @@ class Items {
       if (!remove) statToChange[keySequence[keySequence.length - 1]] += value;
       else statToChange[keySequence[keySequence.length - 1]] -= value;
 
-      this._checkIfStatExceedsLimits(keySequence);
+      this._checkIfStatExceedsLimits(keySequence, value);
     });
 
     updateCurrentManaBar(this.player);
@@ -57,18 +58,20 @@ class Items {
     addPlayerPanelInfoText(this.player);
   };
 
-  _checkIfStatExceedsLimits = (stat) => {
-    if (stat === "hp" && this.combatstats.currentHp > this.combatstats.hp) {
-      this.combatstats.currentHp -= this.combatstats.hp;
+  _checkIfStatExceedsLimits = (stat, value) => {
+    if (
+      stat.includes("hp") &&
+      this.combatstats.currentHp > this.combatstats.hp
+    ) {
+      this.combatstats.currentHp -= value;
       if (this.combatstats.currentHp < this.combatstats.hp)
         this.combatstats.currentHp = this.combatstats.hp;
     }
-
     if (
-      stat === "mana" &&
+      stat.includes("mana") &&
       this.combatstats.currentMana > this.combatstats.mana
     ) {
-      this.combatstats.currentMana -= this.combatstats.mana;
+      this.combatstats.currentMana -= value;
       if (this.combatstats.currentMana < this.combatstats.mana)
         this.combatstats.currentMana = this.combatstats.mana;
     }

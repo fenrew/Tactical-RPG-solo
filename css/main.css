@@ -12,6 +12,7 @@
 @import "./shop/shop-items-display.css";
 @import "./items/item-icons.css";
 @import "./items/player-inventory.css";
+@import "./items/player-inventory-menu.css";
 
 #gamearea {
   height: 924px;
