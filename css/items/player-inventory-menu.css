@@ -35,8 +35,54 @@
 
 .inventory-menu-drop-item {
   font-size: 20px;
+  width: fit-content;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
-.inventory-menu-drop-item {
+.inventory-menu-drop-item:hover {
   cursor: pointer;
+}
+
+.inventory-menu-drop-item-confirm-container {
+  display: flex;
+  align-items: center;
+  background-color: rgb(46, 97, 139);
+  height: 40px;
+}
+
+.inventory-menu-drop-item-confirm-text {
+  width: 100px;
+  padding: 3px 0;
+  text-align: center;
+  color: white;
+}
+
+.inventory-menu-drop-item-confirm-yes {
+  margin: 0 10px;
+  background-color: seagreen;
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 5px;
+  color: white;
+}
+.inventory-menu-drop-item-confirm-yes:hover {
+  cursor: pointer;
+  background-color: red;
+}
+
+.inventory-menu-drop-item-confirm-no {
+  background-color: rgb(209, 185, 50);
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 5px;
+  color: white;
+}
+
+.inventory-menu-drop-item-confirm-no:hover {
+  cursor: pointer;
+  background-color: red;
 }

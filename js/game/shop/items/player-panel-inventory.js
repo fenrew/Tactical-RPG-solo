@@ -57,7 +57,7 @@ const visualizeItemInventoryMenu = (item, player) => {
   dropItem.innerText = "Drop Item";
 
   dropItem.onclick = () => {
-    confirmInventoryDropItem(item, player);
+    confirmInventoryDropItem(item, player, dropItem);
   };
   closeButton.onclick = () => {
     document.getElementById("player-area").removeChild(containerDiv);
@@ -71,13 +71,18 @@ const visualizeItemInventoryMenu = (item, player) => {
 
 const addOnClickItemInventory = (item) => {};
 
-const confirmInventoryDropItem = (item, player) => {
+const confirmInventoryDropItem = (item, player, dropItem) => {
   let containerDiv = document.getElementById("inventory-menu-container");
 
   const confirmContainer = document.createElement("div");
   const confirmText = document.createElement("div");
   const confirmYes = document.createElement("div");
   const confirmNo = document.createElement("div");
+
+  confirmContainer.classList.add("inventory-menu-drop-item-confirm-container");
+  confirmText.classList.add("inventory-menu-drop-item-confirm-text");
+  confirmYes.classList.add("inventory-menu-drop-item-confirm-yes");
+  confirmNo.classList.add("inventory-menu-drop-item-confirm-no");
 
   confirmText.innerText = "Confirm?";
   confirmYes.innerText = "Yes";
@@ -88,6 +93,7 @@ const confirmInventoryDropItem = (item, player) => {
   confirmContainer.appendChild(confirmNo);
 
   containerDiv.appendChild(confirmContainer);
+  containerDiv.removeChild(dropItem);
 
   confirmYes.onclick = () => {
     document.getElementById("player-area").removeChild(containerDiv);
