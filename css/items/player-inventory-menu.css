@@ -3,22 +3,41 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: white;
+  background-image: url("../../Animations/Inventory/inventory-background.png");
+  background-size: cover;
   height: 40%;
   width: 40%;
   z-index: 82;
 }
 
-.inventory-menu-clost-button {
+#inventory-menu-main-sub-container {
+  display: flex;
+  height: 90%;
+  width: 100%;
+}
+
+#inventory-menu-left-sub-container {
+  width: 50%;
+  height: 100%;
+}
+
+#inventory-menu-right-sub-container {
+  width: 50%;
+  height: 100%;
+}
+
+.inventory-menu-close-button {
   width: fit-content;
   font-size: 25px;
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   margin: 10px 10px 0 auto;
+  color: rgb(165, 3, 3);
 }
 
-.inventory-menu-clost-button:hover {
+.inventory-menu-close-button:hover {
   color: red;
   cursor: pointer;
   font-size: 30px;
@@ -26,23 +45,30 @@
 }
 
 .inventory-menu-item-name {
+  height: 10%;
   font-weight: bold;
   font-size: 25px;
   text-decoration: underline;
   text-align: center;
   margin-top: 10px;
+  color: white;
 }
 
 .inventory-menu-drop-item {
   font-size: 20px;
-  width: fit-content;
   height: 40px;
   display: flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.486);
 }
 
 .inventory-menu-drop-item:hover {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.692);
+  color: rgb(175, 175, 175);
 }
 
 .inventory-menu-drop-item-confirm-container {
