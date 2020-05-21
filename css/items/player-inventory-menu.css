@@ -1,10 +1,10 @@
 #inventory-menu-container {
+  background-image: url("../../Animations/Panel/panel_pixel-art-wallpaper_resize\ .jpg");
+  background-size: 100% 100%;
   font-family: "Courier New", Courier, monospace;
   position: absolute;
   bottom: 0;
   left: 0;
-  background-image: url("../../Animations/Inventory/inventory-background.png");
-  background-size: cover;
   height: 40%;
   width: 40%;
   z-index: 82;
@@ -34,11 +34,11 @@
   left: 0;
   right: 0;
   margin: 10px 10px 0 auto;
-  color: rgb(165, 3, 3);
+  color: rgb(255, 0, 0);
 }
 
 .inventory-menu-close-button:hover {
-  color: red;
+  color: rgb(255, 68, 68);
   cursor: pointer;
   font-size: 30px;
   margin: 7.5px 7.5px 0 auto;

@@ -81,11 +81,14 @@ const visualizeItemInventoryMenu = (item, player) => {
   containerDiv.appendChild(closeButton);
   containerDiv.appendChild(mainSubContainer);
   document.getElementById("player-area").appendChild(containerDiv);
+
+  visualizeInventoryItemStats(item);
 };
 
 const addOnClickItemInventory = (item) => {};
 
 const confirmInventoryDropItem = (item, player, dropItem) => {
+  const containerDiv = document.getElementById("inventory-menu-container");
   let leftContainer = document.getElementById(
     "inventory-menu-left-sub-container"
   );
@@ -122,38 +125,23 @@ const confirmInventoryDropItem = (item, player, dropItem) => {
 };
 
 const visualizeInventoryItemStats = (item) => {
-  let itemInfoDiv = document.getElementById("display-shop-item-info-container");
-  if (!itemInfoDiv) {
-    itemInfoDiv = document.createElement("div");
-    itemInfoDiv.id = "display-shop-item-info-container";
-  } else {
-    removeAllChilds(itemInfoDiv);
-  }
+  const rightSubContainer = document.getElementById(
+    "inventory-menu-right-sub-container"
+  );
 
-  const itemName = document.createElement("div");
   const itemDescription = document.createElement("div");
   const itemStatsHeader = document.createElement("div");
   const itemPrice = document.createElement("div");
   const buyItemButton = document.createElement("div");
 
-  itemName.classList.add("display-shop-item-name-details");
   itemDescription.classList.add("display-shop-item-description");
   itemStatsHeader.classList.add("display-shop-item-stats-header");
-  itemPrice.classList.add("display-shop-item-price");
-  buyItemButton.classList.add("display-shop-item-buy-button");
 
-  itemName.innerText = item.name;
   itemDescription.innerText = item.description;
   itemStatsHeader.innerText = "Stats:";
-  itemPrice.innerText = `Price: ${item.price} gold`;
-  buyItemButton.innerText = "Buy";
 
-  buyItemButton.onclick = () =>
-    Game.combatTimeline[Game.turn].class._buyItem(item);
-
-  itemInfoDiv.appendChild(itemName);
-  itemInfoDiv.appendChild(itemDescription);
-  itemInfoDiv.appendChild(itemStatsHeader);
+  rightSubContainer.appendChild(itemDescription);
+  rightSubContainer.appendChild(itemStatsHeader);
 
   // ADDING EACH ITEM DETAILS
   item.stats.forEach((stat) => {
@@ -169,10 +157,9 @@ const visualizeInventoryItemStats = (item) => {
 
     itemEachStatsContainer.appendChild(itemEachStatName);
     itemEachStatsContainer.appendChild(itemEachStatValue);
-    itemInfoDiv.appendChild(itemEachStatsContainer);
+    rightSubContainer.appendChild(itemEachStatsContainer);
   });
 
-  itemInfoDiv.appendChild(itemPrice);
-  itemInfoDiv.appendChild(buyItemButton);
-  document.getElementById("display-shop-container").appendChild(itemInfoDiv);
+  rightSubContainer.appendChild(itemPrice);
+  rightSubContainer.appendChild(buyItemButton);
 };

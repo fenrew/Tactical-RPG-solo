@@ -3,6 +3,8 @@ const itemWeaponsList = {
     name: "Dirk",
     price: 100,
     type: "weapon",
+    description:
+      "A short dagger used to open letters or stab someones eyes out",
     stats: [
       {
         keySequence: "offAllDamageM",
