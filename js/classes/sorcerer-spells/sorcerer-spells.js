@@ -308,7 +308,6 @@ const sorcererSpellObject = {
       );
     },
     applyEffect: (effect, player) => {
-      console.log(effect);
       effect.allIceWalls.forEach((wall) => {
         if (wall.class.combatstats.currentHp > 0) {
           wall._removeNpcFromTheGame();
@@ -439,7 +438,6 @@ const sorcererSpellObject = {
         spell.spellInfo.range
       );
       //nearbyUnits = nearbyUnits.filter(ele => ele.npc)
-      console.log(nearbyUnits);
 
       nearbyUnits.forEach((ele) => {
         let modifiedDamage = Math.floor(

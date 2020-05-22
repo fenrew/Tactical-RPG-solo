@@ -112,3 +112,24 @@
   cursor: pointer;
   background-color: red;
 }
+
+/* RIGHT SUB MENU */
+.inventory-menu-item-description {
+  color: white;
+}
+
+.inventory-menu-item-stats-header {
+  color: white;
+}
+
+.inventory-menu-each-stat-container {
+  display: flex;
+}
+
+.inventory-menu-item-stats {
+  color: white;
+}
+
+.inventory-menu-item-stats-value {
+  color: white;
+}

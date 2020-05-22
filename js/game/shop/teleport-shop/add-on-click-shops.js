@@ -15,8 +15,6 @@ const addOnClickShops = (map = Game.activeMap) => {
 };
 
 const openShop = (shopNumber) => {
-  console.log("Shop clicked " + shopNumber);
-
   const shopItems = getShop(shopNumber);
 
   visualizeShop(shopItems);
@@ -28,8 +26,6 @@ const closeShop = () => {
 };
 
 const visualizeShop = (shopItems) => {
-  console.log("Visualize shop");
-
   let allItemsDiv = document.getElementById("display-shop-container");
   if (!allItemsDiv) {
     allItemsDiv = document.createElement("div");
@@ -55,7 +51,6 @@ const visualizeShop = (shopItems) => {
     itemDiv.classList.add("display-shop-item-container");
     itemName.classList.add("display-shop-item-name");
 
-    console.log(shopItems[key].name.replace(/\s/g, "").toLowerCase());
     itemName.classList.add(
       "display-shop-item-icon",
       `display-shop-item-icon-${shopItems[key].name

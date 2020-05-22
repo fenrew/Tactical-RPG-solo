@@ -100,7 +100,6 @@ class GameClass {
     const { combatstats, cooldowns, spells } = activePlayer.class;
 
     // Cooldowns
-    console.log(cooldowns);
     activePlayer.class.cooldowns = cooldowns.filter((ele) => {
       ele.userSpellInfo.currentCooldown -= 1;
       if (ele.userSpellInfo.currentCooldown <= 0) {

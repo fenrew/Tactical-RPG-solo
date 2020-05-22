@@ -7,8 +7,6 @@ function openAndCloseSpellList() {
     let player = Game.combatTimeline[Game.turn],
       newElement = document.createElement("div");
 
-    console.log(player.class.cooldowns);
-
     newElement.id = "spell-list-tab";
     newElement.style.top = player.position.y * 77 + "px";
     newElement.style.left = player.position.x * 77 + 77 + "px";

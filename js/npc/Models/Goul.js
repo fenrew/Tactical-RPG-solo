@@ -1,8 +1,8 @@
-class Zombie {
+class Goul {
   constructor() {
-    this.className = "zombie";
-    this.cssString = "zombie-cpu-player-area";
-    this.cssPlayerPanelString = "zombie-cpu-combat-timeline-panel";
+    this.className = "goul";
+    this.cssString = "goul-cpu-player-area";
+    this.cssPlayerPanelString = "goul-cpu-combat-timeline-panel";
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown
@@ -10,13 +10,13 @@ class Zombie {
     this.ai = new AggressiveAi();
 
     this.combatstats = {
-      hp: 100,
-      currentHp: 100,
-      mana: 55,
-      currentMana: 55,
-      initiation: 120,
-      maxMovementPoints: 4,
-      currentMovementPoints: 4,
+      hp: 200,
+      currentHp: 200,
+      mana: 70,
+      currentMana: 70,
+      initiation: 150,
+      maxMovementPoints: 5,
+      currentMovementPoints: 5,
     };
 
     this.conditions = {
@@ -74,12 +74,12 @@ class Zombie {
     };
 
     this.spells = {
-      bite: {
-        id: "bite",
-        name: "Bite",
+      ravege: {
+        id: "ravege",
+        name: "Ravege",
         cast: (target) => {
           let modifiedDamage = Math.floor(
-            this.spells.bite.spellInfo.damage *
+            this.spells.ravege.spellInfo.damage *
               calculatePhysicalMeleeDamageModifiers(this.player, target)
           );
           target.class.combatstats.currentHp -= modifiedDamage;
@@ -89,8 +89,8 @@ class Zombie {
           canBeCast: true,
           source: "physical-melee",
           aiWeight: 5,
-          manaCost: 20,
-          damage: 25,
+          manaCost: 30,
+          damage: 40,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
@@ -103,23 +103,42 @@ class Zombie {
           castsPerTurn: 2,
         },
       },
-      spit: {
-        id: "spit",
-        name: "Spit",
+      infection: {
+        id: "infection",
+        name: "Infection",
         cast: (target) => {
+          const spell = this.spells.infection;
           let modifiedDamage = Math.floor(
-            this.spells.spit.spellInfo.damage *
+            spell.spellInfo.damage *
               calculatePhysicalRangedDamageModifiers(this.player, target)
           );
           target.class.combatstats.currentHp -= modifiedDamage;
+
+          for (let i = 1; i <= spell.spellInfo.duration; i++) {
+            Game._addNewCombatEffect(this.player, target, spell, i);
+          }
+
           handleSpellDamageEffectAnimation(target, modifiedDamage, "damage");
+        },
+        applyEffect: (effect) => {
+          const modifiedDamage = effect.spell.spellInfo.dotDamage;
+
+          effect.target.class.combatstats.currentHp -= modifiedDamage;
+
+          handleSpellDamageEffectAnimation(
+            effect.target,
+            modifiedDamage,
+            effect.spell.spellInfo.type
+          );
         },
         spellInfo: {
           canBeCast: true,
-          source: "physical-ranged",
-          aiWeight: 1,
-          manaCost: 15,
+          source: "physical-melee",
+          aiWeight: 10,
+          manaCost: 50,
           damage: 10,
+          dotDamage: 20,
+          duration: 3,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
@@ -128,8 +147,8 @@ class Zombie {
           maxRange: 4,
           modifiableRange: false,
           lineOfSight: false,
-          cooldown: 1,
-          castsPerTurn: 2,
+          cooldown: 3,
+          castsPerTurn: 1,
         },
       },
     };

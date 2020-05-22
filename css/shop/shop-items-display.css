@@ -28,7 +28,7 @@
 .display-shop-items-list-container {
   display: flex;
   flex-wrap: wrap;
-  width: 30%;
+  width: 60%;
   margin-right: 50px;
 }
 

@@ -876,7 +876,6 @@ const warriorSpellObject = {
             (player.combatstats.currentHp + player.combatstats.hp * 0.05))
       );
       target.class.combatstats.currentHp -= modifiedDamage;
-      console.log(modifiedDamage);
       return modifiedDamage;
     },
     spellInfo: {

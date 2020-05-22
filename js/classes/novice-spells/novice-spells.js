@@ -66,7 +66,6 @@ const noviceSpellObject = {
       );
     },
     applyEffect: (effect) => {
-      console.log(effect.physicalDmgTaken, effect.magicalDmgDealt);
       effect.target.class.damageModifiers.defensive.physicalDamage.allDamage +=
         effect.physicalDmgTaken;
       effect.target.class.damageModifiers.offensive.magicalDamage.allDamage +=

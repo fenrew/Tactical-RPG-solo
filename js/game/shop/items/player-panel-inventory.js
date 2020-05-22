@@ -134,8 +134,8 @@ const visualizeInventoryItemStats = (item) => {
   const itemPrice = document.createElement("div");
   const buyItemButton = document.createElement("div");
 
-  itemDescription.classList.add("display-shop-item-description");
-  itemStatsHeader.classList.add("display-shop-item-stats-header");
+  itemDescription.classList.add("inventory-menu-item-description");
+  itemStatsHeader.classList.add("inventory-menu-item-stats-header");
 
   itemDescription.innerText = item.description;
   itemStatsHeader.innerText = "Stats:";
@@ -149,8 +149,9 @@ const visualizeInventoryItemStats = (item) => {
     const itemEachStatName = document.createElement("div");
     const itemEachStatValue = document.createElement("div");
 
-    itemEachStatsContainer.classList.add("display-shop-each-item-container");
-    itemEachStatName.classList.add("display-shop-item-stats");
+    itemEachStatsContainer.classList.add("inventory-menu-each-stat-container");
+    itemEachStatName.classList.add("inventory-menu-item-stats");
+    itemEachStatValue.classList.add("inventory-menu-item-stats-value");
 
     itemEachStatName.innerText = stat.keySequence + ": ";
     itemEachStatValue.innerText = stat.value;
