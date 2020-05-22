@@ -77,20 +77,23 @@ class Goul {
       ravege: {
         id: "ravege",
         name: "Ravege",
-        cast: (target) => {
+        cast: (position, player) => {
+          player._addTargetSpellConditions(player.spells.ravege, position);
+        },
+        castEffect: (target, spell, player) => {
           let modifiedDamage = Math.floor(
-            this.spells.ravege.spellInfo.damage *
-              calculatePhysicalMeleeDamageModifiers(this.player, target)
+            spell.spellInfo.damage *
+              calculatePhysicalMeleeDamageModifiers(player.player, target)
           );
           target.class.combatstats.currentHp -= modifiedDamage;
-          handleSpellDamageEffectAnimation(target, modifiedDamage, "damage");
+          return modifiedDamage;
         },
         spellInfo: {
-          canBeCast: true,
-          source: "physical-melee",
           aiWeight: 5,
+          type: "damage",
+          source: "physical-melee",
           manaCost: 30,
-          damage: 40,
+          damage: 25,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
@@ -101,12 +104,28 @@ class Goul {
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
+          conditionsRequirements: {
+            disarmed: true,
+          },
         },
+        userSpellInfo: {
+          learned: true,
+          canBeCast: true,
+          currentCooldown: 0,
+          currentCastsPerTurn: 0,
+        },
+        category: "ravege",
+        toLearn: 0,
+        castCounter: 0,
       },
+
       infection: {
         id: "infection",
         name: "Infection",
-        cast: (target) => {
+        cast: (position, player) => {
+          player._addTargetSpellConditions(player.spells.infection, position);
+        },
+        castEffect: (target, spell, player) => {
           const spell = this.spells.infection;
           let modifiedDamage = Math.floor(
             spell.spellInfo.damage *
@@ -132,25 +151,39 @@ class Goul {
           );
         },
         spellInfo: {
-          canBeCast: true,
-          source: "physical-melee",
           aiWeight: 10,
-          manaCost: 50,
-          damage: 10,
+          type: "damage",
+          source: "physical-melee",
+          manaCost: 30,
+          damage: 15,
           dotDamage: 20,
-          duration: 3,
+          duration: 4,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
           areaOfEffect: 1,
-          minRange: 2,
-          maxRange: 4,
+          minRange: 1,
+          maxRange: 1,
           modifiableRange: false,
           lineOfSight: false,
-          cooldown: 3,
-          castsPerTurn: 1,
+          cooldown: 2,
+          castsPerTurn: 2,
+          conditionsRequirements: {
+            disarmed: true,
+          },
         },
+        userSpellInfo: {
+          learned: true,
+          canBeCast: true,
+          currentCooldown: 0,
+          currentCastsPerTurn: 0,
+        },
+        category: "infection",
+        toLearn: 0,
+        castCounter: 0,
       },
     };
   }
+
+  _checkIfPromotionToNewClass = () => {};
 }
