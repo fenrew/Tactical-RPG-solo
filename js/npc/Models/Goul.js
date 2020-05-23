@@ -1,4 +1,4 @@
-class Goul {
+class Goul extends BaseClass {
   constructor() {
     this.className = "goul";
     this.cssString = "goul-cpu-player-area";

@@ -6,6 +6,10 @@ class Zombie {
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown
+    this.dropTable = {
+      coins: [20 - 60],
+      items: [weaponDropList.boneClub],
+    };
 
     this.ai = new AggressiveAi();
 
