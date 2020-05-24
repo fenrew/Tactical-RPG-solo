@@ -126,7 +126,6 @@ class Goul extends BaseClass {
           player._addTargetSpellConditions(player.spells.infection, position);
         },
         castEffect: (target, spell, player) => {
-          const spell = this.spells.infection;
           let modifiedDamage = Math.floor(
             spell.spellInfo.damage *
               calculatePhysicalRangedDamageModifiers(this.player, target)

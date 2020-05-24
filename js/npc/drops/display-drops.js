@@ -1,4 +1,5 @@
 const displayDrops = (npc) => {
+  console.log("DISPLAY DROPS");
   const { dropTable } = npc.class;
   const { items } = dropTable;
 
@@ -9,7 +10,7 @@ const displayDrops = (npc) => {
 
   const goldDrop = {
     name: "Gold",
-    value: goldValue,
+    price: goldValue,
   };
 
   itemDrops = items
@@ -22,13 +23,14 @@ const displayDrops = (npc) => {
 const visualizeDropWindow = (npc, gold, items) => {
   const mainContainer = document.createElement("div");
 
-  mainContainer.appendChild(visualizeDropWindow(gold));
+  mainContainer.appendChild(visualizeDropWindowHelper(gold));
   items.forEach((ele) => {
-    mainContainer.appendChild(visualizeDropWindow(ele));
+    mainContainer.appendChild(visualizeDropWindowHelper(ele));
   });
 
-  mainContainer.style.top = npc.position.y;
-  mainContainer.style.left = npc.position.x;
+  mainContainer.classList.add("drop-window-main-container");
+  mainContainer.style.top = npc.position.y * 77 + "px";
+  mainContainer.style.left = npc.position.x * 77 + "px";
 
   document.getElementById("player-area").appendChild(mainContainer);
 };

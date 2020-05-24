@@ -200,6 +200,7 @@ class GameClass {
       if (currentTarget.class.combatstats.currentHp <= 0) {
         this._removeUnitFromCombat(currentTarget);
         removeUnitFromPlayerarea(currentTarget);
+        displayDrops(currentTarget);
         i--;
       }
     }

@@ -1,0 +1,5 @@
+.drop-window-main-container {
+  background-color: white;
+  position: absolute;
+  z-index: 82;
+}
