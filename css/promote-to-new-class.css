@@ -1,0 +1,29 @@
+#promotion-class-popup-container {
+  min-width: 40%;
+  min-height: 25%;
+  background-color: white;
+  position: absolute;
+  z-index: 110;
+  top: 37%;
+  left: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#promotion-class-popup-container:hover {
+  background-color: rgb(202, 202, 202);
+  cursor: pointer;
+}
+
+#promotion-class-popup-congrats-text {
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#promotion-class-popup-class-text {
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}

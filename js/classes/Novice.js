@@ -153,15 +153,15 @@ class Novice extends BaseClass {
   }
 
   _checkIfPromotionToNewClass = () => {
-    if (this.castCounter.warrior === 2) {
+    if (this.castCounter.warrior === 26) {
       this.player.class = this.checkIfPromotionToNewClassHelper(
         new Warrior(this.player)
       );
-    } else if (this.castCounter.priest === 2) {
+    } else if (this.castCounter.priest === 26) {
       this.player.class = this.checkIfPromotionToNewClassHelper(
         new Priest(this.player)
       );
-    } else if (this.castCounter.sorcerer === 2) {
+    } else if (this.castCounter.sorcerer === 26) {
       this.player.class = this.checkIfPromotionToNewClassHelper(
         new Sorcerer(this.player)
       );
@@ -169,6 +169,7 @@ class Novice extends BaseClass {
       return;
     }
 
+    visualizePromoteToNewClass(this.player.class.constructor.name);
     updateCurrentManaBar(this.player);
     updateCurrentHealthBar(this.player);
   };

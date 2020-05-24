@@ -14,6 +14,7 @@
 @import "./items/player-inventory.css";
 @import "./items/player-inventory-menu.css";
 @import "./items/drop-window.css";
+@import "./promote-to-new-class.css";
 
 #gamearea {
   height: 924px;

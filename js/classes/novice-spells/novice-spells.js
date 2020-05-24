@@ -89,7 +89,7 @@ const noviceSpellObject = {
       conditionsRequirements: {},
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
@@ -141,7 +141,7 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
@@ -184,13 +184,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 0,
+    toLearn: 24,
     castCounter: 0,
   },
   findWeakness: {
@@ -234,13 +234,13 @@ const noviceSpellObject = {
       conditionsRequirements: {},
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 30,
+    toLearn: 32,
     castCounter: 0,
   },
 
@@ -325,7 +325,7 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
@@ -440,7 +440,7 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
@@ -483,13 +483,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 0,
+    toLearn: 16,
     castCounter: 0,
   },
   syphonMana: {
@@ -524,13 +524,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 0,
+    toLearn: 24,
     castCounter: 0,
   },
   powerSpike: {
@@ -575,13 +575,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 8,
+    toLearn: 32,
     castCounter: 0,
   },
 
@@ -696,7 +696,7 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
@@ -739,13 +739,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 0,
+    toLearn: 16,
     castCounter: 0,
   },
   absorb: {
@@ -789,13 +789,13 @@ const noviceSpellObject = {
       conditionsRequirements: {},
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 8,
+    toLearn: 24,
     castCounter: 0,
   },
   holySpike: {
@@ -842,13 +842,13 @@ const noviceSpellObject = {
       },
     },
     userSpellInfo: {
-      learned: true,
+      learned: false,
       canBeCast: true,
       currentCooldown: 0,
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 0,
+    toLearn: 32,
     castCounter: 0,
   },
 };
