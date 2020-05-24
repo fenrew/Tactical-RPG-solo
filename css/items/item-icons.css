@@ -63,3 +63,9 @@
   background-image: url("../../Animations/Items/Feet/feet-placeholder.png");
   background-size: 100% 100%;
 }
+
+/* DIV */
+.display-shop-item-icon-gold {
+  background-image: url("../../Animations/Items/Div/gold-coins.gif");
+  background-size: 100% 100%;
+}

@@ -1,6 +1,6 @@
 class Items {
   constructor() {
-    this.items = [itemWeaponsList.dirk];
+    this.items = [];
   }
 
   itemTypeAlreadyOwned = (item) => {
@@ -11,9 +11,10 @@ class Items {
   };
 
   _addNewItem = (item) => {
-    if (this.itemTypeAlreadyOwned(item)) return;
+    if (this.itemTypeAlreadyOwned(item)) return false;
     this.items.push(item);
     this._changeOneItemStat(item);
+    return true;
   };
 
   _removeItem = (item) => {
@@ -63,7 +64,7 @@ class Items {
       stat.includes("hp") &&
       this.combatstats.currentHp > this.combatstats.hp
     ) {
-      this.combatstats.currentHp -= value;
+      this.combatstats.currentHp -= Math.abs(value);
       if (this.combatstats.currentHp < this.combatstats.hp)
         this.combatstats.currentHp = this.combatstats.hp;
     }
@@ -71,7 +72,7 @@ class Items {
       stat.includes("mana") &&
       this.combatstats.currentMana > this.combatstats.mana
     ) {
-      this.combatstats.currentMana -= value;
+      this.combatstats.currentMana -= Math.abs(value);
       if (this.combatstats.currentMana < this.combatstats.mana)
         this.combatstats.currentMana = this.combatstats.mana;
     }

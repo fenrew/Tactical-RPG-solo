@@ -10,7 +10,7 @@ const displayDrops = (npc) => {
 
   const goldDrop = {
     name: "Gold",
-    price: goldValue,
+    gold: goldValue,
   };
 
   itemDrops = items
@@ -28,7 +28,7 @@ const visualizeDropWindow = (npc, gold, items) => {
     mainContainer.appendChild(visualizeDropWindowHelper(ele));
   });
 
-  mainContainer.classList.add("drop-window-main-container");
+  mainContainer.id = "drop-window-main-container";
   mainContainer.style.top = npc.position.y * 77 + "px";
   mainContainer.style.left = npc.position.x * 77 + "px";
 
@@ -40,26 +40,95 @@ const visualizeDropWindowHelper = (item) => {
   const dropTitle = document.createElement("div");
   const dropValue = document.createElement("div");
   const dropIcon = document.createElement("div");
+  const grabButton = document.createElement("div");
+  const shareButton = document.createElement("div");
+  const dropButton = document.createElement("div");
 
   eachDropContainer.classList.add("drop-window-each-drop-container");
-  dropTitle.classList.add(
-    "drop-window-title",
-    "drop-window-title-" + item.name.replace(/\s/g, "-")
-  );
-  dropValue.classList.add(
-    "drop-window-value",
-    "drop-window-value-" + item.name.replace(/\s/g, "-")
-  );
+  dropTitle.classList.add("drop-window-title");
+  dropValue.classList.add("drop-window-value");
   dropIcon.classList.add(
     "drop-window-icon",
-    "drop-window-icon-" + item.name.replace(/\s/g, "-")
+    "display-shop-item-icon-" + item.name.replace(/\s/g, "-").toLowerCase()
   );
+  grabButton.classList.add("drop-window-grab-button");
+  shareButton.classList.add("drop-window-share-button");
+  dropButton.classList.add("drop-window-drop-button");
 
   dropTitle.innerText = item.name;
-  dropValue.innerText = item.price;
+  dropValue.innerText = item.gold ? item.gold : "";
+  grabButton.innerText = "Grab";
+  shareButton.innerText = "Share";
+  dropButton.innerText = "Drop";
 
-  eachDropContainer.appendChild(dropTitle);
-  eachDropContainer.appendChild(dropValue);
+  dropIcon.appendChild(dropValue);
   eachDropContainer.appendChild(dropIcon);
+  eachDropContainer.appendChild(dropTitle);
+  eachDropContainer.appendChild(grabButton);
+  eachDropContainer.appendChild(shareButton);
+  eachDropContainer.appendChild(dropButton);
+
+  grabButton.onclick = () => {
+    const player = Game.combatTimeline[Game.turn];
+    onClickGrabDrop(player, item, eachDropContainer);
+  };
+
+  shareButton.onclick = () => {
+    visualizeShareDrop(item, eachDropContainer);
+  };
+
+  dropButton.onclick = () => {
+    const playerArea = document.getElementById("player-area");
+    const dropWindowContainer = document.getElementById(
+      "drop-window-main-container"
+    );
+    dropWindowContainer.removeChild(eachDropContainer);
+
+    if (playerArea.childNodes.length)
+      playerArea.removeChild(dropWindowContainer);
+  };
+
   return eachDropContainer;
+};
+
+const onClickGrabDrop = (player, drop, dropDiv) => {
+  const response = drop.gold
+    ? (player.gold += drop.gold)
+    : player.class._addNewItem(drop);
+  console.log("RESPONSE", response);
+
+  if (response) {
+    const dropWindowContainer = document.getElementById(
+      "drop-window-main-container"
+    );
+    dropWindowContainer.removeChild(dropDiv);
+
+    if (dropWindowContainer.childNodes.length <= 0)
+      document.getElementById("player-area").removeChild(dropWindowContainer);
+  }
+};
+
+const visualizeShareDrop = (drop, dropDiv) => {
+  const mainContainer = document.createElement("div");
+  mainContainer.id = "drop-window-share-drop-main-container";
+  document
+    .getElementById("drop-window-main-container")
+    .appendChild(mainContainer);
+  console.log(Game.players);
+
+  Game.players.forEach((player) => {
+    const playerNumberDiv = document.createElement("div");
+
+    playerNumberDiv.classList.add("drop-window-share-drop-player-number");
+    playerNumberDiv.innerText = `Player: ${player.playerNumber + 1}`;
+
+    mainContainer.appendChild(playerNumberDiv);
+
+    playerNumberDiv.onclick = () => {
+      onClickGrabDrop(player, drop, dropDiv);
+      document
+        .getElementById("drop-window-main-container")
+        .removeChild(mainContainer);
+    };
+  });
 };
