@@ -44,6 +44,7 @@
 
 .drop-window-value {
   margin: auto;
+  font-weight: bold;
 }
 
 .drop-window-title {
@@ -64,6 +65,15 @@
 }
 
 .drop-window-share-button:hover {
+  cursor: pointer;
+  border: 3px solid green;
+}
+
+.drop-window-drop-button {
+  border: 3px solid transparent;
+}
+
+.drop-window-drop-button:hover {
   cursor: pointer;
   border: 3px solid green;
 }

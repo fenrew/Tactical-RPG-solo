@@ -1,6 +1,7 @@
 const displayDrops = (npc) => {
   console.log("DISPLAY DROPS");
   const { dropTable } = npc.class;
+  if (!dropTable) return;
   const { items } = dropTable;
 
   const goldValue = Math.floor(
@@ -84,7 +85,8 @@ const visualizeDropWindowHelper = (item) => {
     );
     dropWindowContainer.removeChild(eachDropContainer);
 
-    if (playerArea.childNodes.length)
+    console.log();
+    if (dropWindowContainer.childNodes.length <= 0)
       playerArea.removeChild(dropWindowContainer);
   };
 

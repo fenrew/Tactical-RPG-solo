@@ -152,5 +152,39 @@ class Novice extends BaseClass {
     };
   }
 
-  _checkIfPromotionToNewClass() {}
+  _checkIfPromotionToNewClass = () => {
+    if (this.castCounter.warrior === 2) {
+      this.player.class = this.checkIfPromotionToNewClassHelper(
+        new Warrior(this.player)
+      );
+    } else if (this.castCounter.priest === 2) {
+      this.player.class = this.checkIfPromotionToNewClassHelper(
+        new Priest(this.player)
+      );
+    } else if (this.castCounter.sorcerer === 2) {
+      this.player.class = this.checkIfPromotionToNewClassHelper(
+        new Sorcerer(this.player)
+      );
+    } else {
+      return;
+    }
+
+    updateCurrentManaBar(this.player);
+    updateCurrentHealthBar(this.player);
+  };
+
+  checkIfPromotionToNewClassHelper = (newClass) => {
+    const { y, x } = this.player.position;
+    const playerDiv = document.getElementById(`player-${y},${x}`);
+    const panelDiv = document.getElementsByClassName(
+      `class-panel-${this.player.playerNumber}`
+    )[0];
+
+    playerDiv.classList.remove(this.cssString);
+    playerDiv.classList.add(newClass.cssString);
+    panelDiv.classList.remove(this.cssPlayerPanelString);
+    panelDiv.classList.add(newClass.cssPlayerPanelString);
+
+    return newClass;
+  };
 }
