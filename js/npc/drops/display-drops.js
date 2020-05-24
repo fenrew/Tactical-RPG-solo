@@ -109,12 +109,20 @@ const onClickGrabDrop = (player, drop, dropDiv) => {
 };
 
 const visualizeShareDrop = (drop, dropDiv) => {
-  const mainContainer = document.createElement("div");
-  mainContainer.id = "drop-window-share-drop-main-container";
+  let mainContainer = document.getElementById(
+    "drop-window-share-drop-main-container"
+  );
+
+  if (mainContainer) {
+    removeAllChilds(mainContainer);
+  } else {
+    mainContainer = document.createElement("div");
+    mainContainer.id = "drop-window-share-drop-main-container";
+  }
+
   document
     .getElementById("drop-window-main-container")
     .appendChild(mainContainer);
-  console.log(Game.players);
 
   Game.players.forEach((player) => {
     const playerNumberDiv = document.createElement("div");
