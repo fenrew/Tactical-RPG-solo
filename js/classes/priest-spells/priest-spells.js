@@ -921,16 +921,16 @@ const priestSpellObject = {
       player._addTargetSpellConditions(player.spells.voodooBrew, position);
     },
     castEffect: (target, spell, player) => {
-      const { combatstats, damageModifiers } = target.class;
+      const { combatstats, modifiers } = target.class;
       const { damage, duration } = spell.spellInfo;
 
       let modifiedDamage = Math.floor(damage);
 
       combatstats.currentHp -= modifiedDamage;
 
-      let dmgIncrease = damageModifiers.offensive.magicalDamage.allDamage * 0.5;
+      let dmgIncrease = modifiers.offensive.magicalDamage.allDamage * 0.5;
 
-      damageModifiers.offensive.magicalDamage.allDamage += dmgIncrease;
+      modifiers.offensive.magicalDamage.allDamage += dmgIncrease;
 
       for (let i = 1; i <= duration; i++) {
         Game._addNewCombatEffect(player.player, target, spell, i, {
@@ -941,7 +941,7 @@ const priestSpellObject = {
       return modifiedDamage;
     },
     applyEffect: (effect) => {
-      const { combatstats, damageModifiers } = effect.target.class;
+      const { combatstats, modifiers } = effect.target.class;
       const { target, spell, dmgIncrease, executeRound } = effect;
       const { duration, damage, type } = spell.spellInfo;
 
@@ -950,7 +950,7 @@ const priestSpellObject = {
       handleSpellDamageEffectAnimation(target, damage, type);
 
       if (executeRound === duration) {
-        damageModifiers.offensive.magicalDamage.allDamage -= dmgIncrease;
+        modifiers.offensive.magicalDamage.allDamage -= dmgIncrease;
       }
     },
     spellInfo: {

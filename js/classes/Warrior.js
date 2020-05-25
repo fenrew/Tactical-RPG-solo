@@ -23,7 +23,7 @@ class Warrior extends BaseClass {
       onDefense: [],
     };
 
-    this.damageModifiers = {
+    this.modifiers = {
       defensive: {
         allDamage: 1,
         magicalDamage: {
@@ -68,6 +68,7 @@ class Warrior extends BaseClass {
         recieved: 1,
         casterModifier: 1,
       },
+      threat: 1,
     };
 
     this.castCounter = {

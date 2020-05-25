@@ -27,6 +27,8 @@ class NewAggressiveAi {
 
     // Right here there is a chance that spellRangeMaps is just an empty array
 
+    this.sortArrayByWeight(spellRangeMaps);
+
     console.log(spellRangeMaps);
   };
 
@@ -121,6 +123,29 @@ class NewAggressiveAi {
     const { currentHp, hp } = unit.class.combatstats;
 
     const unitHealthWeight = 5 - (currentHp * 5) / hp;
-    console.log("UNIT HEALTH WEIGHT", unitHealthWeight, unit);
+
+    // ADD PREVIOUS DAMAGE DEALT TO THREAT HERE
+
+    spellRangeMap.targetWeight = unitHealthWeight * unit.class.modifiers.threat; //Add any other target modifiers here
+  };
+
+  sortArrayByWeight = (spellRangeMaps) => {
+    spellRangeMaps.forEach((spellMap) => {
+      const { aiWeight } = spellMap.spell.spellInfo;
+      spellMap.spellRangeMap.sort((a, b) => {
+        if (a.unit === this.npc.class.taunted) return 1;
+        else if (b.unit === this.npc.class.taunted) return -1;
+
+        return b.targetWeight + aiWeight - (a.targetWeight + aiWeight);
+      });
+    });
+
+    spellRangeMaps.sort((a, b) => {
+      return (
+        b.spellRangeMap[0].targetWeight +
+        b.spell.spellInfo.aiWeight -
+        (a.spellRangeMap[0].targetWeight + a.spell.spellInfo.aiWeight)
+      );
+    });
   };
 }

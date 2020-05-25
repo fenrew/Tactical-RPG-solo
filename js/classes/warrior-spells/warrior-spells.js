@@ -14,10 +14,10 @@ const warriorSpellObject = {
       target.class.combatstats.currentHp -= modifiedDamage;
 
       let magicDmgRed =
-        (target.class.damageModifiers.offensive.magicalDamage.allDamage *
+        (target.class.modifiers.offensive.magicalDamage.allDamage *
           spell.spellInfo.magicalDmgReuction) /
         100;
-      target.class.damageModifiers.offensive.magicalDamage.allDamage -= magicDmgRed;
+      target.class.modifiers.offensive.magicalDamage.allDamage -= magicDmgRed;
 
       Game._addNewCombatEffect(
         player.player,
@@ -29,7 +29,7 @@ const warriorSpellObject = {
       return modifiedDamage;
     },
     applyEffect: (effect, player) => {
-      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage +=
+      effect.target.class.modifiers.offensive.magicalDamage.allDamage +=
         effect.magicDmgRed;
     },
     spellInfo: {
@@ -174,12 +174,11 @@ const warriorSpellObject = {
 
       if (currentRoundDur === 1 && allNearbyTargets.length > 0) {
         let physicalDmgIncrease =
-          (effect.player.class.damageModifiers.offensive.physicalDamage
-            .allDamage *
+          (effect.player.class.modifiers.offensive.physicalDamage.allDamage *
             effect.spell.spellInfo.physicalDamageIncrease) /
           100;
 
-        effect.player.class.damageModifiers.offensive.physicalDamage.allDamage += physicalDmgIncrease;
+        effect.player.class.modifiers.offensive.physicalDamage.allDamage += physicalDmgIncrease;
         effect.player.class.combatstats.currentMovementPoints += 1;
 
         Game._addNewCombatEffect(
@@ -204,7 +203,7 @@ const warriorSpellObject = {
         handleSpellDamageEffectAnimation(effect.player, healing, "healing");
       }
       if (effect.physicalDmgIncrease) {
-        effect.player.class.damageModifiers.offensive.physicalDamage.allDamage -=
+        effect.player.class.modifiers.offensive.physicalDamage.allDamage -=
           effect.physicalDmgIncrease;
       }
     },

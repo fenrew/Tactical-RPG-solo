@@ -3,10 +3,10 @@ const getKeySequence = (stat) => {
   if (stat === "mana") return ["combatstats", "mana"];
 
   if (stat === "offAllDamageM")
-    return ["damageModifiers", "offensive", "magicalDamage", "allDamage"];
+    return ["modifiers", "offensive", "magicalDamage", "allDamage"];
   if (stat === "offCasterModifier")
-    return ["damageModifiers", "offensive", "healing", "casterModifier"];
+    return ["modifiers", "offensive", "healing", "casterModifier"];
 
   if (stat === "offMeleeDamage")
-    return ["damageModifiers", "offensive", "physicalDamage", "meleeDamage"];
+    return ["modifiers", "offensive", "physicalDamage", "meleeDamage"];
 };

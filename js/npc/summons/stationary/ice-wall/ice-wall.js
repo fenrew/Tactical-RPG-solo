@@ -25,7 +25,7 @@ class iceWallSpell {
       onDefense: [],
     };
 
-    this.damageModifiers = {
+    this.modifiers = {
       defensive: {
         allDamage: 1,
         magicalDamage: {

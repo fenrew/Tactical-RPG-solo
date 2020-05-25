@@ -51,11 +51,11 @@ const noviceSpellObject = {
     },
     castEffect: (target, spell, player) => {
       let physicalDmgTaken =
-        target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
-      target.class.damageModifiers.defensive.physicalDamage.allDamage -= physicalDmgTaken;
+        target.class.modifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.modifiers.defensive.physicalDamage.allDamage -= physicalDmgTaken;
       let magicalDmgDealt =
-        target.class.damageModifiers.offensive.magicalDamage.allDamage * 0.2;
-      target.class.damageModifiers.offensive.magicalDamage.allDamage -= magicalDmgDealt;
+        target.class.modifiers.offensive.magicalDamage.allDamage * 0.2;
+      target.class.modifiers.offensive.magicalDamage.allDamage -= magicalDmgDealt;
 
       Game._addNewCombatEffect(
         player.player,
@@ -66,9 +66,9 @@ const noviceSpellObject = {
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage +=
+      effect.target.class.modifiers.defensive.physicalDamage.allDamage +=
         effect.physicalDmgTaken;
-      effect.target.class.damageModifiers.offensive.magicalDamage.allDamage +=
+      effect.target.class.modifiers.offensive.magicalDamage.allDamage +=
         effect.magicalDmgDealt;
     },
     spellInfo: {
@@ -201,8 +201,8 @@ const noviceSpellObject = {
     },
     castEffect: (target, spell, player) => {
       let physicalDmgTaken =
-        target.class.damageModifiers.defensive.physicalDamage.allDamage * 0.2;
-      target.class.damageModifiers.defensive.physicalDamage.allDamage += physicalDmgTaken;
+        target.class.modifiers.defensive.physicalDamage.allDamage * 0.2;
+      target.class.modifiers.defensive.physicalDamage.allDamage += physicalDmgTaken;
 
       Game._addNewCombatEffect(
         player.player,
@@ -213,7 +213,7 @@ const noviceSpellObject = {
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.physicalDamage.allDamage -=
+      effect.target.class.modifiers.defensive.physicalDamage.allDamage -=
         effect.physicalDmgTaken;
     },
     spellInfo: {
@@ -641,9 +641,9 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.inspire, position);
     },
     castEffect: (target, spell, player) => {
-      let allDmgDealt = target.class.damageModifiers.offensive.allDamage * 0.2;
+      let allDmgDealt = target.class.modifiers.offensive.allDamage * 0.2;
 
-      target.class.damageModifiers.offensive.allDamage += allDmgDealt;
+      target.class.modifiers.offensive.allDamage += allDmgDealt;
       for (let i = 1; i <= spell.spellInfo.duration; i++) {
         Game._addNewCombatEffect(player.player, target, spell, i, {
           allDmgDealt,
@@ -672,8 +672,7 @@ const noviceSpellObject = {
         effect.spell.spellInfo.type
       );
       if (currentRoundDur == 2) {
-        effect.target.class.damageModifiers.offensive.allDamage -=
-          effect.allDmgDealt;
+        effect.target.class.modifiers.offensive.allDamage -= effect.allDmgDealt;
       }
     },
     spellInfo: {
@@ -755,9 +754,9 @@ const noviceSpellObject = {
       player._addTargetSpellConditions(player.spells.absorb, position);
     },
     castEffect: (target, spell, player) => {
-      let magicDmgTaken = (target.class.damageModifiers.defensive.magicalDamage.allDamage -= 0.5);
+      let magicDmgTaken = (target.class.modifiers.defensive.magicalDamage.allDamage -= 0.5);
 
-      target.class.damageModifiers.defensive.magicalDamage.allDamage -= magicDmgTaken;
+      target.class.modifiers.defensive.magicalDamage.allDamage -= magicDmgTaken;
 
       Game._addNewCombatEffect(
         player.player,
@@ -768,7 +767,7 @@ const noviceSpellObject = {
       );
     },
     applyEffect: (effect) => {
-      effect.target.class.damageModifiers.defensive.magicalDamage.allDamage +=
+      effect.target.class.modifiers.defensive.magicalDamage.allDamage +=
         effect.magicDmgTaken;
     },
     spellInfo: {

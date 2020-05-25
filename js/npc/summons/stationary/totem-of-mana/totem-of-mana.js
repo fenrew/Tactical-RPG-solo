@@ -26,7 +26,7 @@ class TotemOfMana extends BaseClass {
       onDefense: [],
     };
 
-    this.damageModifiers = {
+    this.modifiers = {
       defensive: {
         allDamage: 1,
         magicalDamage: {
