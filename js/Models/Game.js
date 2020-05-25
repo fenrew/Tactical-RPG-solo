@@ -162,7 +162,7 @@ class GameClass {
 
     //NPC turn
     if (this.combatTimeline[this.turn].npc) {
-      this.combatTimeline[this.turn].class.ai.runAi();
+      this.combatTimeline[this.turn].class.ai._runAi();
     }
   }
 

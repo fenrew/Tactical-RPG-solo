@@ -1,4 +1,6 @@
 ==== BUGS ====
+- NPC's doesn't work with cooldowns... (Zombies)
+
 - onAttack: If a player is missing on an attack but also has flaming weapon, the flaming weapon damage will still hit the target 
 given the order the spells were cast (if flamingWeapon conditionEffect is executed before the missing)
 
@@ -7,20 +9,16 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 - when there are more than one damage type applied at the same time (e.g. slash (Warrior)) the text size should automatically change to fit it better.
     - Also check if the opponent is immune (e.g. damage = 0) and it is being hit by slash
 
-- NPC's doesn't work with cooldowns... (Zombies)
-
 - While walking to a teleport you can press T to kind of duplicate your character
 
 
 ==== TODO BEFORE ALPHA RELEASE ====
-- Fix upgrade to new class functionalities
+- Rework the AI
 - Add more drops
 - Add more items
-- Rework the AI
 - Add an extra enemy or 2
 
 ==== TODO ====
-- Fix upgrade to new class functionalities
 - Add the misc shop
 - Add more items
 - Combine items

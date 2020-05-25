@@ -1,0 +1,15 @@
+/* Player Area */
+.goul-npc-player-area {
+  width: 100%;
+  height: 100%;
+  background: url("../../../Animations/NPCs/Goul/goul.gif");
+  background-size: 100% 100%;
+  top: 0px;
+  left: 0px;
+}
+
+/* Combat Timeline */
+.goul-npc-combat-timeline-panel {
+  background: url("../../../Animations/NPCs/Goul/goul.gif");
+  background-size: 100% 100%;
+}

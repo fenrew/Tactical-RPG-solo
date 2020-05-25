@@ -59,9 +59,16 @@ const addPlayerPanelInfoText = (player) => {
   );
   newTextEle.id = "panel-char-info-text-box";
 
-  newHeaderEle.innerText = `Player: ${player.playerNumber + 1} (${
-    player.class.className
-  })`;
+  const { className } = player.class;
+  if (player.npc) {
+    newHeaderEle.innerText = `${
+      className.charAt(0).toUpperCase() + className.slice(1)
+    }`;
+  } else {
+    newHeaderEle.innerText = `Player: ${
+      player.playerNumber + 1
+    } (${className})`;
+  }
 
   const {
     hp,

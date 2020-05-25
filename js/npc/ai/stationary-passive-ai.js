@@ -1,5 +1,5 @@
 class stationaryPassiveAi {
-    runAi(){
-        Game._nextTurn()
-    }
+  _runAi() {
+    Game._nextTurn();
+  }
 }

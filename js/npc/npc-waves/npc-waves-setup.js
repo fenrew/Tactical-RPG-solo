@@ -5,8 +5,11 @@ function addNewNpcToMap(round) {
     for (let i = 0; i <= 1; i++) {
       let newNpc = new NpcModel(new Zombie(), 70);
       newNpc._initiate();
-
       npcArray.push(newNpc);
+
+      let newGoul = new NpcModel(new Goul(), 71);
+      newGoul._initiate();
+      npcArray.push(newGoul);
     }
 
     return Game._addNpcToGame(npcArray);

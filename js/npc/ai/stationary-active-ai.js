@@ -4,7 +4,7 @@ class stationaryActiveAi {
     this.class = npcClass;
   }
 
-  runAi = () => {
+  _runAi = () => {
     const { spells, combatstats } = this.class;
 
     let response = true;
@@ -28,7 +28,7 @@ class stationaryActiveAi {
       const { spellInfo, cast } = curSpell;
       const { minRange, maxRange } = spellInfo;
 
-      if (checkIfSpellIsCastable(this.class, curSpell, position)) return false;
+      if (!checkIfSpellIsCastable(this.class, curSpell, position)) return false;
 
       if (minRange === 0 && maxRange === 0) {
         cast(position);

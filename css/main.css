@@ -1,9 +1,9 @@
 @import "./main-menu.css";
+@import "./npc/npc-main.css";
 @import "./player-area.css";
 @import "./player-panel.css";
 @import "./mapTerrain.css";
 @import "./spells.css";
-@import "./npc.css";
 @import "./health-and-mana.css";
 @import "./spell-animations.css";
 @import "./spell-animations/main-spell-animations.css";

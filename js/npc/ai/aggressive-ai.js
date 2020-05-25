@@ -17,7 +17,7 @@ class AggressiveAi {
     this.animationIsRunning = false;
   }
 
-  runAi() {
+  _runAi() {
     console.log("RUN AI");
     Game.npcActiveTurn = true;
 

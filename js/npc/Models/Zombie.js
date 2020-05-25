@@ -1,8 +1,8 @@
 class Zombie {
   constructor() {
     this.className = "zombie";
-    this.cssString = "zombie-cpu-player-area";
-    this.cssPlayerPanelString = "zombie-cpu-combat-timeline-panel";
+    this.cssString = "zombie-npc-player-area";
+    this.cssPlayerPanelString = "zombie-npc-combat-timeline-panel";
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown

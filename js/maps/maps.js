@@ -8,6 +8,7 @@
 // 41 = Totem of Healing
 // 42 = Totem of Mana
 // 70 = Zombie
+// 71 = Goul
 
 // 0-9 = Player
 // 10-19 = starting positions for players 1-10
@@ -16,7 +17,7 @@
 // 27-29 = Teleport
 // 30-39 = Obstacle Terrain
 // 40-59 = Obstacle Terrain Summons
-// 70-99 = CPU's
+// 70-99 = NPC's
 // 200-299 = Shop 1
 // 300-399 = Shop 2
 
@@ -107,6 +108,7 @@ function returnMapBlockClass(mapNumber) {
     29: "map-grid-teleport-shop-misc",
     30: "map-grid-stone",
     70: "npc-zombie",
+    71: "npc-goul",
 
     201: "shop-weaponry-weapon",
     202: "shop-weaponry-helmet",

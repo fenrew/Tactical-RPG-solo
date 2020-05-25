@@ -1,0 +1,11 @@
+@import "./zombie/zombie.css";
+@import "./goul/goul.css";
+
+/* NPC panel */
+.npc-class-panel {
+  border: 1px solid gray;
+}
+
+.npc-area {
+  position: relative;
+}

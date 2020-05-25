@@ -1,13 +1,15 @@
 class Goul extends BaseClass {
   constructor() {
+    super();
     this.className = "goul";
-    this.cssString = "goul-cpu-player-area";
-    this.cssPlayerPanelString = "goul-cpu-combat-timeline-panel";
+    this.cssString = "goul-npc-player-area";
+    this.cssPlayerPanelString = "goul-npc-combat-timeline-panel";
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown
+    this.taunted = false; // The player class of whoever taunted you
 
-    this.ai = new AggressiveAi();
+    this.ai = new NewAggressiveAi();
 
     this.combatstats = {
       hp: 200,
