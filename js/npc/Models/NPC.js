@@ -13,7 +13,7 @@ class NpcModel {
   _initiate = () => {
     this.class.player = this;
     this.class.ai.npc = this;
-    this.class.ai.spellList = JSON.parse(JSON.stringify(this.class.spells));
+    this.class.ai.spellList = this.class.spells;
   };
 
   _generatePosition() {

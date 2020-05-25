@@ -1,5 +1,4 @@
 // Checks the mana requirement, disarmed etc. returns true if the spell can be cast
-
 const checkIfSpellIsCastable = (player, spell, position) => {
   const { spellInfo, userSpellInfo } = spell;
   const { conditionsRequirements } = spellInfo;
