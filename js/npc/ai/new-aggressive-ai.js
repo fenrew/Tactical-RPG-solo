@@ -13,12 +13,17 @@ class NewAggressiveAi {
   attackPlayersMainFunction = () => {
     const castableSpells = this.getCastableSpells();
     const attackableUnits = this.getUnitsOnMapThatCanBeAttacked();
-    const spellRangeMaps = this.getSpellRangeMaps(
+    const rawSpellRangeMaps = this.getSpellRangeMaps(
       castableSpells,
       attackableUnits
     );
     const movementMap = this.getMovementMap();
-    console.log(movementMap);
+    const spellRangeMaps = this.filterSpellRangeMap(
+      rawSpellRangeMaps,
+      movementMap
+    );
+
+    console.log(rawSpellRangeMaps);
   };
 
   // Returns an array of castable spells (refrences)
@@ -38,7 +43,7 @@ class NewAggressiveAi {
 
   // Takes an array of spells, an array of attackable units and a map(matrix). Returns an array of objects
   // SpellRangeMap is a matrix of where the npc need to stay to hit the opponent
-  // [{spell, spellRangeMap: [{player, spellRangeMap}, ]}, ]
+  // [{spell, spellRangeMap: [{unit, rangeMap}, ]}, ]
   getSpellRangeMaps = (spells, units, map = Game.activeMap) => {
     const spellRangeMaps = [];
 
@@ -61,6 +66,34 @@ class NewAggressiveAi {
 
   // Takes the map as a parameter and return an array of where the npc can move
   getMovementMap = (map = Game.activeMap) => {
-    return findAvailableMovementArea(this.npc, map);
+    const { y, x } = this.npc.position;
+    const { currentMovementPoints } = this.npc.class.combatstats;
+    const movementMap = findAvailableMovementArea(this.npc, map);
+    movementMap[y][x] = currentMovementPoints + 1;
+    return movementMap;
+  };
+
+  // Takes the movementMap, and spellRangeMaps of the unit and returns an updated spellRangeMap
+  // That only has map values where you are allowed to move.
+  filterSpellRangeMap = (spellRangeMaps, movementMap) => {
+    spellRangeMaps.forEach((spellMap) => {
+      spellMap.spellRangeMap = spellMap.spellRangeMap
+        .map((spellRangeMap) => {
+          const { rangeMap } = spellRangeMap;
+          let ableToHitSomething = false;
+
+          for (let y = 0; y < rangeMap.length; y++) {
+            for (let x = 0; x < rangeMap[y].length; x++) {
+              if (rangeMap[y][x] > 0 && !(movementMap[y][x] > 0)) {
+                rangeMap[y][x] = 0;
+              }
+              if (rangeMap[y][x] > 0) ableToHitSomething = true;
+            }
+          }
+
+          return ableToHitSomething ? rangeMap : false;
+        })
+        .filter((ele) => ele);
+    });
   };
 }
