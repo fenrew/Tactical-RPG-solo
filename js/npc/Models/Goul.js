@@ -91,7 +91,7 @@ class Goul extends BaseClass {
           return modifiedDamage;
         },
         spellInfo: {
-          aiWeight: 5,
+          aiWeight: 10,
           type: "damage",
           source: "physical-melee",
           manaCost: 25,
@@ -152,15 +152,15 @@ class Goul extends BaseClass {
           );
         },
         spellInfo: {
-          aiWeight: 10,
+          aiWeight: 5,
           type: "damage",
           source: "physical-melee",
           manaCost: 30,
           damage: 15,
           dotDamage: 20,
           duration: 4,
-          freeCells: true,
-          straigthLine: false,
+          freeCells: false,
+          straigthLine: true,
           diagonal: false,
           areaOfEffect: 1,
           minRange: 1,

@@ -10,9 +10,11 @@ class NewAggressiveAi {
     this.attackPlayersMainFunction();
   };
 
+  // Does all the attack calculations etc. Is re-usable.
   attackPlayersMainFunction = () => {
     const castableSpells = this.getCastableSpells();
     const attackableUnits = this.getUnitsOnMapThatCanBeAttacked();
+
     const rawSpellRangeMaps = this.getSpellRangeMaps(
       castableSpells,
       attackableUnits
@@ -23,7 +25,9 @@ class NewAggressiveAi {
       movementMap
     );
 
-    console.log(rawSpellRangeMaps);
+    // Right here there is a chance that spellRangeMaps is just an empty array
+
+    console.log(spellRangeMaps);
   };
 
   // Returns an array of castable spells (refrences)
@@ -49,11 +53,20 @@ class NewAggressiveAi {
 
     spells.forEach((spell) => {
       const spellRangeMap = units.map((unit) => {
-        const rangeMap = calculateSpellRangeFreeCells(
-          map,
-          spell.spellInfo,
-          unit.position
-        );
+        const { spellInfo } = spell;
+        const { freeCells, straigthLine, diagonal } = spellInfo;
+        const { position } = unit;
+        let rangeMap;
+
+        if (freeCells) {
+          rangeMap = calculateSpellRangeFreeCells(map, spellInfo, position);
+        } else if (straigthLine && !diagonal) {
+          rangeMap = calculateSpellRangeStraightLine(map, spellInfo, position);
+        } else if (!straigthLine && diagonal) {
+          // Insert calculate diagonal
+        } else if (straigthLine && diagonal) {
+          // Insert calculate straight and diagonal
+        }
 
         return { unit, rangeMap };
       });
@@ -91,9 +104,23 @@ class NewAggressiveAi {
             }
           }
 
-          return ableToHitSomething ? rangeMap : false;
+          this.calculateTargetWeight(spellRangeMap);
+
+          return ableToHitSomething ? spellRangeMap : false;
         })
         .filter((ele) => ele);
     });
+    // Removes the spell if it is not within range
+    return spellRangeMaps.filter((ele) => ele.spellRangeMap.length > 0);
+  };
+
+  // Takes the array of spells: [{spell, spellRangeMap: [{unit, rangeMap}, ]}, ]
+  // Adds the target weight: [{spell, spellRangeMap: [{unit, rangeMap, targetWeight}, ]}, ]
+  calculateTargetWeight = (spellRangeMap) => {
+    const { unit } = spellRangeMap;
+    const { currentHp, hp } = unit.class.combatstats;
+
+    const unitHealthWeight = 5 - (currentHp * 5) / hp;
+    console.log("UNIT HEALTH WEIGHT", unitHealthWeight, unit);
   };
 }
