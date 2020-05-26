@@ -1,6 +1,6 @@
 class NewAggressiveAi {
   constructor() {
-    this.npc = ""; //Filled out on NpcModel._initiate()
+    this.npc = {}; //Filled out on NpcModel._initiate()
     this.spellList = {}; //Filled out on NpcModel._initiate()
   }
   _runAi = () => {
@@ -26,6 +26,7 @@ class NewAggressiveAi {
     );
 
     // Right here there is a chance that spellRangeMaps is just an empty array
+    if (spellRangeMaps.length <= 0) return false;
 
     this.sortArrayByWeight(spellRangeMaps);
 
@@ -147,5 +148,17 @@ class NewAggressiveAi {
         (a.spellRangeMap[0].targetWeight + a.spell.spellInfo.aiWeight)
       );
     });
+  };
+
+  // Takes the spellRangeMaps and returns all the different castSequences possible
+  addSpellsToCastsequence = (spellRangeMaps) => {
+    const castSequence = [];
+    const firstSpellInfo = spellRangeMaps[0].spell.spellInfo;
+
+    for (let i = 0; i < firstSpellInfo.castsPerTurn; i++) {
+      if (firstSpellInfo.castsPerTarget > i) {
+        castSequence.push(spellRangeMaps[0].spellRangeMap[0]);
+      }
+    }
   };
 }

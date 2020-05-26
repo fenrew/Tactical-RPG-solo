@@ -107,6 +107,7 @@ class Zombie {
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
+          castsPerTarget: 2,
         },
       },
       spit: {
@@ -136,6 +137,7 @@ class Zombie {
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
+          castsPerTarget: 2,
         },
       },
     };

@@ -111,6 +111,7 @@ class Goul extends BaseClass {
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
+          castsPerTarget: 2,
           conditionsRequirements: {
             disarmed: true,
           },
@@ -174,6 +175,7 @@ class Goul extends BaseClass {
           lineOfSight: false,
           cooldown: 2,
           castsPerTurn: 2,
+          castsPerTarget: 2,
           conditionsRequirements: {
             disarmed: true,
           },
