@@ -1,7 +1,7 @@
-const itemShouldersList = {
+const shouldersItemList = {
   shouldersOfMagic: {
     name: "Shoulders of Magic",
-    price: 100,
+    price: 150,
     type: "shoulders",
     stats: [
       {

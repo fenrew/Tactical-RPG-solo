@@ -9,6 +9,7 @@
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
   display: flex;
+  justify-content: space-between;
 }
 
 .display-shop-close-button {
@@ -28,8 +29,7 @@
 .display-shop-items-list-container {
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
-  margin-right: 50px;
+  margin-right: 5%;
 }
 
 .display-shop-item-container {
@@ -51,6 +51,7 @@
 /* Item rareity here: display-shop-item-rareity-${shopItems[key].rareity} */
 
 #display-shop-item-info-container {
+  width: 65%;
 }
 
 .display-shop-item-name-details {

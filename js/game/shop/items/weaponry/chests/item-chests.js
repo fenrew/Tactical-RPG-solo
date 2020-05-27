@@ -1,4 +1,4 @@
-const itemChestList = {
+const chestItemList = {
   ironChainmail: {
     name: "Iron Chainmail",
     price: 100,

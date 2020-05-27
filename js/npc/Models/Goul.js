@@ -10,8 +10,8 @@ class Goul extends BaseClass {
     this.taunted = false; // The player class of whoever taunted you
 
     this.dropTable = {
-      coins: [20, 60],
-      items: [weaponDropList.boneClub],
+      coins: [40, 60],
+      items: [weaponDropList.boneClub, shoulderDropList.plaguedPauldrons],
     };
 
     this.ai = new NewAggressiveAi();

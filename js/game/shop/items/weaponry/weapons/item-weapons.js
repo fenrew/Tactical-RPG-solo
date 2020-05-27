@@ -1,4 +1,4 @@
-const itemWeaponsList = {
+const weaponItemList = {
   dirk: {
     name: "Dirk",
     price: 100,

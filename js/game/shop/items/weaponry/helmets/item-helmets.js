@@ -1,4 +1,4 @@
-const itemHelmetsList = {
+const helmetItemList = {
   vikingHelmet: {
     name: "Viking Helmet",
     price: 100,

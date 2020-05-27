@@ -1,4 +1,4 @@
-const itemFeetList = {
+const feetItemList = {
   bootsOfSorrow: {
     name: "Boots of Sorrow",
     price: 100,
