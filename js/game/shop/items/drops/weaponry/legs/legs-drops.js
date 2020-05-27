@@ -13,4 +13,18 @@ const legsDropList = {
       },
     ],
   },
+  leggingsOfTheOld: {
+    name: "Leggings of the Old",
+    price: 150,
+    type: "legs",
+    description:
+      "These pants are very old and no one really knows where it origins from",
+    dropChance: 0.05,
+    stats: [
+      {
+        keySequence: "mana",
+        value: 20,
+      },
+    ],
+  },
 };

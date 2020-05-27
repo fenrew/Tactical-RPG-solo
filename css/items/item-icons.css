@@ -24,8 +24,23 @@
   background-size: 100% 100%;
 }
 
+.display-shop-item-icon-sword-of-the-brothergood {
+  background-image: url("../../Animations/Items/Weapons/weapon-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-staff-of-fire {
+  background-image: url("../../Animations/Items/Weapons/weapon-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* HELMETS */
 .display-shop-item-icon-viking-helmet {
+  background-image: url("../../Animations/Items/Helmets/helmet-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-coif-of-the-old {
   background-image: url("../../Animations/Items/Helmets/helmet-placeholder.png");
   background-size: 100% 100%;
 }
@@ -46,8 +61,18 @@
   background-size: 100% 100%;
 }
 
+.display-shop-item-icon-plagued-pauldrons {
+  background-image: url("../../Animations/Items/Shoulders/shoulders-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* CHESTS */
 .display-shop-item-icon-iron-chainmail {
+  background-image: url("../../Animations/Items/Chests/chest-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-bone-plate {
   background-image: url("../../Animations/Items/Chests/chest-placeholder.png");
   background-size: 100% 100%;
 }
@@ -58,8 +83,23 @@
   background-size: 100% 100%;
 }
 
+.display-shop-item-icon-ragged-pants {
+  background-image: url("../../Animations/Items/Legs/legs-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-leggings-of-the-old {
+  background-image: url("../../Animations/Items/Legs/legs-placeholder.png");
+  background-size: 100% 100%;
+}
+
 /* FEET */
 .display-shop-item-icon-boots-of-sorrow {
+  background-image: url("../../Animations/Items/Feet/feet-placeholder.png");
+  background-size: 100% 100%;
+}
+
+.display-shop-item-icon-bone-straped-boots {
   background-image: url("../../Animations/Items/Feet/feet-placeholder.png");
   background-size: 100% 100%;
 }

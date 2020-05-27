@@ -8,6 +8,14 @@ const getKeySequence = (stat) => {
   // Offensive Caster
   if (stat === "offAllDamageM")
     return ["modifiers", "offensive", "magicalDamage", "allDamage"];
+  if (stat === "offHoly")
+    return [
+      "modifiers",
+      "offensive",
+      "magicalDamage",
+      "elementalMagic",
+      "holy",
+    ];
   if (stat === "offFrost")
     return [
       "modifiers",
@@ -24,8 +32,16 @@ const getKeySequence = (stat) => {
       "elementalMagic",
       "darkness",
     ];
+  if (stat === "offFire")
+    return [
+      "modifiers",
+      "offensive",
+      "magicalDamage",
+      "elementalMagic",
+      "fire",
+    ];
 
-  if (stat === "offCasterModifier")
+  if (stat === "healing")
     return ["modifiers", "offensive", "healing", "casterModifier"];
 
   // Offensive Physical

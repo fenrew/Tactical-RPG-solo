@@ -41,7 +41,7 @@ const weaponItemList = {
     type: "weapon",
     stats: [
       {
-        keySequence: "offCasterModifier",
+        keySequence: "healing",
         value: 0.15,
       },
       {
