@@ -4,7 +4,7 @@ const weaponDropList = {
     price: 100,
     type: "weapon",
     description: "A club made out of bones. There's a cerain stench to it",
-    dropChance: 1,
+    dropChance: 0.1,
     stats: [
       {
         keySequence: "offMeleeDamage",

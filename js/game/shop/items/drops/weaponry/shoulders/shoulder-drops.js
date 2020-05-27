@@ -5,7 +5,7 @@ const shoulderDropList = {
     type: "shoulders",
     description:
       "The say that the pauldrons has been passed down through generations of plagued zombies",
-    dropChance: 0.5,
+    dropChance: 0.05,
     stats: [
       {
         keySequence: "defAllDamage",

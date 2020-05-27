@@ -3,7 +3,7 @@ const chestDropList = {
     name: "Bone Plate",
     price: 150,
     type: "chest",
-    description: "A chestplate forged of the bones of ",
+    description: "A chestplate forged of the bones of the eaten enemies",
     dropChance: 0.05,
     stats: [
       {
