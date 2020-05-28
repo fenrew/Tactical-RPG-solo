@@ -1,0 +1,15 @@
+/* Player Area */
+.demon-hound-npc-player-area {
+  width: 100%;
+  height: 100%;
+  background: url("../../../Animations/NPCs/Demon-Hound/Demon-Hound.png");
+  background-size: 100% 100%;
+  top: 0px;
+  left: 0px;
+}
+
+/* Combat Timeline */
+.demon-hound-npc-combat-timeline-panel {
+  background: url("../../../Animations/NPCs/Demon-Hound/Demon-Hound.png");
+  background-size: 100% 100%;
+}
