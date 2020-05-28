@@ -1,9 +1,9 @@
-class Goul extends BaseClass {
+class SkeletonMage extends BaseClass {
   constructor() {
     super();
-    this.className = "goul";
-    this.cssString = "goul-npc-player-area";
-    this.cssPlayerPanelString = "goul-npc-combat-timeline-panel";
+    this.className = "skeleton mage";
+    this.cssString = "skeleton-mage-npc-player-area";
+    this.cssPlayerPanelString = "skeleton-mage-npc-combat-timeline-panel";
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown
@@ -26,13 +26,13 @@ class Goul extends BaseClass {
     this.ai = new NewAggressiveAi();
 
     this.combatstats = {
-      hp: 200,
-      currentHp: 200,
-      mana: 70,
-      currentMana: 70,
-      initiation: 150,
-      maxMovementPoints: 5,
-      currentMovementPoints: 5,
+      hp: 150,
+      currentHp: 150,
+      mana: 140,
+      currentMana: 140,
+      initiation: 80,
+      maxMovementPoints: 3,
+      currentMovementPoints: 3,
     };
 
     this.conditions = {
@@ -90,39 +90,39 @@ class Goul extends BaseClass {
     };
 
     this.spells = {
-      ravege: {
-        id: "ravege",
-        name: "Ravege",
+      fireBolt: {
+        id: "fireBolt",
+        name: "Fire Bolt",
         cast: (position, player) => {
-          player._addTargetSpellConditions(player.spells.ravege, position);
+          player._addTargetSpellConditions(player.spells.fireBolt, position);
         },
         castEffect: (target, spell, player) => {
           let modifiedDamage = Math.floor(
             spell.spellInfo.damage *
-              calculatePhysicalMeleeDamageModifiers(player.player, target)
+              calculateMagicalDamageModifiers(player.player, target, "fire")
           );
           target.class.combatstats.currentHp -= modifiedDamage;
           return modifiedDamage;
         },
         spellInfo: {
-          aiWeight: 10,
+          aiWeight: 5,
           type: "damage",
-          source: "physical-melee",
-          manaCost: 25,
-          damage: 25,
+          source: "fire",
+          manaCost: 40,
+          damage: 40,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
           areaOfEffect: 1,
           minRange: 1,
-          maxRange: 1,
+          maxRange: 8,
           modifiableRange: false,
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
           castsPerTarget: 2,
           conditionsRequirements: {
-            disarmed: true,
+            silenced: true,
           },
         },
         userSpellInfo: {
@@ -131,62 +131,52 @@ class Goul extends BaseClass {
           currentCooldown: 0,
           currentCastsPerTurn: 0,
         },
-        category: "ravege",
+        category: "fireBolt",
         toLearn: 0,
         castCounter: 0,
       },
 
-      infection: {
-        id: "infection",
-        name: "Infection",
+      permaFrost: {
+        id: "permaFrost",
+        name: "Perma Frost",
         cast: (position, player) => {
-          player._addTargetSpellConditions(player.spells.infection, position);
+          player._addTargetSpellConditions(player.spells.permaFrost, position);
         },
         castEffect: (target, spell, player) => {
+          const { mpRemoval, damage } = spell.spellInfo;
+          const { combatstats } = target.class;
+
           let modifiedDamage = Math.floor(
-            spell.spellInfo.damage *
-              calculatePhysicalRangedDamageModifiers(this.player, target)
+            damage *
+              calculateMagicalDamageModifiers(this.player, target, "frost")
           );
-          target.class.combatstats.currentHp -= modifiedDamage;
+          combatstats.currentHp -= modifiedDamage;
+          combatstats.currentMovementPoints -= mpRemoval;
 
-          for (let i = 1; i <= spell.spellInfo.duration; i++) {
-            Game._addNewCombatEffect(this.player, target, spell, i);
-          }
+          handleSpellDamageEffectAnimation(target, mpRemoval, "mp");
 
-          handleSpellDamageEffectAnimation(target, modifiedDamage, "damage");
-        },
-        applyEffect: (effect) => {
-          const modifiedDamage = effect.spell.spellInfo.dotDamage;
-
-          effect.target.class.combatstats.currentHp -= modifiedDamage;
-
-          handleSpellDamageEffectAnimation(
-            effect.target,
-            modifiedDamage,
-            effect.spell.spellInfo.type
-          );
+          return modifiedDamage;
         },
         spellInfo: {
-          aiWeight: 5,
+          aiWeight: 15,
+          mpRemoval: 3,
           type: "damage",
-          source: "physical-melee",
+          source: "frost",
           manaCost: 30,
-          damage: 15,
-          dotDamage: 20,
-          duration: 4,
+          damage: 5,
           freeCells: false,
           straigthLine: true,
           diagonal: false,
           areaOfEffect: 1,
-          minRange: 1,
+          minRange: 3,
           maxRange: 5,
           modifiableRange: false,
           lineOfSight: false,
-          cooldown: 2,
-          castsPerTurn: 2,
-          castsPerTarget: 2,
+          cooldown: 3,
+          castsPerTurn: 1,
+          castsPerTarget: 1,
           conditionsRequirements: {
-            disarmed: true,
+            silenced: true,
           },
         },
         userSpellInfo: {
@@ -195,7 +185,7 @@ class Goul extends BaseClass {
           currentCooldown: 0,
           currentCastsPerTurn: 0,
         },
-        category: "infection",
+        category: "permaFrost",
         toLearn: 0,
         castCounter: 0,
       },

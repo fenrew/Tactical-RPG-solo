@@ -50,6 +50,8 @@ class BaseClass extends Items {
     Game._checkIfAnyoneHasDied();
 
     spell.castCounter += 1;
+
+    if (!this.castCounter) return;
     this.castCounter[category] += 1;
     this._checkIfNewSpellIsLearned(spell);
 

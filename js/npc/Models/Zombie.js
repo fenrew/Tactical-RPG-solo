@@ -10,7 +10,16 @@ class Zombie {
 
     this.dropTable = {
       coins: [20, 60],
-      items: [weaponDropList.boneClub],
+      items: [
+        weaponDropList.boneClub,
+        weaponDropList.swordOfTheBrotherhood,
+        weaponDropList.staffOfFire,
+        legsDropList.raggedPants,
+        legsDropList.leggingsOfTheOld,
+        helmetDropList.coifOfTheOld,
+        helmetDropList.boneStrapedBoots,
+        chestDropList.bonePlate,
+      ],
     };
 
     this.ai = new AggressiveAi();
