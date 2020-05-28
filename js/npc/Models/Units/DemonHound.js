@@ -9,6 +9,8 @@ class DemonHound extends BaseClass {
     this.cooldowns = []; // An array of all spells that are on cooldown
     this.taunted = false; // The player class of whoever taunted you
 
+    this.ai = new NewAggressiveAi();
+
     this.dropTable = {
       coins: [40, 60],
       items: [
@@ -22,8 +24,6 @@ class DemonHound extends BaseClass {
         shoulderDropList.plaguedPauldrons,
       ],
     };
-
-    this.ai = new NewAggressiveAi();
 
     this.combatstats = {
       hp: 400,

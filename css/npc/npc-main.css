@@ -1,5 +1,8 @@
 @import "./zombie/zombie.css";
 @import "./goul/goul.css";
+@import "./skeletal-mage/skeletal-mage.css";
+@import "./demon-hound/demon-hound.css";
+@import "./cerberus/cerberus.css";
 
 /* NPC panel */
 .npc-class-panel {

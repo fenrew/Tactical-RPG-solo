@@ -1,13 +1,15 @@
-class SkeletonMage extends BaseClass {
+class Goul extends BaseClass {
   constructor() {
     super();
-    this.className = "skeleton mage";
-    this.cssString = "skeleton-mage-npc-player-area";
-    this.cssPlayerPanelString = "skeleton-mage-npc-combat-timeline-panel";
+    this.className = "goul";
+    this.cssString = "goul-npc-player-area";
+    this.cssPlayerPanelString = "goul-npc-combat-timeline-panel";
     this.player = "";
 
     this.cooldowns = []; // An array of all spells that are on cooldown
     this.taunted = false; // The player class of whoever taunted you
+
+    this.ai = new NewAggressiveAi();
 
     this.dropTable = {
       coins: [40, 60],
@@ -23,16 +25,14 @@ class SkeletonMage extends BaseClass {
       ],
     };
 
-    this.ai = new NewAggressiveAi();
-
     this.combatstats = {
-      hp: 150,
-      currentHp: 150,
-      mana: 140,
-      currentMana: 140,
-      initiation: 80,
-      maxMovementPoints: 3,
-      currentMovementPoints: 3,
+      hp: 200,
+      currentHp: 200,
+      mana: 70,
+      currentMana: 70,
+      initiation: 150,
+      maxMovementPoints: 5,
+      currentMovementPoints: 5,
     };
 
     this.conditions = {
@@ -90,39 +90,39 @@ class SkeletonMage extends BaseClass {
     };
 
     this.spells = {
-      fireBolt: {
-        id: "fireBolt",
-        name: "Fire Bolt",
+      ravege: {
+        id: "ravege",
+        name: "Ravege",
         cast: (position, player) => {
-          player._addTargetSpellConditions(player.spells.fireBolt, position);
+          player._addTargetSpellConditions(player.spells.ravege, position);
         },
         castEffect: (target, spell, player) => {
           let modifiedDamage = Math.floor(
             spell.spellInfo.damage *
-              calculateMagicalDamageModifiers(player.player, target, "fire")
+              calculatePhysicalMeleeDamageModifiers(player.player, target)
           );
           target.class.combatstats.currentHp -= modifiedDamage;
           return modifiedDamage;
         },
         spellInfo: {
-          aiWeight: 5,
+          aiWeight: 10,
           type: "damage",
-          source: "fire",
-          manaCost: 40,
-          damage: 40,
+          source: "physical-melee",
+          manaCost: 25,
+          damage: 25,
           freeCells: true,
           straigthLine: false,
           diagonal: false,
           areaOfEffect: 1,
           minRange: 1,
-          maxRange: 8,
+          maxRange: 1,
           modifiableRange: false,
           lineOfSight: false,
           cooldown: 1,
           castsPerTurn: 2,
           castsPerTarget: 2,
           conditionsRequirements: {
-            silenced: true,
+            disarmed: true,
           },
         },
         userSpellInfo: {
@@ -131,52 +131,62 @@ class SkeletonMage extends BaseClass {
           currentCooldown: 0,
           currentCastsPerTurn: 0,
         },
-        category: "fireBolt",
+        category: "ravege",
         toLearn: 0,
         castCounter: 0,
       },
 
-      permaFrost: {
-        id: "permaFrost",
-        name: "Perma Frost",
+      infection: {
+        id: "infection",
+        name: "Infection",
         cast: (position, player) => {
-          player._addTargetSpellConditions(player.spells.permaFrost, position);
+          player._addTargetSpellConditions(player.spells.infection, position);
         },
         castEffect: (target, spell, player) => {
-          const { mpRemoval, damage } = spell.spellInfo;
-          const { combatstats } = target.class;
-
           let modifiedDamage = Math.floor(
-            damage *
-              calculateMagicalDamageModifiers(this.player, target, "frost")
+            spell.spellInfo.damage *
+              calculatePhysicalRangedDamageModifiers(this.player, target)
           );
-          combatstats.currentHp -= modifiedDamage;
-          combatstats.currentMovementPoints -= mpRemoval;
+          target.class.combatstats.currentHp -= modifiedDamage;
 
-          handleSpellDamageEffectAnimation(target, mpRemoval, "mp");
+          for (let i = 1; i <= spell.spellInfo.duration; i++) {
+            Game._addNewCombatEffect(this.player, target, spell, i);
+          }
 
-          return modifiedDamage;
+          handleSpellDamageEffectAnimation(target, modifiedDamage, "damage");
+        },
+        applyEffect: (effect) => {
+          const modifiedDamage = effect.spell.spellInfo.dotDamage;
+
+          effect.target.class.combatstats.currentHp -= modifiedDamage;
+
+          handleSpellDamageEffectAnimation(
+            effect.target,
+            modifiedDamage,
+            effect.spell.spellInfo.type
+          );
         },
         spellInfo: {
-          aiWeight: 15,
-          mpRemoval: 3,
+          aiWeight: 5,
           type: "damage",
-          source: "frost",
+          source: "physical-melee",
           manaCost: 30,
-          damage: 5,
+          damage: 15,
+          dotDamage: 20,
+          duration: 4,
           freeCells: false,
           straigthLine: true,
           diagonal: false,
           areaOfEffect: 1,
-          minRange: 3,
+          minRange: 1,
           maxRange: 5,
           modifiableRange: false,
           lineOfSight: false,
-          cooldown: 3,
-          castsPerTurn: 1,
-          castsPerTarget: 1,
+          cooldown: 2,
+          castsPerTurn: 2,
+          castsPerTarget: 2,
           conditionsRequirements: {
-            silenced: true,
+            disarmed: true,
           },
         },
         userSpellInfo: {
@@ -185,7 +195,7 @@ class SkeletonMage extends BaseClass {
           currentCooldown: 0,
           currentCastsPerTurn: 0,
         },
-        category: "permaFrost",
+        category: "infection",
         toLearn: 0,
         castCounter: 0,
       },
