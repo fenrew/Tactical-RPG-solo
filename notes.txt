@@ -14,9 +14,7 @@ given the order the spells were cast (if flamingWeapon conditionEffect is execut
 
 ==== TODO BEFORE ALPHA RELEASE ====
 - Rework the AI
-- Add more drops
 - Add more items
-- Add an extra enemy or 2
 
 ==== TODO ====
 - Add "Controls Panel" to see keybinds etc
