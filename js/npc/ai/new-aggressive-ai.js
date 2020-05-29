@@ -30,7 +30,7 @@ class NewAggressiveAi {
 
     this.sortArrayByWeight(spellRangeMaps);
 
-    console.log(spellRangeMaps);
+    this.filterBySpellsInRange(spellRangeMaps, movementMap);
   };
 
   // Returns an array of castable spells (refrences)
@@ -148,6 +148,43 @@ class NewAggressiveAi {
         (a.spellRangeMap[0].targetWeight + a.spell.spellInfo.aiWeight)
       );
     });
+
+    console.log(spellRangeMaps);
+  };
+
+  // Filters the spellRangeMaps depending on the target of the different spells
+  // are in range od #1 weight spell or not
+
+  filterBySpellsInRange = (spellRangeMaps, movementMap) => {
+    const mainSpell = spellRangeMaps[0].spell;
+    const mainSpellRangeMap = spellRangeMaps[0].spellRangeMap[0].rangeMap;
+
+    //Find the best position to move to for casting the spell
+    const movePos = { y: 0, x: 0, mp: 0 };
+    for (let y = 0; y < mainSpellRangeMap.length; y++) {
+      for (let x = 0; x < mainSpellRangeMap[y].length; x++) {
+        if (mainSpellRangeMap[y][x] > 0 && movementMap[y][x] > movePos.mp) {
+          movePos.y = y;
+          movePos.x = x;
+          movePos.mp = movementMap[y][x];
+        }
+      }
+    }
+
+    spellRangeMaps.forEach((spellMap) => {
+      spellMap.spellRangeMap.filter((unitRangeMap) => {
+        this.availablePositionsAfterCastingSpell(
+          movementMap,
+          movePos,
+          unitRangeMap.rangeMap
+        );
+      });
+    });
+    // console.log(movePos, spellRangeMaps, movementMap);
+  };
+
+  availablePositionsAfterCastingSpell = (movementMap, movePos, rangeMap) => {
+    const { y, x, mp } = movePos;
   };
 
   // Takes the spellRangeMaps and returns all the different castSequences possible
