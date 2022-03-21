@@ -26,7 +26,7 @@ class Zombie {
 
     this.combatstats = {
       hp: 100,
-      currentHp: 20,
+      currentHp: 100,
       mana: 55,
       currentMana: 55,
       initiation: 120,

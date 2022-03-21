@@ -15,7 +15,7 @@ const displayDrops = (npc) => {
   };
 
   itemDrops = items
-    .map((item) => (Math.random() <= item.dropChance ? item : ""))
+    .map((item) => (Math.random() <= item?.dropChance ? item : ""))
     .filter((ele) => ele);
 
   visualizeDropWindow(npc, goldDrop, itemDrops);

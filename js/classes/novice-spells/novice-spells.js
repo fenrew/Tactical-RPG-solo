@@ -95,7 +95,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 8,
+    toLearn: 5,
     castCounter: 0,
   },
   rend: {
@@ -147,7 +147,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 16,
+    toLearn: 10,
     castCounter: 0,
   },
   powerStroke: {
@@ -190,7 +190,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 24,
+    toLearn: 15,
     castCounter: 0,
   },
   findWeakness: {
@@ -240,7 +240,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "warrior",
-    toLearn: 32,
+    toLearn: 20,
     castCounter: 0,
   },
 
@@ -273,7 +273,7 @@ const noviceSpellObject = {
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,
-      castsPerTurn: 1,
+      castsPerTurn: 2,
       conditionsRequirements: {
         disarmed: true,
       },
@@ -331,7 +331,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "ranger",
-    toLearn: 8,
+    toLearn: 5,
     castCounter: 0,
   },
 
@@ -371,7 +371,7 @@ const noviceSpellObject = {
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,
-      castsPerTurn: 1,
+      castsPerTurn: 2,
       conditionsRequirements: {
         silenced: true,
       },
@@ -446,7 +446,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 8,
+    toLearn: 5,
     castCounter: 0,
   },
   magicLance: {
@@ -489,7 +489,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 16,
+    toLearn: 10,
     castCounter: 0,
   },
   syphonMana: {
@@ -530,7 +530,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 24,
+    toLearn: 15,
     castCounter: 0,
   },
   powerSpike: {
@@ -581,7 +581,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "sorcerer",
-    toLearn: 32,
+    toLearn: 20,
     castCounter: 0,
   },
 
@@ -619,7 +619,7 @@ const noviceSpellObject = {
       modifiableRange: false,
       lineOfSight: false,
       cooldown: 1,
-      castsPerTurn: 1,
+      castsPerTurn: 2,
       conditionsRequirements: {
         silenced: true,
       },
@@ -701,7 +701,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 8,
+    toLearn: 5,
     castCounter: 0,
   },
   smite: {
@@ -744,7 +744,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 16,
+    toLearn: 10,
     castCounter: 0,
   },
   absorb: {
@@ -794,7 +794,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 24,
+    toLearn: 15,
     castCounter: 0,
   },
   holySpike: {
@@ -847,7 +847,7 @@ const noviceSpellObject = {
       currentCastsPerTurn: 0,
     },
     category: "priest",
-    toLearn: 32,
+    toLearn: 20,
     castCounter: 0,
   },
 };

@@ -112,7 +112,7 @@ class GameClass {
 
     // Make a smarter way of doing this... (reseting currentCastsPerTurn after ended turn)
     for (let key in spells) {
-      if (spells[key].userSpellInfo.currentCooldown === 0) {
+      if (spells[key].userSpellInfo?.currentCooldown === 0) {
         spells[key].userSpellInfo.currentCastsPerTurn = 0;
       }
     }
@@ -183,6 +183,7 @@ class GameClass {
       player,
       this.activeMap
     );
+      console.log(this.availableMovementMap, this.activeMap)
     if (this.combatTimeline[this.turn] === player && !player.npc)
       activePlayerTurn = true;
     addMovementToHighlightMap(

@@ -1,6 +1,6 @@
 document.addEventListener("keydown", function (event) {
   let activePlayer = Game.combatTimeline[Game.turn];
-  if (activePlayer.npc) return;
+  if (!activePlayer || activePlayer.npc) return;
   removeMovementHighlightsFromMap();
 
   if (event.which === 83) {
